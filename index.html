@@ -228,6 +228,9 @@ h2[id]{scroll-margin-top:16px}
 .plat button[aria-selected="true"]{background:var(--surface);color:var(--navy);box-shadow:0 1px 3px rgba(0,0,0,.08)}
 .psteps{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:6px;color:var(--muted)}
 .psteps b{color:var(--fg)}
+.lang{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;margin-left:6px}
+.lang button{background:none;color:var(--muted);padding:6px 10px;border-radius:0;font-weight:700;font-size:.85rem}
+.lang button[aria-pressed="true"]{background:var(--navy);color:var(--bg)}
 .whint{flex-basis:100%;color:var(--accent);font-weight:600;font-size:.95rem}
 .wform label{display:flex;flex-direction:column;gap:4px;font-size:.82rem;flex:1 1 180px;min-width:0;color:var(--band-fg);opacity:.95}
 .wform input{background:#FDF6E3;color:#1F2D3A;border-color:transparent}
@@ -265,14 +268,15 @@ button.link.light{color:var(--accent);font-size:.95rem}
 
 <div class="wrap">
   <header class="top">
-    <a href="#home" class="brand" data-nav="home" aria-label="Mind Compass, към началната страница">
+    <a href="#home" class="brand" data-nav="home" aria-label="Mind Compass, към началната страница" data-en-al="Mind Compass, go to the home page">
       <img src="data:image/jpeg;base64,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" alt="">
-      <span><h1>Mind Compass</h1><span class="tag">Матрица на съдбата · Find Your True North Within</span></span>
+      <span><h1>Mind Compass</h1><span class="tag" data-en="Destiny Matrix · Find Your True North Within">Матрица на съдбата · Find Your True North Within</span></span>
     </a>
-    <nav class="topnav" aria-label="Основно меню">
-      <a href="#home" data-nav="home">Начало</a>
+    <nav class="topnav" aria-label="Основно меню" data-en-al="Main menu">
+      <a href="#home" data-nav="home" data-en="Home">Начало</a>
       <a href="#pt" data-nav="mine">Моята матрица</a>
-      <a href="#pt" data-nav="sample">Пример</a>
+      <a href="#pt" data-nav="sample" data-en="Example">Пример</a>
+      <span class="lang" role="group" aria-label="Език / Language"><button type="button" data-lang="bg" lang="bg">БГ</button><button type="button" data-lang="en" lang="en">EN</button></span>
     </nav>
   </header>
 
@@ -280,98 +284,98 @@ button.link.light{color:var(--accent);font-size:.95rem}
   <section id="welcome" class="landing stack" hidden>
     <div class="welcome">
       <div class="w-text">
-        <p class="w-eyebrow">Добре дошли</p>
-        <h2>Вашата матрица на съдбата, обяснена на разбираем език</h2>
-        <p>Mind Compass изчислява матрицата по датата на раждане, по класическата схема с 22 аркана, и я превежда на ежедневен език: какво Ви зарежда, къде са капаните и каква малка стъпка да направите тази седмица.</p>
-        <div class="w-actions"><button type="button" class="cta" data-nav="mine" id="ctaMine">Изчисли моята матрица</button><button type="button" class="ghost light" data-nav="sample">Разгледай пример</button></div>
+        <p class="w-eyebrow" data-en="Welcome">Добре дошли</p>
+        <h2 data-en="Your Destiny Matrix, explained in plain language">Вашата матрица на съдбата, обяснена на разбираем език</h2>
+        <p data-en="Mind Compass calculates the matrix from your date of birth, using the classic 22-arcana method, and translates it into everyday language: what energises you, where the traps are, and what small step to take this week.">Mind Compass изчислява матрицата по датата на раждане, по класическата схема с 22 аркана, и я превежда на ежедневен език: какво Ви зарежда, къде са капаните и каква малка стъпка да направите тази седмица.</p>
+        <div class="w-actions"><button type="button" class="cta" data-nav="mine" id="ctaMine">Изчисли моята матрица</button><button type="button" class="ghost light" data-nav="sample" data-en="See an example">Разгледай пример</button></div>
               </div>
     </div>
-    <h2>Какво ще откриете</h2>
+    <h2 data-en="What you will discover">Какво ще откриете</h2>
     <div class="feat">
-      <div class="f"><span class="em g2" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 8v30M16 40h16M10 15h28"/><path d="M10 15l-5 10h10ZM38 15l-5 10h10Z"/></svg></span><h3>Личен портрет</h3><p>Коя сте най-дълбоко, как Ви виждат хората и в какво сте дарена.</p></div>
-      <div class="f"><span class="em g1" aria-hidden="true"><svg viewBox="0 0 48 48"><circle cx="19" cy="24" r="9"/><circle cx="29" cy="24" r="9"/></svg></span><h3>Сферите на живота</h3><p>Пари, любов и предназначение в трите етапа на живота.</p></div>
-      <div class="f"><span class="em g3" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 26V8M24 15l-7-6M24 15l7-6M24 20l-9-3M24 20l9-3"/><path d="M8 26h32M24 26v14M24 31l-8 8M24 31l8 8"/></svg></span><h3>Карма</h3><p>Кармичният урок, родовите дарове и задачите, които се предават.</p></div>
-      <div class="f"><span class="em g3" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 6l3 14 14 4-14 4-3 14-3-14-14-4 14-4Z"/></svg></span><h3>22 аркана</h3><p>Светлата страна и сянката на всеки аркан и как да обърнете минуса в плюс.</p></div>
-      <div class="f"><span class="em g2" aria-hidden="true"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="14"/><circle cx="24" cy="24" r="3"/><path d="M24 10v28M10 24h28M14 14l20 20M34 14 14 34"/></svg></span><h3>Прогноза</h3><p>Енергията на годината и темите на периодите през следващите години.</p></div>
-      <div class="f"><span class="em g1" aria-hidden="true"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="15"/><ellipse cx="24" cy="24" rx="6" ry="15"/><path d="M9 24h30"/></svg></span><h3>Хора около Вас</h3><p>Какво Ви свързва с близките, какво се повтаря и как да общувате по-лесно.</p></div>
+      <div class="f"><span class="em g2" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 8v30M16 40h16M10 15h28"/><path d="M10 15l-5 10h10ZM38 15l-5 10h10Z"/></svg></span><h3 data-en="Personal portrait">Личен портрет</h3><p data-en="Who you are at your core, how people see you and what you are gifted at.">Коя сте най-дълбоко, как Ви виждат хората и в какво сте дарена.</p></div>
+      <div class="f"><span class="em g1" aria-hidden="true"><svg viewBox="0 0 48 48"><circle cx="19" cy="24" r="9"/><circle cx="29" cy="24" r="9"/></svg></span><h3 data-en="Areas of life">Сферите на живота</h3><p data-en="Money, love and purpose across the three stages of life.">Пари, любов и предназначение в трите етапа на живота.</p></div>
+      <div class="f"><span class="em g3" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 26V8M24 15l-7-6M24 15l7-6M24 20l-9-3M24 20l9-3"/><path d="M8 26h32M24 26v14M24 31l-8 8M24 31l8 8"/></svg></span><h3 data-en="Karma">Карма</h3><p data-en="The karmic lesson, the gifts of your family line and the tasks passed down.">Кармичният урок, родовите дарове и задачите, които се предават.</p></div>
+      <div class="f"><span class="em g3" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 6l3 14 14 4-14 4-3 14-3-14-14-4 14-4Z"/></svg></span><h3 data-en="22 arcana">22 аркана</h3><p data-en="The light side and the shadow of each arcanum, and how to turn a minus into a plus.">Светлата страна и сянката на всеки аркан и как да обърнете минуса в плюс.</p></div>
+      <div class="f"><span class="em g2" aria-hidden="true"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="14"/><circle cx="24" cy="24" r="3"/><path d="M24 10v28M10 24h28M14 14l20 20M34 14 14 34"/></svg></span><h3 data-en="Forecast">Прогноза</h3><p data-en="The energy of the year and the themes of the periods in the years ahead.">Енергията на годината и темите на периодите през следващите години.</p></div>
+      <div class="f"><span class="em g1" aria-hidden="true"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="15"/><ellipse cx="24" cy="24" rx="6" ry="15"/><path d="M9 24h30"/></svg></span><h3 data-en="People around you">Хора около Вас</h3><p data-en="What connects you with those close to you, what repeats and how to communicate more easily.">Какво Ви свързва с близките, какво се повтаря и как да общувате по-лесно.</p></div>
     </div>
-    <h2>Как работи</h2>
+    <h2 data-en="How it works">Как работи</h2>
     <ol class="how">
-      <li><b>Въведете име и дата на раждане.</b> Не са нужни час и място.</li>
-      <li><b>Mind Compass изчислява матрицата</b> по класическата схема и подрежда тълкуванията по теми.</li>
-      <li><b>Четете, размишлявате и се връщате.</b> Всяка седмица има нов въпрос и малка стъпка.</li>
+      <li data-en="&lt;b&gt;Enter your name and date of birth.&lt;/b&gt; No time or place of birth needed."><b>Въведете име и дата на раждане.</b> Не са нужни час и място.</li>
+      <li data-en="&lt;b&gt;Mind Compass calculates the matrix&lt;/b&gt; using the classic method and arranges the readings by theme."><b>Mind Compass изчислява матрицата</b> по класическата схема и подрежда тълкуванията по теми.</li>
+      <li data-en="&lt;b&gt;Read, reflect and come back.&lt;/b&gt; Every week brings a new question and a small step."><b>Четете, размишлявате и се връщате.</b> Всяка седмица има нов въпрос и малка стъпка.</li>
     </ol>
-    <p class="note">Данните остават само на Вашето устройство. Нищо не се изпраща никъде.</p>
+    <p class="note" data-en="Your data stays only on your device. Nothing is sent anywhere.">Данните остават само на Вашето устройство. Нищо не се изпраща никъде.</p>
   </section>
 
   <section id="start" class="startpg" hidden>
     <div class="startcard">
-      <h2>Изчислете своята матрица</h2>
-      <p class="note">Нужни са само име и дата на раждане.</p>
+      <h2 data-en="Calculate your matrix">Изчислете своята матрица</h2>
+      <p class="note" data-en="All you need is a name and a date of birth.">Нужни са само име и дата на раждане.</p>
       <form class="wform" id="wForm" novalidate>
-        <label for="wName">Име<input id="wName" placeholder="Вашето име" autocomplete="off"></label>
-        <label for="wDate">Дата на раждане<input id="wDate" type="text" inputmode="numeric" placeholder="дд.мм.гггг" maxlength="10" autocomplete="off"></label>
-        <button type="submit">Изчисли</button>
+        <label for="wName"><span data-en="Name">Име</span><input id="wName" placeholder="Вашето име" data-en-ph="Your name" autocomplete="off"></label>
+        <label for="wDate"><span data-en="Date of birth">Дата на раждане</span><input id="wDate" type="text" inputmode="numeric" placeholder="дд.мм.гггг" data-en-ph="dd.mm.yyyy" maxlength="10" autocomplete="off"></label>
+        <button type="submit" data-en="Calculate">Изчисли</button>
         <p class="err" id="wErr" role="alert" hidden></p>
       </form>
-      <p class="note">Искате първо да разгледате? <button type="button" class="link" data-nav="sample">Отворете примерна матрица</button></p>
+      <p class="note" data-en="Want to look around first? &lt;button type=&quot;button&quot; class=&quot;link&quot; data-nav=&quot;sample&quot;&gt;Open an example matrix&lt;/button&gt;">Искате първо да разгледате? <button type="button" class="link" data-nav="sample">Отворете примерна матрица</button></p>
     </div>
   </section>
 
   <div id="app" class="stack" style="gap:24px">
   <div class="viewing" id="viewing"></div>
   <form class="form" id="meForm" novalidate hidden>
-    <label for="meName">Име<input id="meName" value="" placeholder="Вашето име" autocomplete="off"></label>
-    <label for="meDate">Дата на раждане<input id="meDate" type="text" inputmode="numeric" placeholder="дд.мм.гггг" maxlength="10" autocomplete="off"></label>
-    <button type="submit">Запази и изчисли</button>
-    <button type="button" class="ghost" id="meCancel">Отказ</button>
+    <label for="meName"><span data-en="Name">Име</span><input id="meName" value="" placeholder="Вашето име" data-en-ph="Your name" autocomplete="off"></label>
+    <label for="meDate"><span data-en="Date of birth">Дата на раждане</span><input id="meDate" type="text" inputmode="numeric" placeholder="дд.мм.гггг" data-en-ph="dd.mm.yyyy" maxlength="10" autocomplete="off"></label>
+    <button type="submit" data-en="Save and calculate">Запази и изчисли</button>
+    <button type="button" class="ghost" id="meCancel" data-en="Cancel">Отказ</button>
     <p class="err" id="meErr" role="alert" hidden></p>
   </form>
 
-  <section class="band" id="now" aria-label="Вашият компас сега"></section>
+  <section class="band" id="now" aria-label="Вашият компас сега" data-en-al="Your compass now"></section>
 
   <div class="tabs" role="tablist">
-    <button class="tab" role="tab" aria-selected="true" data-v="pt">Портрет</button>
-    <button class="tab" role="tab" aria-selected="false" data-v="zn">Сфери</button>
-    <button class="tab" role="tab" aria-selected="false" data-v="km">Карма</button>
-    <button class="tab" role="tab" aria-selected="false" data-v="ar">22 аркана</button>
-    <button class="tab" role="tab" aria-selected="false" data-v="fc">Прогноза</button>
-    <button class="tab" role="tab" aria-selected="false" data-v="pp">Хора</button>
+    <button class="tab" role="tab" aria-selected="true" data-v="pt" data-en="Portrait">Портрет</button>
+    <button class="tab" role="tab" aria-selected="false" data-v="zn" data-en="Areas">Сфери</button>
+    <button class="tab" role="tab" aria-selected="false" data-v="km" data-en="Karma">Карма</button>
+    <button class="tab" role="tab" aria-selected="false" data-v="ar" data-en="22 arcana">22 аркана</button>
+    <button class="tab" role="tab" aria-selected="false" data-v="fc" data-en="Forecast">Прогноза</button>
+    <button class="tab" role="tab" aria-selected="false" data-v="pp" data-en="People">Хора</button>
   </div>
 
   <section id="v-pt" class="view stack"></section>
   <section id="v-zn" class="view stack" hidden></section>
   <section id="v-km" class="view stack" hidden></section>
   <section id="v-ar" class="view stack" hidden>
-    <p class="intro">Всеки аркан има светла страна и сянка. Сянката не е присъда: тя показва къде енергията е блокирана, а до всеки минус е посочено как да я обърнете в плюс. Оранжевата точка отбелязва арканите от Вашата матрица.</p>
+    <p class="intro" data-en="Every arcanum has a light side and a shadow. The shadow is not a verdict: it shows where the energy is blocked, and next to every minus you will find how to turn it into a plus. The orange dot marks the arcana in your matrix.">Всеки аркан има светла страна и сянка. Сянката не е присъда: тя показва къде енергията е блокирана, а до всеки минус е посочено как да я обърнете в плюс. Оранжевата точка отбелязва арканите от Вашата матрица.</p>
     <div id="arcDetail"></div>
-    <label class="search" for="arcQ"><span>Търсене в арканите</span><input id="arcQ" type="search" placeholder="напр. контрол, граници, избор, пари" autocomplete="off"></label>
-    <p class="note" id="arcNone" hidden>Няма аркан с тази дума. Опитайте с друга, например „промяна“ или „отношения“.</p>
+    <label class="search" for="arcQ"><span data-en="Search the arcana">Търсене в арканите</span><input id="arcQ" type="search" placeholder="напр. контрол, граници, избор, пари" data-en-ph="e.g. control, boundaries, choice, money" autocomplete="off"></label>
+    <p class="note" id="arcNone" hidden data-en="No arcanum matches this word. Try another, for example &quot;change&quot; or &quot;relationships&quot;.">Няма аркан с тази дума. Опитайте с друга, например „промяна“ или „отношения“.</p>
     <div class="lib" id="lib"></div>
   </section>
   <section id="v-fc" class="view stack" hidden></section>
   <section id="v-pp" class="view stack" hidden>
-    <p class="intro">Добавете човек от живота си, за да видите какво ви свързва, какво се повтаря между вас и как да общувате по-лесно. Това е картина на динамиката, а не присъда за човека. Профилите се пазят само в този браузър.</p>
+    <p class="intro" data-en="Add a person from your life to see what connects you, what repeats between you and how to communicate more easily. This is a picture of the dynamic, not a verdict on the person. Profiles are stored only in this browser.">Добавете човек от живота си, за да видите какво ви свързва, какво се повтаря между вас и как да общувате по-лесно. Това е картина на динамиката, а не присъда за човека. Профилите се пазят само в този браузър.</p>
     <form class="form" id="pForm" novalidate>
-      <label for="pName">Име<input id="pName" placeholder="напр. Мария" autocomplete="off"></label>
-      <label for="pDate">Дата на раждане<input id="pDate" type="text" inputmode="numeric" placeholder="дд.мм.гггг" maxlength="10" autocomplete="off"></label>
-      <label for="pRel">Връзка<select id="pRel"><option>Партньор</option><option>Родител</option><option>Дете</option><option>Брат / сестра</option><option>Приятел</option><option>Колега</option><option>Ръководител</option><option>Друго</option></select></label>
-      <button type="submit">Добави</button>
+      <label for="pName"><span data-en="Name">Име</span><input id="pName" placeholder="напр. Мария" data-en-ph="e.g. Maria" autocomplete="off"></label>
+      <label for="pDate"><span data-en="Date of birth">Дата на раждане</span><input id="pDate" type="text" inputmode="numeric" placeholder="дд.мм.гггг" data-en-ph="dd.mm.yyyy" maxlength="10" autocomplete="off"></label>
+      <label for="pRel"><span data-en="Relationship">Връзка</span><select id="pRel"><option value="Партньор" data-en="Partner">Партньор</option><option value="Родител" data-en="Parent">Родител</option><option value="Дете" data-en="Child">Дете</option><option value="Брат / сестра" data-en="Sibling">Брат / сестра</option><option value="Приятел" data-en="Friend">Приятел</option><option value="Колега" data-en="Colleague">Колега</option><option value="Ръководител" data-en="Manager">Ръководител</option><option value="Друго" data-en="Other">Друго</option></select></label>
+      <button type="submit" data-en="Add">Добави</button>
       <p class="err" id="pErr" hidden></p>
     </form>
     <div class="people-list" id="pList"></div>
     <div id="pView" class="stack"></div>
   </section>
 
-  <section class="tools" aria-label="Доклад и данни">
-    <div><h3>Доклад и данни</h3><p class="note">Докладът събира портрета, сферите, кармата и прогнозата на една страница. От прозореца за печат изберете „Запази като PDF“. Архивът пази Вашата дата и профилите на хората във файл, за да ги върнете на друго устройство.</p></div>
+  <section class="tools" aria-label="Доклад и данни" data-en-al="Report and data">
+    <div><h3 data-en="Report and data">Доклад и данни</h3><p class="note" data-en="The report gathers the portrait, areas, karma and forecast on one page. In the print window choose &quot;Save as PDF&quot;. The archive saves your date and the profiles of people to a file so you can restore them on another device.">Докладът събира портрета, сферите, кармата и прогнозата на една страница. От прозореца за печат изберете „Запази като PDF“. Архивът пази Вашата дата и профилите на хората във файл, за да ги върнете на друго устройство.</p></div>
     <div class="tool-btns">
-      <button type="button" id="prn">Доклад за печат / PDF</button>
-      <button type="button" class="ghost" id="exp">Изтегли архив</button>
-      <label class="ghost btnlike" for="imp">Възстанови от архив<input id="imp" type="file" accept="application/json,.json" hidden></label>
-      <button type="button" class="ghost" id="wipe">Изтрий моите данни от това устройство</button>
+      <button type="button" id="prn" data-en="Printable report / PDF">Доклад за печат / PDF</button>
+      <button type="button" class="ghost" id="exp" data-en="Download archive">Изтегли архив</button>
+      <label class="ghost btnlike" for="imp"><span data-en="Restore from archive">Възстанови от архив</span><input id="imp" type="file" accept="application/json,.json" hidden></label>
+      <button type="button" class="ghost" id="wipe" data-en="Delete my data from this device">Изтрий моите данни от това устройство</button>
     </div>
-    <div class="confirm" id="wipeAsk" hidden><span>Ще изтриете Вашата дата и всички профили на хора от този браузър. Ако искате да ги запазите, първо изтеглете архив.</span><button type="button" id="wipeYes">Да, изтрий</button><button type="button" class="ghost" id="wipeNo">Отказ</button></div>
+    <div class="confirm" id="wipeAsk" hidden><span data-en="This will delete your date and all people profiles from this browser. If you want to keep them, download an archive first.">Ще изтриете Вашата дата и всички профили на хора от този браузър. Ако искате да ги запазите, първо изтеглете архив.</span><button type="button" id="wipeYes" data-en="Yes, delete">Да, изтрий</button><button type="button" class="ghost" id="wipeNo" data-en="Cancel">Отказ</button></div>
     <p class="note" id="toolMsg" role="status"></p>
   </section>
   </div>
@@ -382,31 +386,31 @@ button.link.light{color:var(--accent);font-size:.95rem}
     <div class="phone" aria-hidden="true"><div class="scr"><div class="sbar"><span>9:41</span></div><div class="icons">
       <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="me"><img id="phoneIcon" alt=""><em>Mind Compass</em></i><i></i><i></i><i></i><i></i></div><div class="dock"><i></i><i></i><i></i><i></i></div></div></div>
     <div class="appbody">
-      <p class="w-eyebrow">Приложение</p>
-      <h2 id="appTitle">Mind Compass на Вашия телефон</h2>
-      <p>„Инсталиране“ тук не означава сваляне от Google Play или App Store. Браузърът добавя иконка на Mind Compass на началния екран или в менюто с програми. Тя отваря сайта като отделно приложение, на цял екран и без адресна лента.</p>
+      <p class="w-eyebrow" data-en="App">Приложение</p>
+      <h2 id="appTitle" data-en="Mind Compass on your phone">Mind Compass на Вашия телефон</h2>
+      <p data-en="&quot;Installing&quot; here does not mean downloading from Google Play or the App Store. Your browser adds a Mind Compass icon to your home screen or app menu. It opens the site as a separate app, full screen and without an address bar.">„Инсталиране“ тук не означава сваляне от Google Play или App Store. Браузърът добавя иконка на Mind Compass на началния екран или в менюто с програми. Тя отваря сайта като отделно приложение, на цял екран и без адресна лента.</p>
       <ul class="benefits">
-        <li><b>С едно докосване</b>Иконката е до другите Ви приложения.</li>
-        <li><b>Работи без интернет</b>Матрицата и тълкуванията са винаги под ръка.</li>
-        <li><b>Почти не заема място</b>Без магазин за приложения и без регистрация.</li>
-        <li><b>Данните остават при Вас</b>Нищо не се изпраща към сървър.</li>
+        <li data-en="&lt;b&gt;One tap away&lt;/b&gt;The icon sits next to your other apps."><b>С едно докосване</b>Иконката е до другите Ви приложения.</li>
+        <li data-en="&lt;b&gt;Works offline&lt;/b&gt;Your matrix and readings are always at hand."><b>Работи без интернет</b>Матрицата и тълкуванията са винаги под ръка.</li>
+        <li data-en="&lt;b&gt;Takes almost no space&lt;/b&gt;No app store and no sign-up."><b>Почти не заема място</b>Без магазин за приложения и без регистрация.</li>
+        <li data-en="&lt;b&gt;Your data stays with you&lt;/b&gt;Nothing is sent to a server."><b>Данните остават при Вас</b>Нищо не се изпраща към сървър.</li>
       </ul>
-      <button type="button" class="cta-inst" id="instBtn" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>Инсталирай сега</button>
-      <p class="installed" id="instDone" hidden>Mind Compass вече е инсталиран на това устройство.</p>
-      <div class="plat" role="tablist" aria-label="Устройство">
-        <button type="button" role="tab" data-p="android">Android</button><button type="button" role="tab" data-p="ios">iPhone и iPad</button><button type="button" role="tab" data-p="desk">Компютър</button>
+      <button type="button" class="cta-inst" id="instBtn" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg><span data-en="Install now">Инсталирай сега</span></button>
+      <p class="installed" id="instDone" hidden data-en="Mind Compass is already installed on this device.">Mind Compass вече е инсталиран на това устройство.</p>
+      <div class="plat" role="tablist" aria-label="Устройство" data-en-al="Device">
+        <button type="button" role="tab" data-p="android">Android</button><button type="button" role="tab" data-p="ios" data-en="iPhone and iPad">iPhone и iPad</button><button type="button" role="tab" data-p="desk" data-en="Computer">Компютър</button>
       </div>
-      <ol class="psteps" data-p="android"><li>Отворете сайта в <b>Chrome</b>.</li><li>Натиснете <b>трите точки</b> горе вдясно.</li><li>Изберете <b>„Инсталиране на приложението“</b> или „Добавяне към началния екран“.</li><li>Потвърдете с <b>„Инсталиране“</b>. Иконката се появява на началния екран.</li></ol>
-      <ol class="psteps" data-p="ios" hidden><li>Отворете сайта в <b>Safari</b>.</li><li>Натиснете бутона <b>„Споделяне“</b> (квадрат със стрелка нагоре).</li><li>Превъртете и изберете <b>„Добави към началния екран“</b>.</li><li>Натиснете <b>„Добави“</b> горе вдясно.</li></ol>
-      <ol class="psteps" data-p="desk" hidden><li>Отворете сайта в <b>Chrome</b> или <b>Edge</b>.</li><li>Вдясно в адресната лента натиснете <b>иконката за инсталиране</b> (монитор със стрелка).</li><li>Или от менюто с <b>трите точки</b> изберете „Инсталиране на Mind Compass“.</li><li>Приложението се появява в менюто „Старт“ и на работния плот.</li></ol>
+      <ol class="psteps" data-p="android" data-en="&lt;li&gt;Open the site in &lt;b&gt;Chrome&lt;/b&gt;.&lt;/li&gt;&lt;li&gt;Tap the &lt;b&gt;three dots&lt;/b&gt; at the top right.&lt;/li&gt;&lt;li&gt;Choose &lt;b&gt;&quot;Install app&quot;&lt;/b&gt; or &quot;Add to Home screen&quot;.&lt;/li&gt;&lt;li&gt;Confirm with &lt;b&gt;&quot;Install&quot;&lt;/b&gt;. The icon appears on your home screen.&lt;/li&gt;"><li>Отворете сайта в <b>Chrome</b>.</li><li>Натиснете <b>трите точки</b> горе вдясно.</li><li>Изберете <b>„Инсталиране на приложението“</b> или „Добавяне към началния екран“.</li><li>Потвърдете с <b>„Инсталиране“</b>. Иконката се появява на началния екран.</li></ol>
+      <ol class="psteps" data-p="ios" hidden data-en="&lt;li&gt;Open the site in &lt;b&gt;Safari&lt;/b&gt;.&lt;/li&gt;&lt;li&gt;Tap the &lt;b&gt;&quot;Share&quot;&lt;/b&gt; button (a square with an arrow pointing up).&lt;/li&gt;&lt;li&gt;Scroll and choose &lt;b&gt;&quot;Add to Home Screen&quot;&lt;/b&gt;.&lt;/li&gt;&lt;li&gt;Tap &lt;b&gt;&quot;Add&quot;&lt;/b&gt; at the top right.&lt;/li&gt;"><li>Отворете сайта в <b>Safari</b>.</li><li>Натиснете бутона <b>„Споделяне“</b> (квадрат със стрелка нагоре).</li><li>Превъртете и изберете <b>„Добави към началния екран“</b>.</li><li>Натиснете <b>„Добави“</b> горе вдясно.</li></ol>
+      <ol class="psteps" data-p="desk" hidden data-en="&lt;li&gt;Open the site in &lt;b&gt;Chrome&lt;/b&gt; or &lt;b&gt;Edge&lt;/b&gt;.&lt;/li&gt;&lt;li&gt;On the right of the address bar, click the &lt;b&gt;install icon&lt;/b&gt; (a monitor with an arrow).&lt;/li&gt;&lt;li&gt;Or from the &lt;b&gt;three dots&lt;/b&gt; menu choose &quot;Install Mind Compass&quot;.&lt;/li&gt;&lt;li&gt;The app appears in the Start menu and on the desktop.&lt;/li&gt;"><li>Отворете сайта в <b>Chrome</b> или <b>Edge</b>.</li><li>Вдясно в адресната лента натиснете <b>иконката за инсталиране</b> (монитор със стрелка).</li><li>Или от менюто с <b>трите точки</b> изберете „Инсталиране на Mind Compass“.</li><li>Приложението се появява в менюто „Старт“ и на работния плот.</li></ol>
     </div>
   </section>
 
-  <footer>Тълкуванията са символни и служат за самонаблюдение. Не са прогноза и не заменят съвет за здраве, пари или важни решения. Изчисленията следват класическата схема на матрицата (22 енергии). <span class="ver">Версия 1.8 · 22.10.2026</span></footer>
+  <footer><span data-en="The readings are symbolic and meant for self-reflection. They are not predictions and do not replace advice on health, money or important decisions. Calculations follow the classic matrix method (22 energies).">Тълкуванията са символни и служат за самонаблюдение. Не са прогноза и не заменят съвет за здраве, пари или важни решения. Изчисленията следват класическата схема на матрицата (22 енергии).</span> <span class="ver" data-en="Version 1.9 · 22.10.2026">Версия 1.9 · 22.10.2026</span></footer>
 </div>
 
 <script>
-const E=[null,
+const E_BG=[null,
 {n:"Магът",s:"човек на идеите и първата крачка",v:"да превръщате идея в действие",
 core:"Вие сте двигател. Когато другите още обсъждат, Вие вече сте пробвали. Думите Ви имат сила и с тях можете да запалите хората за нещо ново.",
 face:"Изглеждате находчиви, бързи и малко нетърпеливи: човек, който винаги има следващ план.",
@@ -695,7 +699,7 @@ st:"Направете нещо спонтанно, което не сте пл�
 per:"Време за нови начала, свобода и експерименти. Не планирайте всичко."}
 ];
 
-const AX=[null,
+const AX_BG=[null,
 {k:["инициатива","слово","начало","умения"],
 plus:["Започвате лесно и заразявате другите с идеите си.","Говорите убедително и намирате точните думи.","Учите нови умения бързо и ги прилагате веднага.","Виждате възможност там, където другите виждат проблем.","Имате енергия за много неща едновременно."],
 minus:[["Започвате много неща и не ги довършвате.","Работете по правилото „едно отворено начинание наведнъж“. Новото чака, докато старото не е готово."],["Обещавате повече, отколкото можете да изпълните.","Преди да кажете „да“, кажете „ще проверя и ще отговоря утре“."],["Използвате думите, за да убедите на всяка цена.","Питайте се дали бихте казали същото, ако другият знаеше всичко, което знаете Вие."],["Отегчавате се бързо и сменяте посоката.","Сложете си краен срок и малка награда за довършването."],["Започвате без подготовка, разчитайки на импровизация.","Отделете десет минути за план, преди да започнете. Те спестяват часове поправки."]],
@@ -810,7 +814,392 @@ const SYM=[null,
 '<path d="M6 36c6 0 8-10 14-10s6 6 12 6 8-8 10-12"/><circle cx="40" cy="14" r="3"/>'
 ];
 
+const AX_EN=[null,
+{k:["initiative","words","beginnings","skills"],
+plus:["You start easily and infect others with your ideas.","You speak persuasively and find the right words.","You learn new skills quickly and apply them at once.","You see opportunity where others see a problem.","You have energy for many things at once."],
+minus:[["You start many things and don't finish them.","Work by the rule \"one open project at a time\". The new waits until the old is done."],["You promise more than you can deliver.","Before saying \"yes\", say \"let me check and get back to you tomorrow\"."],["You use words to persuade at any cost.","Ask yourself whether you would say the same if the other person knew everything you know."],["You get bored quickly and change direction.","Set yourself a deadline and a small reward for finishing."],["You start without preparation, relying on improvisation.","Take ten minutes to plan before you begin. They save hours of fixing."]],
+sph:"trade, sales, advertising, media, entrepreneurship, IT, negotiation"},
+{k:["intuition","mystery","wisdom","silence"],
+plus:["You sense people and situations beyond words.","You keep secrets and people confide in you.","You learn in depth and remember details.","You stay calm in a crisis.","You give advice that lands exactly."],
+minus:[["You close up and don't say what you feel.","Voice at least one feeling a day to someone you trust."],["You suspect and assume the worst.","Check the suspicion with a direct question instead of carrying it in your head."],["You wait for things to happen on their own.","Turn every hunch into one concrete step."],["You stay silent on purpose and use knowledge as power.","Share in time the information others need."],["Your thoughts don't stop and keep you awake.","Write your thoughts on paper in the evening to get them out of your head."]],
+sph:"psychology, consulting, research, analysis, medicine, archives, esotericism"},
+{k:["abundance","care","beauty","creativity"],
+plus:["You create comfort everywhere.","You have taste and a sense of beauty.","You care warmly and generously.","Your ideas grow and bear fruit.","You know how to enjoy life."],
+minus:[["Your care smothers and controls.","Ask \"do you need help?\" before you help."],["You spend to comfort yourself.","Wait 48 hours before any purchase you don't need."],["You procrastinate and give in to laziness.","Pair the task with pleasure: music, a beautiful place, a small reward."],["You get jealous and fear loss.","Talk about your fear openly instead of controlling the other person."],["You neglect yourself and your body.","Put one hour a week in your diary that is only for looking after you."]],
+sph:"design, fashion, beauty, cooking, childcare, gardening, art, hospitality"},
+{k:["structure","power","responsibility","order"],
+plus:["You organise chaos into a working system.","You take responsibility and carry it through.","People feel safe with you.","You make decisions quickly and confidently.","You build things that last."],
+minus:[["You control everything and don't delegate.","Give one task to someone else and accept their way of doing it."],["You carry everything alone until exhaustion.","Make a list of \"this is not mine\" and hand the tasks back to their owners."],["You command instead of lead.","Ask for opinions before you give orders. The decision stays yours."],["You get into power struggles with other strong people.","Divide areas of responsibility clearly and in writing."],["You are afraid to show weakness.","Say \"I don't know\" or \"I need help\" once and see that nothing collapses."]],
+sph:"management, own business, administration, construction, property, politics"},
+{k:["knowledge","tradition","teacher","values"],
+plus:["You learn fast and build expertise.","You explain complex things clearly.","You have clear values and principles.","People seek you out for advice.","You create rules and methods others work by."],
+minus:[["You lecture and moralise.","Ask questions instead of giving ready answers, and let the other person reach the conclusion."],["You hold on to the \"only right\" way.","Once a month, try something in a way you disagree with."],["You get irritated by incompetence.","Remember you started somewhere too, and explain once more."],["You follow authorities and rules blindly.","Ask \"why is it this way?\" and check for yourself."],["You set standards that are too high.","Decide what \"good enough\" means before you begin."]],
+sph:"teaching, consulting, law, science, methodology, mentoring, institutions"},
+{k:["love","choice","harmony","beauty"],
+plus:["You connect people and create harmony.","You are charming and easily win trust.","You have an eye for aesthetics.","You can negotiate and find compromise.","You love sincerely."],
+minus:[["You hesitate and put off choices.","Give yourself a deadline and choose when it runs out."],["You try to please everyone.","Say \"no\" once a week, politely and without long explanations."],["You depend on other people's approval.","Before a decision, ask first \"what do I want?\" and only then \"what will others say?\"."],["You idealise and then feel disappointed.","Get to know the person in ordinary situations before you decide who they are."],["You stay in relationships out of duty.","Write down honestly what this relationship gives you and what it takes."]],
+sph:"work with people, human resources, diplomacy, design, beauty, events"},
+{k:["movement","goal","will","victory"],
+plus:["You are determined and reach results.","You have energy and stamina for the long road.","You lead people and processes.","You love travel and change.","You don't give up at obstacles."],
+minus:[["You are busy for the sake of being busy, without direction.","Start every week with the question \"which goal brings me closer?\"."],["You get irritable when things stall.","Channel the tension into physical movement: a walk, sport."],["You compare and compete with others.","Compare yourself only with yourself a year ago."],["You escape your feelings into work.","Stop for five minutes a day and name what you feel."],["You impose your path on others.","Explain the goal and let people choose how to get there."]],
+sph:"projects, logistics, transport, sales, sport, tourism, change management"},
+{k:["law","balance","honesty","order"],
+plus:["You analyse objectively.","Your decisions stand up to scrutiny.","You are honest and people trust you.","You bring order to documents, processes and chaos.","You take responsibility for consequences."],
+minus:[["You become a harsh judge of yourself and others.","Treat yourself the way you would treat a good friend in the same situation."],["You build up resentment about injustice.","Say right away what bothers you instead of storing it up."],["You do more than your share.","Agree in advance on what you get in return."],["You think in black and white.","Look for at least three points of view before you judge."],["You fight windmills.","Ask yourself \"can I change this?\". If not, accept it and redirect your energy."]],
+sph:"law, finance, audit, regulation, analysis, quality control, administration"},
+{k:["wisdom","depth","solitude","expertise"],
+plus:["You go deep and become a true expert.","You think independently.","You are not swayed by the crowd.","You give wise and precise advice.","You are comfortable on your own."],
+minus:[["You isolate yourself and stay alone.","Plan at least one meeting a week with someone who recharges you."],["You don't share your knowledge.","Write, teach or mentor, even on a small scale."],["You think gloomily and pessimistically.","Write down every day one thing that went well."],["You turn down help.","Accept the next offer of help, even if you could manage alone."],["You don't show your work until it's perfect.","Show it when it's 80% ready."]],
+sph:"science, research, writing, IT, philosophy, expert roles, mentoring"},
+{k:["chance","cycles","flow","change"],
+plus:["You sense the right moment.","You adapt quickly.","You get lucky through people and meetings.","You communicate easily.","You are not afraid of change."],
+minus:[["You wait for luck instead of acting.","Every week take one step towards the goal without waiting for a sign."],["You live in waves: feast or famine.","Build a reserve of money, time and energy for the lows."],["You miss chances out of fear of change.","Say \"yes\" to small new things to train your courage."],["You repeat the same cycles.","Write down what happens each time and what you would do differently."],["You scatter yourself across many opportunities.","Choose one opportunity and follow it for at least three months."]],
+sph:"trade, tourism, finance, investment, projects, media"},
+{k:["will","energy","endurance","courage"],
+plus:["You work hard and last long.","You stay calm under pressure.","You calm conflicts.","You are brave.","You trust your body and instinct."],
+minus:[["You overload yourself with \"I have to endure\".","Plan rest as a task of equal importance."],["You suppress emotions until you explode.","Express irritation in time and in small doses."],["You persist even when it makes no sense.","Ask yourself \"what do I lose if I give way here?\"."],["You use strength to prevail.","Direct your strength to protecting the weaker."],["You ignore your body's signals.","Treat tiredness as information, not weakness."]],
+sph:"sport, crisis management, medicine, work with animals, physical work, security"},
+{k:["new angle","service","pause","creativity"],
+plus:["You think unconventionally.","You are empathetic.","You help selflessly.","You are creative.","You see meaning where others see loss."],
+minus:[["You sacrifice yourself and wait for gratitude.","Help as much as you would give without expecting anything."],["You feel there is no way out.","Make one small change in your daily routine to get the situation moving."],["You procrastinate and stay idle.","Break the big task into 15-minute steps."],["You escape into illusions and dependencies.","Replace escape with creativity: drawing, writing, music."],["You take the victim's position.","Ask \"what can I do?\" instead of \"why is this happening to me?\"."]],
+sph:"art, social work, psychology, medicine, volunteering, unconventional professions"},
+{k:["ending","renewal","courage","change"],
+plus:["You close chapters bravely.","You go through crises and come out stronger.","You help others change.","You are decisive.","You are not afraid of the truth."],
+minus:[["You cling to what is exhausted.","Ask yourself: \"If I were starting today, would this be my choice?\"."],["You make abrupt, destructive decisions.","Give yourself 72 hours before ending something important."],["You fear change and endings.","Start with small changes to get used to the feeling."],["Gloomy thoughts weigh on you.","Go outside and move every day; nature helps."],["You destroy the good along with the bad.","Before closing something, write down what you want to keep from it."]],
+sph:"crisis management, reform, medicine, psychotherapy, restructuring"},
+{k:["balance","measure","calm","healing"],
+plus:["You bring calm.","You find the middle ground.","You combine different things.","You are a good mediator.","You have a sense of measure and style."],
+minus:[["You live in extremes: all or nothing.","Do things at half dose, but regularly."],["You neglect rest.","Set a clear end to the working day."],["Your emotions swing.","Notice what triggers them and keep a steady rhythm of sleep and meals."],["You are impatient.","Remember that a slow process is still a process."],["You avoid conflict at any cost.","State your disagreement calmly. Peace without truth is not peace."]],
+sph:"rehabilitation, psychology, mediation, art, cooking, design, care"},
+{k:["influence","money","desire","charisma"],
+plus:["You are charismatic.","You persuade and sell.","You have a feel for money.","You dare to ask.","You understand what drives people."],
+minus:[["You fall into dependencies: habits, people, work.","Pick one dependency and observe it for a week without judging yourself."],["You manipulate.","Say directly what you want instead of arranging the circumstances."],["You control and get jealous.","Give the other person freedom and see that they come back of their own accord."],["You are tempted by quick profit.","Test every deal with the question: \"Would it stand up to public scrutiny?\"."],["You overwork for money.","Decide on an amount that is \"enough\" and protect your time beyond it."]],
+sph:"business, sales, marketing, finance, show business, negotiation"},
+{k:["collapse","rebuilding","release","humility"],
+plus:["You build big things.","You recover after a blow.","You see what has rotted.","You dare to change systems.","You grow wiser after hardship."],
+minus:[["Pride doesn't let you change.","Admit one mistake openly and feel the relief."],["You cling to the old until it collapses.","Review your life every season: what no longer works?"],["You build up tension that explodes.","Release it regularly: sport, conversation, rest."],["You build on other people's expectations.","Ask yourself: \"Is this mine, or someone else's?\"."],["You fear losing what you built.","Remember when you rebuilt before and managed."]],
+sph:"construction, architecture, projects, reform, IT systems, crisis management"},
+{k:["inspiration","talent","hope","visibility"],
+plus:["You are talented and creative.","You inspire others.","You have a sense of aesthetics.","You believe in the future.","You create things that last."],
+minus:[["You hide your talent.","Show your work to at least one person a week."],["You wait for perfection.","Publish when it's \"good enough\"."],["You compare yourself and envy others.","Turn envy into information: what exactly do I want too?"],["You live on other people's admiration.","Mark your own successes before you hear praise."],["You keep your distance from people.","Help others to show themselves."]],
+sph:"art, design, media, teaching, own brand, public appearances"},
+{k:["intuition","imagination","fear","subconscious"],
+plus:["You have strong intuition.","You have a rich imagination.","You are creative.","You sense the unspoken.","You understand people emotionally."],
+minus:[["Fear and anxiety run your life.","Write down the worry and next to it the facts \"for\" and \"against\"."],["You deceive yourself.","Check important things with someone you trust."],["You distrust people and suspect them.","Ask direct questions instead of interpreting."],["You make decisions out of anxiety.","Don't decide anything important in the evening or when you are upset."],["You escape reality into dreams.","Link the dream to one real step today."]],
+sph:"art, film, photography, psychology, advertising, work with images"},
+{k:["joy","success","warmth","leadership"],
+plus:["You bring joy and optimism.","You unite people.","You lead by example.","You are generous.","Success comes to you naturally."],
+minus:[["You burn out for recognition.","Ask yourself: \"Am I doing this for me or for the applause?\"."],["You become proud and arrogant.","Acknowledge other people's contribution publicly."],["You hide in the shadows and don't believe you deserve it.","Accept a compliment with just \"thank you\", without playing it down."],["You put yourself at the centre.","Ask others how they are and listen to the end."],["You postpone joy for later.","Do one small pleasure every day."]],
+sph:"leadership, teaching, work with children, events, public roles, sport"},
+{k:["lineage","family","awakening","new level"],
+plus:["You have a strong connection to your roots.","You bring people together.","You understand family ties.","You are capable of a fresh start.","You keep traditions."],
+minus:[["You carry old family grudges.","Write a letter to the person you resent, without sending it."],["You judge yourself and others.","Look for the reason behind the act, not only the act."],["You live by someone else's family rules.","Choose consciously which family rules you keep."],["You carry a heavy sense of duty.","Tell love apart from obligation."],["You give up your own path for the family.","Do small things just for yourself, without guilt."]],
+sph:"family business, history, genealogy, social work, education, large systems"},
+{k:["freedom","scale","completion","travel"],
+plus:["You think big.","You are diplomatic.","You love new people and places.","You complete big cycles.","You are open to what is different."],
+minus:[["You feel confined and dissatisfied.","Widen your world in small steps: a new topic, a new route."],["You run from responsibility.","Finish one thing before you move on to the next."],["You don't know where you belong.","Create your own ritual of home: a place, people, a habit."],["You shut yourself off out of fear of the world.","Go somewhere you have never been at least once a year."],["You become superficial from doing too much.","Pick one topic and study it in depth."]],
+sph:"international work, tourism, languages, diplomacy, logistics, global projects"},
+{k:["freedom","lightness","spontaneity","fresh start"],
+plus:["You have lightness and a sense of humour.","You are not afraid of the new.","You have no prejudices.","You are curious like a child.","You start over without fear."],
+minus:[["You act irresponsibly.","Take on one small commitment and keep it."],["You act without thinking about consequences.","Before a decision, imagine how it will look a month from now."],["You fear commitment.","Try a commitment for a fixed period."],["You live in chaos and scatter yourself.","Introduce one rule of order and keep it."],["You escape into a new beginning at every difficulty.","Stay with the difficulty one more day before you leave."]],
+sph:"creativity, games, work with children, tourism, start-ups, unconventional activities"}
+];
+
+const E_EN=[null,
+{n:"The Magician",s:"a person of ideas and first steps",v:"turn an idea into action",
+core:"You are an engine. While others are still discussing, you have already tried. Your words carry weight, and you can fire people up about something new.",
+face:"You come across as resourceful, quick and a little impatient: someone who always has a next plan.",
+tal:"starting things from scratch and finding a way where others see a wall.",
+bal:"You finish what you start, and people follow you because they see results.",
+sh:"You start five things at once and none of them reaches the end. Slowly you lose trust in yourself.",
+voice:"This is getting boring, let me try something else.",
+money:"Money comes from new projects, trade and communication: anywhere you need to persuade and go first.",
+love:"You need a partner you can talk with and with whom new things happen. Routine without conversation kills the feeling.",
+karma:"The lesson is about the weight of words: not promising more than you will deliver, and not using words to get your way at any cost.",
+q:"Which unfinished thing deserves to be brought to the end?",
+st:"Pick one unfinished task and complete it before you start a new one.",
+per:"A time for new beginnings, conversations and initiative. Start something, but not too much at once."},
+{n:"The High Priestess",s:"a person of quiet knowing and intuition",v:"sense the truth before it is spoken",
+core:"You see more than you say. You read people and situations by tone, by pauses, by what is missing. Your strength lies in calm and in the ability to listen.",
+face:"You come across as reserved and slightly mysterious. People open up to you without knowing why.",
+tal:"reading between the lines and giving advice that lands exactly.",
+bal:"You trust your sense of things, say it at the right time, and it turns out to be right.",
+sh:"You withdraw, assume the worst, and wait for others to guess what is wrong.",
+voice:"If I say what I think, they won't understand me.",
+money:"Money comes from consulting, research, psychology and working with information others don't see.",
+love:"You need depth and trust. Shallow relationships drain you, and pressure makes you close up.",
+karma:"The lesson is not to hide your knowledge and feelings behind silence, and not to use them to keep others in the dark. Intuition is given to be used openly.",
+q:"What have I known for a long time but still keep to myself?",
+st:"Write down one hunch and check after a week whether it came true.",
+per:"A time for observation, learning and listening to yourself. Don't force events; the answers come from within."},
+{n:"The Empress",s:"a person of care and creation",v:"create beauty and comfort out of nothing",
+core:"You are a creator. Things grow around you: people, projects, gardens, ideas. You have a taste for beauty and know how to make life more pleasant for everyone around you.",
+face:"You come across as warm and generous. People relax around you and feel welcome.",
+tal:"nurturing children, teams, projects and plants and making them beautiful.",
+bal:"You care for others without forgetting yourself, and you create with pleasure.",
+sh:"Care turns into control, and spending into comfort. You feel used and unappreciated.",
+voice:"If I don't take care of it, nobody will.",
+money:"Money comes from beauty, food, home, children and creativity: everything that brings comfort and pleasure.",
+love:"You need mutual care and small gestures. If you only give, the relationship empties out.",
+karma:"The lesson is to accept yourself and your body, to care without smothering, and to let others grow on their own.",
+q:"When did I last make something beautiful just for myself?",
+st:"Set aside two hours for something you create with your hands.",
+per:"A time of abundance, creativity and care for home and body. Good for projects that will grow."},
+{n:"The Emperor",s:"a person of structure and responsibility",v:"build systems that last",
+core:"You are a builder. You see how things should be arranged and have the strength to arrange them. People rely on you because you keep your word and don't abandon what you start.",
+face:"You come across as serious, reliable and commanding. People instinctively hand you the lead.",
+tal:"organising, setting boundaries and turning chaos into a working system.",
+bal:"You lead calmly, delegate, and create order that works even when you are not there.",
+sh:"You carry everything alone, control every detail and wear yourself out, and nobody notices.",
+voice:"If I don't do it, it won't be done right.",
+money:"Money comes from management, your own business, property and positions where you set the rules.",
+love:"You need a partner you respect and who is not afraid of your strength. A power struggle destroys the relationship.",
+karma:"The lesson is about power: leading without crushing, and not letting others crush you. Letting go of total control over the outcome.",
+q:"What am I carrying that is not actually my responsibility?",
+st:"Delegate one task and don't check it afterwards.",
+per:"A time for order, plans and long-term decisions. Take responsibility, but don't carry everything alone."},
+{n:"The Hierophant",s:"a person of knowledge and principles",v:"explain the complex so it is understood",
+core:"You are a teacher by nature. You want to understand why things are the way they are, and then explain it to others. You have principles and you don't sell them.",
+face:"You come across as competent and serious. People come to you for advice and opinions.",
+tal:"learning fast, building expertise and passing knowledge on clearly and in order.",
+bal:"You teach others and keep learning yourself. Your knowledge opens doors.",
+sh:"You lecture instead of talking, and you get irritated by anyone who doesn't do things \"right\".",
+voice:"There is a right way, and this is it.",
+money:"Money comes from expertise, teaching, consulting, methodology and working with institutions.",
+love:"You need a partner with similar values. If you try to re-educate them, the relationship cools.",
+karma:"The lesson is not to impose your truth as the only one and not to follow other people's rules blindly. Knowledge should free, not restrict.",
+q:"Which of my rules no longer serves me?",
+st:"Listen to a view you disagree with all the way through, without correcting it.",
+per:"A time for learning, mentors, documents and teaching. A good moment to take a course or pass on your experience."},
+{n:"The Lovers",s:"a person of the heart and of choice",v:"connect people and create harmony",
+core:"You live through relationships. You sense when something is beautiful and when people are in harmony. You can reconcile, bring people together and make everyone feel seen.",
+face:"You come across as pleasant, charming and open. You win people over easily.",
+tal:"building trust, negotiating and finding common ground between different people.",
+bal:"You choose with your heart and stand behind your choice. Your relationships are sincere.",
+sh:"You hesitate endlessly, try to please everyone and stay where you stopped being happy long ago.",
+voice:"What if I choose wrong?",
+money:"Money comes from working with people, beauty, design, partnerships and everything that connects.",
+love:"Love is a central theme for you. You need a real choice, not convenience or habit.",
+karma:"The lesson is about choice: choosing yourself without betraying others, and not staying in relationships out of duty or fear.",
+q:"Where am I staying only because I'm afraid to choose?",
+st:"Make one decision you have been putting off, even a small one.",
+per:"A time for relationships, choices and beauty. Decisions made from the heart will prove right."},
+{n:"The Chariot",s:"a person of movement and purpose",v:"lead a process from start to result",
+core:"You are a person of action. When you have a goal, little can stop you. You love movement, travel and the feeling of moving forward.",
+face:"You come across as energetic, determined and a little restless.",
+tal:"leading people and processes to a concrete result and not giving up along the way.",
+bal:"You have a clear direction and follow it. People set out after you.",
+sh:"You chase without knowing where to, or you stand still and get angry with everyone.",
+voice:"If I stop, everything will fall apart.",
+money:"Money comes from projects, sales, transport, travel and anything with movement and results.",
+love:"You need a partner who moves with you. Stagnation and restrictions put out the feeling.",
+karma:"The lesson is not to run from yourself into constant busyness and not to force your path with pressure. The goal must be yours, not proof for others.",
+q:"Where am I actually going, and who chose this direction?",
+st:"Write down one goal for the next three months and the first step towards it.",
+per:"A time for movement, travel, projects and bold steps. Act, but with a clear direction."},
+{n:"Justice",s:"a person of order and fair judgement",v:"weigh the facts and find the fair decision",
+core:"You sense what is fair and what is not, often before you can explain why. That is why people trust you: you don't bend things and you don't miss details. Wherever you go, order follows.",
+face:"You come across as objective, precise and a little strict: someone people can rely on.",
+tal:"analysing, comparing and making decisions that stand up to scrutiny.",
+bal:"Your decisions are calm and well founded. You tell the truth without hurting and you know what you are owed.",
+sh:"You become your own harshest judge. You do more than is fair, stay silent, and then resentment builds up that nobody noticed.",
+voice:"It's not fair, but I'll do it because I have to.",
+money:"Money comes from law, finance, analysis, control and regulation: work with documents, numbers and rules.",
+love:"You need honesty and equality. Be careful not to turn your partner into a project to be fixed.",
+karma:"The lesson is about fairness towards yourself: accepting that the world is not always fair, and not carrying everyone's scales alone.",
+q:"Where do I give more than I receive, and have I said so out loud?",
+st:"Tell one person clearly what you expect in return for what you do for them.",
+per:"A time for decisions, documents, contracts and settling accounts. You reap what you have sown."},
+{n:"The Hermit",s:"a person of depth and expertise",v:"go deeper than others reach",
+core:"You are a researcher. You need silence and your own space to think. Your knowledge is not superficial: you understand things to the root.",
+face:"You come across as reserved, wise and a little distant.",
+tal:"becoming a true expert in one field and seeing what others miss.",
+bal:"You keep time for yourself but come out to people and share your knowledge.",
+sh:"You withdraw, refuse help and start believing nobody understands you.",
+voice:"It's easier for me to manage without anyone.",
+money:"Money comes from expertise, research, writing, mentoring and narrow specialisation.",
+love:"You need personal space and a partner who respects it. Closeness without suffocation.",
+karma:"The lesson is not to flee from people into solitude and not to keep knowledge to yourself.",
+q:"Who would benefit from my experience?",
+st:"Share something you know well with someone who needs it.",
+per:"A time for solitude, learning and rethinking. Good for going deeper, not for loud beginnings."},
+{n:"Wheel of Fortune",s:"a person of luck and the right moment",v:"sense when the moment to act has come",
+core:"Your life moves in cycles and you have a feel for when the wave is coming. Opportunities often arrive through people and unexpected meetings.",
+face:"You come across as light, optimistic and easy to talk to.",
+tal:"adapting quickly and catching the opportunities others miss.",
+bal:"You say \"yes\" at the right time and use the chance when it comes.",
+sh:"You wait for luck to come on its own, or you fear every change and miss the moment.",
+voice:"We'll see what happens.",
+money:"Money comes in waves: from projects, trade, travel and connections with people.",
+love:"You need lightness and shared experiences. Boredom and too much predictability dull the relationship.",
+karma:"The lesson is to take responsibility for your life instead of leaving it to chance, and to accept that after a fall comes a rise.",
+q:"Which chance am I postponing while waiting for a \"better moment\"?",
+st:"Call someone you have long wanted to talk to about a new opportunity.",
+per:"A time of turns and new opportunities. Be ready to say \"yes\"."},
+{n:"Strength",s:"a person of will and endurance",v:"hold on where others give up",
+core:"You have a great reserve of strength. You can work long hours, withstand pressure and cope in a crisis. People see you as someone to lean on.",
+face:"You come across as strong, confident and steady.",
+tal:"calming difficult situations and people without raising your voice.",
+bal:"Your strength is calm and focused. You know when to push and when to let go.",
+sh:"You grit your teeth and suppress tiredness and emotions until you explode or fall ill.",
+voice:"I have to endure.",
+money:"Money comes from management, work with body and energy, sport and anything that demands stamina.",
+love:"You need a partner equal in strength. A struggle for dominance exhausts you both.",
+karma:"The lesson is not to prove your strength through overload and not to use it to make others submit.",
+q:"Where am I enduring instead of acting?",
+st:"Turn down one task you don't have the energy for.",
+per:"A time of effort and persistence. You will manage if you protect your energy."},
+{n:"The Hanged Man",s:"a person of a different view and of helping",v:"see a solution from an unexpected angle",
+core:"You see the world differently. You often stand a step aside from the general opinion, and that is exactly where you find solutions. You have a big heart and a wish to help.",
+face:"You come across as gentle, responsive and a little unusual.",
+tal:"thinking unconventionally, creating, and helping people in hard moments.",
+bal:"You help from abundance, not from sacrifice, and your creativity finds a way out.",
+sh:"You sacrifice yourself, wait for gratitude and feel stuck with no way out.",
+voice:"I'll put up with it, others need it more.",
+money:"Money comes from helping professions, art and unconventional solutions.",
+love:"You need reciprocity. If you only give, you start to feel used.",
+karma:"The lesson is to stop sacrificing yourself and accept that your needs matter too.",
+q:"What am I waiting for others to give me permission for?",
+st:"Do one thing just for yourself, without justifying it to anyone.",
+per:"A time for pausing and rethinking. Things may slow down. Use the time to look at the situation from another angle."},
+{n:"Transformation",s:"a person of change and new beginnings",v:"close chapters and start again",
+core:"You know how to end things. When something is over, you feel it and have the courage to close it. That is why your life passes through several different \"lives\".",
+face:"You come across as decisive, serious and full of character.",
+tal:"going through crises and helping others change.",
+bal:"You let go of the old calmly and make room for the new.",
+sh:"You cling to what is exhausted out of fear, or abruptly destroy everything at once.",
+voice:"I can't give up, I've already put in too much.",
+money:"Money comes from reforms, crisis management, medicine and work with transitions and change.",
+love:"You need depth. Your relationships change with you: they either grow or end.",
+karma:"The lesson is not to fear endings and not to hold on to what has to go.",
+q:"What ended long ago that I am still carrying?",
+st:"Throw out, close or turn down one thing that has long stopped serving you.",
+per:"A time of endings and new beginnings. Consciously close what you have outgrown. This energy does not mean physical death."},
+{n:"Temperance",s:"a person of balance and measure",v:"combine different things into a harmonious whole",
+core:"You bring calm. You can find the middle ground, combine what seems incompatible and soothe the people around you.",
+face:"You come across as calm, balanced and pleasant.",
+tal:"easing the atmosphere, mediating and creating harmony.",
+bal:"You live at a rhythm that recharges you and help others calm down.",
+sh:"You swing from one extreme to another, neglect rest, and your emotions sway.",
+voice:"I'll rest later.",
+money:"Money comes from care, healing, art, mediation and work that brings balance.",
+love:"You need a calm, harmonious relationship without drama.",
+karma:"The lesson is about measure: avoiding extremes and looking after your body and soul.",
+q:"Where in my life is measure missing?",
+st:"Set a clear end to your working day and keep to it for a whole week.",
+per:"A time for recovery and balance. Don't overdo anything."},
+{n:"The Devil",s:"a person of influence and charisma",v:"influence and persuade",
+core:"You have the power to influence. People listen to you, follow you, or at least don't stay indifferent. You have a feel for money, for desires and for what drives others.",
+face:"You come across as charismatic, attractive and a little dangerous.",
+tal:"persuading, selling, negotiating and getting what you want.",
+bal:"You use your influence openly and for good. You dare to ask and you receive.",
+sh:"You control, manipulate or fall into dependence: on people, habits, work, money.",
+voice:"I can't do without it.",
+money:"Money comes from business, sales, marketing, finance and fields of great influence.",
+love:"Your relationships are passionate. Watch out for jealousy and control: attraction is not enough.",
+karma:"The lesson is about dependencies and temptations: not selling yourself and not keeping others dependent.",
+q:"What holds on to me without my wanting it?",
+st:"Notice one habit that drains you and skip it for three days.",
+per:"A time of money, deals and temptations. Good for business, but beware of dependencies."},
+{n:"The Tower",s:"a person who rebuilds after collapse",v:"tear down the outdated and build anew",
+core:"You are a builder who often starts not on clean ground but after a hardship, and each time grows stronger. You can see what has rotted and replace it.",
+face:"You come across as stable and serious, but with inner tension.",
+tal:"building big things (systems, projects, a home) and restoring them after a blow.",
+bal:"You change what doesn't work yourself and build with patience.",
+sh:"You cling to the old out of pride and wait until everything collapses on its own.",
+voice:"I built this for so many years, I can't let it go.",
+money:"Money comes from construction, projects, reforms and anything that builds something lasting.",
+love:"Your relationships go through trials. They last if both are ready to change.",
+karma:"The lesson is about pride: accepting change with humility and not building your life on other people's expectations.",
+q:"What in my life stands on an unstable foundation?",
+st:"Name one situation that is time to change and take the first step yourself.",
+per:"A time of change, sometimes unexpected. What doesn't work falls away. Rebuild calmly."},
+{n:"The Star",s:"a person of inspiration and talent",v:"inspire and show a new way",
+core:"You have a talent that deserves to be seen. You bring aesthetics, hope and the ability to inspire. When you are visible, the world around you gets better.",
+face:"You come across as stylish and inspiring.",
+tal:"creating something that lasts (a project, a method, a work) and showing it to people.",
+bal:"You show your work and people are inspired by it.",
+sh:"You hide your talent, compare yourself to others and wait for everything to be perfect before you show it.",
+voice:"It's not good enough to show yet.",
+money:"Money comes from public visibility, creativity, teaching and your own project or brand.",
+love:"You need a partner who inspires you and is proud of you.",
+karma:"The lesson is not to hide your talent for fear of judgement and not to live on other people's admiration.",
+q:"Which of my work deserves to be seen?",
+st:"Publish or show someone something you have created.",
+per:"A time of visibility, inspiration and creativity. Show yourself."},
+{n:"The Moon",s:"a person of intuition and imagination",v:"sense the unspoken and turn it into images",
+core:"You have a rich inner world. You sense moods, foresee events and have a strong imagination. You often know something without being able to prove it.",
+face:"You come across as dreamy, sensitive and a little mysterious.",
+tal:"creating, sensing what is hidden and understanding people intuitively.",
+bal:"Your intuition guides you well, and your imagination creates beautiful things.",
+sh:"Fears grow in your head, you worry about things that haven't happened yet, and you trust no one.",
+voice:"What if the worst happens?",
+money:"Money comes from art, psychology, advertising and work with images.",
+love:"You need security and trust. Suspicion and things left unsaid destroy the relationship.",
+karma:"The lesson is to go through your fears instead of running from them, and to tell intuition apart from anxiety.",
+q:"What am I afraid of, and are there facts behind this fear?",
+st:"Write down your biggest worry and next to it three facts that confirm or refute it.",
+per:"A time of uncertainty and intuition. Don't make decisions out of fear; check the facts."},
+{n:"The Sun",s:"a person of joy and warmth",v:"bring light and unite people",
+core:"You shine. You bring joy, optimism and warmth, and people gather around you. You have a leader's energy that doesn't push but attracts.",
+face:"You come across as radiant, open and confident.",
+tal:"leading by example, instilling confidence and building community.",
+bal:"You do things that make you happy, and success comes naturally.",
+sh:"You burn out working for recognition, or hide in the shadows because you don't believe you deserve it.",
+voice:"I'll be happy once I've finished everything.",
+money:"Money comes from leadership, teaching, work with children, public roles and anything that brings joy.",
+love:"You need an open, warm relationship with joy and shared plans.",
+karma:"The lesson is to rejoice without a reason and not to look for your worth only in other people's recognition.",
+q:"When did I last feel joy for no reason?",
+st:"Plan one pleasure and enjoy it without guilt.",
+per:"A time of success, joy and visibility. Good for celebrations, children and new projects."},
+{n:"Judgement",s:"a person of family roots and awakening",v:"unite people around a common cause",
+core:"You are strongly connected to your family and lineage. You carry its strength and sometimes its burdens. You have the ability to be reborn and start again at a new level.",
+face:"You come across as serious, wise and family-minded.",
+tal:"uniting people, keeping traditions and breathing life into old things.",
+bal:"You rely on your roots without letting them limit you.",
+sh:"You carry old family grudges, judge yourself and others, and live by other people's rules.",
+voice:"In our family, this is how things are done.",
+money:"Money comes from family business, large systems, history, heritage and education.",
+love:"Family matters to you. You need a partner with whom to build something lasting.",
+karma:"The lesson is about the family line: taking its strength and leaving behind what is not yours to carry. Forgiving your parents.",
+q:"Which family rule do I follow out of habit rather than choice?",
+st:"Call a family member you haven't spoken to for a long time.",
+per:"A time for family matters, rethinking and a fresh start at a new level."},
+{n:"The World",s:"a person of broad vision and freedom",v:"see the big picture and connect different worlds",
+core:"You think big. You need space, new people and new places. You can connect different cultures, ideas and people into a whole.",
+face:"You come across as open, diplomatic and free.",
+tal:"working with people from different backgrounds, travelling and bringing big cycles to completion.",
+bal:"You widen your world and finish what you start.",
+sh:"You feel trapped, run from responsibility or don't know where you belong.",
+voice:"It's too tight for me here.",
+money:"Money comes from international work, languages, tourism, diplomacy and large projects.",
+love:"You need freedom in the relationship and a partner with whom to discover the world.",
+karma:"The lesson is to find your place and not to run from responsibility in the name of freedom.",
+q:"Where do I feel confined, and what can I do about it?",
+st:"Do something new: a place, people or a topic you don't know.",
+per:"A time for completing cycles, travel and stepping up to a bigger level."},
+{n:"The Fool",s:"a person of freedom and lightness",v:"start afresh without fear",
+core:"You are a free spirit. You bring lightness, humour and curiosity and can rejoice like a child. You are not afraid to start over.",
+face:"You come across as light, funny and unpredictable.",
+tal:"bringing freshness, trying new things and seeing the world without prejudice.",
+bal:"You live lightly and freely, but responsibly.",
+sh:"You run from responsibility, don't finish things and fear any commitment.",
+voice:"Let someone else deal with it.",
+money:"Money comes from creativity, games, work with children, travel and unconventional activities.",
+love:"You need lightness and freedom. If the relationship becomes a cage, you run.",
+karma:"The lesson is to be free but responsible, and not to escape difficulties into yet another new beginning.",
+q:"What in my life needs more lightness?",
+st:"Do something spontaneous you haven't planned.",
+per:"A time for new beginnings, freedom and experiments. Don't plan everything."}
+];
+
 const RN=["","I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII","XIII","XIV","XV","XVI","XVII","XVIII","XIX","XX","XXI","XXII"];
+let LANG="bg";try{const s=localStorage.getItem("mc-lang");if(s==="en"||s==="bg")LANG=s}catch(e){}
+let E=E_BG,AX=AX_BG;
+const tr=(bg,en)=>LANG==="en"?en:bg;
+const REL={"Партньор":"Partner","Родител":"Parent","Дете":"Child","Брат / сестра":"Sibling","Приятел":"Friend","Колега":"Colleague","Ръководител":"Manager","Друго":"Other"};
+const relT=r=>LANG==="en"?(REL[r]||r):r;
 const grp=v=>v<=7?1:v<=14?2:v<=21?3:4;
 const r=n=>{while(n>22)n=String(n).split("").reduce((s,c)=>s+ +c,0);return n};
 const ds=n=>String(n).split("").reduce((s,c)=>s+ +c,0);
@@ -832,12 +1221,14 @@ const YR=365.2425*864e5;
 const bUTC=iso=>{const [y,m,d]=iso.split("-").map(Number);return Date.UTC(y,m-1,d)};
 const ageNow=iso=>(Date.now()-bUTC(iso))/YR;
 const atAge=(iso,a)=>new Date(bUTC(iso)+a*YR);
-const MON=["яну","фев","мар","апр","май","юни","юли","авг","сеп","окт","ное","дек"];
-const fmt=dt=>MON[dt.getMonth()]+" "+dt.getFullYear();
-const ag=a=>String(+a.toFixed(2)).replace(".",",");
+const MON_BG=["яну","фев","мар","апр","май","юни","юли","авг","сеп","окт","ное","дек"],MON_EN=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const fmt=dt=>(LANG==="en"?MON_EN:MON_BG)[dt.getMonth()]+" "+dt.getFullYear();
+const ag=a=>LANG==="en"?String(+a.toFixed(2)):String(+a.toFixed(2)).replace(".",",");
+const YRS=()=>tr(" г."," yrs");
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const cap=s=>s.charAt(0).toUpperCase()+s.slice(1);
 const sym=v=>`<svg viewBox="0 0 48 48" aria-hidden="true">${SYM[v]}</svg>`;
+const q=s=>LANG==="en"?`“${s}”`:`„${s}“`;
 const tile=v=>`<div class="tile g${grp(v)}" aria-hidden="true">${sym(v)}<span class="rn">${RN[v]}</span></div>`;
 
 function compass(age){
@@ -846,7 +1237,7 @@ function compass(age){
   [[0,24,70],[20,70,24],[40,116,70],[60,70,118]].forEach(([t,x,y])=>o.push(`<text x="${x}" y="${y}" text-anchor="middle" dominant-baseline="central" font-size="10" fill="currentColor" fill-opacity=".8">${t}</text>`));
   const rot=180+age*4.5;
   o.push(`<g class="needle" style="--rot:${rot.toFixed(1)}deg"><path d="M70 64 L122 70 L70 76 Z" fill="var(--accent)"/><path d="M70 66 L38 70 L70 74 Z" fill="currentColor" fill-opacity=".5"/></g><circle cx="70" cy="70" r="5" fill="currentColor"/>`);
-  return `<div class="compass"><svg viewBox="0 0 140 140" role="img" aria-label="Компас на възрастта: ${ag(age)} г.">${o.join("")}</svg></div>`;
+  return `<div class="compass"><svg viewBox="0 0 140 140" role="img" aria-label="${tr("Компас на възрастта","Age compass")}: ${ag(age)}${YRS()}">${o.join("")}</svg></div>`;
 }
 
 function svg(M,curIdx){
@@ -859,7 +1250,7 @@ function svg(M,curIdx){
   M.ring.forEach((v,i)=>{
     const t=i*1.25,th=(180+t*4.5)*Math.PI/180,x=c+292*Math.cos(th),y=c+292*Math.sin(th),dx=c+270*Math.cos(th),dy=c+270*Math.sin(th);
     o.push(`<circle cx="${dx.toFixed(1)}" cy="${dy.toFixed(1)}" r="${i%4==0?3:1.5}" fill="var(--muted)"/>`);
-    if(i%8==0){o.push(`<text x="${x.toFixed(0)}" y="${y.toFixed(0)}" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="var(--navy)">${t|0} г.</text>`);return}
+    if(i%8==0){o.push(`<text x="${x.toFixed(0)}" y="${y.toFixed(0)}" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="var(--navy)">${t|0}${tr(" г."," y")}</text>`);return}
     if(i===curIdx)o.push(`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="13" fill="var(--accent)"/><text x="${x.toFixed(1)}" y="${y.toFixed(1)}" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#1F2D3A">${v}</text>`);
     else o.push(`<text x="${x.toFixed(1)}" y="${y.toFixed(1)}" text-anchor="middle" dominant-baseline="central" font-size="11" fill="var(--muted)">${v}</text>`);
   });
@@ -869,9 +1260,9 @@ function svg(M,curIdx){
   circ(490,320,14,M.ch.C.one,"g");circ(418,320,14,M.ch.C.two,"g");circ(545,320,25,M.C,"main2");
   circ(320,490,14,M.ch.D.one,"k");circ(320,418,14,M.ch.D.two,"k");circ(320,545,25,M.D,"main2");
   circ(395,395,12,M.cross,"s");circ(432,358,13,M.money,"g");circ(358,432,13,M.love,"g");
-  o.push(`<text x="452" y="384" font-size="11" fill="var(--accent)">пари</text><text x="370" y="462" font-size="11" fill="var(--accent)">любов</text><text x="352" y="560" font-size="11" fill="var(--muted)">карма</text>`);
+  o.push(`<text x="452" y="384" font-size="11" fill="var(--accent)">${tr("пари","money")}</text><text x="370" y="462" font-size="11" fill="var(--accent)">${tr("любов","love")}</text><text x="352" y="560" font-size="11" fill="var(--muted)">${tr("карма","karma")}</text>`);
   circ(320,320,30,M.X,"main");
-  return `<svg viewBox="0 0 640 640" role="img" aria-label="Схема на матрицата"><style>
+  return `<svg viewBox="0 0 640 640" role="img" aria-label="${tr("Схема на матрицата","Matrix chart")}"><style>
   .s{fill:var(--surface);stroke:var(--muted)}.s-t{fill:var(--fg)}
   .m{fill:var(--soft);stroke:var(--navy)}.m-t{fill:var(--navy);font-weight:600}
   .g{fill:var(--soft);stroke:var(--accent)}.g-t{fill:var(--fg);font-weight:600}
@@ -879,91 +1270,91 @@ function svg(M,curIdx){
   .main{fill:var(--navy)}.main-t{fill:var(--bg);font-weight:700}
   .main2{fill:var(--accent)}.main2-t{fill:#1F2D3A;font-weight:700}</style>${o.join("")}</svg>`;
 }
-const fullBtn=v=>`<button class="link" data-arc="${v}">Целият аркан: плюсове, минуси и как да ги обърнете →</button>`;
+const fullBtn=v=>`<button class="link" data-arc="${v}">${tr("Целият аркан: плюсове, минуси и как да ги обърнете →","The full arcanum: pluses, minuses and how to turn them around →")}</button>`;
 function rodCard(zone,v,kind){const x=E[v];
-  const main=kind==="gift"?`<p><b class="pl">Какво дава родът:</b> ${cap(x.tal)}</p><p><b class="mn">Сянката на този дар:</b> ${x.sh}</p>`
-    :`<p><b class="mn">Какво се предава като урок:</b> ${x.karma}</p><p><b class="pl">Когато урокът е усвоен:</b> ${x.bal}</p>`;
+  const main=kind==="gift"?`<p><b class="pl">${tr("Какво дава родът:","What the family line gives:")}</b> ${cap(x.tal)}</p><p><b class="mn">${tr("Сянката на този дар:","The shadow of this gift:")}</b> ${x.sh}</p>`
+    :`<p><b class="mn">${tr("Какво се предава като урок:","What is passed down as a lesson:")}</b> ${x.karma}</p><p><b class="pl">${tr("Когато урокът е усвоен:","When the lesson is learned:")}</b> ${x.bal}</p>`;
   return card(zone,v,"",{html:main})}
 function card(zone,v,field,opts={}){
   const x=E[v];
   return `<article class="card"><div class="head">${tile(v)}<div><div class="zone">${zone}</div><div class="ename">${x.n}</div></div></div>
   ${opts.html||`<p>${opts.text||x[field]}</p>`}
-  <details><summary>Прочети повече</summary><div class="more">
-   <div><b>В баланс</b>${x.bal}</div><div><b>Когато се обърне срещу Вас</b>${x.sh}</div>
-   <div><b>Вътрешният глас на капана</b><span class="v">„${x.voice}“</span></div>
-   <div><b>Въпрос за размисъл</b>${x.q}</div><div><b>Стъпка за седмицата</b>${x.st}</div>${fullBtn(v)}</div></details></article>`;
+  <details><summary>${tr("Прочети повече","Read more")}</summary><div class="more">
+   <div><b>${tr("В баланс","In balance")}</b>${x.bal}</div><div><b>${tr("Когато се обърне срещу Вас","When it turns against you")}</b>${x.sh}</div>
+   <div><b>${tr("Вътрешният глас на капана","The inner voice of the trap")}</b><span class="v">${q(x.voice)}</span></div>
+   <div><b>${tr("Въпрос за размисъл","Question to reflect on")}</b>${x.q}</div><div><b>${tr("Стъпка за седмицата","Step for the week")}</b>${x.st}</div>${fullBtn(v)}</div></details></article>`;
 }
 
 let ME=null,CUR=0,OPEN=0;
 function places(v){
   if(!ME)return [];const M=ME.M,L=[],seen=new Set();
   const add=(c,t,tab,id)=>{if(c===v&&!seen.has(t)){seen.add(t);L.push({t,tab,id})}};
-  add(M.X,"център","pt","");add(M.A,"как Ви виждат","zn","z-pers");add(M.B,"таланти","zn","z-pers");add(M.C,"материална карма","km","k-mat");add(M.D,"кармичен урок","km","k-tail");
-  add(M.ch.D.one,"кармична опашка","km","k-tail");add(M.ch.D.two,"ключ на кармата","km","k-tail");add(M.money,"пари","zn","z-ml");add(M.love,"любов","zn","z-ml");
-  add(M.personal,"лично предназначение","zn","z-purp");add(M.social,"социално предназначение","zn","z-purp");add(M.spirit,"духовно предназначение","zn","z-purp");
-  add(M.F,"бащин род · дар","km","k-rod");add(M.H,"бащин род · задача","km","k-rod");add(M.G,"майчин род · дар","km","k-rod");add(M.I,"майчин род · задача","km","k-rod");
-  add(CUR,"текущ период","fc","f-per");return L;
+  add(M.X,tr("център","centre"),"pt","");add(M.A,tr("как Ви виждат","how others see you"),"zn","z-pers");add(M.B,tr("таланти","talents"),"zn","z-pers");add(M.C,tr("материална карма","material karma"),"km","k-mat");add(M.D,tr("кармичен урок","karmic lesson"),"km","k-tail");
+  add(M.ch.D.one,tr("кармична опашка","karmic tail"),"km","k-tail");add(M.ch.D.two,tr("ключ на кармата","key to the karma"),"km","k-tail");add(M.money,tr("пари","money"),"zn","z-ml");add(M.love,tr("любов","love"),"zn","z-ml");
+  add(M.personal,tr("лично предназначение","personal purpose"),"zn","z-purp");add(M.social,tr("социално предназначение","social purpose"),"zn","z-purp");add(M.spirit,tr("духовно предназначение","spiritual purpose"),"zn","z-purp");
+  add(M.F,tr("бащин род · дар","father's line · gift"),"km","k-rod");add(M.H,tr("бащин род · задача","father's line · task"),"km","k-rod");add(M.G,tr("майчин род · дар","mother's line · gift"),"km","k-rod");add(M.I,tr("майчин род · задача","mother's line · task"),"km","k-rod");
+  add(CUR,tr("текущ период","current period"),"fc","f-per");return L;
 }
 function render(name,iso){
   const M=calc(iso),age=ageNow(iso),idx=Math.floor(age/1.25),cur=M.ring[idx%64],yr=new Date().getFullYear(),ye=yearE(M,yr);
   ME={name,iso,M};CUR=cur;if(!OPEN)OPEN=M.X;
   const X=E[M.X],A=E[M.A],B=E[M.B],Pp=E[M.personal],So=E[M.social],Sp=E[M.spirit],D=E[M.D];
   document.getElementById("now").innerHTML=`${compass(age)}
-   <div><div class="lbl">Периодът сега · ${ag(idx*1.25)}–${ag(idx*1.25+1.25)} г.</div><div class="big"><b>${RN[cur]}</b> ${E[cur].n}</div><p>${E[cur].per}</p></div>
-   <div><div class="lbl">Енергията на ${yr} г.</div><div class="big"><b>${RN[ye]}</b> ${E[ye].n}</div><p>${E[ye].per}</p></div>
-   <div><div class="lbl">Въпрос и стъпка за седмицата</div><div class="big">${E[cur].q}</div><p>${E[cur].st}</p></div>`;
-  const talentB=M.A===M.B?"":` А дарбата Ви е ${B.tal}`;
+   <div><div class="lbl">${tr("Периодът сега","Current period")} · ${ag(idx*1.25)}–${ag(idx*1.25+1.25)}${YRS()}</div><div class="big"><b>${RN[cur]}</b> ${E[cur].n}</div><p>${E[cur].per}</p></div>
+   <div><div class="lbl">${tr(`Енергията на ${yr} г.`,`Energy of ${yr}`)}</div><div class="big"><b>${RN[ye]}</b> ${E[ye].n}</div><p>${E[ye].per}</p></div>
+   <div><div class="lbl">${tr("Въпрос и стъпка за седмицата","Question and step for the week")}</div><div class="big">${E[cur].q}</div><p>${E[cur].st}</p></div>`;
+  const talentB=M.A===M.B?"":tr(` А дарбата Ви е ${B.tal}`,` And your gift is ${B.tal}`);
   document.getElementById("v-pt").innerHTML=`
   <div class="split">
    <div class="letter">
-    <p class="drop">${esc(name)}, в основата Ви е ${X.s}.</p>
+    <p class="drop">${tr(`${esc(name)}, в основата Ви е ${X.s}.`,`${esc(name)}, at your core you are ${X.s}.`)}</p>
     <p>${X.core}</p>
-    <p>Хората Ви виждат като ${A.s}. ${A.face}${talentB}</p>
-    <p>Личната Ви задача е да станете ${Pp.s}. В зрелостта, между 40 и 60 години, се проявявате най-силно като ${So.s}. След 60 години смисълът идва от това да бъдете ${Sp.s}.</p>
-    <div class="talent"><div class="lbl">Най-силната Ви комбинация</div><p>${cap(X.v)}${M.B!==M.X?" и "+B.v:""}.</p></div>
+    <p>${tr(`Хората Ви виждат като ${A.s}.`,`People see you as ${A.s}.`)} ${A.face}${talentB}</p>
+    <p>${tr(`Личната Ви задача е да станете ${Pp.s}. В зрелостта, между 40 и 60 години, се проявявате най-силно като ${So.s}. След 60 години смисълът идва от това да бъдете ${Sp.s}.`,`Your personal task is to become ${Pp.s}. In maturity, between 40 and 60, you show up most strongly as ${So.s}. After 60, meaning comes from being ${Sp.s}.`)}</p>
+    <div class="talent"><div class="lbl">${tr("Най-силната Ви комбинация","Your strongest combination")}</div><p>${LANG==="en"?"To "+X.v+(M.B!==M.X?" and "+B.v:""):cap(X.v)+(M.B!==M.X?" и "+B.v:"")}.</p></div>
    </div>
-   <div class="chart">${svg(M,idx%64)}<div class="hint">Кликнете число, за да отворите аркана му.</div></div>
+   <div class="chart">${svg(M,idx%64)}<div class="hint">${tr("Кликнете число, за да отворите аркана му.","Click a number to open its arcanum.")}</div></div>
   </div>
-  <h2>Капаните, които да разпознавате</h2>
+  <h2>${tr("Капаните, които да разпознавате","Traps to recognise")}</h2>
   <div class="grid">
-   <div class="quote">„${X.voice}“<small>Гласът на центъра Ви (${X.n}), когато е извън баланс. ${X.sh}<br>${fullBtn(M.X)}</small></div>
-   ${M.D!==M.X?`<div class="quote">„${D.voice}“<small>Гласът на кармичния Ви урок (${D.n}). ${D.sh}<br>${fullBtn(M.D)}</small></div>`:""}
+   <div class="quote">${q(X.voice)}<small>${tr(`Гласът на центъра Ви (${X.n}), когато е извън баланс.`,`The voice of your centre (${X.n}) when it is out of balance.`)} ${X.sh}<br>${fullBtn(M.X)}</small></div>
+   ${M.D!==M.X?`<div class="quote">${q(D.voice)}<small>${tr(`Гласът на кармичния Ви урок (${D.n}).`,`The voice of your karmic lesson (${D.n}).`)} ${D.sh}<br>${fullBtn(M.D)}</small></div>`:""}
   </div>`;
   document.getElementById("v-zn").innerHTML=`
-  <p class="intro">Една енергия се проявява различно според сферата. Отворете „Прочети повече“ за баланса, капана, въпроса и стъпката, или целия аркан с всички плюсове и минуси.</p>
-  <h2 id="z-pers">Личност</h2><div class="grid">
-   ${card("Сърцевина",M.X,"core")}${card("Как Ви виждат",M.A,"face")}${card("Таланти",M.B,"",{text:cap(E[M.B].tal)})}</div>
-  <h2 id="z-ml">Пари и любов</h2><div class="grid">
-   ${card("Пари и реализация",M.money,"money")}${card("Любов и отношения",M.love,"love")}</div>
-  <h2 id="z-purp">Предназначение</h2><div class="grid">
-   ${card("Лично · до около 40 г.",M.personal,"",{text:"Да станете "+E[M.personal].s+": "+E[M.personal].tal})}
-   ${card("Социално · 40–60 г.",M.social,"",{text:"Да се проявите като "+E[M.social].s+": "+E[M.social].tal})}
-   ${card("Духовно · след 60 г.",M.spirit,"",{text:"Да бъдете "+E[M.spirit].s+". "+E[M.spirit].bal})}</div>`;
+  <p class="intro">${tr("Една енергия се проявява различно според сферата. Отворете „Прочети повече“ за баланса, капана, въпроса и стъпката, или целия аркан с всички плюсове и минуси.","The same energy shows up differently depending on the area of life. Open \"Read more\" for balance, trap, question and step, or the full arcanum with all its pluses and minuses.")}</p>
+  <h2 id="z-pers">${tr("Личност","Personality")}</h2><div class="grid">
+   ${card(tr("Сърцевина","Core"),M.X,"core")}${card(tr("Как Ви виждат","How others see you"),M.A,"face")}${card(tr("Таланти","Talents"),M.B,"",{text:cap(E[M.B].tal)})}</div>
+  <h2 id="z-ml">${tr("Пари и любов","Money and love")}</h2><div class="grid">
+   ${card(tr("Пари и реализация","Money and career"),M.money,"money")}${card(tr("Любов и отношения","Love and relationships"),M.love,"love")}</div>
+  <h2 id="z-purp">${tr("Предназначение","Purpose")}</h2><div class="grid">
+   ${card(tr("Лично · до около 40 г.","Personal · until about 40"),M.personal,"",{text:tr("Да станете ","To become ")+E[M.personal].s+": "+E[M.personal].tal})}
+   ${card(tr("Социално · 40–60 г.","Social · 40–60"),M.social,"",{text:tr("Да се проявите като ","To show up as ")+E[M.social].s+": "+E[M.social].tal})}
+   ${card(tr("Духовно · след 60 г.","Spiritual · after 60"),M.spirit,"",{text:tr("Да бъдете ","To be ")+E[M.spirit].s+". "+E[M.spirit].bal})}</div>`;
   const t1=M.ch.D.one,t2=M.ch.D.two;
   document.getElementById("v-km").innerHTML=`
-  <blockquote class="epi"><p>„Когато попаднеш под силен дъжд, се опитваш да не се намокриш и бързо тичаш по пътя. Но тичайки под стрехите на покривите, пак се оказваш мокър. Ако обаче веднага осъзнаеш, че от дъжда не можеш да избягаш, тогава, макар да се намокриш, няма да се суетиш. Такъв подход трябва да се използва във всичко.“</p><cite>„Хагакуре“, самурайски трактат</cite></blockquote>
-  <p class="intro">Кармата в матрицата не е наказание, а урок, който се повтаря, докато не бъде усвоен. Кармичната опашка се чете в три стъпки: урокът, как се проявява, докато не е усвоен, и ключът към него.</p>
-  <h2 id="k-tail">Кармична опашка: ${M.D} · ${t1} · ${t2}</h2>
+  <blockquote class="epi"><p>${tr("„Когато попаднеш под силен дъжд, се опитваш да не се намокриш и бързо тичаш по пътя. Но тичайки под стрехите на покривите, пак се оказваш мокър. Ако обаче веднага осъзнаеш, че от дъжда не можеш да избягаш, тогава, макар да се намокриш, няма да се суетиш. Такъв подход трябва да се използва във всичко.“","“When you are caught in heavy rain, you try not to get wet and hurry along the road. But even running under the eaves of the roofs, you still end up wet. If, however, you realise at once that you cannot escape the rain, you will get wet, but you will not fuss. This approach should be used in everything.”")}</p><cite>${tr("„Хагакуре“, самурайски трактат","Hagakure, the samurai treatise")}</cite></blockquote>
+  <p class="intro">${tr("Кармата в матрицата не е наказание, а урок, който се повтаря, докато не бъде усвоен. Кармичната опашка се чете в три стъпки: урокът, как се проявява, докато не е усвоен, и ключът към него.","Karma in the matrix is not a punishment but a lesson that repeats until it is learned. The karmic tail is read in three steps: the lesson, how it shows up until it is learned, and the key to it.")}</p>
+  <h2 id="k-tail">${tr("Кармична опашка","Karmic tail")}: ${M.D} · ${t1} · ${t2}</h2>
   <div class="steps">
-   <div class="step"><span class="k">1 · Урокът</span><div class="head">${tile(M.D)}<div class="ename">${E[M.D].n}</div></div><p>${E[M.D].karma}</p>${fullBtn(M.D)}</div>
-   <div class="step"><span class="k">2 · Как се проявява</span><div class="head">${tile(t1)}<div class="ename">${E[t1].n}</div></div><p>${E[t1].sh}</p><p class="quote" style="font-size:1rem">„${E[t1].voice}“</p>${fullBtn(t1)}</div>
-   <div class="step"><span class="k">3 · Ключът</span><div class="head">${tile(t2)}<div class="ename">${E[t2].n}</div></div><p>${E[t2].bal}</p><p><strong>Стъпка:</strong> ${E[t2].st}</p>${fullBtn(t2)}</div>
+   <div class="step"><span class="k">1 · ${tr("Урокът","The lesson")}</span><div class="head">${tile(M.D)}<div class="ename">${E[M.D].n}</div></div><p>${E[M.D].karma}</p>${fullBtn(M.D)}</div>
+   <div class="step"><span class="k">2 · ${tr("Как се проявява","How it shows up")}</span><div class="head">${tile(t1)}<div class="ename">${E[t1].n}</div></div><p>${E[t1].sh}</p><p class="quote" style="font-size:1rem">${q(E[t1].voice)}</p>${fullBtn(t1)}</div>
+   <div class="step"><span class="k">3 · ${tr("Ключът","The key")}</span><div class="head">${tile(t2)}<div class="ename">${E[t2].n}</div></div><p>${E[t2].bal}</p><p><strong>${tr("Стъпка:","Step:")}</strong> ${E[t2].st}</p>${fullBtn(t2)}</div>
   </div>
-  <h2 id="k-mat">Материална карма</h2>
-  <p class="intro">Дясната точка показва отношението към парите и материалното, донесено като урок.</p>
-  <div class="grid">${card("Материален урок",M.C,"karma")}${card("Откъде идват парите",M.money,"money")}</div>
-  <h2 id="k-rod">Родова карма</h2>
-  <p class="intro">Всяка линия на рода, бащина и майчина, носи дар и задача. Горните ъгли на квадрата са даровете, долните са задачите, които се предават, докато някой не ги преработи. И даровете имат сянка, затова във всяка карта виждате и двете страни.</p>
+  <h2 id="k-mat">${tr("Материална карма","Material karma")}</h2>
+  <p class="intro">${tr("Дясната точка показва отношението към парите и материалното, донесено като урок.","The right-hand point shows your relationship with money and the material world, brought in as a lesson.")}</p>
+  <div class="grid">${card(tr("Материален урок","Material lesson"),M.C,"karma")}${card(tr("Откъде идват парите","Where money comes from"),M.money,"money")}</div>
+  <h2 id="k-rod">${tr("Родова карма","Family karma")}</h2>
+  <p class="intro">${tr("Всяка линия на рода, бащина и майчина, носи дар и задача. Горните ъгли на квадрата са даровете, долните са задачите, които се предават, докато някой не ги преработи. И даровете имат сянка, затова във всяка карта виждате и двете страни.","Each family line, your father's and your mother's, carries a gift and a task. The top corners of the square are the gifts; the bottom ones are the tasks passed down until someone works them through. Gifts have a shadow too, so each card shows both sides.")}</p>
   <div class="grid rod2">
-   ${rodCard("Бащин род · дар",M.F,"gift")}${rodCard("Бащин род · задача",M.H,"task")}
-   ${rodCard("Майчин род · дар",M.G,"gift")}${rodCard("Майчин род · задача",M.I,"task")}</div>`;
+   ${rodCard(tr("Бащин род · дар","Father's line · gift"),M.F,"gift")}${rodCard(tr("Бащин род · задача","Father's line · task"),M.H,"task")}
+   ${rodCard(tr("Майчин род · дар","Mother's line · gift"),M.G,"gift")}${rodCard(tr("Майчин род · задача","Mother's line · task"),M.I,"task")}</div>`;
   let yh="";for(let k=-1;k<3;k++){const Y=yr+k,v=yearE(M,Y);yh+=`<div class="year${k===0?" now":""}"><span class="y">${Y}</span><div class="head">${tile(v)}<h3>${E[v].n}</h3></div><p class="note">${E[v].per}</p></div>`}
   let th="";for(let k=-1;k<8;k++){const i=idx+k;if(i<0)continue;const v=M.ring[i%64],a0=i*1.25;
-    th+=`<div class="period${k===0?" now":""}"><span class="when">${k===0?"Сега · ":""}${fmt(atAge(iso,a0))} – ${fmt(atAge(iso,a0+1.25))} · ${ag(a0)}–${ag(a0+1.25)} г.</span><h3>${RN[v]} · ${E[v].n}</h3><p>${E[v].per}</p><p class="st">Стъпка: ${E[v].st}</p></div>`}
+    th+=`<div class="period${k===0?" now":""}"><span class="when">${k===0?tr("Сега · ","Now · "):""}${fmt(atAge(iso,a0))} – ${fmt(atAge(iso,a0+1.25))} · ${ag(a0)}–${ag(a0+1.25)}${YRS()}</span><h3>${RN[v]} · ${E[v].n}</h3><p>${E[v].per}</p><p class="st">${tr("Стъпка:","Step:")} ${E[v].st}</p></div>`}
   document.getElementById("v-fc").innerHTML=`
-  <p class="intro">Прогнозата има два слоя. Енергията на годината е общият фон на календарната година. Възрастовият период идва от външния кръг на матрицата и сменя темата си на около година и три месеца.</p>
-  <h2>Енергия на годината</h2><div class="years">${yh}</div>
-  <h2 id="f-per">Възрастови периоди</h2><div class="timeline">${th}</div>`;
+  <p class="intro">${tr("Прогнозата има два слоя. Енергията на годината е общият фон на календарната година. Възрастовият период идва от външния кръг на матрицата и сменя темата си на около година и три месеца.","The forecast has two layers. The energy of the year is the general background of the calendar year. The age period comes from the outer circle of the matrix and changes its theme about every year and three months.")}</p>
+  <h2>${tr("Енергия на годината","Energy of the year")}</h2><div class="years">${yh}</div>
+  <h2 id="f-per">${tr("Възрастови периоди","Age periods")}</h2><div class="timeline">${th}</div>`;
   renderLib();renderPerson();
 }
 let Q="";
@@ -971,7 +1362,7 @@ const hay=v=>[E[v].n,AX[v].k.join(" "),AX[v].plus.join(" "),AX[v].minus.flat().j
 function renderLib(){
   let h="",shown=0;for(let v=1;v<=22;v++){const mine=places(v).length>0;
     if(Q&&!hay(v).includes(Q))continue;shown++;
-    h+=`<button class="arc" data-arc="${v}" aria-current="${v===OPEN}">${mine?'<span class="mine" title="Във Вашата матрица"></span>':""}<span class="em g${grp(v)}">${sym(v)}</span><span class="rn">${RN[v]}</span><span class="nm">${E[v].n}</span><span class="kw">${AX[v].k.join(" · ")}</span></button>`}
+    h+=`<button class="arc" data-arc="${v}" aria-current="${v===OPEN}">${mine?'<span class="mine" title="${tr("Във Вашата матрица","In your matrix")}"></span>':""}<span class="em g${grp(v)}">${sym(v)}</span><span class="rn">${RN[v]}</span><span class="nm">${E[v].n}</span><span class="kw">${AX[v].k.join(" · ")}</span></button>`}
   document.getElementById("lib").innerHTML=h;
   document.getElementById("arcNone").hidden=shown>0;
   renderDetail();
@@ -980,22 +1371,22 @@ function renderDetail(){
   const el=document.getElementById("arcDetail");if(!OPEN){el.innerHTML="";return}
   const v=OPEN,x=E[v],a=AX[v],pl=places(v),prev=v===1?22:v-1,next=v===22?1:v+1;
   el.innerHTML=`<article class="detail" id="det">
-   <div class="dhead g${grp(v)}"><div class="em">${sym(v)}</div><div><div class="rn">Аркан ${RN[v]} · ${v}</div><h2>${x.n}</h2><div class="kws">${a.k.map(k=>`<span>${k}</span>`).join("")}</div></div></div>
+   <div class="dhead g${grp(v)}"><div class="em">${sym(v)}</div><div><div class="rn">${tr("Аркан","Arcanum")} ${RN[v]} · ${v}</div><h2>${x.n}</h2><div class="kws">${a.k.map(k=>`<span>${k}</span>`).join("")}</div></div></div>
    <div class="dbody">
     <p class="core">${x.core}</p>
-    ${pl.length?`<div class="mine-list"><span class="lbl2">Във Вашата матрица:</span>${pl.map(p=>`<button type="button" class="c" data-goto="${p.tab}|${p.id}">${p.t} →</button>`).join("")}</div><p class="note">Кликнете позиция, за да отидете до нея. Във всяка позиция арканът носи и двете си страни: светлата и сянката по-долу. Коя ще се проявява, зависи от това как живеете тази енергия.</p>`:`<p class="note">Този аркан не е в основните точки на Вашата матрица, но може да е във възрастовите периоди или в матрицата на близък човек. Всеки аркан има и светла страна, и сянка.</p>`}
+    ${pl.length?`<div class="mine-list"><span class="lbl2">${tr("Във Вашата матрица:","In your matrix:")}</span>${pl.map(p=>`<button type="button" class="c" data-goto="${p.tab}|${p.id}">${p.t} →</button>`).join("")}</div><p class="note">${tr("Кликнете позиция, за да отидете до нея. Във всяка позиция арканът носи и двете си страни: светлата и сянката по-долу. Коя ще се проявява, зависи от това как живеете тази енергия.","Click a position to go to it. In every position the arcanum carries both sides: the light and the shadow below. Which one shows up depends on how you live this energy.")}</p>`:`<p class="note">${tr("Този аркан не е в основните точки на Вашата матрица, но може да е във възрастовите периоди или в матрицата на близък човек. Всеки аркан има и светла страна, и сянка.","This arcanum is not in the main points of your matrix, but it may appear in the age periods or in the matrix of someone close to you. Every arcanum has both a light side and a shadow.")}</p>`}
     <div class="pm2">
-     <div><h3>Светлата страна</h3><ul class="plus">${a.plus.map(p=>`<li>${p}</li>`).join("")}</ul></div>
-     <div><h3>Сянката и как да я обърнете</h3><div class="shadow">${a.minus.map(([m,f])=>`<div class="sh-row"><span class="m">${m}</span><span class="ar" aria-label="как да го обърнете">→</span><span class="f">${f}</span></div>`).join("")}</div></div>
+     <div><h3>${tr("Светлата страна","The light side")}</h3><ul class="plus">${a.plus.map(p=>`<li>${p}</li>`).join("")}</ul></div>
+     <div><h3>${tr("Сянката и как да я обърнете","The shadow and how to turn it around")}</h3><div class="shadow">${a.minus.map(([m,f])=>`<div class="sh-row"><span class="m">${m}</span><span class="ar" aria-label="${tr("как да го обърнете","how to turn it around")}">→</span><span class="f">${f}</span></div>`).join("")}</div></div>
     </div>
-    <div class="quote">„${x.voice}“<small>Така звучи сянката на ${x.n} отвътре. Когато чуете тази мисъл, спрете и изберете действие от дясната колона.</small></div>
+    <div class="quote">${q(x.voice)}<small>${tr(`Така звучи сянката на ${x.n} отвътре. Когато чуете тази мисъл, спрете и изберете действие от дясната колона.`,`This is how the shadow of ${x.n} sounds from the inside. When you hear this thought, stop and choose an action from the right-hand column.`)}</small></div>
     <div class="dfoot">
-     <div><span class="lbl2">Пари и реализация</span><p>${x.money}</p></div>
-     <div><span class="lbl2">Любов и отношения</span><p>${x.love}</p></div>
-     <div><span class="lbl2">Като кармичен урок</span><p>${x.karma}</p></div>
-     <div><span class="lbl2">Сфери, в които се разгръща</span><p>${cap(a.sph)}.</p></div>
-     <div><span class="lbl2">Въпрос за размисъл</span><p>${x.q}</p></div>
-     <div><span class="lbl2">Стъпка за седмицата</span><p>${x.st}</p></div>
+     <div><span class="lbl2">${tr("Пари и реализация","Money and career")}</span><p>${x.money}</p></div>
+     <div><span class="lbl2">${tr("Любов и отношения","Love and relationships")}</span><p>${x.love}</p></div>
+     <div><span class="lbl2">${tr("Като кармичен урок","As a karmic lesson")}</span><p>${x.karma}</p></div>
+     <div><span class="lbl2">${tr("Сфери, в които се разгръща","Fields where it flourishes")}</span><p>${cap(a.sph)}.</p></div>
+     <div><span class="lbl2">${tr("Въпрос за размисъл","Question to reflect on")}</span><p>${x.q}</p></div>
+     <div><span class="lbl2">${tr("Стъпка за седмицата","Step for the week")}</span><p>${x.st}</p></div>
     </div>
     <div class="nav"><button data-arc="${prev}">← ${RN[prev]} ${E[prev].n}</button><button data-arc="${next}">${RN[next]} ${E[next].n} →</button></div>
    </div></article>`;
@@ -1005,20 +1396,20 @@ let PEOPLE=[],SEL=-1;
 try{PEOPLE=JSON.parse(localStorage.getItem("mc-people")||"[]")}catch(e){PEOPLE=[]}
 const save=()=>{try{localStorage.setItem("mc-people",JSON.stringify(PEOPLE))}catch(e){}};
 function renderPeople(){
-  document.getElementById("pList").innerHTML=PEOPLE.length?PEOPLE.map((p,i)=>`<button class="chip" aria-pressed="${i===SEL}" data-i="${i}">${esc(p.name)} · ${esc(p.rel)}<span class="x" data-del="${i}" role="button" aria-label="Премахни ${esc(p.name)}">×</span></button>`).join(""):`<p class="note">Все още няма добавени хора.</p>`;
+  document.getElementById("pList").innerHTML=PEOPLE.length?PEOPLE.map((p,i)=>`<button class="chip" aria-pressed="${i===SEL}" data-i="${i}">${esc(p.name)} · ${esc(relT(p.rel))}<span class="x" data-del="${i}" role="button" aria-label="${tr("Премахни","Remove")} ${esc(p.name)}">×</span></button>`).join(""):`<p class="note">${tr("Все още няма добавени хора.","No people added yet.")}</p>`;
   renderPerson();
 }
 function renderPerson(){
   const V=document.getElementById("pView");if(!ME||SEL<0||!PEOPLE[SEL]){V.innerHTML="";return}
   const p=PEOPLE[SEL],P=calc(p.date),M=OWN?calc(OWN.d):ME.M,nm=esc(p.name);
   const A=r(M.A+P.A),B=r(M.B+P.B),D=r(M.D+P.D),X=r(A+B+r(M.C+P.C)+D);
-  V.innerHTML=`<div class="letter"><p class="drop">${nm} е ${E[P.X].s}.</p>
-   <p>Навън ${nm} изглежда като ${E[P.A].s}. Когато е под напрежение, вътрешният глас често казва: „${E[P.X].voice}“ Ако разпознаете този глас, ще разбирате реакциите по-лесно.</p><div class="pv-actions"><button type="button" data-view="${SEL}">Прегледай като основна матрица</button></div>${fullBtn(P.X)}</div>
-  <h2>Вие двамата</h2>
+  V.innerHTML=`<div class="letter"><p class="drop">${tr(`${nm} е ${E[P.X].s}.`,`${nm} is ${E[P.X].s}.`)}</p>
+   <p>${tr(`Навън ${nm} изглежда като ${E[P.A].s}. Когато е под напрежение, вътрешният глас често казва: „${E[P.X].voice}“ Ако разпознаете този глас, ще разбирате реакциите по-лесно.`,`On the outside ${nm} comes across as ${E[P.A].s}. Under pressure, the inner voice often says: “${E[P.X].voice}” If you recognise this voice, you will understand the reactions more easily.`)}</p><div class="pv-actions"><button type="button" data-view="${SEL}">${tr("Прегледай като основна матрица","View as main matrix")}</button></div>${fullBtn(P.X)}</div>
+  <h2>${tr("Вие двамата","The two of you")}</h2>
   <div class="grid">
-   ${card("Какво ви свързва",X,"",{text:E[X].love})}
-   ${card("Какво се повтаря между вас",D,"karma")}
-   ${card("Какво можете да създадете заедно",B,"",{text:cap(E[B].tal)})}
+   ${card(tr("Какво ви свързва","What connects you"),X,"",{text:E[X].love})}
+   ${card(tr("Какво се повтаря между вас","What repeats between you"),D,"karma")}
+   ${card(tr("Какво можете да създадете заедно","What you can create together"),B,"",{text:cap(E[B].tal)})}
   </div>`;
 }
 const VIEWS=["pt","zn","km","ar","fc","pp"];
@@ -1030,22 +1421,22 @@ document.addEventListener("click",e=>{const a=e.target.closest("[data-arc]");if(
 document.addEventListener("keydown",e=>{if((e.key==="Enter"||e.key===" ")&&e.target.matches&&e.target.matches("g.pt")){e.preventDefault();openArc(e.target.dataset.arc)}});
 const valid=iso=>{if(!/^\d{4}-\d{2}-\d{2}$/.test(iso||""))return false;const [y,m,d]=iso.split("-").map(Number);const t=new Date(Date.UTC(y,m-1,d));
   return y>=1900&&t.getUTCFullYear()===y&&t.getUTCMonth()===m-1&&t.getUTCDate()===d&&t.getTime()<Date.now()};
-const dateErr="Въведете съществуваща дата на раждане във формат дд.мм.гггг, например 05.06.1973.";
+const dateErr=()=>tr("Въведете съществуваща дата на раждане във формат дд.мм.гггг, например 05.06.1973.","Enter a valid date of birth in the format dd.mm.yyyy, for example 05.06.1973.");
 const toISO=s=>{const m=String(s||"").trim().match(/^(\d{1,2})[.\/\-\s](\d{1,2})[.\/\-\s](\d{4})$/);if(!m)return "";return `${m[3]}-${m[2].padStart(2,"0")}-${m[1].padStart(2,"0")}`};
 function maskDate(el){el.addEventListener("input",e=>{if(e.inputType&&e.inputType.startsWith("delete"))return;const raw=el.value.replace(/[\/\-\s]/g,".").replace(/[^\d.]/g,"");let parts=[""];for(const ch of raw){const i=parts.length-1,lim=i<2?2:4;if(ch==="."){if(parts[i].length>0&&parts.length<3)parts.push("");continue}if(parts[i].length>=lim){if(parts.length<3)parts.push(ch)}else parts[i]+=ch}let res=parts.join(".");if(parts.length<3&&parts[parts.length-1].length===2)res+=".";el.value=res})}
 ["wDate","meDate","pDate"].forEach(id=>maskDate(document.getElementById(id)));
 let OWN=null,MODE="own";
 try{const s=JSON.parse(localStorage.getItem("mc-me")||"null");if(s&&valid(s.d))OWN=s}catch(e){}
-const SAMPLE={n:"Пример",d:"1990-03-14"};
+const SAMPLE={get n(){return tr("Пример","Example")},d:"1990-03-14"};
 const bgDate=iso=>iso.split("-").reverse().join(".");
 let PAGE="home";let HOME=false;
 function markNav(){navLabels();document.querySelectorAll(".topnav a").forEach(a=>{const k=a.dataset.nav;const on=PAGE==="home"?k==="home":PAGE==="start"?k==="mine":(k==="mine"&&MODE==="own")||(k==="sample"&&MODE==="sample");if(on)a.setAttribute("aria-current","page");else a.removeAttribute("aria-current")})}
 function showMain(n,d,mode){
   MODE=mode;HOME=false;PAGE="app";document.getElementById("welcome").hidden=true;document.getElementById("start").hidden=true;document.getElementById("app").hidden=false;document.getElementById("meForm").hidden=true;
   const V=document.getElementById("viewing");
-  if(mode==="own")V.innerHTML=`<span class="who">Матрицата на ${esc(n)} · ${bgDate(d)}</span><button type="button" class="ghost" id="editMe">Смени данните</button>`;
-  else if(mode==="sample")V.innerHTML=`<span>Това е <strong>примерна матрица</strong>.</span><button type="button" class="ghost" data-nav="mine">${OWN?"Върни се към моята":"Изчисли моята матрица"}</button>`;
-  else V.innerHTML=`<span>Гледате матрицата на <strong>${esc(n)}</strong> (${bgDate(d)}).</span>${OWN?`<button type="button" class="ghost" data-nav="mine">Върни се към моята</button>`:""}`;
+  if(mode==="own")V.innerHTML=`<span class="who">${tr("Матрицата на","Matrix of")} ${esc(n)} · ${bgDate(d)}</span><button type="button" class="ghost" id="editMe">${tr("Смени данните","Change details")}</button>`;
+  else if(mode==="sample")V.innerHTML=`<span>${tr("Това е <strong>примерна матрица</strong>.","This is an <strong>example matrix</strong>.")}</span><button type="button" class="ghost" data-nav="mine">${OWN?tr("Върни се към моята","Back to mine"):tr("Изчисли моята матрица","Calculate my matrix")}</button>`;
+  else V.innerHTML=`<span>${tr("Гледате матрицата на","You are viewing the matrix of")} <strong>${esc(n)}</strong> (${bgDate(d)}).</span>${OWN?`<button type="button" class="ghost" data-nav="mine">${tr("Върни се към моята","Back to mine")}</button>`:""}`;
   render(n,d);markNav();
 }
 function goHome(push=true){
@@ -1056,7 +1447,7 @@ function goHome(push=true){
 function goStart(push=true){HOME=true;PAGE="start";document.getElementById("welcome").hidden=true;document.getElementById("app").hidden=true;document.getElementById("start").hidden=false;
   if(push&&location.hash!=="#start")history.pushState(null,"","#start");markNav();window.scrollTo(0,0);document.getElementById("wName").focus({preventScroll:true})}
 function goMine(){if(OWN){showMain(OWN.n,OWN.d,"own");show("pt");window.scrollTo(0,0)}else goStart()}
-function navLabels(){const a=document.querySelector('.topnav a[data-nav=mine]');a.textContent=OWN?"Моята матрица":"Изчисли моята";const c=document.getElementById("ctaMine");if(c)c.textContent=OWN?"Отвори моята матрица":"Изчисли моята матрица"}
+function navLabels(){const a=document.querySelector('.topnav a[data-nav=mine]');a.textContent=OWN?tr("Моята матрица","My matrix"):tr("Изчисли моята","Calculate mine");const c=document.getElementById("ctaMine");if(c)c.textContent=OWN?tr("Отвори моята матрица","Open my matrix"):tr("Изчисли моята матрица","Calculate my matrix")}
 function goSample(){showMain(SAMPLE.n,SAMPLE.d,"sample");show("pt");window.scrollTo(0,0)}
 function route(){const h=location.hash.slice(1);
   if(h==="home"||!h&&!OWN){goHome(false);return}
@@ -1066,11 +1457,11 @@ function route(){const h=location.hash.slice(1);
   show(VIEWS.includes(t)?t:"pt",false)}
 function boot(){renderPeople();route()}
 const saveOwn=(n,d)=>{OWN={n,d};try{localStorage.setItem("mc-me",JSON.stringify(OWN))}catch(e){}};
-document.getElementById("wForm").addEventListener("submit",e=>{e.preventDefault();const n=wName.value.trim()||"Вие",d=toISO(wDate.value),er=document.getElementById("wErr");
-  if(!valid(d)){er.textContent=dateErr;er.hidden=false;return}er.hidden=true;saveOwn(n,d);showMain(n,d,"own");show("pt");window.scrollTo(0,0)});
+document.getElementById("wForm").addEventListener("submit",e=>{e.preventDefault();const n=wName.value.trim()||tr("Вие","You"),d=toISO(wDate.value),er=document.getElementById("wErr");
+  if(!valid(d)){er.textContent=dateErr();er.hidden=false;return}er.hidden=true;saveOwn(n,d);showMain(n,d,"own");show("pt");window.scrollTo(0,0)});
 [wName,wDate].forEach(i=>i.addEventListener("input",()=>document.getElementById("wErr").hidden=true));
-document.getElementById("meForm").addEventListener("submit",e=>{e.preventDefault();const n=meName.value.trim()||"Вие",d=toISO(meDate.value),er=document.getElementById("meErr");
-  if(!valid(d)){er.textContent=dateErr;er.hidden=false;return}er.hidden=true;saveOwn(n,d);showMain(n,d,"own")});
+document.getElementById("meForm").addEventListener("submit",e=>{e.preventDefault();const n=meName.value.trim()||tr("Вие","You"),d=toISO(meDate.value),er=document.getElementById("meErr");
+  if(!valid(d)){er.textContent=dateErr();er.hidden=false;return}er.hidden=true;saveOwn(n,d);showMain(n,d,"own")});
 document.getElementById("meCancel").addEventListener("click",()=>{document.getElementById("meForm").hidden=true});
 addEventListener("popstate",route);
 document.addEventListener("click",e=>{
@@ -1084,13 +1475,13 @@ document.getElementById("exp").addEventListener("click",()=>{
   const data={app:"Mind Compass",version:1,saved:new Date().toISOString(),me:OWN,people:PEOPLE};
   const url=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:"application/json"}));
   const a=document.createElement("a");a.href=url;a.download="mind-compass-arhiv-"+new Date().toISOString().slice(0,10)+".json";document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),2000);
-  msg("Архивът е изтеглен. Пазете файла, за да възстановите данните на друго устройство.")});
+  msg(tr("Архивът е изтеглен. Пазете файла, за да възстановите данните на друго устройство.","The archive has been downloaded. Keep the file to restore your data on another device."))});
 document.getElementById("imp").addEventListener("change",e=>{const f=e.target.files[0];if(!f)return;const rd=new FileReader();
   rd.onload=()=>{try{const d=JSON.parse(rd.result);if(d.app!=="Mind Compass")throw 0;
     const ppl=Array.isArray(d.people)?d.people.filter(p=>p&&p.name&&valid(p.date)).map(p=>({name:String(p.name),date:p.date,rel:String(p.rel||"Друго")})):[];
-    if(d.me&&valid(d.me.d)){OWN={n:String(d.me.n||"Вие"),d:d.me.d};try{localStorage.setItem("mc-me",JSON.stringify(OWN))}catch(x){}}
-    PEOPLE=ppl;SEL=-1;save();boot();msg(`Възстановено: ${OWN?"Вашата матрица и ":""}${ppl.length} профила.`)}
-   catch(x){msg("Файлът не е архив на Mind Compass. Изберете файла, който сте изтеглили с бутона „Изтегли архив“.")}e.target.value=""};rd.readAsText(f)});
+    if(d.me&&valid(d.me.d)){OWN={n:String(d.me.n||tr("Вие","You")),d:d.me.d};try{localStorage.setItem("mc-me",JSON.stringify(OWN))}catch(x){}}
+    PEOPLE=ppl;SEL=-1;save();boot();msg(tr(`Възстановено: ${OWN?"Вашата матрица и ":""}${ppl.length} профила.`,`Restored: ${OWN?"your matrix and ":""}${ppl.length} profiles.`))}
+   catch(x){msg(tr("Файлът не е архив на Mind Compass. Изберете файла, който сте изтеглили с бутона „Изтегли архив“.","This file is not a Mind Compass archive. Choose the file you downloaded with the \"Download archive\" button."))}e.target.value=""};rd.readAsText(f)});
 document.getElementById("wipe").addEventListener("click",()=>{document.getElementById("wipeAsk").hidden=false});
 document.getElementById("wipeNo").addEventListener("click",()=>{document.getElementById("wipeAsk").hidden=true});
 document.getElementById("wipeYes").addEventListener("click",()=>{["mc-me","mc-people","mc-tab"].forEach(k=>{try{localStorage.removeItem(k)}catch(e){}});
@@ -1100,14 +1491,14 @@ function beforePrint(){
   if(!ME)return;PREV=["pt","zn","km","ar","fc","pp"].filter(k=>!document.getElementById("v-"+k).hidden);
   ["pt","zn","km","fc"].forEach(k=>document.getElementById("v-"+k).hidden=false);
   document.querySelectorAll("details").forEach(d=>{d.dataset.was=d.open?"1":"";d.open=true});
-  document.getElementById("repHead").innerHTML=`<h1>Mind Compass · ${esc(ME.name)}</h1><p>Дата на раждане ${bgDate(ME.iso)} · изчислено на ${new Date().toLocaleDateString("bg-BG")} · класическа схема на матрицата (22 аркана)</p>`;
+  document.getElementById("repHead").innerHTML=`<h1>Mind Compass · ${esc(ME.name)}</h1><p>${tr("Дата на раждане","Date of birth")} ${bgDate(ME.iso)} · ${tr("изчислено на","calculated on")} ${new Date().toLocaleDateString(tr("bg-BG","en-GB"))} · ${tr("класическа схема на матрицата (22 аркана)","classic matrix method (22 arcana)")}</p>`;
 }
 function afterPrint(){if(!PREV)return;["pt","zn","km","ar","fc","pp"].forEach(k=>document.getElementById("v-"+k).hidden=!PREV.includes(k));document.querySelectorAll("details").forEach(d=>d.open=!!d.dataset.was);PREV=null}
 addEventListener("beforeprint",beforePrint);addEventListener("afterprint",afterPrint);
 document.getElementById("prn").addEventListener("click",()=>{beforePrint();setTimeout(()=>window.print(),50)});
 [meName,meDate].forEach(i=>i.addEventListener("input",()=>document.getElementById("meErr").hidden=true));
 document.getElementById("pForm").addEventListener("submit",e=>{e.preventDefault();const n=pName.value.trim(),d=toISO(pDate.value),er=document.getElementById("pErr");
-  if(!n){er.textContent="Въведете име.";er.hidden=false;return}if(!valid(d)){er.textContent=dateErr;er.hidden=false;return}
+  if(!n){er.textContent=tr("Въведете име.","Enter a name.");er.hidden=false;return}if(!valid(d)){er.textContent=dateErr();er.hidden=false;return}
   er.hidden=true;PEOPLE.push({name:n,date:d,rel:pRel.value});SEL=PEOPLE.length-1;save();pName.value="";pDate.value="";renderPeople()});
 [pName,pDate].forEach(i=>i.addEventListener("input",()=>document.getElementById("pErr").hidden=true));
 document.getElementById("pList").addEventListener("click",e=>{const del=e.target.dataset.del;if(del!==undefined){e.stopPropagation();PEOPLE.splice(+del,1);SEL=-1;save();renderPeople();return}
@@ -1128,6 +1519,22 @@ const setPlat=p=>{document.querySelectorAll(".plat button").forEach(b=>b.setAttr
 document.querySelectorAll(".plat button").forEach(b=>b.addEventListener("click",()=>setPlat(b.dataset.p)));
 const ua=navigator.userAgent;setPlat(/iPhone|iPad|iPod/.test(ua)||(/Macintosh/.test(ua)&&navigator.maxTouchPoints>1)?"ios":/Android/.test(ua)?"android":"desk");
 document.getElementById("phoneIcon").src=document.querySelector(".brand img").src;
+function applyStatic(){
+  document.documentElement.lang=LANG;
+  document.querySelectorAll("[data-en]").forEach(el=>{if(el.dataset.bg===undefined)el.dataset.bg=el.innerHTML;el.innerHTML=LANG==="en"?el.dataset.en:el.dataset.bg});
+  document.querySelectorAll("[data-en-ph]").forEach(el=>{if(el.dataset.bgPh===undefined)el.dataset.bgPh=el.placeholder;el.placeholder=LANG==="en"?el.dataset.enPh:el.dataset.bgPh});
+  document.querySelectorAll("[data-en-al]").forEach(el=>{if(el.dataset.bgAl===undefined)el.dataset.bgAl=el.getAttribute("aria-label");el.setAttribute("aria-label",LANG==="en"?el.dataset.enAl:el.dataset.bgAl)});
+  document.querySelectorAll(".lang button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.lang===LANG));
+}
+function setLang(l){
+  LANG=l;E=l==="en"?E_EN:E_BG;AX=l==="en"?AX_EN:AX_BG;try{localStorage.setItem("mc-lang",l)}catch(e){}
+  applyStatic();
+  if(ME&&PAGE==="app"){if(MODE==="sample")showMain(SAMPLE.n,SAMPLE.d,"sample");else showMain(ME.name,ME.iso,MODE)}else if(ME)render(ME.name,ME.iso);
+  renderPeople();markNav();const m=document.getElementById("toolMsg");if(m)m.textContent="";
+}
+document.querySelectorAll(".lang button").forEach(b=>b.addEventListener("click",()=>setLang(b.dataset.lang)));
+if(LANG==="en"){E=E_EN;AX=AX_EN}
+applyStatic();
 boot();
 if("serviceWorker" in navigator&&location.protocol==="https:"&&/github\.io$/.test(location.hostname))navigator.serviceWorker.register("sw.js").catch(()=>{});
 </script>
