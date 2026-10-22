@@ -203,13 +203,31 @@ header.top{justify-content:space-between}
 h2[id]{scroll-margin-top:16px}
 .rod2{grid-template-columns:repeat(2,minmax(0,1fr))}
 @media (max-width:640px){.rod2{grid-template-columns:1fr}}
-.inst{display:inline-flex;align-items:center;gap:6px;background:var(--accent);color:#1F2D3A;padding:8px 14px;border-radius:8px;font-weight:700}
-.inst svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
-.topnav{align-items:center}
-.inst-help{background:var(--surface);border:2px solid var(--accent);border-radius:14px;padding:16px 18px;display:flex;flex-direction:column;gap:10px}
-.ih-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-.ih-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
-.ih-grid ol{margin:6px 0 0;padding-left:20px;color:var(--muted);display:flex;flex-direction:column;gap:4px}
+.appsec{display:grid;grid-template-columns:200px minmax(0,1fr);gap:32px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:28px}
+@media (max-width:700px){.appsec{grid-template-columns:1fr;padding:20px}.phone{justify-self:center}}
+.phone{width:180px;height:360px;border-radius:30px;background:#1F2D3A;padding:10px;box-shadow:0 10px 30px rgba(30,80,120,.18)}
+.phone .scr{height:100%;border-radius:22px;background:linear-gradient(160deg,#2B5F86,#1E5078 55%,#8A4A2A);display:flex;flex-direction:column;padding:8px 12px;gap:14px;overflow:hidden}
+.phone .sbar{color:#fff;font-size:.65rem;font-weight:700;opacity:.85}
+.phone .icons{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px 8px}
+.phone i{display:block;aspect-ratio:1;border-radius:9px;background:rgba(255,255,255,.22)}
+.phone i.me{background:none;position:relative}
+.phone i.me img{width:100%;height:100%;border-radius:9px;object-fit:cover;background:#FDF6E3;box-shadow:0 0 0 2px var(--accent)}
+.phone i.me em{position:absolute;top:100%;left:50%;transform:translateX(-50%);font-style:normal;font-size:.5rem;color:#fff;white-space:nowrap;margin-top:2px}
+.phone .dock{margin-top:auto;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;background:rgba(255,255,255,.15);border-radius:14px;padding:8px}
+.appbody{display:flex;flex-direction:column;gap:14px;min-width:0}
+.benefits{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+@media (max-width:520px){.benefits{grid-template-columns:1fr}}
+.appsec .w-eyebrow{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:700}
+.benefits li{background:var(--bg);border-radius:10px;padding:10px 12px;font-size:.9rem;color:var(--muted)}
+.benefits b{display:block;color:var(--navy);font-size:.95rem}
+.cta-inst{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#1F2D3A;align-self:flex-start;padding:12px 20px}
+.cta-inst svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.installed{color:var(--plus);font-weight:600}
+.plat{display:flex;gap:4px;background:var(--bg);border-radius:10px;padding:4px;align-self:flex-start;flex-wrap:wrap}
+.plat button{background:none;color:var(--muted);padding:8px 14px}
+.plat button[aria-selected="true"]{background:var(--surface);color:var(--navy);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.psteps{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:6px;color:var(--muted)}
+.psteps b{color:var(--fg)}
 .whint{flex-basis:100%;color:var(--accent);font-weight:600;font-size:.95rem}
 .wform label{display:flex;flex-direction:column;gap:4px;font-size:.82rem;flex:1 1 180px;min-width:0;color:var(--band-fg);opacity:.95}
 .wform input{background:#FDF6E3;color:#1F2D3A;border-color:transparent}
@@ -233,7 +251,7 @@ button.link.light{color:var(--accent);font-size:.95rem}
   .print-only{display:block}
   #repHead{border-bottom:2px solid #1E5078;padding-bottom:8px;margin-bottom:6px}
   #repHead h1{font-family:var(--display);color:#1E5078;margin:0;font-size:20pt}
-  form,.tabs,.tools,.welcome,.viewing,.hint,summary,button,.btnlike,#v-ar,#v-pp,header{display:none!important}
+  form,.tabs,.tools,.appsec,.welcome,.viewing,.hint,summary,button,.btnlike,#v-ar,#v-pp,header{display:none!important}
   .band{border:1px solid #ccc}
   .card,.step,.year,.period,.quote,.talent{break-inside:avoid}
   h2{break-after:avoid}
@@ -255,18 +273,9 @@ button.link.light{color:var(--accent);font-size:.95rem}
       <a href="#home" data-nav="home">Начало</a>
       <a href="#pt" data-nav="mine">Моята матрица</a>
       <a href="#pt" data-nav="sample">Пример</a>
-      <button type="button" class="inst" id="instBtn" aria-expanded="false" aria-controls="instHelp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>Инсталирай</button>
     </nav>
   </header>
-  <section class="inst-help" id="instHelp" hidden aria-label="Как да инсталирате Mind Compass">
-    <div class="ih-head"><h3>Инсталирайте Mind Compass като приложение</h3><button type="button" class="ghost" id="instClose">Затвори</button></div>
-    <p class="note" id="instWhy">Приложението се отваря от иконка на началния екран и работи и без интернет.</p>
-    <div class="ih-grid">
-      <div><b>iPhone и iPad (Safari)</b><ol><li>Натиснете бутона „Споделяне“ (квадрат със стрелка нагоре) в долната лента.</li><li>Изберете „Добави към началния екран“.</li><li>Натиснете „Добави“.</li></ol></div>
-      <div><b>Android (Chrome)</b><ol><li>Натиснете трите точки горе вдясно.</li><li>Изберете „Инсталиране на приложението“ или „Добавяне към началния екран“.</li><li>Потвърдете с „Инсталиране“.</li></ol></div>
-      <div><b>Компютър (Chrome или Edge)</b><ol><li>Вдясно в адресната лента натиснете иконката за инсталиране (монитор със стрелка).</li><li>Или от менюто с трите точки изберете „Инсталиране на Mind Compass“.</li></ol></div>
-    </div>
-  </section>
+
 
   <section id="welcome" class="landing stack" hidden>
     <div class="welcome">
@@ -369,7 +378,31 @@ button.link.light{color:var(--accent);font-size:.95rem}
 
   <div class="print-only" id="repHead"></div>
 
-  <footer>Тълкуванията са символни и служат за самонаблюдение. Не са прогноза и не заменят съвет за здраве, пари или важни решения. Изчисленията следват класическата схема на матрицата (22 енергии). <span class="ver">Версия 1.7 · 22.10.2026</span></footer>
+  <section class="appsec" id="appSec" aria-labelledby="appTitle">
+    <div class="phone" aria-hidden="true"><div class="scr"><div class="sbar"><span>9:41</span></div><div class="icons">
+      <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="me"><img id="phoneIcon" alt=""><em>Mind Compass</em></i><i></i><i></i><i></i><i></i></div><div class="dock"><i></i><i></i><i></i><i></i></div></div></div>
+    <div class="appbody">
+      <p class="w-eyebrow">Приложение</p>
+      <h2 id="appTitle">Mind Compass на Вашия телефон</h2>
+      <p>„Инсталиране“ тук не означава сваляне от Google Play или App Store. Браузърът добавя иконка на Mind Compass на началния екран или в менюто с програми. Тя отваря сайта като отделно приложение, на цял екран и без адресна лента.</p>
+      <ul class="benefits">
+        <li><b>С едно докосване</b>Иконката е до другите Ви приложения.</li>
+        <li><b>Работи без интернет</b>Матрицата и тълкуванията са винаги под ръка.</li>
+        <li><b>Почти не заема място</b>Без магазин за приложения и без регистрация.</li>
+        <li><b>Данните остават при Вас</b>Нищо не се изпраща към сървър.</li>
+      </ul>
+      <button type="button" class="cta-inst" id="instBtn" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>Инсталирай сега</button>
+      <p class="installed" id="instDone" hidden>Mind Compass вече е инсталиран на това устройство.</p>
+      <div class="plat" role="tablist" aria-label="Устройство">
+        <button type="button" role="tab" data-p="android">Android</button><button type="button" role="tab" data-p="ios">iPhone и iPad</button><button type="button" role="tab" data-p="desk">Компютър</button>
+      </div>
+      <ol class="psteps" data-p="android"><li>Отворете сайта в <b>Chrome</b>.</li><li>Натиснете <b>трите точки</b> горе вдясно.</li><li>Изберете <b>„Инсталиране на приложението“</b> или „Добавяне към началния екран“.</li><li>Потвърдете с <b>„Инсталиране“</b>. Иконката се появява на началния екран.</li></ol>
+      <ol class="psteps" data-p="ios" hidden><li>Отворете сайта в <b>Safari</b>.</li><li>Натиснете бутона <b>„Споделяне“</b> (квадрат със стрелка нагоре).</li><li>Превъртете и изберете <b>„Добави към началния екран“</b>.</li><li>Натиснете <b>„Добави“</b> горе вдясно.</li></ol>
+      <ol class="psteps" data-p="desk" hidden><li>Отворете сайта в <b>Chrome</b> или <b>Edge</b>.</li><li>Вдясно в адресната лента натиснете <b>иконката за инсталиране</b> (монитор със стрелка).</li><li>Или от менюто с <b>трите точки</b> изберете „Инсталиране на Mind Compass“.</li><li>Приложението се появява в менюто „Старт“ и на работния плот.</li></ol>
+    </div>
+  </section>
+
+  <footer>Тълкуванията са символни и служат за самонаблюдение. Не са прогноза и не заменят съвет за здраве, пари или важни решения. Изчисленията следват класическата схема на матрицата (22 енергии). <span class="ver">Версия 1.8 · 22.10.2026</span></footer>
 </div>
 
 <script>
@@ -1084,14 +1117,17 @@ TABS.forEach(t=>{t.id="tab-"+t.dataset.v;t.setAttribute("aria-controls","v-"+t.d
 document.querySelector(".tabs").addEventListener("keydown",e=>{const i=TABS.indexOf(document.activeElement);if(i<0)return;let j=null;
   if(e.key==="ArrowRight")j=(i+1)%TABS.length;else if(e.key==="ArrowLeft")j=(i-1+TABS.length)%TABS.length;else if(e.key==="Home")j=0;else if(e.key==="End")j=TABS.length-1;
   if(j!==null){e.preventDefault();TABS[j].focus();show(TABS[j].dataset.v)}});
-let deferredInstall=null;const instBtn=document.getElementById("instBtn"),instHelp=document.getElementById("instHelp");
+let deferredInstall=null;const instBtn=document.getElementById("instBtn");
 const isStandalone=()=>matchMedia("(display-mode: standalone)").matches||navigator.standalone===true;
-if(isStandalone())instBtn.hidden=true;
-addEventListener("beforeinstallprompt",e=>{e.preventDefault();deferredInstall=e});
-addEventListener("appinstalled",()=>{instBtn.hidden=true;instHelp.hidden=true});
-const toggleHelp=open=>{instHelp.hidden=!open;instBtn.setAttribute("aria-expanded",open);if(open)instHelp.scrollIntoView({block:"nearest"})};
-instBtn.addEventListener("click",async()=>{if(deferredInstall){deferredInstall.prompt();const r=await deferredInstall.userChoice.catch(()=>({}));deferredInstall=null;if(r.outcome==="accepted")instBtn.hidden=true;return}toggleHelp(instHelp.hidden)});
-document.getElementById("instClose").addEventListener("click",()=>toggleHelp(false));
+const markInstalled=()=>{instBtn.hidden=true;document.getElementById("instDone").hidden=false};
+if(isStandalone())document.getElementById("appSec").hidden=true;
+addEventListener("beforeinstallprompt",e=>{e.preventDefault();deferredInstall=e;instBtn.hidden=false});
+addEventListener("appinstalled",markInstalled);
+instBtn.addEventListener("click",async()=>{if(!deferredInstall)return;deferredInstall.prompt();const r=await deferredInstall.userChoice.catch(()=>({}));deferredInstall=null;instBtn.hidden=true;if(r.outcome==="accepted")markInstalled()});
+const setPlat=p=>{document.querySelectorAll(".plat button").forEach(b=>b.setAttribute("aria-selected",b.dataset.p===p));document.querySelectorAll(".psteps").forEach(o=>o.hidden=o.dataset.p!==p)};
+document.querySelectorAll(".plat button").forEach(b=>b.addEventListener("click",()=>setPlat(b.dataset.p)));
+const ua=navigator.userAgent;setPlat(/iPhone|iPad|iPod/.test(ua)||(/Macintosh/.test(ua)&&navigator.maxTouchPoints>1)?"ios":/Android/.test(ua)?"android":"desk");
+document.getElementById("phoneIcon").src=document.querySelector(".brand img").src;
 boot();
 if("serviceWorker" in navigator&&location.protocol==="https:"&&/github\.io$/.test(location.hostname))navigator.serviceWorker.register("sw.js").catch(()=>{});
 </script>
