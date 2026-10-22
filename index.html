@@ -3,6 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Матрица на съдбата на разбираем език: портрет, сфери, карма, 22 аркана, прогноза и съвместимост.">
+<meta name="theme-color" content="#1E5078">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <title>Mind Compass</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -154,6 +159,35 @@ footer{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padd
 svg text{font-family:var(--body)}
 @media (max-width:520px){header h1{font-size:1.6rem}.band{padding:18px}.dhead{padding:18px}.dbody{padding:18px}}
 @media (prefers-reduced-motion:no-preference){.view{animation:fade .25s ease}@keyframes fade{from{opacity:.4}to{opacity:1}}}
+.ghost,.btnlike{background:transparent;color:var(--navy);border:1px solid var(--line);border-radius:8px;padding:10px 18px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center}
+.btnlike:focus-within{outline:3px solid var(--accent);outline-offset:2px}
+.welcome{background:var(--band);color:var(--band-fg);border-radius:18px;padding:32px 28px;display:flex;gap:28px;align-items:center}
+.welcome h2{color:var(--band-fg);font-size:1.9rem}
+.welcome .w-text{display:flex;flex-direction:column;gap:14px;max-width:60ch}
+.welcome .w-eyebrow{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:700}
+.welcome .note{color:var(--band-fg);opacity:.75}
+.welcome .ghost{color:var(--band-fg);border-color:currentColor}
+.welcome #goMine{background:var(--accent);color:#1F2D3A}
+.w-actions{display:flex;gap:10px;flex-wrap:wrap}
+.viewing{background:var(--soft);border:1px solid var(--accent);border-radius:12px;padding:12px 16px;display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.search{display:flex;flex-direction:column;gap:4px;font-size:.82rem;color:var(--muted);max-width:420px}
+.tools{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;display:flex;flex-direction:column;gap:12px}
+.tool-btns{display:flex;gap:10px;flex-wrap:wrap}
+.pv-actions{display:flex;gap:10px;flex-wrap:wrap}
+.print-only{display:none}
+@media print{
+  :root{--bg:#fff;--surface:#fff;--soft:#F5EEDC;--band:#fff;--band-fg:#1F2D3A}
+  body{padding:0;font-size:11pt;background:#fff}
+  .print-only{display:block}
+  #repHead{border-bottom:2px solid #1E5078;padding-bottom:8px;margin-bottom:6px}
+  #repHead h1{font-family:var(--display);color:#1E5078;margin:0;font-size:20pt}
+  form,.tabs,.tools,.welcome,.viewing,.hint,summary,button,.btnlike,#v-ar,#v-pp,header{display:none!important}
+  .band{border:1px solid #ccc}
+  .card,.step,.year,.period,.quote,.talent{break-inside:avoid}
+  h2{break-after:avoid}
+  .split{grid-template-columns:1fr 1fr}
+  .needle{animation:none}
+}
 </style>
 </head>
 <body>
@@ -165,12 +199,25 @@ svg text{font-family:var(--body)}
     <div><h1>Mind Compass</h1><p>Матрица на съдбата · Find Your True North Within</p></div>
   </header>
 
+  <section class="welcome" id="welcome" hidden>
+    <div class="w-text">
+      <p class="w-eyebrow">Добре дошли</p>
+      <h2>Вашата матрица на съдбата, обяснена на разбираем език</h2>
+      <p>Въведете дата на раждане и Mind Compass ще изчисли матрицата по класическата схема с 22 аркана. Ще видите личен портрет, сферите на живота, кармичните уроци, прогноза по години и връзките с близките Ви хора.</p>
+      <div class="w-actions"><button type="button" id="goMine">Изчисли моята матрица</button><button type="button" class="ghost" id="goSample">Разгледай пример</button></div>
+      <p class="note">Данните остават само на това устройство. Нищо не се изпраща никъде.</p>
+    </div>
+  </section>
+
   <form class="form" id="meForm" novalidate>
-    <label for="meName">Име<input id="meName" value="Пример" autocomplete="off"></label>
-    <label for="meDate">Дата на раждане<input id="meDate" type="date" value="1990-03-14" min="1900-01-01" max="2099-12-31"></label>
+    <label for="meName">Име<input id="meName" value="" placeholder="Вашето име" autocomplete="off"></label>
+    <label for="meDate">Дата на раждане<input id="meDate" type="date" value="" min="1900-01-01" max="2099-12-31"></label>
     <button type="submit">Изчисли</button>
-    <p class="err" id="meErr" hidden></p>
+    <p class="err" id="meErr" role="alert" hidden></p>
   </form>
+
+  <div id="app" class="stack" style="gap:24px">
+  <div class="viewing" id="viewing" hidden></div>
 
   <section class="band" id="now" aria-label="Вашият компас сега"></section>
 
@@ -189,6 +236,8 @@ svg text{font-family:var(--body)}
   <section id="v-ar" class="view stack" hidden>
     <p class="intro">Всеки аркан има светла страна и сянка. Сянката не е присъда: тя показва къде енергията е блокирана, а до всеки минус е посочено как да я обърнете в плюс. Оранжевата точка отбелязва арканите от Вашата матрица.</p>
     <div id="arcDetail"></div>
+    <label class="search" for="arcQ"><span>Търсене в арканите</span><input id="arcQ" type="search" placeholder="напр. контрол, граници, избор, пари" autocomplete="off"></label>
+    <p class="note" id="arcNone" hidden>Няма аркан с тази дума. Опитайте с друга, например „промяна“ или „отношения“.</p>
     <div class="lib" id="lib"></div>
   </section>
   <section id="v-fc" class="view stack" hidden></section>
@@ -204,6 +253,19 @@ svg text{font-family:var(--body)}
     <div class="people-list" id="pList"></div>
     <div id="pView" class="stack"></div>
   </section>
+
+  <section class="tools" aria-label="Доклад и данни">
+    <div><h3>Доклад и данни</h3><p class="note">Докладът събира портрета, сферите, кармата и прогнозата на една страница. От прозореца за печат изберете „Запази като PDF“. Архивът пази Вашата дата и профилите на хората във файл, за да ги върнете на друго устройство.</p></div>
+    <div class="tool-btns">
+      <button type="button" id="prn">Доклад за печат / PDF</button>
+      <button type="button" class="ghost" id="exp">Изтегли архив</button>
+      <label class="ghost btnlike" for="imp">Възстанови от архив<input id="imp" type="file" accept="application/json,.json" hidden></label>
+    </div>
+    <p class="note" id="toolMsg" role="status"></p>
+  </section>
+  </div>
+
+  <div class="print-only" id="repHead"></div>
 
   <footer>Тълкуванията са символни и служат за самонаблюдение. Не са прогноза и не заменят съвет за здраве, пари или важни решения. Изчисленията следват класическата схема на матрицата (22 енергии).</footer>
 </div>
@@ -632,8 +694,9 @@ function calc(iso){
 }
 const yearE=(M,yr)=>r(r(M.d)+r(M.m)+ds(yr));
 const YR=365.2425*864e5;
-const ageNow=iso=>(Date.now()-new Date(iso+"T00:00:00"))/YR;
-const atAge=(iso,a)=>new Date(new Date(iso+"T00:00:00").getTime()+a*YR);
+const bUTC=iso=>{const [y,m,d]=iso.split("-").map(Number);return Date.UTC(y,m-1,d)};
+const ageNow=iso=>(Date.now()-bUTC(iso))/YR;
+const atAge=(iso,a)=>new Date(bUTC(iso)+a*YR);
 const MON=["яну","фев","мар","апр","май","юни","юли","авг","сеп","окт","ное","дек"];
 const fmt=dt=>MON[dt.getMonth()]+" "+dt.getFullYear();
 const ag=a=>String(+a.toFixed(2)).replace(".",",");
@@ -764,10 +827,14 @@ function render(name,iso){
   <h2>Възрастови периоди</h2><div class="timeline">${th}</div>`;
   renderLib();renderPerson();
 }
+let Q="";
+const hay=v=>[E[v].n,AX[v].k.join(" "),AX[v].plus.join(" "),AX[v].minus.flat().join(" "),AX[v].sph,E[v].core,E[v].money,E[v].love,E[v].karma].join(" ").toLowerCase();
 function renderLib(){
-  let h="";for(let v=1;v<=22;v++){const mine=places(v).length>0;
+  let h="",shown=0;for(let v=1;v<=22;v++){const mine=places(v).length>0;
+    if(Q&&!hay(v).includes(Q))continue;shown++;
     h+=`<button class="arc" data-arc="${v}" aria-current="${v===OPEN}">${mine?'<span class="mine" title="Във Вашата матрица"></span>':""}<span class="em g${grp(v)}">${sym(v)}</span><span class="rn">${RN[v]}</span><span class="nm">${E[v].n}</span><span class="kw">${AX[v].k.join(" · ")}</span></button>`}
   document.getElementById("lib").innerHTML=h;
+  document.getElementById("arcNone").hidden=shown>0;
   renderDetail();
 }
 function renderDetail(){
@@ -804,10 +871,10 @@ function renderPeople(){
 }
 function renderPerson(){
   const V=document.getElementById("pView");if(!ME||SEL<0||!PEOPLE[SEL]){V.innerHTML="";return}
-  const p=PEOPLE[SEL],P=calc(p.date),M=ME.M,nm=esc(p.name);
+  const p=PEOPLE[SEL],P=calc(p.date),M=OWN?calc(OWN.d):ME.M,nm=esc(p.name);
   const A=r(M.A+P.A),B=r(M.B+P.B),D=r(M.D+P.D),X=r(A+B+r(M.C+P.C)+D);
   V.innerHTML=`<div class="letter"><p class="drop">${nm} е ${E[P.X].s}.</p>
-   <p>Навън ${nm} изглежда като ${E[P.A].s}. Когато е под напрежение, вътрешният глас често казва: „${E[P.X].voice}“ Ако разпознаете този глас, ще разбирате реакциите по-лесно.</p>${fullBtn(P.X)}</div>
+   <p>Навън ${nm} изглежда като ${E[P.A].s}. Когато е под напрежение, вътрешният глас често казва: „${E[P.X].voice}“ Ако разпознаете този глас, ще разбирате реакциите по-лесно.</p><div class="pv-actions"><button type="button" data-view="${SEL}">Прегледай като основна матрица</button></div>${fullBtn(P.X)}</div>
   <h2>Вие двамата</h2>
   <div class="grid">
    ${card("Какво ви свързва",X,"",{text:E[X].love})}
@@ -819,19 +886,71 @@ function show(v){document.querySelectorAll(".tab").forEach(t=>t.setAttribute("ar
 document.querySelectorAll(".tab").forEach(t=>t.addEventListener("click",()=>show(t.dataset.v)));
 document.addEventListener("click",e=>{const a=e.target.closest("[data-arc]");if(a){e.preventDefault();openArc(a.dataset.arc)}});
 document.addEventListener("keydown",e=>{if((e.key==="Enter"||e.key===" ")&&e.target.matches&&e.target.matches("g.pt")){e.preventDefault();openArc(e.target.dataset.arc)}});
-const valid=iso=>/^\d{4}-\d{2}-\d{2}$/.test(iso)&&new Date(iso)<new Date();
+const valid=iso=>{if(!/^\d{4}-\d{2}-\d{2}$/.test(iso||""))return false;const [y,m,d]=iso.split("-").map(Number);const t=new Date(Date.UTC(y,m-1,d));
+  return y>=1900&&t.getUTCFullYear()===y&&t.getUTCMonth()===m-1&&t.getUTCDate()===d&&t.getTime()<Date.now()};
+const dateErr="Въведете съществуваща дата на раждане в миналото (след 1900 г.).";
+let OWN=null,MODE="own";
+try{const s=JSON.parse(localStorage.getItem("mc-me")||"null");if(s&&valid(s.d))OWN=s}catch(e){}
+const SAMPLE={n:"Пример",d:"1990-03-14"};
+const bgDate=iso=>iso.split("-").reverse().join(".");
+function showMain(n,d,mode){
+  MODE=mode;document.getElementById("welcome").hidden=true;document.getElementById("app").hidden=false;
+  const V=document.getElementById("viewing");
+  if(mode==="own"){V.hidden=true;V.innerHTML=""}
+  else{V.hidden=false;V.innerHTML=(mode==="sample"?`<span>Това е <strong>примерна матрица</strong>. Въведете своята дата горе, за да видите Вашата.</span>`:`<span>Гледате матрицата на <strong>${esc(n)}</strong> (${bgDate(d)}).</span>`)+(OWN?`<button type="button" class="ghost" id="backOwn">Върни се към моята</button>`:"")}
+  render(n,d);
+}
+function boot(){
+  if(OWN){meName.value=OWN.n;meDate.value=OWN.d;showMain(OWN.n,OWN.d,"own")}
+  else{document.getElementById("welcome").hidden=false;document.getElementById("app").hidden=true}
+  renderPeople();
+}
 document.getElementById("meForm").addEventListener("submit",e=>{e.preventDefault();const n=meName.value.trim()||"Вие",d=meDate.value,er=document.getElementById("meErr");
-  if(!valid(d)){er.textContent="Въведете дата на раждане в миналото.";er.hidden=false;return}er.hidden=true;render(n,d);try{localStorage.setItem("mc-me",JSON.stringify({n,d}))}catch(e){}});
+  if(!valid(d)){er.textContent=dateErr;er.hidden=false;return}er.hidden=true;OWN={n,d};try{localStorage.setItem("mc-me",JSON.stringify(OWN))}catch(e){}showMain(n,d,"own")});
+document.getElementById("goMine").addEventListener("click",()=>{meName.focus()});
+document.getElementById("goSample").addEventListener("click",()=>{showMain(SAMPLE.n,SAMPLE.d,"sample");show("pt")});
+document.addEventListener("click",e=>{
+  if(e.target.id==="backOwn"&&OWN){showMain(OWN.n,OWN.d,"own");show("pt");window.scrollTo(0,0);return}
+  const pv=e.target.closest("[data-view]");if(pv){const p=PEOPLE[+pv.dataset.view];if(p){showMain(p.name,p.date,"person");show("pt");window.scrollTo(0,0)}}
+});
+document.getElementById("arcQ").addEventListener("input",e=>{Q=e.target.value.trim().toLowerCase();renderLib()});
+const msg=t=>{const m=document.getElementById("toolMsg");m.textContent=t};
+document.getElementById("exp").addEventListener("click",()=>{
+  const data={app:"Mind Compass",version:1,saved:new Date().toISOString(),me:OWN,people:PEOPLE};
+  const url=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:"application/json"}));
+  const a=document.createElement("a");a.href=url;a.download="mind-compass-arhiv-"+new Date().toISOString().slice(0,10)+".json";document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),2000);
+  msg("Архивът е изтеглен. Пазете файла, за да възстановите данните на друго устройство.")});
+document.getElementById("imp").addEventListener("change",e=>{const f=e.target.files[0];if(!f)return;const rd=new FileReader();
+  rd.onload=()=>{try{const d=JSON.parse(rd.result);if(d.app!=="Mind Compass")throw 0;
+    const ppl=Array.isArray(d.people)?d.people.filter(p=>p&&p.name&&valid(p.date)).map(p=>({name:String(p.name),date:p.date,rel:String(p.rel||"Друго")})):[];
+    if(d.me&&valid(d.me.d)){OWN={n:String(d.me.n||"Вие"),d:d.me.d};try{localStorage.setItem("mc-me",JSON.stringify(OWN))}catch(x){}}
+    PEOPLE=ppl;SEL=-1;save();boot();msg(`Възстановено: ${OWN?"Вашата матрица и ":""}${ppl.length} профила.`)}
+   catch(x){msg("Файлът не е архив на Mind Compass. Изберете файла, който сте изтеглили с бутона „Изтегли архив“.")}e.target.value=""};rd.readAsText(f)});
+let PREV=null;
+function beforePrint(){
+  if(!ME)return;PREV=["pt","zn","km","ar","fc","pp"].filter(k=>!document.getElementById("v-"+k).hidden);
+  ["pt","zn","km","fc"].forEach(k=>document.getElementById("v-"+k).hidden=false);
+  document.querySelectorAll("details").forEach(d=>{d.dataset.was=d.open?"1":"";d.open=true});
+  document.getElementById("repHead").innerHTML=`<h1>Mind Compass · ${esc(ME.name)}</h1><p>Дата на раждане ${bgDate(ME.iso)} · изчислено на ${new Date().toLocaleDateString("bg-BG")} · класическа схема на матрицата (22 аркана)</p>`;
+}
+function afterPrint(){if(!PREV)return;["pt","zn","km","ar","fc","pp"].forEach(k=>document.getElementById("v-"+k).hidden=!PREV.includes(k));document.querySelectorAll("details").forEach(d=>d.open=!!d.dataset.was);PREV=null}
+addEventListener("beforeprint",beforePrint);addEventListener("afterprint",afterPrint);
+document.getElementById("prn").addEventListener("click",()=>{beforePrint();setTimeout(()=>window.print(),50)});
 [meName,meDate].forEach(i=>i.addEventListener("input",()=>document.getElementById("meErr").hidden=true));
 document.getElementById("pForm").addEventListener("submit",e=>{e.preventDefault();const n=pName.value.trim(),d=pDate.value,er=document.getElementById("pErr");
-  if(!n){er.textContent="Въведете име.";er.hidden=false;return}if(!valid(d)){er.textContent="Въведете дата на раждане в миналото.";er.hidden=false;return}
+  if(!n){er.textContent="Въведете име.";er.hidden=false;return}if(!valid(d)){er.textContent=dateErr;er.hidden=false;return}
   er.hidden=true;PEOPLE.push({name:n,date:d,rel:pRel.value});SEL=PEOPLE.length-1;save();pName.value="";pDate.value="";renderPeople()});
 [pName,pDate].forEach(i=>i.addEventListener("input",()=>document.getElementById("pErr").hidden=true));
 document.getElementById("pList").addEventListener("click",e=>{const del=e.target.dataset.del;if(del!==undefined){e.stopPropagation();PEOPLE.splice(+del,1);SEL=-1;save();renderPeople();return}
   const b=e.target.closest(".chip");if(b){SEL=+b.dataset.i;renderPeople()}});
-let start={n:"Пример",d:"1990-03-14"};try{const s=JSON.parse(localStorage.getItem("mc-me")||"null");if(s&&valid(s.d))start=s}catch(e){}
-meName.value=start.n;meDate.value=start.d;render(start.n,start.d);renderPeople();
+const TABS=[...document.querySelectorAll(".tab")];
+TABS.forEach(t=>{t.id="tab-"+t.dataset.v;t.setAttribute("aria-controls","v-"+t.dataset.v);const p=document.getElementById("v-"+t.dataset.v);p.setAttribute("role","tabpanel");p.setAttribute("aria-labelledby",t.id)});
+document.querySelector(".tabs").addEventListener("keydown",e=>{const i=TABS.indexOf(document.activeElement);if(i<0)return;let j=null;
+  if(e.key==="ArrowRight")j=(i+1)%TABS.length;else if(e.key==="ArrowLeft")j=(i-1+TABS.length)%TABS.length;else if(e.key==="Home")j=0;else if(e.key==="End")j=TABS.length-1;
+  if(j!==null){e.preventDefault();TABS[j].focus();show(TABS[j].dataset.v)}});
+boot();
 try{const t=localStorage.getItem("mc-tab");if(t&&document.getElementById("v-"+t))show(t)}catch(e){}
+if("serviceWorker" in navigator&&location.protocol==="https:"&&/github\.io$/.test(location.hostname))navigator.serviceWorker.register("sw.js").catch(()=>{});
 </script>
 
 </body>
