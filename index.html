@@ -184,7 +184,7 @@ header.top{justify-content:space-between}
 .wform label{display:flex;flex-direction:column;gap:4px;font-size:.82rem;flex:1 1 180px;min-width:0;color:var(--band-fg);opacity:.95}
 .wform input{background:#FDF6E3;color:#1F2D3A;border-color:transparent}
 .wform button{background:var(--accent);color:#1F2D3A}
-.wform .err{color:#FFC9B8}
+.wform .err{color:#1F2D3A;background:#FFD9CC;border-radius:8px;padding:8px 12px;font-weight:600}
 .cont{background:var(--accent);color:#1F2D3A;align-self:flex-start}
 .w-alt{font-size:.95rem}
 button.link.light{color:var(--accent);font-size:.95rem}
@@ -236,7 +236,7 @@ button.link.light{color:var(--accent);font-size:.95rem}
       <button type="button" id="goOwn" class="cont" hidden></button>
       <form class="wform" id="wForm" novalidate>
         <label for="wName">Име<input id="wName" placeholder="Вашето име" autocomplete="off"></label>
-        <label for="wDate">Дата на раждане<input id="wDate" type="date" min="1900-01-01" max="2099-12-31"></label>
+        <label for="wDate">Дата на раждане<input id="wDate" type="text" inputmode="numeric" placeholder="дд.мм.гггг" maxlength="10" autocomplete="off"></label>
         <button type="submit">Изчисли моята матрица</button>
         <p class="err" id="wErr" role="alert" hidden></p>
         <p class="whint" id="wHint" role="status" hidden>За да видите своята матрица, въведете име и дата на раждане и натиснете „Изчисли моята матрица“.</p>
@@ -250,7 +250,7 @@ button.link.light{color:var(--accent);font-size:.95rem}
   <div class="viewing" id="viewing"></div>
   <form class="form" id="meForm" novalidate hidden>
     <label for="meName">Име<input id="meName" value="" placeholder="Вашето име" autocomplete="off"></label>
-    <label for="meDate">Дата на раждане<input id="meDate" type="date" value="" min="1900-01-01" max="2099-12-31"></label>
+    <label for="meDate">Дата на раждане<input id="meDate" type="text" inputmode="numeric" placeholder="дд.мм.гггг" maxlength="10" autocomplete="off"></label>
     <button type="submit">Запази и изчисли</button>
     <button type="button" class="ghost" id="meCancel">Отказ</button>
     <p class="err" id="meErr" role="alert" hidden></p>
@@ -282,7 +282,7 @@ button.link.light{color:var(--accent);font-size:.95rem}
     <p class="intro">Добавете човек от живота си, за да видите какво ви свързва, какво се повтаря между вас и как да общувате по-лесно. Това е картина на динамиката, а не присъда за човека. Профилите се пазят само в този браузър.</p>
     <form class="form" id="pForm" novalidate>
       <label for="pName">Име<input id="pName" placeholder="напр. Мария" autocomplete="off"></label>
-      <label for="pDate">Дата на раждане<input id="pDate" type="date" min="1900-01-01" max="2099-12-31"></label>
+      <label for="pDate">Дата на раждане<input id="pDate" type="text" inputmode="numeric" placeholder="дд.мм.гггг" maxlength="10" autocomplete="off"></label>
       <label for="pRel">Връзка<select id="pRel"><option>Партньор</option><option>Родител</option><option>Дете</option><option>Брат / сестра</option><option>Приятел</option><option>Колега</option><option>Ръководител</option><option>Друго</option></select></label>
       <button type="submit">Добави</button>
       <p class="err" id="pErr" hidden></p>
@@ -929,7 +929,10 @@ document.addEventListener("click",e=>{const a=e.target.closest("[data-arc]");if(
 document.addEventListener("keydown",e=>{if((e.key==="Enter"||e.key===" ")&&e.target.matches&&e.target.matches("g.pt")){e.preventDefault();openArc(e.target.dataset.arc)}});
 const valid=iso=>{if(!/^\d{4}-\d{2}-\d{2}$/.test(iso||""))return false;const [y,m,d]=iso.split("-").map(Number);const t=new Date(Date.UTC(y,m-1,d));
   return y>=1900&&t.getUTCFullYear()===y&&t.getUTCMonth()===m-1&&t.getUTCDate()===d&&t.getTime()<Date.now()};
-const dateErr="Въведете съществуваща дата на раждане в миналото (след 1900 г.).";
+const dateErr="Въведете съществуваща дата на раждане във формат дд.мм.гггг, например 05.06.1973.";
+const toISO=s=>{const m=String(s||"").trim().match(/^(\d{1,2})[.\/\-\s](\d{1,2})[.\/\-\s](\d{4})$/);if(!m)return "";return `${m[3]}-${m[2].padStart(2,"0")}-${m[1].padStart(2,"0")}`};
+function maskDate(el){el.addEventListener("input",e=>{if(e.inputType&&e.inputType.startsWith("delete"))return;const raw=el.value.replace(/[\/\-\s]/g,".").replace(/[^\d.]/g,"");let parts=[""];for(const ch of raw){const i=parts.length-1,lim=i<2?2:4;if(ch==="."){if(parts[i].length>0&&parts.length<3)parts.push("");continue}if(parts[i].length>=lim){if(parts.length<3)parts.push(ch)}else parts[i]+=ch}let res=parts.join(".");if(parts.length<3&&parts[parts.length-1].length===2)res+=".";el.value=res})}
+["wDate","meDate","pDate"].forEach(id=>maskDate(document.getElementById(id)));
 let OWN=null,MODE="own";
 try{const s=JSON.parse(localStorage.getItem("mc-me")||"null");if(s&&valid(s.d))OWN=s}catch(e){}
 const SAMPLE={n:"Пример",d:"1990-03-14"};
@@ -961,16 +964,16 @@ function route(){const h=location.hash.slice(1);
   show(VIEWS.includes(t)?t:"pt",false)}
 function boot(){renderPeople();route()}
 const saveOwn=(n,d)=>{OWN={n,d};try{localStorage.setItem("mc-me",JSON.stringify(OWN))}catch(e){}};
-document.getElementById("wForm").addEventListener("submit",e=>{e.preventDefault();const n=wName.value.trim()||"Вие",d=wDate.value,er=document.getElementById("wErr");
+document.getElementById("wForm").addEventListener("submit",e=>{e.preventDefault();const n=wName.value.trim()||"Вие",d=toISO(wDate.value),er=document.getElementById("wErr");
   if(!valid(d)){er.textContent=dateErr;er.hidden=false;return}er.hidden=true;saveOwn(n,d);showMain(n,d,"own");show("pt");window.scrollTo(0,0)});
 [wName,wDate].forEach(i=>i.addEventListener("input",()=>document.getElementById("wErr").hidden=true));
-document.getElementById("meForm").addEventListener("submit",e=>{e.preventDefault();const n=meName.value.trim()||"Вие",d=meDate.value,er=document.getElementById("meErr");
+document.getElementById("meForm").addEventListener("submit",e=>{e.preventDefault();const n=meName.value.trim()||"Вие",d=toISO(meDate.value),er=document.getElementById("meErr");
   if(!valid(d)){er.textContent=dateErr;er.hidden=false;return}er.hidden=true;saveOwn(n,d);showMain(n,d,"own")});
 document.getElementById("meCancel").addEventListener("click",()=>{document.getElementById("meForm").hidden=true});
 document.getElementById("goOwn").addEventListener("click",goMine);
 addEventListener("popstate",route);
 document.addEventListener("click",e=>{
-  if(e.target.id==="editMe"){const f=document.getElementById("meForm");f.hidden=false;meName.value=OWN?OWN.n:"";meDate.value=OWN?OWN.d:"";meName.focus();return}
+  if(e.target.id==="editMe"){const f=document.getElementById("meForm");f.hidden=false;meName.value=OWN?OWN.n:"";meDate.value=OWN?bgDate(OWN.d):"";meName.focus();return}
   const nv=e.target.closest("[data-nav]");if(nv){e.preventDefault();const k=nv.dataset.nav;if(k==="home")goHome();else if(k==="mine")goMine();else goSample();return}
   const pv=e.target.closest("[data-view]");if(pv){const p=PEOPLE[+pv.dataset.view];if(p){showMain(p.name,p.date,"person");show("pt");window.scrollTo(0,0)}}
 });
@@ -1002,7 +1005,7 @@ function afterPrint(){if(!PREV)return;["pt","zn","km","ar","fc","pp"].forEach(k=
 addEventListener("beforeprint",beforePrint);addEventListener("afterprint",afterPrint);
 document.getElementById("prn").addEventListener("click",()=>{beforePrint();setTimeout(()=>window.print(),50)});
 [meName,meDate].forEach(i=>i.addEventListener("input",()=>document.getElementById("meErr").hidden=true));
-document.getElementById("pForm").addEventListener("submit",e=>{e.preventDefault();const n=pName.value.trim(),d=pDate.value,er=document.getElementById("pErr");
+document.getElementById("pForm").addEventListener("submit",e=>{e.preventDefault();const n=pName.value.trim(),d=toISO(pDate.value),er=document.getElementById("pErr");
   if(!n){er.textContent="Въведете име.";er.hidden=false;return}if(!valid(d)){er.textContent=dateErr;er.hidden=false;return}
   er.hidden=true;PEOPLE.push({name:n,date:d,rel:pRel.value});SEL=PEOPLE.length-1;save();pName.value="";pDate.value="";renderPeople()});
 [pName,pDate].forEach(i=>i.addEventListener("input",()=>document.getElementById("pErr").hidden=true));
