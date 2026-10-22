@@ -269,6 +269,25 @@ textarea{font:inherit;font-size:1rem;padding:9px 10px;border:1px solid var(--lin
 .je-del.armed{color:var(--minus);font-weight:700}
 .jr-in{border-top:1px solid var(--line);padding-top:16px;display:flex;flex-direction:column;gap:10px}
 .lead{background:var(--soft);border-radius:12px;padding:16px 18px}
+.pair-head{display:flex;justify-content:space-between;gap:16px;align-items:flex-end;flex-wrap:wrap}
+.ph-names{display:flex;flex-direction:column;gap:4px;max-width:60ch}
+.pair-head h2{font-size:1.9rem}.amp{color:var(--accent);font-style:italic}
+.talent .tile{display:inline-flex;vertical-align:middle;margin-right:8px}
+.vs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+@media (max-width:640px){.vs{grid-template-columns:1fr}}
+.common{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px}
+.common li{display:flex;gap:12px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.common li div{display:flex;flex-direction:column}
+.kws2{display:flex;gap:6px;flex-wrap:wrap}.kws2 span{background:var(--soft);border-radius:999px;padding:3px 10px;font-size:.85rem;color:var(--navy);font-weight:600}
+.relmap{display:flex;flex-direction:column;gap:8px}
+.tblwrap{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:14px}
+.rt{width:100%;border-collapse:collapse;font-size:.92rem}
+.rt th{text-align:left;font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600;padding:10px 12px;border-bottom:1px solid var(--line)}
+.rt td{padding:8px 12px;border-bottom:1px solid var(--line);vertical-align:middle}
+.rt td .tile{display:inline-flex;width:30px;height:38px;margin-right:8px;vertical-align:middle}
+.rt td .tile svg{width:16px;height:16px}.rt td .tile .rn{font-size:.6rem}
+.rt tr[data-i]{cursor:pointer}.rt tr[data-i]:hover,.rt tr.sel{background:var(--soft)}
+.rt tr:last-child td{border-bottom:0}
 .whint{flex-basis:100%;color:var(--accent);font-weight:600;font-size:.95rem}
 .wform label{display:flex;flex-direction:column;gap:4px;font-size:.82rem;flex:1 1 180px;min-width:0;color:var(--band-fg);opacity:.95}
 .wform input{background:#FDF6E3;color:#1F2D3A;border-color:transparent}
@@ -446,7 +465,7 @@ button.link.light{color:var(--accent);font-size:.95rem}
     </div>
   </section>
 
-  <footer><span data-en="The readings are symbolic and meant for self-reflection. They are not predictions and do not replace advice on health, money or important decisions. Calculations follow the classic matrix method (22 energies).">Тълкуванията са символни и служат за самонаблюдение. Не са прогноза и не заменят съвет за здраве, пари или важни решения. Изчисленията следват класическата схема на матрицата (22 енергии).</span> <span class="ver" data-en="Version 2.0 · 22.10.2026">Версия 2.0 · 22.10.2026</span></footer>
+  <footer><span data-en="The readings are symbolic and meant for self-reflection. They are not predictions and do not replace advice on health, money or important decisions. Calculations follow the classic matrix method (22 energies).">Тълкуванията са символни и служат за самонаблюдение. Не са прогноза и не заменят съвет за здраве, пари или важни решения. Изчисленията следват класическата схема на матрицата (22 енергии).</span> <span class="ver" data-en="Version 2.1 · 22.10.2026">Версия 2.1 · 22.10.2026</span></footer>
 </div>
 
 <script>
@@ -1245,7 +1264,10 @@ const r=n=>{while(n>22)n=String(n).split("").reduce((s,c)=>s+ +c,0);return n};
 const ds=n=>String(n).split("").reduce((s,c)=>s+ +c,0);
 function calc(iso){
   const [y,m,d]=iso.split("-").map(Number);
-  const A=r(d),B=r(m),C=r(ds(y)),D=r(A+B+C),X=r(A+B+C+D);
+  const A=r(d),B=r(m),C=r(ds(y));return calcPts(A,B,C,r(A+B+C),{y,m,d});
+}
+function calcPts(A,B,C,D,ext={}){
+  const {y,m,d}=ext,X=r(A+B+C+D);
   const F=r(A+B),G=r(B+C),H=r(C+D),I=r(D+A),J=r(F+G+H+I);
   const chain=v=>{const two=r(v+X);return {one:r(v+two),two}};
   const ch={A:chain(A),B:chain(B),C:chain(C),D:chain(D)};
@@ -1441,18 +1463,65 @@ function renderPeople(){
   document.getElementById("pList").innerHTML=PEOPLE.length?PEOPLE.map((p,i)=>`<button class="chip" aria-pressed="${i===SEL}" data-i="${i}">${esc(p.name)} · ${esc(relT(p.rel))}<span class="x" data-del="${i}" role="button" aria-label="${tr("Премахни","Remove")} ${esc(p.name)}">×</span></button>`).join(""):`<p class="note">${tr("Все още няма добавени хора.","No people added yet.")}</p>`;
   renderPerson();
 }
+const POS=()=>[["X",tr("център","centre")],["A",tr("образ навън","outer image")],["B",tr("таланти","talents")],["C",tr("материална карма","material karma")],["D",tr("кармичен урок","karmic lesson")],["money",tr("пари","money")],["love",tr("любов","love")]];
+const ownM=()=>OWN?calc(OWN.d):ME.M;
+const pairOf=(M,P)=>calcPts(r(M.A+P.A),r(M.B+P.B),r(M.C+P.C),r(M.D+P.D));
+function relMap(){
+  if(!PEOPLE.length||!ME)return "";const M=ownM();
+  return `<div class="relmap"><h2>${tr("Карта на отношенията","Relationship map")}</h2><p class="note">${tr("Всички хора на едно място. Кликнете ред, за да отворите подробния анализ.","Everyone in one place. Click a row to open the detailed analysis.")}</p>
+  <div class="tblwrap"><table class="rt"><thead><tr><th>${tr("Човек","Person")}</th><th>${tr("Център","Centre")}</th><th>${tr("Какво ви свързва","What connects you")}</th><th>${tr("Какво се повтаря","What repeats")}</th></tr></thead><tbody>
+  ${PEOPLE.map((p,i)=>{const P=calc(p.date),Q=pairOf(M,P);return `<tr class="${i===SEL?"sel":""}" data-i="${i}" tabindex="0"><td><b>${esc(p.name)}</b><span class="note"> · ${esc(relT(p.rel))}</span></td><td>${tile(P.X)}<span>${E[P.X].n}</span></td><td>${tile(Q.X)}<span>${E[Q.X].n}</span></td><td>${tile(Q.D)}<span>${E[Q.D].n}</span></td></tr>`}).join("")}
+  </tbody></table></div></div>`;
+}
 function renderPerson(){
-  const V=document.getElementById("pView");if(!ME||SEL<0||!PEOPLE[SEL]){V.innerHTML="";return}
-  const p=PEOPLE[SEL],P=calc(p.date),M=OWN?calc(OWN.d):ME.M,nm=esc(p.name);
-  const A=r(M.A+P.A),B=r(M.B+P.B),D=r(M.D+P.D),X=r(A+B+r(M.C+P.C)+D);
-  V.innerHTML=`<div class="letter"><p class="drop">${tr(`${nm} е ${E[P.X].s}.`,`${nm} is ${E[P.X].s}.`)}</p>
-   <p>${tr(`Навън ${nm} изглежда като ${E[P.A].s}. Когато е под напрежение, вътрешният глас често казва: „${E[P.X].voice}“ Ако разпознаете този глас, ще разбирате реакциите по-лесно.`,`On the outside ${nm} comes across as ${E[P.A].s}. Under pressure, the inner voice often says: “${E[P.X].voice}” If you recognise this voice, you will understand the reactions more easily.`)}</p><div class="pv-actions"><button type="button" data-view="${SEL}">${tr("Прегледай като основна матрица","View as main matrix")}</button></div>${fullBtn(P.X)}</div>
-  <h2>${tr("Вие двамата","The two of you")}</h2>
+  const V=document.getElementById("pView");if(!ME){V.innerHTML="";return}
+  if(SEL<0||!PEOPLE[SEL]){V.innerHTML=relMap();return}
+  const p=PEOPLE[SEL],P=calc(p.date),M=ownM(),Q=pairOf(M,P),nm=esc(p.name),me=OWN?esc(OWN.n):tr("Вие","You");
+  const pos=POS(),setOf=X=>{const o={};pos.forEach(([k,l])=>{(o[X[k]]=o[X[k]]||[]).push(l)});return o};
+  const sm=setOf(M),sp=setOf(P),common=Object.keys(sm).filter(v=>sp[v]).map(Number);
+  const qs=[...new Set([Q.X,Q.D,Q.B])].map(v=>E[v].q);
+  V.innerHTML=`
+  <div class="pair-head"><div class="ph-names"><span class="lbl2">${esc(relT(p.rel))}</span><h2>${me} <span class="amp">&amp;</span> ${nm}</h2><p class="note">${tr("Общата матрица се получава, като се съберат точките на двете матрици. Тя описва динамиката между вас, а не какъв е всеки поотделно.","The shared matrix is made by adding the points of both matrices. It describes the dynamic between you, not what each of you is like.")}</p></div>
+   <div class="pv-actions"><button type="button" data-view="${SEL}">${tr("Прегледай като основна матрица","View as main matrix")}</button><button type="button" class="ghost" data-jrp="${SEL}">${tr("Запиши наблюдение в дневника","Add an observation to the journal")}</button></div></div>
+
+  <div class="split">
+   <div class="stack">
+    <div class="talent"><div class="lbl">${tr("Енергията на връзката","The energy of the relationship")}</div><p>${tile(Q.X)} ${E[Q.X].n}</p></div>
+    <p>${E[Q.X].love}</p>
+    <p><b>${tr("Как ви виждат отстрани като двойка:","How others see you as a pair:")}</b> ${E[Q.A].face}</p>
+    ${fullBtn(Q.X)}
+   </div>
+   <div class="chart">${svg(Q,-1)}<div class="hint">${tr("Общата матрица. Кликнете число, за да отворите аркана му.","The shared matrix. Click a number to open its arcanum.")}</div></div>
+  </div>
+
+  <h2>${tr("Динамиката между вас","The dynamic between you")}</h2>
+  <div class="grid rod2">
+   ${card(tr("Какво създавате заедно","What you create together"),Q.B,"",{text:cap(E[Q.B].tal)})}
+   ${card(tr("Пари и общи проекти","Money and shared projects"),Q.money,"money")}
+   ${card(tr("Зона на триене","Friction zone"),Q.D,"",{html:`<p>${E[Q.D].karma}</p><p class="quote" style="font-size:1rem">${q(E[Q.D].voice)}<small>${tr("Така често звучи конфликтът между вас.","This is how conflict between you often sounds.")}</small></p>`})}
+   ${card(tr("Ключът към връзката","The key to the relationship"),Q.ch.D.two,"",{html:`<p>${E[Q.ch.D.two].bal}</p><p><strong>${tr("Стъпка:","Step:")}</strong> ${E[Q.ch.D.two].st}</p>`})}
+  </div>
+
+  <h2>${tr("Вашите центрове един до друг","Your centres side by side")}</h2>
+  <div class="vs">
+   <div class="card">${`<div class="head">${tile(M.X)}<div><div class="zone">${me}</div><div class="ename">${E[M.X].n}</div></div></div>`}<p>${cap(E[M.X].s)}.</p><p class="quote" style="font-size:1rem">${q(E[M.X].voice)}<small>${tr("Под напрежение","Under pressure")}</small></p></div>
+   <div class="card">${`<div class="head">${tile(P.X)}<div><div class="zone">${nm}</div><div class="ename">${E[P.X].n}</div></div></div>`}<p>${cap(E[P.X].s)}.</p><p class="quote" style="font-size:1rem">${q(E[P.X].voice)}<small>${tr("Под напрежение","Under pressure")}</small></p></div>
+  </div>
+  <p class="note">${M.X===P.X?tr("Имате един и същ център. Разбирате се интуитивно, но и капаните ви са едни и същи, затова лесно се засилвате взаимно в сянката.","You share the same centre. You understand each other intuitively, but your traps are the same too, so you can easily amplify each other's shadow."):tr("Центровете ви са различни. Това, което зарежда единия, може да не значи нищо за другия. Когато чуете гласа на капана на другия, отговорете на нуждата зад него, а не на думите.","Your centres are different. What energises one of you may mean nothing to the other. When you hear the other's trap voice, respond to the need behind it, not to the words.")}</p>
+
+  <h2>${tr("Общо и различно","Common ground and differences")}</h2>
+  ${common.length?`<ul class="common">${common.map(v=>`<li>${tile(v)}<div><b>${E[v].n}</b><span class="note">${me}: ${sm[v].join(", ")} · ${nm}: ${sp[v].join(", ")}</span></div></li>`).join("")}</ul><p class="note">${tr("В тези енергии се разбирате без много думи. Внимавайте с общите им сенки.","In these energies you understand each other without many words. Watch out for their shared shadows.")}</p>`:`<p class="note">${tr("В основните точки нямате общи аркани. Допълвате се: всеки носи нещо, което другият няма. Това обогатява, но изисква повече обяснения.","You share no arcana in the main points. You complement each other: each brings something the other lacks. This enriches, but needs more explaining.")}</p>`}
+
+  <h2>${tr("Как да общувате с","How to communicate with")} ${nm}</h2>
   <div class="grid">
-   ${card(tr("Какво ви свързва","What connects you"),X,"",{text:E[X].love})}
-   ${card(tr("Какво се повтаря между вас","What repeats between you"),D,"karma")}
-   ${card(tr("Какво можете да създадете заедно","What you can create together"),B,"",{text:cap(E[B].tal)})}
-  </div>`;
+   <div class="card"><span class="zone">${tr("Стигате най-лесно чрез","You reach them most easily through")}</span><div class="kws2">${AX[P.X].k.concat(AX[P.A].k).filter((x,i,a)=>a.indexOf(x)===i).map(k=>`<span>${k}</span>`).join("")}</div><p class="note">${tr(`Ключовите думи на центъра на ${nm} (${E[P.X].n}) и на начина, по който се проявява навън (${E[P.A].n}).`,`Keywords of ${nm}'s centre (${E[P.X].n}) and of how they come across (${E[P.A].n}).`)}</p></div>
+   <div class="card"><span class="zone">${tr("Внимавайте да не засягате","Be careful not to trigger")}</span><p>${AX[P.X].minus.slice(0,2).map(x=>x[0]).join(" ")}</p><p class="note">${tr(`Това са сенките на ${E[P.X].n}. Когато ги видите, не ги приемайте лично.`,`These are the shadows of ${E[P.X].n}. When you see them, don't take them personally.`)}</p></div>
+  </div>
+
+  <h2>${tr("Въпроси за разговор","Questions to talk about")}</h2>
+  <ol class="how">${qs.map(x=>`<li>${x}</li>`).join("")}</ol>
+  <p class="note">${tr("Всеки от вас може да отговори за себе си, а после да сравните. Това е картина на динамиката, не присъда за човека.","Each of you can answer for yourself and then compare. This is a picture of the dynamic, not a verdict on the person.")}</p>
+  ${relMap()}`;
 }
 
 /* ---------- journal ---------- */
@@ -1538,6 +1607,9 @@ document.addEventListener("submit",e=>{if(e.target.id!=="jForm")return;e.prevent
   if(x.kind==="goal")x.done=false;
   JR.push(x);jSave();JF={kind:JF.kind,arc:JF.arc};renderJournal();renderDetail();renderLib();
   const m=document.getElementById("toolMsg");});
+document.addEventListener("click",e=>{const tr_=e.target.closest(".rt tr[data-i]");if(tr_){SEL=+tr_.dataset.i;renderPeople();document.getElementById("pView").scrollIntoView({block:"start"})}
+  const jp=e.target.closest("[data-jrp]");if(jp){const p=PEOPLE[+jp.dataset.jrp];JF={kind:"note",arc:-1,text:p.name+": "};show("jr");renderJournal();const ta=document.getElementById("jText");ta.focus();ta.setSelectionRange(ta.value.length,ta.value.length)}});
+document.addEventListener("keydown",e=>{if(e.key==="Enter"&&e.target.matches&&e.target.matches(".rt tr[data-i]")){SEL=+e.target.dataset.i;renderPeople()}});
 document.addEventListener("click",e=>{
   const d=e.target.closest("[data-jdel]");if(d){const id=+d.dataset.jdel;if(JARM===id){JR=JR.filter(x=>x.id!==id);JARM=null;jSave()}else JARM=id;renderJournal();renderDetail();return}
   const j=e.target.closest("[data-jr]");if(j){e.preventDefault();JF={kind:"note",arc:+j.dataset.jr};show("jr");renderJournal();document.getElementById("v-jr").scrollIntoView({block:"start"});document.getElementById("jText").focus({preventScroll:true});return}
