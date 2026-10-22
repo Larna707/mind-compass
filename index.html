@@ -1,0 +1,838 @@
+<!doctype html>
+<html lang="bg">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Mind Compass</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,500&family=Raleway:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: brand header, navy "compass now" band with a live needle, tabbed views; arcana carry their own emblem and a colour by row (I–VII navy, VIII–XIV teal, XV–XXI terracotta, XXII gold) */
+:root{
+  --bg:#FDF6E3; --surface:#FFFFFF; --soft:#F7E8C4; --fg:#1F2D3A; --muted:#5B6773;
+  --navy:#1E5078; --band:#1E5078; --band-fg:#FDF6E3; --accent:#E8900C; --line:#E2D5B5; --plus:#2E7D5B; --minus:#B4462E;
+  --g1:#1E5078; --g2:#1D7366; --g3:#A84C27; --g4:#B57E0A; --on-g:#FFF8E8;
+  --display:"Playfair Display",Georgia,"Times New Roman",serif;
+  --body:"Raleway","Segoe UI",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0F1D2A; --surface:#172938; --soft:#22394B; --fg:#F2EAD6; --muted:#A9B4BE;
+  --navy:#8CC0E8; --band:#173A57; --band-fg:#F2EAD6; --accent:#F4A73A; --line:#2F4659; --plus:#6CC79C; --minus:#EE8B72;
+  --g1:#3F7FB3; --g2:#2E9583; --g3:#C4683F; --g4:#C9951F; --on-g:#FFF8E8; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0F1D2A; --surface:#172938; --soft:#22394B; --fg:#F2EAD6; --muted:#A9B4BE;
+  --navy:#8CC0E8; --band:#173A57; --band-fg:#F2EAD6; --accent:#F4A73A; --line:#2F4659; --plus:#6CC79C; --minus:#EE8B72;
+  --g1:#3F7FB3; --g2:#2E9583; --g3:#C4683F; --g4:#C9951F; --on-g:#FFF8E8; color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.65;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 48px}
+.wrap{max-width:980px;margin:0 auto;display:flex;flex-direction:column;gap:24px}
+.stack{display:flex;flex-direction:column;gap:20px}
+header{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+header img{width:58px;height:58px;border-radius:50%;object-fit:cover}
+header h1{font-family:var(--display);color:var(--navy);font-size:2rem;margin:0;line-height:1.1}
+header p{margin:0;color:var(--muted);font-family:var(--display);font-style:italic}
+h2{font-family:var(--display);color:var(--navy);font-size:1.55rem;margin:0;text-wrap:balance;line-height:1.25}
+h3{font-size:1.02rem;margin:0}
+p{margin:0}
+.form{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.form label{display:flex;flex-direction:column;gap:4px;font-size:.82rem;color:var(--muted);flex:1 1 170px;min-width:0}
+input,select{font:inherit;font-size:1rem;padding:9px 10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);width:100%}
+button{font:inherit;font-weight:600;border:0;border-radius:8px;padding:10px 18px;background:var(--navy);color:var(--bg);cursor:pointer}
+button.link{background:none;color:var(--accent);padding:0;text-align:left;font-size:.92rem}
+button.link:hover{text-decoration:underline}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.band{background:var(--band);color:var(--band-fg);border-radius:18px;padding:20px 24px;display:grid;grid-template-columns:150px repeat(3,minmax(0,1fr));gap:22px;align-items:center}
+@media (max-width:860px){.band{grid-template-columns:130px minmax(0,1fr)}.band>div:nth-child(n+3){grid-column:1/-1}}
+@media (max-width:480px){.band{grid-template-columns:1fr}.band .compass{justify-self:center}}
+.band .lbl{font-size:.74rem;letter-spacing:.09em;text-transform:uppercase;opacity:.75}
+.band .big{font-family:var(--display);font-size:1.3rem;line-height:1.3;margin:2px 0 6px}
+.band .big b{color:var(--accent)}
+.band p{font-size:.94rem;opacity:.92}
+.compass{width:150px;max-width:100%}
+.compass svg{display:block;width:100%;height:auto}
+.needle{transform-origin:70px 70px;transform:rotate(var(--rot))}
+@media (prefers-reduced-motion:no-preference){.needle{animation:swing 1.6s cubic-bezier(.3,1.4,.5,1) both}@keyframes swing{from{transform:rotate(calc(var(--rot) - 140deg))}to{transform:rotate(var(--rot))}}}
+.tabs{display:flex;gap:2px;border-bottom:1px solid var(--line);overflow-x:auto}
+.tab{background:none;color:var(--muted);border-radius:0;padding:10px 14px;border-bottom:3px solid transparent;white-space:nowrap;font-weight:600}
+.tab[aria-selected="true"]{color:var(--navy);border-bottom-color:var(--accent)}
+.split{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:28px;align-items:start}
+@media (max-width:760px){.split{grid-template-columns:1fr}}
+.chart{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:8px}
+.chart svg{display:block;width:100%;height:auto}
+.chart .pt{cursor:pointer}
+.chart .pt:hover circle,.chart .pt:focus circle{stroke:var(--accent);stroke-width:3}
+.hint{font-size:.82rem;color:var(--muted);text-align:center;padding:2px 0 6px}
+.letter{display:flex;flex-direction:column;gap:14px;font-size:1.04rem;max-width:65ch}
+.letter .drop{font-family:var(--display);font-size:1.35rem;line-height:1.4;color:var(--navy)}
+.quote{font-family:var(--display);font-style:italic;font-size:1.15rem;border-left:3px solid var(--accent);padding:4px 0 4px 16px;border-radius:0}
+.quote small{display:block;font-family:var(--body);font-style:normal;font-size:.85rem;color:var(--muted);margin-top:4px}
+.talent{background:var(--soft);border-radius:14px;padding:16px 18px}
+.talent .lbl,.lbl2{font-size:.75rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.talent p{font-family:var(--display);font-size:1.2rem;color:var(--navy);line-height:1.4}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.head{display:flex;gap:12px;align-items:center}
+.tile{flex:none;width:48px;height:60px;border-radius:9px;color:var(--on-g);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-family:var(--display);line-height:1}
+.tile svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.tile .rn{font-size:.7rem;opacity:.9;letter-spacing:.04em}
+.g1{background:var(--g1)}.g2{background:var(--g2)}.g3{background:var(--g3)}.g4{background:var(--g4)}
+.zone{font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.ename{font-family:var(--display);font-size:1.2rem;color:var(--navy);line-height:1.2}
+details{border-top:1px solid var(--line);padding-top:8px}
+summary{cursor:pointer;color:var(--accent);font-weight:600;font-size:.92rem}
+.more{display:flex;flex-direction:column;gap:8px;margin-top:8px;font-size:.95rem}
+.more b{color:var(--muted);font-weight:600;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;display:block}
+.more .v{font-family:var(--display);font-style:italic}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.step{padding:18px;display:flex;flex-direction:column;gap:8px;border-right:1px solid var(--line);min-width:0}
+.step:last-child{border-right:0}
+@media (max-width:760px){.step{border-right:0;border-bottom:1px solid var(--line)}.step:last-child{border-bottom:0}}
+.step .k{font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);font-weight:700}
+.intro{color:var(--muted);max-width:70ch}
+.epi{margin:4px 0 8px;padding:22px 26px;background:var(--soft);border-radius:16px;max-width:72ch;display:flex;flex-direction:column;gap:10px}
+.epi p{font-family:var(--display);font-style:italic;font-size:1.18rem;line-height:1.55;color:var(--navy)}
+.epi cite{font-style:normal;font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.years{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.year{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;gap:6px}
+.year.now{border-color:var(--accent);background:var(--soft)}
+.year .y{font-family:var(--display);font-size:1.5rem;color:var(--navy);font-variant-numeric:tabular-nums}
+.timeline{display:flex;flex-direction:column;border-left:2px solid var(--line);margin-left:8px}
+.period{position:relative;padding:2px 0 20px 22px;display:flex;flex-direction:column;gap:4px}
+.period::before{content:"";position:absolute;left:-7px;top:8px;width:12px;height:12px;border-radius:50%;background:var(--surface);border:2px solid var(--navy)}
+.period.now::before{background:var(--accent);border-color:var(--accent)}
+.when{font-size:.85rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.period.now .when{color:var(--accent);font-weight:700}
+.period .st{font-size:.92rem;color:var(--muted)}
+/* arcana library */
+.lib{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.arc{background:var(--surface);color:var(--fg);border:1px solid var(--line);border-radius:14px;padding:14px 12px;display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;font-weight:500;position:relative}
+.arc:hover{border-color:var(--accent)}
+.arc[aria-current="true"]{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent) inset}
+.arc .em{width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--on-g)}
+.arc .em svg{width:36px;height:36px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.arc .rn{font-family:var(--display);color:var(--muted);font-size:.85rem}
+.arc .nm{font-family:var(--display);font-size:1.05rem;color:var(--navy);line-height:1.2}
+.arc .kw{font-size:.78rem;color:var(--muted);line-height:1.35}
+.arc .mine{position:absolute;top:8px;right:8px;width:10px;height:10px;border-radius:50%;background:var(--accent)}
+.detail{background:var(--surface);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.dhead{display:flex;gap:20px;align-items:center;padding:24px;color:var(--on-g);flex-wrap:wrap}
+.dhead .em{flex:none;width:96px;height:96px;border-radius:50%;border:2px solid currentColor;display:flex;align-items:center;justify-content:center}
+.dhead .em svg{width:56px;height:56px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.dhead .rn{font-family:var(--display);font-size:1rem;opacity:.85}
+.dhead h2{color:var(--on-g);font-size:2rem}
+.dhead .kws{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.dhead .kws span{border:1px solid currentColor;border-radius:999px;padding:2px 10px;font-size:.82rem;opacity:.95}
+.dbody{padding:22px 24px;display:flex;flex-direction:column;gap:22px}
+.dbody .core{font-family:var(--display);font-size:1.15rem;line-height:1.55;max-width:68ch}
+.mine-list{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.mine-list span.c{background:var(--soft);border-radius:999px;padding:3px 10px;font-size:.85rem}
+.pm2{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:24px}
+@media (max-width:760px){.pm2{grid-template-columns:1fr}}
+.plus{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-direction:column;gap:8px}
+.plus li{padding-left:26px;position:relative}
+.plus li::before{content:"+";position:absolute;left:0;top:-1px;width:18px;height:18px;border-radius:50%;background:var(--plus);color:var(--surface);font-size:.85rem;font-weight:700;display:flex;align-items:center;justify-content:center;line-height:1}
+.shadow{display:flex;flex-direction:column;gap:10px;margin-top:8px}
+.sh-row{display:grid;grid-template-columns:minmax(0,1fr) 22px minmax(0,1fr);gap:8px;align-items:start;background:var(--bg);border-radius:10px;padding:10px 12px}
+.sh-row .m{color:var(--minus)}
+.sh-row .ar{color:var(--accent);font-weight:700;text-align:center}
+.sh-row .f{color:var(--fg)}
+@media (max-width:520px){.sh-row{grid-template-columns:1fr}.sh-row .ar{text-align:left}}
+.dfoot{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.dfoot>div{display:flex;flex-direction:column;gap:4px}
+.nav{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.nav button{background:var(--soft);color:var(--navy)}
+.people-list{display:flex;flex-wrap:wrap;gap:8px}
+.chip{background:var(--surface);border:1px solid var(--line);color:var(--fg);font-weight:500;padding:8px 12px}
+.chip[aria-pressed="true"]{border-color:var(--accent);background:var(--soft)}
+.chip .x{margin-left:10px;color:var(--muted)}
+.note{font-size:.88rem;color:var(--muted)}
+.err{color:var(--minus);font-size:.9rem;flex-basis:100%}
+footer{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padding-top:14px}
+svg text{font-family:var(--body)}
+@media (max-width:520px){header h1{font-size:1.6rem}.band{padding:18px}.dhead{padding:18px}.dbody{padding:18px}}
+@media (prefers-reduced-motion:no-preference){.view{animation:fade .25s ease}@keyframes fade{from{opacity:.4}to{opacity:1}}}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+  <header>
+    <img src="data:image/jpeg;base64,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" alt="Логото на Mind Compass">
+    <div><h1>Mind Compass</h1><p>Матрица на съдбата · Find Your True North Within</p></div>
+  </header>
+
+  <form class="form" id="meForm" novalidate>
+    <label for="meName">Име<input id="meName" value="Пример" autocomplete="off"></label>
+    <label for="meDate">Дата на раждане<input id="meDate" type="date" value="1990-03-14" min="1900-01-01" max="2099-12-31"></label>
+    <button type="submit">Изчисли</button>
+    <p class="err" id="meErr" hidden></p>
+  </form>
+
+  <section class="band" id="now" aria-label="Вашият компас сега"></section>
+
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" aria-selected="true" data-v="pt">Портрет</button>
+    <button class="tab" role="tab" aria-selected="false" data-v="zn">Сфери</button>
+    <button class="tab" role="tab" aria-selected="false" data-v="km">Карма</button>
+    <button class="tab" role="tab" aria-selected="false" data-v="ar">22 аркана</button>
+    <button class="tab" role="tab" aria-selected="false" data-v="fc">Прогноза</button>
+    <button class="tab" role="tab" aria-selected="false" data-v="pp">Хора</button>
+  </div>
+
+  <section id="v-pt" class="view stack"></section>
+  <section id="v-zn" class="view stack" hidden></section>
+  <section id="v-km" class="view stack" hidden></section>
+  <section id="v-ar" class="view stack" hidden>
+    <p class="intro">Всеки аркан има светла страна и сянка. Сянката не е присъда: тя показва къде енергията е блокирана, а до всеки минус е посочено как да я обърнете в плюс. Оранжевата точка отбелязва арканите от Вашата матрица.</p>
+    <div id="arcDetail"></div>
+    <div class="lib" id="lib"></div>
+  </section>
+  <section id="v-fc" class="view stack" hidden></section>
+  <section id="v-pp" class="view stack" hidden>
+    <p class="intro">Добавете човек от живота си, за да видите какво ви свързва, какво се повтаря между вас и как да общувате по-лесно. Това е картина на динамиката, а не присъда за човека. Профилите се пазят само в този браузър.</p>
+    <form class="form" id="pForm" novalidate>
+      <label for="pName">Име<input id="pName" placeholder="напр. Мария" autocomplete="off"></label>
+      <label for="pDate">Дата на раждане<input id="pDate" type="date" min="1900-01-01" max="2099-12-31"></label>
+      <label for="pRel">Връзка<select id="pRel"><option>Партньор</option><option>Родител</option><option>Дете</option><option>Брат / сестра</option><option>Приятел</option><option>Колега</option><option>Ръководител</option><option>Друго</option></select></label>
+      <button type="submit">Добави</button>
+      <p class="err" id="pErr" hidden></p>
+    </form>
+    <div class="people-list" id="pList"></div>
+    <div id="pView" class="stack"></div>
+  </section>
+
+  <footer>Тълкуванията са символни и служат за самонаблюдение. Не са прогноза и не заменят съвет за здраве, пари или важни решения. Изчисленията следват класическата схема на матрицата (22 енергии).</footer>
+</div>
+
+<script>
+const E=[null,
+{n:"Магът",s:"човек на идеите и първата крачка",v:"да превръщате идея в действие",
+core:"Вие сте двигател. Когато другите още обсъждат, Вие вече сте пробвали. Думите Ви имат сила и с тях можете да запалите хората за нещо ново.",
+face:"Изглеждате находчиви, бързи и малко нетърпеливи: човек, който винаги има следващ план.",
+tal:"да започвате неща от нулата и да намирате решение там, където другите виждат стена.",
+bal:"Довършвате започнатото и хората Ви следват, защото виждат резултат.",
+sh:"Започвате пет неща наведнъж и нито едно не стига до края. Постепенно губите доверие в себе си.",
+voice:"Това вече ми е скучно, да пробвам нещо друго.",
+money:"Парите идват от нови проекти, търговия и комуникация: навсякъде, където трябва да убедите и да започнете първи.",
+love:"Нужен Ви е партньор, с когото да се говори и да се случват нови неща. Рутината без разговор гаси чувствата.",
+karma:"Урокът е за тежестта на думите: да не обещавате повече, отколкото ще изпълните, и да не ползвате словото, за да получите своето на всяка цена.",
+q:"Кое започнато нещо заслужава да го доведа до края?",
+st:"Изберете една недовършена задача и я приключете, преди да започнете нова.",
+per:"Време за нови начала, разговори и инициатива. Започнете нещо, но не твърде много наведнъж."},
+{n:"Жрицата",s:"човек на тихото знание и интуицията",v:"да усещате истината, преди да е казана",
+core:"Вие виждате повече, отколкото казвате. Усещате хората и ситуациите по тона, по паузите, по това, което липсва. Силата Ви е в спокойствието и в умението да изслушвате.",
+face:"Изглеждате сдържани и малко загадъчни. Хората Ви споделят, без да знаят защо.",
+tal:"да четете между редовете и да давате съвет, който попада точно.",
+bal:"Доверявате се на усещането си, казвате го навреме и то се оказва вярно.",
+sh:"Затваряте се, предполагате най-лошото и чакате другите да се досетят какво Ви е.",
+voice:"Ако кажа какво мисля, няма да ме разберат.",
+money:"Парите идват от консултиране, изследвания, психология и работа с информация, която другите не виждат.",
+love:"Нужни са Ви дълбочина и доверие. Повърхностните връзки Ви изтощават, а натискът Ви кара да се затворите.",
+karma:"Урокът е да не криете знанието и чувствата си зад мълчание и да не ги използвате, за да държите другите в неведение. Интуицията е дадена, за да се ползва открито.",
+q:"Какво знам отдавна, но още пазя само за себе си?",
+st:"Запишете едно свое предчувствие и след седмица проверете дали се е потвърдило.",
+per:"Време за наблюдение, учене и вслушване в себе си. Не форсирайте събитията, отговорите идват отвътре."},
+{n:"Императрицата",s:"човек на грижата и създаването",v:"да създавате красота и уют от нищо",
+core:"Вие сте създател. Около Вас нещата растат: хора, проекти, градини, идеи. Имате вкус към красивото и умеете да направите живота по-приятен за всички наоколо.",
+face:"Изглеждате топли и щедри. При Вас хората се отпускат и се чувстват добре дошли.",
+tal:"да отглеждате деца, екипи, проекти и растения и да ги правите красиви.",
+bal:"Грижите се за другите, без да забравяте себе си, и творите с удоволствие.",
+sh:"Грижата се превръща в контрол, а харченето в утеха. Чувствате се използвани и неоценени.",
+voice:"Ако не се погрижа аз, никой няма да го направи.",
+money:"Парите идват от красота, храна, дом, деца и творчество: всичко, което създава уют и удоволствие.",
+love:"Нужна Ви е взаимност в грижата и малки жестове. Ако само давате, връзката се изпразва.",
+karma:"Урокът е да приемете себе си и тялото си, да се грижите, без да задушавате, и да позволите на другите да растат сами.",
+q:"Кога за последно направих нещо красиво само за себе си?",
+st:"Отделете два часа за нещо, което създавате с ръцете си.",
+per:"Време за изобилие, творчество и грижа за дома и тялото. Подходящо за проекти, които ще растат."},
+{n:"Императорът",s:"човек на структурата и отговорността",v:"да изграждате системи, които издържат",
+core:"Вие сте строител. Виждате как трябва да бъдат подредени нещата и имате силата да го направите. Хората разчитат на Вас, защото държите на думата си и не изоставяте започнатото.",
+face:"Изглеждате сериозни, надеждни и властни. Хората инстинктивно Ви дават водещата роля.",
+tal:"да организирате, да поставяте граници и да превръщате хаоса в работеща система.",
+bal:"Водите спокойно, делегирате и създавате ред, който работи и когато Ви няма.",
+sh:"Носите всичко сами, контролирате всяка подробност и се изтощавате, а никой не го забелязва.",
+voice:"Ако аз не го направя, няма да стане както трябва.",
+money:"Парите идват от управление, собствен бизнес, недвижими имоти и позиции, в които Вие поставяте рамките.",
+love:"Нужен Ви е партньор, когото уважавате и който не се плаши от силата Ви. Борбата за надмощие разрушава връзката.",
+karma:"Урокът е за властта: да управлявате, без да смазвате, и да не позволявате на други да смазват Вас. Да се откажете от пълния контрол над резултата.",
+q:"Какво нося, което всъщност не е моя отговорност?",
+st:"Делегирайте една задача и не я проверявайте след това.",
+per:"Време за подреждане, планове и решения за дълго. Поемете отговорност, но не носете всичко сами."},
+{n:"Жрецът",s:"човек на знанието и принципите",v:"да обяснявате сложното така, че да се разбере",
+core:"Вие сте учител по природа. Искате да разберете защо нещата са такива, а после да го обясните на другите. Имате принципи и не ги продавате.",
+face:"Изглеждате компетентни и сериозни. Хората идват при Вас за съвет и мнение.",
+tal:"да учите бързо, да натрупвате експертиза и да предавате знанието ясно и подредено.",
+bal:"Учите другите и самите Вие продължавате да учите. Знанието Ви отваря врати.",
+sh:"Поучавате, вместо да разговаряте, и се дразните от всеки, който не прави нещата „правилно“.",
+voice:"Има правилен начин и той е този.",
+money:"Парите идват от експертиза, обучение, консултиране, методология и работа с институции.",
+love:"Нужен Ви е партньор със сходни ценности. Ако се опитвате да го превъзпитавате, връзката охладнява.",
+karma:"Урокът е да не налагате своята истина като единствена и да не следвате сляпо чужди правила. Знанието трябва да освобождава, а не да ограничава.",
+q:"Кое мое правило вече не ми служи?",
+st:"Изслушайте до края гледна точка, с която не сте съгласни, без да я поправяте.",
+per:"Време за учене, наставници, документи и обучение. Добре е да запишете курс или да предадете опита си."},
+{n:"Влюбените",s:"човек на сърцето и избора",v:"да свързвате хора и да създавате хармония",
+core:"Вие живеете чрез отношенията. Усещате кога нещо е красиво и кога хората са в хармония. Умеете да помирявате, да сближавате и да накарате всеки да се почувства видян.",
+face:"Изглеждате приятни, обаятелни и отворени. Лесно печелите симпатии.",
+tal:"да изграждате доверие, да преговаряте и да намирате общото между различни хора.",
+bal:"Избирате по сърце и стоите зад избора си. Отношенията Ви са искрени.",
+sh:"Колебаете се безкрай, угаждате на всички и оставате там, където отдавна не сте щастливи.",
+voice:"Ами ако избера грешно?",
+money:"Парите идват от работа с хора, красота, дизайн, партньорства и всичко, което свързва.",
+love:"Любовта е централна тема за Вас. Нужен Ви е истински избор, а не удобство или навик.",
+karma:"Урокът е за избора: да изберете себе си, без да предавате другите, и да не оставате в отношения само от чувство за дълг или от страх.",
+q:"Къде оставам само защото ме е страх да избера?",
+st:"Вземете едно отлагано решение, дори малко.",
+per:"Време за отношения, избор и красота. Решенията по сърце ще се окажат верни."},
+{n:"Колесницата",s:"човек на движението и целта",v:"да водите процес от старта до резултата",
+core:"Вие сте човек на действието. Когато имате цел, трудно нещо може да Ви спре. Обичате движението, пътуванията и усещането, че напредвате.",
+face:"Изглеждате енергични, целеустремени и малко неспокойни.",
+tal:"да повеждате хора и процеси към конкретен резултат и да не се отказвате по пътя.",
+bal:"Имате ясна посока и я следвате. Хората тръгват след Вас.",
+sh:"Гоните, без да знаете накъде, или стоите на едно място и се ядосвате на всички.",
+voice:"Ако спра, всичко ще се разпадне.",
+money:"Парите идват от проекти, продажби, транспорт, пътувания и всичко, в което има движение и резултат.",
+love:"Нужен Ви е партньор, който се движи заедно с Вас. Застоят и ограниченията гасят чувствата.",
+karma:"Урокът е да не бягате от себе си в постоянна заетост и да не налагате пътя си с натиск. Целта трябва да е Ваша, а не доказателство пред другите.",
+q:"Накъде всъщност отивам и кой е избрал тази посока?",
+st:"Запишете една цел за следващите три месеца и първата стъпка към нея.",
+per:"Време за движение, пътувания, проекти и смели крачки. Действайте, но с ясна посока."},
+{n:"Справедливост",s:"човек на реда и честната преценка",v:"да претегляте фактите и да намирате честното решение",
+core:"Вие усещате кое е честно и кое не, често преди да можете да обясните защо. Затова хората Ви вярват: не нагласяте нещата и не пропускате подробности. Където влезете, настъпва ред.",
+face:"Изглеждате обективни, точни и малко строги: човек, на когото може да се разчита.",
+tal:"да анализирате, да сравнявате и да вземате решения, които издържат проверка.",
+bal:"Решенията Ви са спокойни и обосновани. Казвате истината, без да нараните, и знаете какво Ви се полага.",
+sh:"Ставате най-строгият си съдия. Вършите повече, отколкото е честно, мълчите, а после се натрупва обида, че никой не е забелязал.",
+voice:"Не е честно, но ще го направя, защото трябва.",
+money:"Парите идват от право, финанси, анализ, контрол и регулации: работа с документи, числа и правила.",
+love:"Нужни са Ви честност и равнопоставеност. Внимавайте да не превърнете партньора в проект за поправяне.",
+karma:"Урокът е за справедливостта към себе си: да приемете, че светът не винаги е честен, и да не носите сами везните на всички.",
+q:"Къде давам повече, отколкото получавам, и казах ли го на глас?",
+st:"Кажете на един човек ясно какво очаквате в замяна на това, което правите за него.",
+per:"Време за решения, документи, договори и уреждане на сметки. Каквото сте посели, това жънете."},
+{n:"Отшелникът",s:"човек на дълбочината и експертизата",v:"да стигате в дълбочина там, докъдето другите не стигат",
+core:"Вие сте изследовател. Нужни са Ви тишина и собствено пространство, за да мислите. Знанието Ви не е повърхностно: разбирате нещата до корена.",
+face:"Изглеждате сдържани, мъдри и малко дистанцирани.",
+tal:"да станете истински експерт в една област и да виждате това, което другите пропускат.",
+bal:"Пазите време за себе си, но излизате при хората и споделяте знанието си.",
+sh:"Затваряте се, отказвате помощ и започвате да мислите, че никой не Ви разбира.",
+voice:"По-лесно ми е да се справя без никого.",
+money:"Парите идват от експертиза, изследвания, писане, наставничество и тясна специализация.",
+love:"Нужно Ви е лично пространство и партньор, който го уважава. Близост, но без задушаване.",
+karma:"Урокът е да не бягате от хората в самота и да не пазите знанието само за себе си.",
+q:"Кой човек би имал полза от моя опит?",
+st:"Споделете нещо, което знаете добре, с някого, който има нужда от него.",
+per:"Време за уединение, учене и преосмисляне. Подходящо за задълбочаване, не за шумни начала."},
+{n:"Колелото на късмета",s:"човек на шанса и правилния момент",v:"да усещате кога е дошъл моментът за действие",
+core:"Животът Ви се движи на цикли и имате усет кога идва вълната. Възможностите често идват чрез хора и неочаквани срещи.",
+face:"Изглеждате леки, оптимистични и лесни за общуване.",
+tal:"да се приспособявате бързо и да хващате възможностите, които другите изпускат.",
+bal:"Казвате „да“ навреме и използвате шанса, когато дойде.",
+sh:"Чакате късметът да дойде сам или се страхувате от всяка промяна и пропускате момента.",
+voice:"Ще видим какво ще стане.",
+money:"Парите идват на вълни: от проекти, търговия, пътувания и връзки с хора.",
+love:"Нужни са Ви лекота и споделени преживявания. Скуката и прекалената предвидимост гасят връзката.",
+karma:"Урокът е да поемете отговорност за живота си, вместо да го оставяте на случайността, и да приемете, че след спад идва подем.",
+q:"Какъв шанс отлагам, защото чакам „по-подходящ момент“?",
+st:"Обадете се на човек, с когото отдавна искате да поговорите за нова възможност.",
+per:"Време за обрати и нови възможности. Бъдете готови да кажете „да“."},
+{n:"Сила",s:"човек на волята и издръжливостта",v:"да издържате там, където другите се отказват",
+core:"Имате голям запас от сила. Можете да работите дълго, да понасяте натиск и да се справяте в криза. Хората Ви възприемат като опора.",
+face:"Изглеждате силни, уверени и устойчиви.",
+tal:"да укротявате трудни ситуации и хора със спокойствие, без да повишавате тон.",
+bal:"Силата Ви е спокойна и насочена. Знаете кога да натиснете и кога да отпуснете.",
+sh:"Стискате зъби и потискате умората и емоциите, докато не избухнете или не се разболеете.",
+voice:"Трябва да издържа.",
+money:"Парите идват от управление, работа с тяло и енергия, спорт и всичко, което изисква издръжливост.",
+love:"Нужен Ви е партньор, равен по сила. Борбата за надмощие изтощава и двамата.",
+karma:"Урокът е да не доказвате силата си чрез претоварване и да не я използвате, за да подчинявате другите.",
+q:"Къде търпя, вместо да действам?",
+st:"Откажете една задача, за която нямате сили.",
+per:"Време за усилие и постоянство. Ще се справите, ако пазите енергията си."},
+{n:"Обесеният",s:"човек на различния поглед и помощта",v:"да виждате решение от неочакван ъгъл",
+core:"Вие виждате света различно. Често стоите крачка встрани от общото мнение и точно оттам намирате решения. Имате голямо сърце и желание да помагате.",
+face:"Изглеждате кротки, отзивчиви и малко необичайни.",
+tal:"да мислите нестандартно, да творите и да помагате на хора в трудни моменти.",
+bal:"Помагате от излишък, а не от жертва, и творчеството Ви намира изход.",
+sh:"Жертвате се, чакате благодарност и се чувствате заклещени без изход.",
+voice:"Ще изтърпя, другите имат по-голяма нужда.",
+money:"Парите идват от помагащи професии, изкуство и нестандартни решения.",
+love:"Нужна Ви е взаимност. Ако само давате, започвате да се чувствате използвани.",
+karma:"Урокът е да спрете да се жертвате и да приемете, че Вашите нужди също имат значение.",
+q:"За какво чакам разрешение от другите?",
+st:"Направете едно нещо само за себе си, без да го оправдавате пред никого.",
+per:"Време за пауза и преосмисляне. Нещата може да се забавят. Използвайте времето, за да погледнете ситуацията от друг ъгъл."},
+{n:"Трансформация",s:"човек на промяната и новото начало",v:"да затваряте етапи и да започвате наново",
+core:"Умеете да прекратявате. Когато нещо е приключило, го усещате и имате смелост да го затворите. Затова животът Ви минава през няколко различни „живота“.",
+face:"Изглеждате решителни, сериозни и с характер.",
+tal:"да преминавате през кризи и да помагате на другите да се променят.",
+bal:"Пускате старото спокойно и правите място за новото.",
+sh:"Вкопчвате се в изчерпаното от страх или рязко разрушавате всичко наведнъж.",
+voice:"Не мога да се откажа, вече вложих твърде много.",
+money:"Парите идват от реформи, кризисно управление, медицина и работа с преходи и промени.",
+love:"Нужна Ви е дълбочина. Връзките Ви се променят заедно с Вас: или растат, или приключват.",
+karma:"Урокът е да не се страхувате от края и да не задържате това, което трябва да си отиде.",
+q:"Какво отдавна е приключило, а аз още го нося?",
+st:"Изхвърлете, затворете или откажете едно нещо, което отдавна не Ви служи.",
+per:"Време за край и ново начало. Затворете съзнателно това, което сте надраснали. Енергията не означава физическа смърт."},
+{n:"Умереност",s:"човек на баланса и мярката",v:"да съчетавате различни неща в хармонично цяло",
+core:"Вие внасяте спокойствие. Умеете да намирате средата, да съчетавате несъчетаемото и да успокоявате хората около себе си.",
+face:"Изглеждате спокойни, балансирани и приятни.",
+tal:"да успокоявате атмосферата, да посредничите и да създавате хармония.",
+bal:"Живеете в ритъм, който Ви зарежда, и помагате на другите да се успокоят.",
+sh:"Минавате от крайност в крайност, пренебрегвате почивката и емоциите Ви се люшкат.",
+voice:"Ще си почина после.",
+money:"Парите идват от грижа, лечение, изкуство, посредничество и работа, която носи баланс.",
+love:"Нужна Ви е спокойна, хармонична връзка без драми.",
+karma:"Урокът е за мярката: да не изпадате в крайности и да пазите тялото и душата си.",
+q:"Къде в живота ми липсва мярка?",
+st:"Сложете си ясен край на работния ден и го спазвайте цяла седмица.",
+per:"Време за възстановяване и баланс. Не прекалявайте с нищо."},
+{n:"Дяволът",s:"човек на влиянието и харизмата",v:"да влияете и да убеждавате",
+core:"Имате сила да влияете. Хората Ви слушат, следват или поне не остават безразлични. Имате усет за пари, за желанията и за това какво движи другите.",
+face:"Изглеждате харизматични, привлекателни и малко опасни.",
+tal:"да убеждавате, да продавате, да преговаряте и да постигате желаното.",
+bal:"Използвате влиянието си открито и за добро. Смеете да искате и получавате.",
+sh:"Контролирате, манипулирате или изпадате в зависимост: от хора, навици, работа, пари.",
+voice:"Без това не мога.",
+money:"Парите идват от бизнес, продажби, маркетинг, финанси и сфери с голямо влияние.",
+love:"Връзките Ви са страстни. Внимавайте с ревността и контрола: привличането не е достатъчно.",
+karma:"Урокът е за зависимостите и изкушенията: да не продавате себе си и да не държите другите в зависимост.",
+q:"Кое нещо ме държи, без да го искам?",
+st:"Забележете един навик, който Ви изтощава, и го пропуснете три дни.",
+per:"Време за пари, сделки и изкушения. Подходящо за бизнес, но внимавайте със зависимостите."},
+{n:"Кулата",s:"човек на изграждането след срив",v:"да разрушавате остарялото и да строите наново",
+core:"Вие сте строител, който често не започва на чисто, а след трудност, и всеки път става по-силен. Умеете да видите кое е прогнило и да го смените.",
+face:"Изглеждате стабилни и сериозни, но с вътрешно напрежение.",
+tal:"да изграждате големи неща (системи, проекти, дом) и да ги възстановявате след удар.",
+bal:"Променяте сами това, което не работи, и строите с търпение.",
+sh:"Вкопчвате се в старото от гордост и чакате, докато всичко рухне само.",
+voice:"Толкова години го градих, не мога да го пусна.",
+money:"Парите идват от строителство, проекти, реформи и всичко, което изгражда нещо трайно.",
+love:"Връзките Ви минават през изпитания. Издържат, ако и двамата са готови да се променят.",
+karma:"Урокът е за гордостта: да приемете промяната смирено и да не строите живота си върху чужди очаквания.",
+q:"Какво в живота ми стои на нестабилна основа?",
+st:"Назовете една ситуация, която е време да промените, и направете първата стъпка сами.",
+per:"Време за промяна, понякога неочаквана. Това, което не работи, отпада. Строете наново, спокойно."},
+{n:"Звездата",s:"човек на вдъхновението и таланта",v:"да вдъхновявате и да показвате нов път",
+core:"Имате талант, който заслужава да бъде видян. Носите естетика, надежда и умение да вдъхновявате. Когато сте видими, светът около Вас става по-добър.",
+face:"Изглеждате стилни и вдъхновяващи.",
+tal:"да създавате нещо, което остава (проект, метод, произведение), и да го покажете на хората.",
+bal:"Показвате работата си и хората се вдъхновяват от нея.",
+sh:"Криете таланта си, сравнявате се с другите и чакате всичко да е съвършено, преди да се покажете.",
+voice:"Още не е достатъчно добро, за да го покажа.",
+money:"Парите идват от публичност, творчество, обучение и собствен проект или марка.",
+love:"Нужен Ви е партньор, който Ви вдъхновява и се гордее с Вас.",
+karma:"Урокът е да не криете таланта си от страх от оценка и да не живеете от чуждото възхищение.",
+q:"Каква моя работа заслужава да бъде видяна?",
+st:"Публикувайте или покажете на някого нещо, което сте създали.",
+per:"Време за видимост, вдъхновение и творчество. Покажете се."},
+{n:"Луната",s:"човек на интуицията и въображението",v:"да усещате неказаното и да го превръщате в образи",
+core:"Имате богат вътрешен свят. Усещате настроения, предчувствате събития и имате силно въображение. Често знаете нещо, без да можете да го докажете.",
+face:"Изглеждате мечтателни, чувствителни и малко загадъчни.",
+tal:"да творите, да усещате скритото и да разбирате хората интуитивно.",
+bal:"Интуицията Ви води вярно, а въображението Ви създава красиви неща.",
+sh:"Страховете растат в главата Ви, тревожите се за неща, които още не са станали, и не вярвате никому.",
+voice:"Ами ако се случи най-лошото?",
+money:"Парите идват от изкуство, психология, реклама и работа с образи.",
+love:"Нужни са Ви сигурност и доверие. Подозренията и недоизказаното разрушават връзката.",
+karma:"Урокът е да преминете през страховете си, вместо да бягате от тях, и да различавате интуицията от тревогата.",
+q:"От какво се страхувам и има ли факти зад този страх?",
+st:"Запишете най-голямата си тревога и до нея три факта, които я потвърждават или опровергават.",
+per:"Време за несигурност и интуиция. Не вземайте решения от страх, проверявайте фактите."},
+{n:"Слънцето",s:"човек на радостта и топлината",v:"да носите светлина и да сплотявате хората",
+core:"Вие светите. Носите радост, оптимизъм и топлина и хората се събират около Вас. Имате лидерска енергия, която не натиска, а привлича.",
+face:"Изглеждате лъчезарни, открити и уверени.",
+tal:"да водите с личен пример, да вдъхвате увереност и да създавате общност.",
+bal:"Правите неща, които Ви радват, и успехът идва естествено.",
+sh:"Изгаряте от работа заради признанието или се криете в сянка, защото не вярвате, че заслужавате.",
+voice:"Ще се радвам, когато свърша всичко.",
+money:"Парите идват от лидерство, обучение, работа с деца, публични роли и всичко, което носи радост.",
+love:"Нужна Ви е открита и топла връзка, в която има радост и общи планове.",
+karma:"Урокът е да се радвате без повод и да не търсите стойността си само в признанието на другите.",
+q:"Кога за последно се радвах без причина?",
+st:"Планирайте едно удоволствие и го направете без чувство за вина.",
+per:"Време за успех, радост и видимост. Подходящо за празници, деца и нови проекти."},
+{n:"Съд",s:"човек на рода и пробуждането",v:"да обединявате хора около обща кауза",
+core:"Силно сте свързани с рода и семейството си. Носите неговата сила, а понякога и неговите тежести. Имате способността да се преродите и да започнете наново на ново ниво.",
+face:"Изглеждате сериозни, мъдри и семейни.",
+tal:"да обединявате хора, да пазите традициите и да вдъхвате живот на стари неща.",
+bal:"Опирате се на корените си, без да позволявате те да Ви ограничават.",
+sh:"Носите стари семейни обиди, съдите себе си и другите и живеете по чужди правила.",
+voice:"В нашето семейство така се прави.",
+money:"Парите идват от семеен бизнес, големи системи, история, наследство и обучение.",
+love:"Семейството е важно за Вас. Нужен Ви е партньор, с когото да изградите нещо трайно.",
+karma:"Урокът е за рода: да вземете силата му и да оставите това, което не е Ваше да носите. Да простите на родителите си.",
+q:"Кое семейно правило следвам по навик, а не по избор?",
+st:"Обадете се на човек от семейството, с когото отдавна не сте говорили.",
+per:"Време за семейни въпроси, преосмисляне и нов старт на ново ниво."},
+{n:"Светът",s:"човек на широкия поглед и свободата",v:"да виждате голямата картина и да свързвате различни светове",
+core:"Мислите мащабно. Нужни са Ви простор, нови хора и нови места. Умеете да свързвате различни култури, идеи и хора в общо цяло.",
+face:"Изглеждате отворени, дипломатични и свободни.",
+tal:"да работите с хора от различни среди, да пътувате и да довеждате големи цикли до край.",
+bal:"Разширявате света си и завършвате започнатото.",
+sh:"Чувствате се в капан, бягате от отговорност или не знаете къде принадлежите.",
+voice:"Тук ми е тясно.",
+money:"Парите идват от международна работа, езици, туризъм, дипломация и големи проекти.",
+love:"Нужна Ви е свобода във връзката и партньор, с когото да откривате света.",
+karma:"Урокът е да намерите своето място и да не бягате от отговорност в името на свободата.",
+q:"Къде ми е тясно и какво мога да направя по въпроса?",
+st:"Направете нещо ново: място, хора или тема, които не познавате.",
+per:"Време за завършване на цикли, пътувания и излизане на по-голямо ниво."},
+{n:"Глупакът",s:"човек на свободата и лекотата",v:"да започвате на чисто без страх",
+core:"Вие сте свободен дух. Носите лекота, хумор и любопитство и умеете да се радвате като дете. Не се страхувате да започнете отначало.",
+face:"Изглеждате леки, забавни и непредсказуеми.",
+tal:"да внасяте свежест, да опитвате нови неща и да гледате на света без предразсъдъци.",
+bal:"Живеете леко и свободно, но отговорно.",
+sh:"Бягате от отговорност, не довършвате и се страхувате от всяко обвързване.",
+voice:"Нека някой друг се оправя.",
+money:"Парите идват от творчество, игри, работа с деца, пътувания и нестандартни занимания.",
+love:"Нужни са Ви лекота и свобода. Ако връзката стане клетка, бягате.",
+karma:"Урокът е да бъдете свободни, но отговорни, и да не бягате от трудностите в поредното ново начало.",
+q:"Кое нещо в живота ми има нужда от повече лекота?",
+st:"Направете нещо спонтанно, което не сте планирали.",
+per:"Време за нови начала, свобода и експерименти. Не планирайте всичко."}
+];
+
+const AX=[null,
+{k:["инициатива","слово","начало","умения"],
+plus:["Започвате лесно и заразявате другите с идеите си.","Говорите убедително и намирате точните думи.","Учите нови умения бързо и ги прилагате веднага.","Виждате възможност там, където другите виждат проблем.","Имате енергия за много неща едновременно."],
+minus:[["Започвате много неща и не ги довършвате.","Работете по правилото „едно отворено начинание наведнъж“. Новото чака, докато старото не е готово."],["Обещавате повече, отколкото можете да изпълните.","Преди да кажете „да“, кажете „ще проверя и ще отговоря утре“."],["Използвате думите, за да убедите на всяка цена.","Питайте се дали бихте казали същото, ако другият знаеше всичко, което знаете Вие."],["Отегчавате се бързо и сменяте посоката.","Сложете си краен срок и малка награда за довършването."],["Започвате без подготовка, разчитайки на импровизация.","Отделете десет минути за план, преди да започнете. Те спестяват часове поправки."]],
+sph:"търговия, продажби, реклама, медии, предприемачество, ИТ, преговори"},
+{k:["интуиция","тайна","мъдрост","тишина"],
+plus:["Усещате хората и ситуациите отвъд думите.","Пазите тайни и хората Ви се доверяват.","Учите в дълбочина и помните подробностите.","Спокойни сте в кризи.","Давате съвети, които попадат точно."],
+minus:[["Затваряте се и не казвате какво чувствате.","Изговаряйте поне едно свое усещане на ден пред човек, на когото вярвате."],["Подозирате и предполагате най-лошото.","Проверете подозрението с директен въпрос, вместо да го носите наум."],["Чакате нещата да се случат сами.","Превърнете всяко предчувствие в една конкретна стъпка."],["Мълчите нарочно и използвате знанието като власт.","Споделяйте навреме информацията, от която другите имат нужда."],["Мислите Ви не спират и Ви държат будни.","Записвайте мислите вечер на хартия, за да ги извадите от главата си."]],
+sph:"психология, консултиране, изследвания, анализ, медицина, архиви, езотерика"},
+{k:["изобилие","грижа","красота","творчество"],
+plus:["Създавате уют навсякъде.","Имате вкус и чувство за красота.","Грижите се топло и щедро.","Идеите Ви растат и дават плод.","Умеете да се наслаждавате на живота."],
+minus:[["Грижата Ви задушава и контролира.","Питайте „имаш ли нужда от помощ?“, преди да помогнете."],["Харчите, за да се утешите.","Изчаквайте 48 часа преди всяка покупка, която не е нужна."],["Отлагате и се оставяте на мързела.","Свържете задачата с удоволствие: музика, красиво място, малка награда."],["Ревнувате и се страхувате от загуба.","Говорете за страха си открито, вместо да контролирате другия."],["Пренебрегвате себе си и тялото си.","Включете в седмицата си час, който е само за грижа за Вас."]],
+sph:"дизайн, мода, козметика, кулинария, детски грижи, градинарство, изкуство, хотелиерство"},
+{k:["структура","власт","отговорност","ред"],
+plus:["Организирате хаоса в работеща система.","Поемате отговорност и я носите докрай.","Хората се чувстват сигурни с Вас.","Вземате решения бързо и уверено.","Изграждате неща, които издържат."],
+minus:[["Контролирате всичко и не делегирате.","Дайте една задача на друг човек и приемете неговия начин на изпълнение."],["Носите всичко сами до изтощение.","Направете списък „това не е мое“ и върнете задачите на собствениците им."],["Командвате вместо да водите.","Преди да наредите, попитайте за мнение. Решението остава Ваше."],["Влизате в борба за власт с други силни хора.","Разделете зоните на отговорност ясно и писмено."],["Страхувате се да покажете слабост.","Кажете веднъж „не знам“ или „имам нужда от помощ“ и вижте, че нищо не рухва."]],
+sph:"управление, собствен бизнес, администрация, строителство, недвижими имоти, политика"},
+{k:["знание","традиция","учител","ценности"],
+plus:["Учите бързо и натрупвате експертиза.","Обяснявате сложното разбираемо.","Имате ясни ценности и принципи.","Хората Ви търсят за съвет.","Създавате правила и методи, по които другите работят."],
+minus:[["Поучавате и морализаторствате.","Задавайте въпроси вместо готови отговори и оставете другия сам да стигне до извода."],["Държите се за „единствено правилния“ начин.","Веднъж месечно опитайте нещо по начин, с който не сте съгласни."],["Дразните се от некомпетентността.","Спомнете си, че и Вие сте започнали отнякъде, и обяснете още веднъж."],["Следвате сляпо чужди авторитети и правила.","Питайте „защо е така?“ и проверявайте сами."],["Поставяте прекалено високи стандарти.","Определете какво е „достатъчно добро“, преди да започнете."]],
+sph:"обучение, консултиране, право, наука, методология, менторство, институции"},
+{k:["любов","избор","хармония","красота"],
+plus:["Свързвате хората и създавате хармония.","Обаятелни сте и лесно печелите доверие.","Имате усет за естетика.","Умеете да преговаряте и да намирате компромис.","Обичате искрено."],
+minus:[["Колебаете се и отлагате изборите.","Дайте си срок за решение и изберете, когато срокът изтече."],["Угаждате на всички.","Казвайте „не“ веднъж седмично, учтиво и без дълги обяснения."],["Зависите от чуждото одобрение.","Преди решение питайте първо „какво искам аз?“ и чак после „какво ще кажат другите?“."],["Идеализирате и после се разочаровате.","Опознайте човека в обикновени ситуации, преди да решите какъв е."],["Оставате в отношения от чувство за дълг.","Запишете честно какво Ви дава и какво Ви взема тази връзка."]],
+sph:"работа с хора, човешки ресурси, дипломация, дизайн, красота, събития"},
+{k:["движение","цел","воля","победа"],
+plus:["Целеустремени сте и стигате до резултат.","Имате енергия и издръжливост за дълъг път.","Водите хора и процеси.","Обичате пътуванията и промяната.","Не се отказвате при препятствия."],
+minus:[["Заети сте заради самата заетост, без посока.","Започвайте всяка седмица с въпроса „коя цел ме приближава?“."],["Ставате раздразнителни при застой.","Пренасочете напрежението във физическо движение: разходка, спорт."],["Сравнявате се и се надпреварвате с другите.","Сравнявайте се само със себе си от преди година."],["Бягате в работата от чувствата си.","Спирайте за пет минути на ден и назовавайте какво чувствате."],["Налагате своя път на другите.","Обяснете целта и оставете хората сами да изберат как да стигнат до нея."]],
+sph:"проекти, логистика, транспорт, продажби, спорт, туризъм, управление на промяната"},
+{k:["закон","баланс","честност","ред"],
+plus:["Анализирате обективно.","Решенията Ви издържат проверка.","Честни сте и хората Ви вярват.","Подреждате документи, процеси и хаос.","Поемате отговорност за последствията."],
+minus:[["Ставате строг съдия на себе си и другите.","Отнасяйте се към себе си така, както бихте се отнесли към добър приятел в същата ситуация."],["Трупате обида от несправедливостта.","Казвайте веднага какво Ви е неприятно, вместо да събирате."],["Вършите повече, отколкото Ви се полага.","Договаряйте предварително какво получавате в замяна."],["Мислите черно-бяло.","Потърсете поне три гледни точки, преди да отсъдите."],["Борите се с вятърни мелници.","Питайте се „мога ли да променя това?“. Ако не, приемете го и пренасочете силите си."]],
+sph:"право, финанси, одит, регулация, анализ, контрол на качеството, администрация"},
+{k:["мъдрост","дълбочина","уединение","експертиза"],
+plus:["Задълбочавате се и ставате истински експерт.","Мислите самостоятелно.","Не се влияете от тълпата.","Давате мъдри и точни съвети.","Добре Ви е и сами със себе си."],
+minus:[["Изолирате се и оставате сами.","Планирайте поне една среща седмично с човек, който Ви зарежда."],["Не споделяте знанието си.","Пишете, преподавайте или бъдете ментор, дори в малък мащаб."],["Мислите мрачно и песимистично.","Записвайте всеки ден по едно нещо, което е минало добре."],["Отказвате помощ.","Приемете следващата предложена помощ, дори да можете сами."],["Не показвате работата си, докато не е съвършена.","Покажете я, когато е готова на 80%."]],
+sph:"наука, изследвания, писане, ИТ, философия, експертни роли, наставничество"},
+{k:["шанс","цикли","поток","промяна"],
+plus:["Усещате правилния момент.","Приспособявате се бързо.","Имате късмет чрез хора и срещи.","Лесно общувате.","Не се плашите от промяната."],
+minus:[["Чакате късмета, вместо да действате.","Всяка седмица правете по една крачка към целта, без да чакате знак."],["Живеете на вълни: ту много, ту нищо.","Създайте резерв от пари, време и сили за спадовете."],["Пропускате шанса от страх от промяна.","Казвайте „да“ на малки нови неща, за да тренирате смелостта."],["Повтаряте едни и същи цикли.","Запишете какво се случва всеки път и какво бихте направили различно."],["Разпилявате се между много възможности.","Изберете една възможност и я следвайте поне три месеца."]],
+sph:"търговия, туризъм, финанси, инвестиции, проекти, медии"},
+{k:["воля","енергия","издръжливост","смелост"],
+plus:["Работите много и издържате дълго.","Спокойни сте под натиск.","Укротявате конфликти.","Смели сте.","Доверявате се на тялото и инстинкта си."],
+minus:[["Претоварвате се с мисълта „трябва да издържа“.","Планирайте почивката като задача със същата важност."],["Потискате емоциите, докато не избухнете.","Казвайте раздразнението навреме и на малки порции."],["Упорствате дори когато няма смисъл.","Питайте се „какво губя, ако отстъпя тук?“."],["Използвате силата, за да надделеете.","Насочете силата си към защита на по-слабите."],["Пренебрегвате сигналите на тялото.","Приемайте умората като информация, а не като слабост."]],
+sph:"спорт, кризисно управление, медицина, работа с животни, физически труд, охрана"},
+{k:["друг поглед","служене","пауза","творчество"],
+plus:["Мислите нестандартно.","Емпатични сте.","Помагате безкористно.","Творчески сте.","Виждате смисъл там, където другите виждат загуба."],
+minus:[["Жертвате се и чакате благодарност.","Помагайте толкова, колкото бихте дали, без да очаквате нищо."],["Чувствате се в безизходица.","Направете една малка промяна в ежедневието, за да раздвижите ситуацията."],["Отлагате и бездействате.","Разделете голямата задача на стъпки по 15 минути."],["Бягате в илюзии и зависимости.","Заменете бягството с творчество: рисуване, писане, музика."],["Заемате позицията на жертва.","Питайте „какво мога да направя аз?“ вместо „защо ми се случва това?“."]],
+sph:"изкуство, социални дейности, психология, медицина, доброволчество, нестандартни професии"},
+{k:["край","обновление","смелост","промяна"],
+plus:["Затваряте етапи смело.","Минавате през кризи и излизате по-силни.","Помагате на другите да се променят.","Решителни сте.","Не се страхувате от истината."],
+minus:[["Вкопчвате се в изчерпаното.","Питайте се: „Ако започвах днес, това щеше ли да е мой избор?“."],["Вземате резки и разрушителни решения.","Дайте си 72 часа, преди да прекратите нещо важно."],["Страхувате се от промяната и от края.","Започнете с малки промени, за да свикнете с усещането."],["Натежават Ви мрачни мисли.","Излизайте всеки ден навън и се движете; природата помага."],["Унищожавате и доброто заедно с лошото.","Преди да затворите нещо, запишете какво от него искате да запазите."]],
+sph:"кризисно управление, реформи, медицина, психотерапия, преструктуриране"},
+{k:["баланс","мярка","спокойствие","изцеление"],
+plus:["Внасяте спокойствие.","Намирате средата.","Съчетавате различни неща.","Добри посредници сте.","Имате усет за мярка и стил."],
+minus:[["Живеете в крайности: всичко или нищо.","Правете нещата на половин доза, но редовно."],["Пренебрегвате почивката.","Сложете ясен край на работния ден."],["Емоциите Ви се люшкат.","Следете какво ги предизвиква и пазете ритъма на сън и хранене."],["Нетърпеливи сте.","Помнете, че бавният процес също е процес."],["Избягвате конфликти на всяка цена.","Кажете спокойно несъгласието си. Мир без истина не е мир."]],
+sph:"рехабилитация, психология, медиация, изкуство, готварство, дизайн, грижа"},
+{k:["влияние","пари","желание","харизма"],
+plus:["Харизматични сте.","Убеждавате и продавате.","Имате усет за пари.","Смеете да искате.","Разбирате какво движи хората."],
+minus:[["Попадате в зависимости: навици, хора, работа.","Изберете една зависимост и я наблюдавайте седмица, без да се съдите."],["Манипулирате.","Казвайте директно какво искате, вместо да нагласяте обстоятелствата."],["Контролирате и ревнувате.","Дайте свобода на другия и вижте, че се връща по свое желание."],["Изкушавате се от бърза печалба.","Проверявайте всяка сделка с въпроса: „Би ли издържала тя на публична проверка?“."],["Работите прекалено заради парите.","Определете сума, която е „достатъчно“, и пазете времето си над нея."]],
+sph:"бизнес, продажби, маркетинг, финанси, шоубизнес, преговори"},
+{k:["срив","изграждане","освобождаване","смирение"],
+plus:["Изграждате големи неща.","Възстановявате се след удар.","Виждате кое е прогнило.","Смели сте да промените системи.","Ставате по-мъдри след трудност."],
+minus:[["Гордостта не Ви позволява да се промените.","Признайте една грешка открито и усетете облекчението."],["Вкопчвате се в старото, докато не рухне.","Правете ревизия на живота си всеки сезон: кое вече не работи?"],["Трупате напрежение, което избухва.","Освобождавайте го редовно: спорт, разговор, почивка."],["Строите върху чужди очаквания.","Питайте се: „Това мое ли е, или чуждо?“."],["Страхувате се да не загубите построеното.","Спомнете си кога сте строили наново и сте се справили."]],
+sph:"строителство, архитектура, проекти, реформи, ИТ системи, управление на кризи"},
+{k:["вдъхновение","талант","надежда","видимост"],
+plus:["Талантливи и креативни сте.","Вдъхновявате другите.","Имате естетика.","Вярвате в бъдещето.","Създавате неща, които остават."],
+minus:[["Криете таланта си.","Показвайте работата си поне на един човек седмично."],["Чакате съвършенството.","Публикувайте, когато е „достатъчно добро“."],["Сравнявате се и завиждате.","Превърнете завистта в информация: какво точно искам и аз?"],["Живеете от чуждото възхищение.","Отбелязвайте сами успехите си, преди да чуете похвала."],["Дистанцирате се от хората.","Помагайте на другите да се покажат."]],
+sph:"изкуство, дизайн, медии, обучение, собствена марка, публични изяви"},
+{k:["интуиция","въображение","страх","подсъзнание"],
+plus:["Имате силна интуиция.","Имате богато въображение.","Творчески сте.","Усещате неказаното.","Разбирате хората емоционално."],
+minus:[["Страховете и тревогата Ви управляват.","Запишете тревогата и до нея фактите „за“ и „против“."],["Заблуждавате себе си.","Проверявайте важните неща с човек, на когото вярвате."],["Не вярвате на хората и подозирате.","Задавайте директни въпроси, вместо да тълкувате."],["Вземате решения от тревога.","Не решавайте нищо важно вечер или когато сте разстроени."],["Бягате от реалността в мечти.","Свържете мечтата с една реална крачка още днес."]],
+sph:"изкуство, кино, фотография, психология, реклама, работа с образи"},
+{k:["радост","успех","топлина","лидерство"],
+plus:["Носите радост и оптимизъм.","Сплотявате хората.","Водите с личен пример.","Щедри сте.","Успехът идва при Вас естествено."],
+minus:[["Изгаряте заради признанието.","Питайте се: „Правя ли това за себе си или за аплодисментите?“."],["Ставате горди и високомерни.","Признавайте приноса на другите публично."],["Криете се в сянка и не вярвате, че заслужавате.","Приемайте комплимента само с „благодаря“, без да го омаловажавате."],["Поставяте себе си в центъра.","Питайте другите как са и слушайте до края."],["Отлагате радостта за после.","Правете всеки ден по едно малко удоволствие."]],
+sph:"лидерство, обучение, работа с деца, събития, публични роли, спорт"},
+{k:["род","семейство","пробуждане","ново ниво"],
+plus:["Имате силна връзка с корените.","Обединявате хората.","Разбирате семейните връзки.","Способни сте на нов старт.","Пазите традициите."],
+minus:[["Носите стари семейни обиди.","Напишете писмо на човека, на когото сте обидени, без да го изпращате."],["Осъждате себе си и другите.","Търсете причината зад постъпката, а не само постъпката."],["Живеете по чужди семейни правила.","Изберете съзнателно кои семейни правила запазвате."],["Носите тежко чувство за дълг.","Различавайте любовта от задължението."],["Отказвате се от своя път заради семейството.","Правете малки неща само за себе си, без вина."]],
+sph:"семеен бизнес, история, генеалогия, социална работа, образование, големи системи"},
+{k:["свобода","мащаб","завършване","пътувания"],
+plus:["Мислите мащабно.","Дипломатични сте.","Обичате нови хора и места.","Завършвате големи цикли.","Отворени сте към различното."],
+minus:[["Чувствате се в теснота и сте неудовлетворени.","Разширявайте света си на малки стъпки: нова тема, нов маршрут."],["Бягате от отговорност.","Довършете едно нещо, преди да тръгнете към следващото."],["Не знаете къде принадлежите.","Създайте си свой ритуал на дом: място, хора, навик."],["Затваряте се от страх пред света.","Ходете поне веднъж в годината някъде, където не сте били."],["Ставате повърхностни от многото неща.","Изберете една тема и я изучете в дълбочина."]],
+sph:"международна работа, туризъм, езици, дипломация, логистика, глобални проекти"},
+{k:["свобода","лекота","спонтанност","ново начало"],
+plus:["Имате лекота и чувство за хумор.","Не се страхувате от новото.","Нямате предразсъдъци.","Любопитни сте като дете.","Започвате отначало без страх."],
+minus:[["Държите се безотговорно.","Поемете едно малко задължение и го спазете."],["Действате, без да мислите за последствията.","Преди решение си представете как ще изглежда то след месец."],["Страхувате се от обвързване.","Пробвайте обвързване за определен срок."],["Живеете в хаос и разпиляност.","Въведете едно правило за ред и го спазвайте."],["Бягате в ново начало при всяка трудност.","Останете в трудността още един ден, преди да тръгнете."]],
+sph:"творчество, игри, работа с деца, туризъм, стартъпи, нестандартни занимания"}
+];
+const SYM=[null,
+'<path d="M10 24c0-5 6-5 14 0s14 5 14 0-6-5-14 0-14 5-14 0Z"/><path d="M24 6v8M24 34v8"/>',
+'<path d="M12 10v28M36 10v28"/><path d="M27 16a8 8 0 1 0 0 16a10 10 0 0 1 0-16Z"/>',
+'<circle cx="24" cy="18" r="9"/><path d="M24 27v13M18 34h12"/>',
+'<path d="M12 38V20h24v18Z"/><path d="M12 20l4-8 8 6 8-6 4 8"/>',
+'<circle cx="24" cy="13" r="6"/><path d="M24 19v21M24 30h6M24 36h5"/>',
+'<circle cx="19" cy="24" r="9"/><circle cx="29" cy="24" r="9"/>',
+'<path d="M8 22h26M28 16l8 6-8 6"/><circle cx="14" cy="34" r="4"/><circle cx="30" cy="34" r="4"/>',
+'<path d="M24 8v30M16 40h16M10 15h28"/><path d="M10 15l-5 10h10ZM38 15l-5 10h10Z"/>',
+'<path d="M18 16h12l3 6v12H15V22Z"/><path d="M24 22c-3 4 0 6 0 8 0-2 3-4 0-8Z"/><path d="M24 8v8"/>',
+'<circle cx="24" cy="24" r="14"/><circle cx="24" cy="24" r="3"/><path d="M24 10v28M10 24h28M14 14l20 20M34 14 14 34"/>',
+'<path d="M12 12c0-4 5-4 12 0s12 4 12 0-5-4-12 0-12 4-12 0Z"/><circle cx="24" cy="31" r="9"/>',
+'<path d="M14 10h20M24 10v8"/><path d="M14 18h20L24 38Z"/>',
+'<path d="M8 38h32M24 38V22"/><path d="M24 27c-8 0-10-7-10-10 6 0 10 3 10 10ZM24 22c0-8 6-12 10-12 0 6-3 12-10 12Z"/>',
+'<path d="M8 30h12l-2 8h-8ZM28 12h12l-2 8h-8Z"/><path d="M18 30c0-9 6-9 12-10"/>',
+'<rect x="7" y="18" width="19" height="12" rx="6"/><rect x="22" y="18" width="19" height="12" rx="6"/>',
+'<path d="M16 40V18h16v22M14 18h20l-2-6H16Z"/><path d="M31 3l-6 8h5l-5 8"/>',
+'<path d="M24 6l3 14 14 4-14 4-3 14-3-14-14-4 14-4Z"/>',
+'<path d="M30 8a16 16 0 1 0 0 32a13 13 0 0 1 0-32Z"/>',
+'<circle cx="24" cy="24" r="8"/><path d="M24 6v6M24 36v6M6 24h6M36 24h6M11 11l4 4M33 33l4 4M37 11l-4 4M11 37l4-4"/>',
+'<path d="M24 26V8M24 15l-7-6M24 15l7-6M24 20l-9-3M24 20l9-3"/><path d="M8 26h32M24 26v14M24 31l-8 8M24 31l8 8"/>',
+'<circle cx="24" cy="24" r="15"/><ellipse cx="24" cy="24" rx="6" ry="15"/><path d="M9 24h30"/>',
+'<path d="M6 36c6 0 8-10 14-10s6 6 12 6 8-8 10-12"/><circle cx="40" cy="14" r="3"/>'
+];
+
+const RN=["","I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII","XIII","XIV","XV","XVI","XVII","XVIII","XIX","XX","XXI","XXII"];
+const grp=v=>v<=7?1:v<=14?2:v<=21?3:4;
+const r=n=>{while(n>22)n=String(n).split("").reduce((s,c)=>s+ +c,0);return n};
+const ds=n=>String(n).split("").reduce((s,c)=>s+ +c,0);
+function calc(iso){
+  const [y,m,d]=iso.split("-").map(Number);
+  const A=r(d),B=r(m),C=r(ds(y)),D=r(A+B+C),X=r(A+B+C+D);
+  const F=r(A+B),G=r(B+C),H=r(C+D),I=r(D+A),J=r(F+G+H+I);
+  const chain=v=>{const two=r(v+X);return {one:r(v+two),two}};
+  const ch={A:chain(A),B:chain(B),C:chain(C),D:chain(D)};
+  const cr={};for(const [k,v] of Object.entries({F,G,H,I})){const two=r(v+J);cr[k]={two,one:r(v+two)}}
+  const cross=r(ch.C.two+ch.D.two),money=r(ch.C.two+cross),love=r(ch.D.two+cross);
+  const personal=r(r(B+D)+r(A+C)),social=r(r(F+H)+r(G+I)),spirit=r(personal+social);
+  const main=[A,F,B,G,C,H,D,I,A],ring=[];
+  for(let k=0;k<8;k++){const a=main[k],b=main[k+1],mid=r(a+b),q1=r(a+mid),q3=r(mid+b);ring.push(a,r(a+q1),q1,r(q1+mid),mid,r(mid+q3),q3,r(q3+b))}
+  return {y,m,d,A,B,C,D,X,F,G,H,I,ch,cr,cross,money,love,personal,social,spirit,ring};
+}
+const yearE=(M,yr)=>r(r(M.d)+r(M.m)+ds(yr));
+const YR=365.2425*864e5;
+const ageNow=iso=>(Date.now()-new Date(iso+"T00:00:00"))/YR;
+const atAge=(iso,a)=>new Date(new Date(iso+"T00:00:00").getTime()+a*YR);
+const MON=["яну","фев","мар","апр","май","юни","юли","авг","сеп","окт","ное","дек"];
+const fmt=dt=>MON[dt.getMonth()]+" "+dt.getFullYear();
+const ag=a=>String(+a.toFixed(2)).replace(".",",");
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const cap=s=>s.charAt(0).toUpperCase()+s.slice(1);
+const sym=v=>`<svg viewBox="0 0 48 48" aria-hidden="true">${SYM[v]}</svg>`;
+const tile=v=>`<div class="tile g${grp(v)}" aria-hidden="true">${sym(v)}<span class="rn">${RN[v]}</span></div>`;
+
+function compass(age){
+  const c=70,o=[`<circle cx="70" cy="70" r="62" fill="none" stroke="currentColor" stroke-opacity=".35"/><circle cx="70" cy="70" r="54" fill="none" stroke="currentColor" stroke-opacity=".15"/>`];
+  for(let a=0;a<80;a+=2.5){const th=(180+a*4.5)*Math.PI/180,R1=a%10?58:54;o.push(`<line x1="${(c+R1*Math.cos(th)).toFixed(1)}" y1="${(c+R1*Math.sin(th)).toFixed(1)}" x2="${(c+62*Math.cos(th)).toFixed(1)}" y2="${(c+62*Math.sin(th)).toFixed(1)}" stroke="currentColor" stroke-opacity="${a%10?.4:.8}"/>`)}
+  [[0,24,70],[20,70,24],[40,116,70],[60,70,118]].forEach(([t,x,y])=>o.push(`<text x="${x}" y="${y}" text-anchor="middle" dominant-baseline="central" font-size="10" fill="currentColor" fill-opacity=".8">${t}</text>`));
+  const rot=180+age*4.5;
+  o.push(`<g class="needle" style="--rot:${rot.toFixed(1)}deg"><path d="M70 64 L122 70 L70 76 Z" fill="var(--accent)"/><path d="M70 66 L38 70 L70 74 Z" fill="currentColor" fill-opacity=".5"/></g><circle cx="70" cy="70" r="5" fill="currentColor"/>`);
+  return `<div class="compass"><svg viewBox="0 0 140 140" role="img" aria-label="Компас на възрастта: ${ag(age)} г.">${o.join("")}</svg></div>`;
+}
+
+function svg(M,curIdx){
+  const c=320,o=[];
+  const circ=(x,y,rad,v,cls)=>o.push(`<g class="pt" data-arc="${v}" tabindex="0" role="button" aria-label="${E[v].n}"><circle cx="${x}" cy="${y}" r="${rad}" class="${cls}"/><text x="${x}" y="${y}" text-anchor="middle" dominant-baseline="central" class="${cls}-t" font-size="${rad>20?17:13}">${v}</text></g>`);
+  o.push(`<circle cx="${c}" cy="${c}" r="270" fill="none" stroke="var(--line)" stroke-width="1.5"/>`);
+  o.push(`<path d="M95 320L320 95L545 320L320 545Z M160 160H480V480H160Z" fill="none" stroke="var(--navy)" stroke-opacity=".55" stroke-width="1.2"/>`);
+  o.push(`<path d="M95 320H545M320 95V545M160 160L480 480M480 160L160 480" fill="none" stroke="var(--line)" stroke-width="1"/>`);
+  o.push(`<path d="M470 320L320 470" fill="none" stroke="var(--accent)" stroke-dasharray="4 4"/>`);
+  M.ring.forEach((v,i)=>{
+    const t=i*1.25,th=(180+t*4.5)*Math.PI/180,x=c+292*Math.cos(th),y=c+292*Math.sin(th),dx=c+270*Math.cos(th),dy=c+270*Math.sin(th);
+    o.push(`<circle cx="${dx.toFixed(1)}" cy="${dy.toFixed(1)}" r="${i%4==0?3:1.5}" fill="var(--muted)"/>`);
+    if(i%8==0){o.push(`<text x="${x.toFixed(0)}" y="${y.toFixed(0)}" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" fill="var(--navy)">${t|0} г.</text>`);return}
+    if(i===curIdx)o.push(`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="13" fill="var(--accent)"/><text x="${x.toFixed(1)}" y="${y.toFixed(1)}" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#1F2D3A">${v}</text>`);
+    else o.push(`<text x="${x.toFixed(1)}" y="${y.toFixed(1)}" text-anchor="middle" dominant-baseline="central" font-size="11" fill="var(--muted)">${v}</text>`);
+  });
+  [[160,160,1,1,"F"],[480,160,-1,1,"G"],[480,480,-1,-1,"H"],[160,480,1,-1,"I"]].forEach(([x,y,dx,dy,k])=>{circ(x+dx*54,y+dy*54,12,M.cr[k].two,"s");circ(x+dx*30,y+dy*30,14,M.cr[k].one,"s");circ(x,y,20,M[k],"s")});
+  circ(150,320,14,M.ch.A.one,"m");circ(222,320,14,M.ch.A.two,"m");circ(95,320,25,M.A,"main");
+  circ(320,150,14,M.ch.B.one,"m");circ(320,222,14,M.ch.B.two,"m");circ(320,95,25,M.B,"main");
+  circ(490,320,14,M.ch.C.one,"g");circ(418,320,14,M.ch.C.two,"g");circ(545,320,25,M.C,"main2");
+  circ(320,490,14,M.ch.D.one,"k");circ(320,418,14,M.ch.D.two,"k");circ(320,545,25,M.D,"main2");
+  circ(395,395,12,M.cross,"s");circ(432,358,13,M.money,"g");circ(358,432,13,M.love,"g");
+  o.push(`<text x="452" y="384" font-size="11" fill="var(--accent)">пари</text><text x="370" y="462" font-size="11" fill="var(--accent)">любов</text><text x="352" y="560" font-size="11" fill="var(--muted)">карма</text>`);
+  circ(320,320,30,M.X,"main");
+  return `<svg viewBox="0 0 640 640" role="img" aria-label="Схема на матрицата"><style>
+  .s{fill:var(--surface);stroke:var(--muted)}.s-t{fill:var(--fg)}
+  .m{fill:var(--soft);stroke:var(--navy)}.m-t{fill:var(--navy);font-weight:600}
+  .g{fill:var(--soft);stroke:var(--accent)}.g-t{fill:var(--fg);font-weight:600}
+  .k{fill:var(--surface);stroke:var(--accent);stroke-width:2}.k-t{fill:var(--fg);font-weight:700}
+  .main{fill:var(--navy)}.main-t{fill:var(--bg);font-weight:700}
+  .main2{fill:var(--accent)}.main2-t{fill:#1F2D3A;font-weight:700}</style>${o.join("")}</svg>`;
+}
+const fullBtn=v=>`<button class="link" data-arc="${v}">Целият аркан: плюсове, минуси и как да ги обърнете →</button>`;
+function card(zone,v,field,opts={}){
+  const x=E[v];
+  return `<article class="card"><div class="head">${tile(v)}<div><div class="zone">${zone}</div><div class="ename">${x.n}</div></div></div>
+  <p>${opts.text||x[field]}</p>
+  <details><summary>Прочети повече</summary><div class="more">
+   <div><b>В баланс</b>${x.bal}</div><div><b>Когато се обърне срещу Вас</b>${x.sh}</div>
+   <div><b>Вътрешният глас на капана</b><span class="v">„${x.voice}“</span></div>
+   <div><b>Въпрос за размисъл</b>${x.q}</div><div><b>Стъпка за седмицата</b>${x.st}</div>${fullBtn(v)}</div></details></article>`;
+}
+
+let ME=null,CUR=0,OPEN=0;
+function places(v){
+  if(!ME)return [];const M=ME.M,L=[];
+  const add=(c,t)=>{if(c===v)L.push(t)};
+  add(M.X,"център");add(M.A,"как Ви виждат");add(M.B,"таланти");add(M.C,"материална карма");add(M.D,"кармичен урок");
+  add(M.ch.D.one,"кармична опашка");add(M.ch.D.two,"ключ на кармата");add(M.money,"пари");add(M.love,"любов");
+  add(M.personal,"лично предназначение");add(M.social,"социално предназначение");add(M.spirit,"духовно предназначение");
+  add(M.F,"бащин род · дар");add(M.H,"бащин род · задача");add(M.G,"майчин род · дар");add(M.I,"майчин род · задача");
+  add(CUR,"текущ период");return [...new Set(L)];
+}
+function render(name,iso){
+  const M=calc(iso),age=ageNow(iso),idx=Math.floor(age/1.25),cur=M.ring[idx%64],yr=new Date().getFullYear(),ye=yearE(M,yr);
+  ME={name,iso,M};CUR=cur;if(!OPEN)OPEN=M.X;
+  const X=E[M.X],A=E[M.A],B=E[M.B],Pp=E[M.personal],So=E[M.social],Sp=E[M.spirit],D=E[M.D];
+  document.getElementById("now").innerHTML=`${compass(age)}
+   <div><div class="lbl">Периодът сега · ${ag(idx*1.25)}–${ag(idx*1.25+1.25)} г.</div><div class="big"><b>${RN[cur]}</b> ${E[cur].n}</div><p>${E[cur].per}</p></div>
+   <div><div class="lbl">Енергията на ${yr} г.</div><div class="big"><b>${RN[ye]}</b> ${E[ye].n}</div><p>${E[ye].per}</p></div>
+   <div><div class="lbl">Въпрос и стъпка за седмицата</div><div class="big">${E[cur].q}</div><p>${E[cur].st}</p></div>`;
+  const talentB=M.A===M.B?"":` А дарбата Ви е ${B.tal}`;
+  document.getElementById("v-pt").innerHTML=`
+  <div class="split">
+   <div class="letter">
+    <p class="drop">${esc(name)}, в основата Ви е ${X.s}.</p>
+    <p>${X.core}</p>
+    <p>Хората Ви виждат като ${A.s}. ${A.face}${talentB}</p>
+    <p>Личната Ви задача е да станете ${Pp.s}. В зрелостта, между 40 и 60 години, се проявявате най-силно като ${So.s}. След 60 години смисълът идва от това да бъдете ${Sp.s}.</p>
+    <div class="talent"><div class="lbl">Най-силната Ви комбинация</div><p>${cap(X.v)}${M.B!==M.X?" и "+B.v:""}.</p></div>
+   </div>
+   <div class="chart">${svg(M,idx%64)}<div class="hint">Кликнете число, за да отворите аркана му.</div></div>
+  </div>
+  <h2>Капаните, които да разпознавате</h2>
+  <div class="grid">
+   <div class="quote">„${X.voice}“<small>Гласът на центъра Ви (${X.n}), когато е извън баланс. ${X.sh}<br>${fullBtn(M.X)}</small></div>
+   ${M.D!==M.X?`<div class="quote">„${D.voice}“<small>Гласът на кармичния Ви урок (${D.n}). ${D.sh}<br>${fullBtn(M.D)}</small></div>`:""}
+  </div>`;
+  document.getElementById("v-zn").innerHTML=`
+  <p class="intro">Една енергия се проявява различно според сферата. Отворете „Прочети повече“ за баланса, капана, въпроса и стъпката, или целия аркан с всички плюсове и минуси.</p>
+  <h2>Личност</h2><div class="grid">
+   ${card("Сърцевина",M.X,"core")}${card("Как Ви виждат",M.A,"face")}${card("Таланти",M.B,"",{text:cap(E[M.B].tal)})}</div>
+  <h2>Пари и любов</h2><div class="grid">
+   ${card("Пари и реализация",M.money,"money")}${card("Любов и отношения",M.love,"love")}</div>
+  <h2>Предназначение</h2><div class="grid">
+   ${card("Лично · до около 40 г.",M.personal,"",{text:"Да станете "+E[M.personal].s+": "+E[M.personal].tal})}
+   ${card("Социално · 40–60 г.",M.social,"",{text:"Да се проявите като "+E[M.social].s+": "+E[M.social].tal})}
+   ${card("Духовно · след 60 г.",M.spirit,"",{text:"Да бъдете "+E[M.spirit].s+". "+E[M.spirit].bal})}</div>`;
+  const t1=M.ch.D.one,t2=M.ch.D.two;
+  document.getElementById("v-km").innerHTML=`
+  <blockquote class="epi"><p>„Когато попаднеш под силен дъжд, се опитваш да не се намокриш и бързо тичаш по пътя. Но тичайки под стрехите на покривите, пак се оказваш мокър. Ако обаче веднага осъзнаеш, че от дъжда не можеш да избягаш, тогава, макар да се намокриш, няма да се суетиш. Такъв подход трябва да се използва във всичко.“</p><cite>„Хагакуре“, самурайски трактат</cite></blockquote>
+  <p class="intro">Кармата в матрицата не е наказание, а урок, който се повтаря, докато не бъде усвоен. Кармичната опашка се чете в три стъпки: урокът, как се проявява, докато не е усвоен, и ключът към него.</p>
+  <h2>Кармична опашка: ${M.D} · ${t1} · ${t2}</h2>
+  <div class="steps">
+   <div class="step"><span class="k">1 · Урокът</span><div class="head">${tile(M.D)}<div class="ename">${E[M.D].n}</div></div><p>${E[M.D].karma}</p>${fullBtn(M.D)}</div>
+   <div class="step"><span class="k">2 · Как се проявява</span><div class="head">${tile(t1)}<div class="ename">${E[t1].n}</div></div><p>${E[t1].sh}</p><p class="quote" style="font-size:1rem">„${E[t1].voice}“</p>${fullBtn(t1)}</div>
+   <div class="step"><span class="k">3 · Ключът</span><div class="head">${tile(t2)}<div class="ename">${E[t2].n}</div></div><p>${E[t2].bal}</p><p><strong>Стъпка:</strong> ${E[t2].st}</p>${fullBtn(t2)}</div>
+  </div>
+  <h2>Материална карма</h2>
+  <p class="intro">Дясната точка показва отношението към парите и материалното, донесено като урок.</p>
+  <div class="grid">${card("Материален урок",M.C,"karma")}${card("Откъде идват парите",M.money,"money")}</div>
+  <h2>Родова карма</h2>
+  <p class="intro">Горните ъгли на квадрата са даровете на рода, долните са задачите, които се предават, докато някой не ги преработи.</p>
+  <div class="grid">
+   ${card("Бащин род · дар",M.F,"",{text:cap(E[M.F].tal)})}${card("Бащин род · задача",M.H,"karma")}
+   ${card("Майчин род · дар",M.G,"",{text:cap(E[M.G].tal)})}${card("Майчин род · задача",M.I,"karma")}</div>`;
+  let yh="";for(let k=-1;k<3;k++){const Y=yr+k,v=yearE(M,Y);yh+=`<div class="year${k===0?" now":""}"><span class="y">${Y}</span><div class="head">${tile(v)}<h3>${E[v].n}</h3></div><p class="note">${E[v].per}</p></div>`}
+  let th="";for(let k=-1;k<8;k++){const i=idx+k;if(i<0)continue;const v=M.ring[i%64],a0=i*1.25;
+    th+=`<div class="period${k===0?" now":""}"><span class="when">${k===0?"Сега · ":""}${fmt(atAge(iso,a0))} – ${fmt(atAge(iso,a0+1.25))} · ${ag(a0)}–${ag(a0+1.25)} г.</span><h3>${RN[v]} · ${E[v].n}</h3><p>${E[v].per}</p><p class="st">Стъпка: ${E[v].st}</p></div>`}
+  document.getElementById("v-fc").innerHTML=`
+  <p class="intro">Прогнозата има два слоя. Енергията на годината е общият фон на календарната година. Възрастовият период идва от външния кръг на матрицата и сменя темата си на около година и три месеца.</p>
+  <h2>Енергия на годината</h2><div class="years">${yh}</div>
+  <h2>Възрастови периоди</h2><div class="timeline">${th}</div>`;
+  renderLib();renderPerson();
+}
+function renderLib(){
+  let h="";for(let v=1;v<=22;v++){const mine=places(v).length>0;
+    h+=`<button class="arc" data-arc="${v}" aria-current="${v===OPEN}">${mine?'<span class="mine" title="Във Вашата матрица"></span>':""}<span class="em g${grp(v)}">${sym(v)}</span><span class="rn">${RN[v]}</span><span class="nm">${E[v].n}</span><span class="kw">${AX[v].k.join(" · ")}</span></button>`}
+  document.getElementById("lib").innerHTML=h;
+  renderDetail();
+}
+function renderDetail(){
+  const el=document.getElementById("arcDetail");if(!OPEN){el.innerHTML="";return}
+  const v=OPEN,x=E[v],a=AX[v],pl=places(v),prev=v===1?22:v-1,next=v===22?1:v+1;
+  el.innerHTML=`<article class="detail" id="det">
+   <div class="dhead g${grp(v)}"><div class="em">${sym(v)}</div><div><div class="rn">Аркан ${RN[v]} · ${v}</div><h2>${x.n}</h2><div class="kws">${a.k.map(k=>`<span>${k}</span>`).join("")}</div></div></div>
+   <div class="dbody">
+    <p class="core">${x.core}</p>
+    ${pl.length?`<div class="mine-list"><span class="lbl2">Във Вашата матрица:</span>${pl.map(p=>`<span class="c">${p}</span>`).join("")}</div>`:`<p class="note">Този аркан не е в основните точки на Вашата матрица, но може да е във възрастовите периоди или в матрицата на близък човек.</p>`}
+    <div class="pm2">
+     <div><h3>Светлата страна</h3><ul class="plus">${a.plus.map(p=>`<li>${p}</li>`).join("")}</ul></div>
+     <div><h3>Сянката и как да я обърнете</h3><div class="shadow">${a.minus.map(([m,f])=>`<div class="sh-row"><span class="m">${m}</span><span class="ar" aria-label="как да го обърнете">→</span><span class="f">${f}</span></div>`).join("")}</div></div>
+    </div>
+    <div class="quote">„${x.voice}“<small>Така звучи сянката на ${x.n} отвътре. Когато чуете тази мисъл, спрете и изберете действие от дясната колона.</small></div>
+    <div class="dfoot">
+     <div><span class="lbl2">Пари и реализация</span><p>${x.money}</p></div>
+     <div><span class="lbl2">Любов и отношения</span><p>${x.love}</p></div>
+     <div><span class="lbl2">Като кармичен урок</span><p>${x.karma}</p></div>
+     <div><span class="lbl2">Сфери, в които се разгръща</span><p>${cap(a.sph)}.</p></div>
+     <div><span class="lbl2">Въпрос за размисъл</span><p>${x.q}</p></div>
+     <div><span class="lbl2">Стъпка за седмицата</span><p>${x.st}</p></div>
+    </div>
+    <div class="nav"><button data-arc="${prev}">← ${RN[prev]} ${E[prev].n}</button><button data-arc="${next}">${RN[next]} ${E[next].n} →</button></div>
+   </div></article>`;
+}
+function openArc(v){OPEN=+v;show("ar");renderLib();const d=document.getElementById("det");if(d)d.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"})}
+let PEOPLE=[],SEL=-1;
+try{PEOPLE=JSON.parse(localStorage.getItem("mc-people")||"[]")}catch(e){PEOPLE=[]}
+const save=()=>{try{localStorage.setItem("mc-people",JSON.stringify(PEOPLE))}catch(e){}};
+function renderPeople(){
+  document.getElementById("pList").innerHTML=PEOPLE.length?PEOPLE.map((p,i)=>`<button class="chip" aria-pressed="${i===SEL}" data-i="${i}">${esc(p.name)} · ${esc(p.rel)}<span class="x" data-del="${i}" role="button" aria-label="Премахни ${esc(p.name)}">×</span></button>`).join(""):`<p class="note">Все още няма добавени хора.</p>`;
+  renderPerson();
+}
+function renderPerson(){
+  const V=document.getElementById("pView");if(!ME||SEL<0||!PEOPLE[SEL]){V.innerHTML="";return}
+  const p=PEOPLE[SEL],P=calc(p.date),M=ME.M,nm=esc(p.name);
+  const A=r(M.A+P.A),B=r(M.B+P.B),D=r(M.D+P.D),X=r(A+B+r(M.C+P.C)+D);
+  V.innerHTML=`<div class="letter"><p class="drop">${nm} е ${E[P.X].s}.</p>
+   <p>Навън ${nm} изглежда като ${E[P.A].s}. Когато е под напрежение, вътрешният глас често казва: „${E[P.X].voice}“ Ако разпознаете този глас, ще разбирате реакциите по-лесно.</p>${fullBtn(P.X)}</div>
+  <h2>Вие двамата</h2>
+  <div class="grid">
+   ${card("Какво ви свързва",X,"",{text:E[X].love})}
+   ${card("Какво се повтаря между вас",D,"karma")}
+   ${card("Какво можете да създадете заедно",B,"",{text:cap(E[B].tal)})}
+  </div>`;
+}
+function show(v){document.querySelectorAll(".tab").forEach(t=>t.setAttribute("aria-selected",t.dataset.v===v));["pt","zn","km","ar","fc","pp"].forEach(k=>document.getElementById("v-"+k).hidden=k!==v);try{localStorage.setItem("mc-tab",v)}catch(e){}}
+document.querySelectorAll(".tab").forEach(t=>t.addEventListener("click",()=>show(t.dataset.v)));
+document.addEventListener("click",e=>{const a=e.target.closest("[data-arc]");if(a){e.preventDefault();openArc(a.dataset.arc)}});
+document.addEventListener("keydown",e=>{if((e.key==="Enter"||e.key===" ")&&e.target.matches&&e.target.matches("g.pt")){e.preventDefault();openArc(e.target.dataset.arc)}});
+const valid=iso=>/^\d{4}-\d{2}-\d{2}$/.test(iso)&&new Date(iso)<new Date();
+document.getElementById("meForm").addEventListener("submit",e=>{e.preventDefault();const n=meName.value.trim()||"Вие",d=meDate.value,er=document.getElementById("meErr");
+  if(!valid(d)){er.textContent="Въведете дата на раждане в миналото.";er.hidden=false;return}er.hidden=true;render(n,d);try{localStorage.setItem("mc-me",JSON.stringify({n,d}))}catch(e){}});
+[meName,meDate].forEach(i=>i.addEventListener("input",()=>document.getElementById("meErr").hidden=true));
+document.getElementById("pForm").addEventListener("submit",e=>{e.preventDefault();const n=pName.value.trim(),d=pDate.value,er=document.getElementById("pErr");
+  if(!n){er.textContent="Въведете име.";er.hidden=false;return}if(!valid(d)){er.textContent="Въведете дата на раждане в миналото.";er.hidden=false;return}
+  er.hidden=true;PEOPLE.push({name:n,date:d,rel:pRel.value});SEL=PEOPLE.length-1;save();pName.value="";pDate.value="";renderPeople()});
+[pName,pDate].forEach(i=>i.addEventListener("input",()=>document.getElementById("pErr").hidden=true));
+document.getElementById("pList").addEventListener("click",e=>{const del=e.target.dataset.del;if(del!==undefined){e.stopPropagation();PEOPLE.splice(+del,1);SEL=-1;save();renderPeople();return}
+  const b=e.target.closest(".chip");if(b){SEL=+b.dataset.i;renderPeople()}});
+let start={n:"Пример",d:"1990-03-14"};try{const s=JSON.parse(localStorage.getItem("mc-me")||"null");if(s&&valid(s.d))start=s}catch(e){}
+meName.value=start.n;meDate.value=start.d;render(start.n,start.d);renderPeople();
+try{const t=localStorage.getItem("mc-tab");if(t&&document.getElementById("v-"+t))show(t)}catch(e){}
+</script>
+
+</body>
+</html>
