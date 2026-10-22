@@ -231,6 +231,44 @@ h2[id]{scroll-margin-top:16px}
 .lang{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;margin-left:6px}
 .lang button{background:none;color:var(--muted);padding:6px 10px;border-radius:0;font-weight:700;font-size:.85rem}
 .lang button[aria-pressed="true"]{background:var(--navy);color:var(--bg)}
+.jstats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}
+.jstats .js{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;gap:6px}
+.jstats .js b{font-family:var(--display);font-size:1.6rem;color:var(--navy);font-variant-numeric:tabular-nums}
+.jstats .js.wide{grid-column:span 2}
+@media (max-width:520px){.jstats .js.wide{grid-column:auto}}
+.mbar{display:flex;height:14px;border-radius:7px;overflow:hidden;background:var(--bg)}
+.mbar span{display:block;height:100%}
+.m-yes{background:var(--plus)}.m-part{background:var(--accent)}.m-no{background:var(--minus)}
+.mleg{display:flex;gap:14px;flex-wrap:wrap;font-size:.85rem;color:var(--muted)}
+.mleg i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px;vertical-align:middle}
+.jform{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;display:flex;flex-direction:column;gap:12px}
+.seg{display:inline-flex;background:var(--bg);border-radius:10px;padding:4px;gap:4px;align-self:flex-start;flex-wrap:wrap}
+.seg label{cursor:pointer}.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg span{display:block;padding:7px 14px;border-radius:8px;font-weight:600;color:var(--muted)}
+.seg input:checked+span{background:var(--surface);color:var(--navy);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.seg input:focus-visible+span{outline:3px solid var(--accent)}
+.jrow{display:flex;gap:12px;flex-wrap:wrap}
+.jrow label,.jtext{display:flex;flex-direction:column;gap:4px;font-size:.82rem;color:var(--muted);flex:1 1 180px;min-width:0}
+textarea{font:inherit;font-size:1rem;padding:9px 10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);width:100%;resize:vertical}
+.jper{background:var(--soft);border-radius:10px;padding:10px 12px;font-size:.92rem}
+.jact{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.jfilt{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.jfilt h2{margin-right:auto}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.jlist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.je{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--navy);border-radius:0 12px 12px 0;padding:12px 14px;display:flex;flex-direction:column;gap:6px}
+.je-event{border-left-color:var(--accent)}.je-goal{border-left-color:var(--plus)}
+.je.done .je-body span{text-decoration:line-through;color:var(--muted)}
+.je-head{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:.85rem}
+.je-date{font-variant-numeric:tabular-nums;color:var(--muted)}
+.je-kind{font-weight:700;color:var(--navy)}
+.je-arc{background:var(--soft);color:var(--navy);padding:2px 10px;border-radius:999px;font-size:.82rem}
+.je-per{color:var(--muted)}
+.je-m{padding:2px 10px;border-radius:999px;color:#fff;font-size:.8rem;font-weight:700}
+.je-check{display:flex;gap:10px;align-items:flex-start;cursor:pointer}.je-check input{width:auto;margin-top:5px}
+.je-del{align-self:flex-end;background:none;color:var(--muted);padding:2px 6px;font-size:.82rem}
+.je-del.armed{color:var(--minus);font-weight:700}
+.jr-in{border-top:1px solid var(--line);padding-top:16px;display:flex;flex-direction:column;gap:10px}
+.lead{background:var(--soft);border-radius:12px;padding:16px 18px}
 .whint{flex-basis:100%;color:var(--accent);font-weight:600;font-size:.95rem}
 .wform label{display:flex;flex-direction:column;gap:4px;font-size:.82rem;flex:1 1 180px;min-width:0;color:var(--band-fg);opacity:.95}
 .wform input{background:#FDF6E3;color:#1F2D3A;border-color:transparent}
@@ -254,7 +292,7 @@ button.link.light{color:var(--accent);font-size:.95rem}
   .print-only{display:block}
   #repHead{border-bottom:2px solid #1E5078;padding-bottom:8px;margin-bottom:6px}
   #repHead h1{font-family:var(--display);color:#1E5078;margin:0;font-size:20pt}
-  form,.tabs,.tools,.appsec,.welcome,.viewing,.hint,summary,button,.btnlike,#v-ar,#v-pp,header{display:none!important}
+  form,.tabs,.tools,.appsec,.welcome,.viewing,.hint,summary,button,.btnlike,#v-ar,#v-pp,#v-jr,header{display:none!important}
   .band{border:1px solid #ccc}
   .card,.step,.year,.period,.quote,.talent{break-inside:avoid}
   h2{break-after:avoid}
@@ -340,6 +378,7 @@ button.link.light{color:var(--accent);font-size:.95rem}
     <button class="tab" role="tab" aria-selected="false" data-v="km" data-en="Karma">Карма</button>
     <button class="tab" role="tab" aria-selected="false" data-v="ar" data-en="22 arcana">22 аркана</button>
     <button class="tab" role="tab" aria-selected="false" data-v="fc" data-en="Forecast">Прогноза</button>
+    <button class="tab" role="tab" aria-selected="false" data-v="jr" data-en="Journal">Дневник</button>
     <button class="tab" role="tab" aria-selected="false" data-v="pp" data-en="People">Хора</button>
   </div>
 
@@ -354,6 +393,7 @@ button.link.light{color:var(--accent);font-size:.95rem}
     <div class="lib" id="lib"></div>
   </section>
   <section id="v-fc" class="view stack" hidden></section>
+  <section id="v-jr" class="view stack" hidden></section>
   <section id="v-pp" class="view stack" hidden>
     <p class="intro" data-en="Add a person from your life to see what connects you, what repeats between you and how to communicate more easily. This is a picture of the dynamic, not a verdict on the person. Profiles are stored only in this browser.">Добавете човек от живота си, за да видите какво ви свързва, какво се повтаря между вас и как да общувате по-лесно. Това е картина на динамиката, а не присъда за човека. Профилите се пазят само в този браузър.</p>
     <form class="form" id="pForm" novalidate>
@@ -406,7 +446,7 @@ button.link.light{color:var(--accent);font-size:.95rem}
     </div>
   </section>
 
-  <footer><span data-en="The readings are symbolic and meant for self-reflection. They are not predictions and do not replace advice on health, money or important decisions. Calculations follow the classic matrix method (22 energies).">Тълкуванията са символни и служат за самонаблюдение. Не са прогноза и не заменят съвет за здраве, пари или важни решения. Изчисленията следват класическата схема на матрицата (22 енергии).</span> <span class="ver" data-en="Version 1.9 · 22.10.2026">Версия 1.9 · 22.10.2026</span></footer>
+  <footer><span data-en="The readings are symbolic and meant for self-reflection. They are not predictions and do not replace advice on health, money or important decisions. Calculations follow the classic matrix method (22 energies).">Тълкуванията са символни и служат за самонаблюдение. Не са прогноза и не заменят съвет за здраве, пари или важни решения. Изчисленията следват класическата схема на матрицата (22 енергии).</span> <span class="ver" data-en="Version 2.0 · 22.10.2026">Версия 2.0 · 22.10.2026</span></footer>
 </div>
 
 <script>
@@ -1270,6 +1310,7 @@ function svg(M,curIdx){
   .main{fill:var(--navy)}.main-t{fill:var(--bg);font-weight:700}
   .main2{fill:var(--accent)}.main2-t{fill:#1F2D3A;font-weight:700}</style>${o.join("")}</svg>`;
 }
+const jrBtn=v=>`<button class="link" data-jr="${v}">${tr("Запиши в дневника →","Add to journal →")}</button>`;
 const fullBtn=v=>`<button class="link" data-arc="${v}">${tr("Целият аркан: плюсове, минуси и как да ги обърнете →","The full arcanum: pluses, minuses and how to turn them around →")}</button>`;
 function rodCard(zone,v,kind){const x=E[v];
   const main=kind==="gift"?`<p><b class="pl">${tr("Какво дава родът:","What the family line gives:")}</b> ${cap(x.tal)}</p><p><b class="mn">${tr("Сянката на този дар:","The shadow of this gift:")}</b> ${x.sh}</p>`
@@ -1282,7 +1323,7 @@ function card(zone,v,field,opts={}){
   <details><summary>${tr("Прочети повече","Read more")}</summary><div class="more">
    <div><b>${tr("В баланс","In balance")}</b>${x.bal}</div><div><b>${tr("Когато се обърне срещу Вас","When it turns against you")}</b>${x.sh}</div>
    <div><b>${tr("Вътрешният глас на капана","The inner voice of the trap")}</b><span class="v">${q(x.voice)}</span></div>
-   <div><b>${tr("Въпрос за размисъл","Question to reflect on")}</b>${x.q}</div><div><b>${tr("Стъпка за седмицата","Step for the week")}</b>${x.st}</div>${fullBtn(v)}</div></details></article>`;
+   <div><b>${tr("Въпрос за размисъл","Question to reflect on")}</b>${x.q}</div><div><b>${tr("Стъпка за седмицата","Step for the week")}</b>${x.st}</div>${fullBtn(v)}${jrBtn(v)}</div></details></article>`;
 }
 
 let ME=null,CUR=0,OPEN=0;
@@ -1355,7 +1396,7 @@ function render(name,iso){
   <p class="intro">${tr("Прогнозата има два слоя. Енергията на годината е общият фон на календарната година. Възрастовият период идва от външния кръг на матрицата и сменя темата си на около година и три месеца.","The forecast has two layers. The energy of the year is the general background of the calendar year. The age period comes from the outer circle of the matrix and changes its theme about every year and three months.")}</p>
   <h2>${tr("Енергия на годината","Energy of the year")}</h2><div class="years">${yh}</div>
   <h2 id="f-per">${tr("Възрастови периоди","Age periods")}</h2><div class="timeline">${th}</div>`;
-  renderLib();renderPerson();
+  renderLib();renderPerson();renderJournal();
 }
 let Q="";
 const hay=v=>[E[v].n,AX[v].k.join(" "),AX[v].plus.join(" "),AX[v].minus.flat().join(" "),AX[v].sph,E[v].core,E[v].money,E[v].love,E[v].karma].join(" ").toLowerCase();
@@ -1388,6 +1429,7 @@ function renderDetail(){
      <div><span class="lbl2">${tr("Въпрос за размисъл","Question to reflect on")}</span><p>${x.q}</p></div>
      <div><span class="lbl2">${tr("Стъпка за седмицата","Step for the week")}</span><p>${x.st}</p></div>
     </div>
+    ${jrBlock(v)}
     <div class="nav"><button data-arc="${prev}">← ${RN[prev]} ${E[prev].n}</button><button data-arc="${next}">${RN[next]} ${E[next].n} →</button></div>
    </div></article>`;
 }
@@ -1412,7 +1454,96 @@ function renderPerson(){
    ${card(tr("Какво можете да създадете заедно","What you can create together"),B,"",{text:cap(E[B].tal)})}
   </div>`;
 }
-const VIEWS=["pt","zn","km","ar","fc","pp"];
+
+/* ---------- journal ---------- */
+let JR=[];try{JR=JSON.parse(localStorage.getItem("mc-journal")||"[]");if(!Array.isArray(JR))JR=[]}catch(e){JR=[]}
+const jSave=()=>{try{localStorage.setItem("mc-journal",JSON.stringify(JR))}catch(e){}};
+let JF={kind:"note",arc:0},JFILT={kind:"all",arc:0},JARM=null;
+const todayISO=()=>{const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`};
+function periodAt(iso){if(!OWN)return 0;const a=(bUTC(iso)-bUTC(OWN.d))/YR;if(a<0)return 0;return calc(OWN.d).ring[Math.floor(a/1.25)%64]}
+const KIND=()=>({note:tr("Бележка","Note"),event:tr("Събитие","Event"),goal:tr("Цел","Goal")});
+const MATCH=()=>({yes:tr("Съвпада","Matches"),part:tr("Частично","Partly"),no:tr("Не съвпада","Doesn't match")});
+const nl=s=>esc(s).replace(/\n/g,"<br>");
+function jEntry(x){
+  const k=KIND()[x.kind],m=MATCH();
+  return `<li class="je je-${x.kind}${x.done?" done":""}">
+   <div class="je-head"><span class="je-date">${bgDate(x.date)}</span><span class="je-kind">${k}</span>${x.kind==="event"&&x.per?`<span class="je-per">${tr("Период","Period")}:</span><button type="button" class="je-arc" data-arc="${x.per}">${RN[x.per]} · ${E[x.per].n}</button>`:x.arc?`<button type="button" class="je-arc" data-arc="${x.arc}">${RN[x.arc]} · ${E[x.arc].n}</button>`:""}
+    ${x.kind==="event"&&x.match?`<span class="je-m m-${x.match}">${m[x.match]}</span>`:""}</div>
+   <div class="je-body">${x.kind==="goal"?`<label class="je-check"><input type="checkbox" data-jdone="${x.id}" ${x.done?"checked":""}><span>${nl(x.text)}</span></label>`:`<p>${nl(x.text)}</p>`}</div>
+   <button type="button" class="je-del${JARM===x.id?" armed":""}" data-jdel="${x.id}">${JARM===x.id?tr("Потвърди изтриването","Confirm delete"):tr("Изтрий","Delete")}</button></li>`;
+}
+function jrBlock(v){
+  if(!OWN)return "";
+  const list=JR.filter(x=>x.arc===v).sort((a,b)=>b.date.localeCompare(a.date)||b.id-a.id);
+  return `<div class="jr-in"><div class="ih-head"><h3>${tr("Вашият дневник по този аркан","Your journal on this arcanum")} (${list.length})</h3><button type="button" class="ghost" data-jr="${v}">${tr("Добави запис","Add entry")}</button></div>
+   ${list.length?`<ul class="jlist">${list.slice(0,3).map(jEntry).join("")}</ul>${list.length>3?`<button type="button" class="link" data-jrf="${v}">${tr("Всички записи по този аркан →","All entries on this arcanum →")}</button>`:""}`:`<p class="note">${tr("Все още нямате записи. Запишете кога сте разпознали тази енергия в живота си, в светлата или в сянковата ѝ страна.","No entries yet. Note when you recognised this energy in your life, on its light or its shadow side.")}</p>`}</div>`;
+}
+function renderJournal(){
+  const V=document.getElementById("v-jr");if(!V)return;
+  if(!OWN){V.innerHTML=`<div class="lead"><p>${tr("Дневникът работи с Вашата матрица. Първо въведете своето име и дата на раждане.","The journal works with your own matrix. First enter your name and date of birth.")}</p></div><button type="button" class="cta-inst" data-nav="mine">${tr("Изчисли моята матрица","Calculate my matrix")}</button>`;return}
+  const cur=periodAt(todayISO());if(!JF.arc&&JF.arc!==-1)JF.arc=cur;
+  const ev=JR.filter(x=>x.kind==="event"&&x.match),cnt={yes:0,part:0,no:0};ev.forEach(x=>cnt[x.match]++);
+  const goals=JR.filter(x=>x.kind==="goal"),gd=goals.filter(x=>x.done).length;
+  const pct=k=>ev.length?Math.round(cnt[k]*100/ev.length):0;
+  const opts=sel=>`<option value="-1"${sel===-1?" selected":""}>${tr("Без аркан","No arcanum")}</option>`+Array.from({length:22},(_,i)=>i+1).map(v=>`<option value="${v}"${v===sel?" selected":""}>${RN[v]} · ${E[v].n}${v===cur?tr(" (сегашният период)"," (current period)"):""}</option>`).join("");
+  const fopts=`<option value="0">${tr("Всички аркани","All arcana")}</option>`+Array.from({length:22},(_,i)=>i+1).map(v=>`<option value="${v}"${v===JFILT.arc?" selected":""}>${RN[v]} · ${E[v].n}</option>`).join("");
+  let list=JR.slice().sort((a,b)=>b.date.localeCompare(a.date)||b.id-a.id);
+  if(JFILT.kind!=="all")list=list.filter(x=>x.kind===JFILT.kind);if(JFILT.arc)list=list.filter(x=>x.arc===JFILT.arc);
+  const m=MATCH();
+  V.innerHTML=`
+  <p class="intro">${tr("Дневникът е мястото, където проверявате матрицата спрямо живота си. Записвайте мисли, събития и цели. При всяко събитие сайтът показва темата на периода за тази дата, а Вие отбелязвате дали съвпада. С времето ще имате собствени доказателства дали методът работи при Вас.","The journal is where you check the matrix against your own life. Record thoughts, events and goals. For every event the site shows the theme of the period on that date, and you mark whether it matches. Over time you will have your own evidence of whether the method works for you.")}</p>
+  <div class="jstats">
+   <div class="js"><span class="lbl2">${tr("Записи","Entries")}</span><b>${JR.length}</b></div>
+   <div class="js"><span class="lbl2">${tr("Изпълнени цели","Goals completed")}</span><b>${gd} / ${goals.length}</b></div>
+   <div class="js wide"><span class="lbl2">${tr("Проверка на прогнозата","Forecast check")} · ${ev.length} ${tr("събития","events")}</span>
+    ${ev.length?`<div class="mbar" role="img" aria-label="${m.yes} ${cnt.yes}, ${m.part} ${cnt.part}, ${m.no} ${cnt.no}"><span class="m-yes" style="width:${pct("yes")}%"></span><span class="m-part" style="width:${pct("part")}%"></span><span class="m-no" style="width:${pct("no")}%"></span></div>
+    <div class="mleg"><span><i class="m-yes"></i>${m.yes} ${cnt.yes}</span><span><i class="m-part"></i>${m.part} ${cnt.part}</span><span><i class="m-no"></i>${m.no} ${cnt.no}</span></div>`:`<p class="note">${tr("Запишете събитие и отбележете дали съвпада с темата на периода.","Record an event and mark whether it matches the theme of the period.")}</p>`}</div>
+  </div>
+  <form class="jform" id="jForm" novalidate>
+   <div class="seg" role="radiogroup" aria-label="${tr("Вид запис","Entry type")}">${["note","event","goal"].map(k=>`<label><input type="radio" name="jkind" value="${k}"${JF.kind===k?" checked":""}><span>${KIND()[k]}</span></label>`).join("")}</div>
+   <div class="jrow">
+    <label for="jDate"><span>${tr("Дата","Date")}</span><input id="jDate" type="text" inputmode="numeric" placeholder="${tr("дд.мм.гггг","dd.mm.yyyy")}" maxlength="10" autocomplete="off" value="${bgDate(JF.date||todayISO())}"></label>
+    <label for="jArc"${JF.kind==="event"?" hidden":""}><span>${tr("Аркан","Arcanum")}</span><select id="jArc">${opts(JF.arc)}</select></label>
+    <label for="jMatch" id="jMatchL"${JF.kind==="event"?"":" hidden"}><span>${tr("Съвпада ли с темата на периода?","Does it match the period theme?")}</span><select id="jMatch"><option value="yes">${m.yes}</option><option value="part">${m.part}</option><option value="no">${m.no}</option></select></label>
+   </div>
+   <p class="jper" id="jPer"${JF.kind==="event"?"":" hidden"}></p>
+   <label for="jText" class="jtext"><span id="jTextL">${JF.kind==="goal"?tr("Каква е целта или стъпката?","What is the goal or step?"):JF.kind==="event"?tr("Какво се случи?","What happened?"):tr("Какво забелязахте?","What did you notice?")}</span><textarea id="jText" rows="3">${esc(JF.text||"")}</textarea></label>
+   ${JF.arc>0?`<p class="note jq">${tr("Въпрос за размисъл","Question to reflect on")}: ${E[JF.arc].q}</p>`:""}
+   <div class="jact"><button type="submit">${tr("Запиши","Save")}</button><p class="err" id="jErr" role="alert" hidden></p></div>
+  </form>
+  <div class="jfilt"><h2>${tr("Записи","Entries")}</h2>
+   <label for="jfK"><span class="sr">${tr("Вид","Type")}</span><select id="jfK"><option value="all">${tr("Всички видове","All types")}</option>${["note","event","goal"].map(k=>`<option value="${k}"${JFILT.kind===k?" selected":""}>${KIND()[k]}</option>`).join("")}</select></label>
+   <label for="jfA"><span class="sr">${tr("Аркан","Arcanum")}</span><select id="jfA">${fopts}</select></label></div>
+  ${list.length?`<ul class="jlist">${list.map(jEntry).join("")}</ul>`:`<p class="note">${JR.length?tr("Няма записи по този филтър.","No entries match this filter."):tr("Все още нямате записи. Започнете с една бележка за днешния ден.","No entries yet. Start with one note about today.")}</p>`}`;
+  maskDate(document.getElementById("jDate"));updPer();
+}
+function updPer(){const el=document.getElementById("jPer");if(!el||el.hidden)return;const iso=toISO(document.getElementById("jDate").value);
+  if(!valid(iso)&&iso!==todayISO()){el.textContent=tr("Въведете дата, за да видите темата на периода тогава.","Enter a date to see the theme of the period at that time.");return}
+  const p=periodAt(iso);el.innerHTML=p?`<b>${tr("Темата на периода тогава","Period theme at that time")}: ${RN[p]} · ${E[p].n}.</b> ${E[p].per}`:tr("Датата е преди раждането.","The date is before birth.")}
+function jFormState(){const f=document.getElementById("jForm");if(!f)return;JF.kind=f.querySelector("input[name=jkind]:checked").value;JF.arc=+document.getElementById("jArc").value;JF.text=document.getElementById("jText").value;JF.date=toISO(document.getElementById("jDate").value)||JF.date}
+document.addEventListener("change",e=>{
+  if(e.target.name==="jkind"){jFormState();renderJournal()}
+  else if(e.target.id==="jArc"){jFormState();renderJournal()}
+  else if(e.target.id==="jfK"){JFILT.kind=e.target.value;renderJournal()}
+  else if(e.target.id==="jfA"){JFILT.arc=+e.target.value;renderJournal()}
+  else if(e.target.dataset&&e.target.dataset.jdone){const x=JR.find(y=>y.id==e.target.dataset.jdone);if(x){x.done=e.target.checked;jSave();renderJournal();renderDetail()}}
+});
+document.addEventListener("input",e=>{if(e.target.id==="jDate")updPer();if(e.target.id==="jText"||e.target.id==="jDate"){const er=document.getElementById("jErr");if(er)er.hidden=true}});
+document.addEventListener("submit",e=>{if(e.target.id!=="jForm")return;e.preventDefault();jFormState();
+  const er=document.getElementById("jErr"),txt=JF.text.trim(),iso=toISO(document.getElementById("jDate").value);
+  if(!txt){er.textContent=tr("Напишете текст на записа.","Write the text of the entry.");er.hidden=false;return}
+  if(!(valid(iso)||iso===todayISO())){er.textContent=dateErr();er.hidden=false;return}
+  const x={id:Date.now(),date:iso,kind:JF.kind,arc:JF.arc>0?JF.arc:0,text:txt};
+  if(x.kind==="event"){x.per=periodAt(iso);x.arc=x.per;x.match=document.getElementById("jMatch").value}
+  if(x.kind==="goal")x.done=false;
+  JR.push(x);jSave();JF={kind:JF.kind,arc:JF.arc};renderJournal();renderDetail();renderLib();
+  const m=document.getElementById("toolMsg");});
+document.addEventListener("click",e=>{
+  const d=e.target.closest("[data-jdel]");if(d){const id=+d.dataset.jdel;if(JARM===id){JR=JR.filter(x=>x.id!==id);JARM=null;jSave()}else JARM=id;renderJournal();renderDetail();return}
+  const j=e.target.closest("[data-jr]");if(j){e.preventDefault();JF={kind:"note",arc:+j.dataset.jr};show("jr");renderJournal();document.getElementById("v-jr").scrollIntoView({block:"start"});document.getElementById("jText").focus({preventScroll:true});return}
+  const jf=e.target.closest("[data-jrf]");if(jf){JFILT={kind:"all",arc:+jf.dataset.jrf};show("jr");renderJournal();return}
+});
+const VIEWS=["pt","zn","km","ar","fc","jr","pp"];
 function show(v,push=true){if(!VIEWS.includes(v))v="pt";document.querySelectorAll(".tab").forEach(t=>t.setAttribute("aria-selected",t.dataset.v===v));VIEWS.forEach(k=>document.getElementById("v-"+k).hidden=k!==v);try{localStorage.setItem("mc-tab",v)}catch(e){}
   if(push&&location.hash!=="#"+v)history.pushState(null,"","#"+v);markNav()}
 document.querySelectorAll(".tab").forEach(t=>t.addEventListener("click",()=>show(t.dataset.v)));
@@ -1472,7 +1603,7 @@ document.addEventListener("click",e=>{
 document.getElementById("arcQ").addEventListener("input",e=>{Q=e.target.value.trim().toLowerCase();renderLib()});
 const msg=t=>{const m=document.getElementById("toolMsg");m.textContent=t};
 document.getElementById("exp").addEventListener("click",()=>{
-  const data={app:"Mind Compass",version:1,saved:new Date().toISOString(),me:OWN,people:PEOPLE};
+  const data={app:"Mind Compass",version:1,saved:new Date().toISOString(),me:OWN,people:PEOPLE,journal:JR};
   const url=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:"application/json"}));
   const a=document.createElement("a");a.href=url;a.download="mind-compass-arhiv-"+new Date().toISOString().slice(0,10)+".json";document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),2000);
   msg(tr("Архивът е изтеглен. Пазете файла, за да възстановите данните на друго устройство.","The archive has been downloaded. Keep the file to restore your data on another device."))});
@@ -1480,20 +1611,21 @@ document.getElementById("imp").addEventListener("change",e=>{const f=e.target.fi
   rd.onload=()=>{try{const d=JSON.parse(rd.result);if(d.app!=="Mind Compass")throw 0;
     const ppl=Array.isArray(d.people)?d.people.filter(p=>p&&p.name&&valid(p.date)).map(p=>({name:String(p.name),date:p.date,rel:String(p.rel||"Друго")})):[];
     if(d.me&&valid(d.me.d)){OWN={n:String(d.me.n||tr("Вие","You")),d:d.me.d};try{localStorage.setItem("mc-me",JSON.stringify(OWN))}catch(x){}}
+    if(Array.isArray(d.journal)){JR=d.journal.filter(x=>x&&x.id&&x.text&&valid(x.date));jSave()}
     PEOPLE=ppl;SEL=-1;save();boot();msg(tr(`Възстановено: ${OWN?"Вашата матрица и ":""}${ppl.length} профила.`,`Restored: ${OWN?"your matrix and ":""}${ppl.length} profiles.`))}
    catch(x){msg(tr("Файлът не е архив на Mind Compass. Изберете файла, който сте изтеглили с бутона „Изтегли архив“.","This file is not a Mind Compass archive. Choose the file you downloaded with the \"Download archive\" button."))}e.target.value=""};rd.readAsText(f)});
 document.getElementById("wipe").addEventListener("click",()=>{document.getElementById("wipeAsk").hidden=false});
 document.getElementById("wipeNo").addEventListener("click",()=>{document.getElementById("wipeAsk").hidden=true});
-document.getElementById("wipeYes").addEventListener("click",()=>{["mc-me","mc-people","mc-tab"].forEach(k=>{try{localStorage.removeItem(k)}catch(e){}});
-  OWN=null;PEOPLE=[];SEL=-1;ME=null;document.getElementById("wipeAsk").hidden=true;wName.value="";wDate.value="";meName.value="";meDate.value="";renderPeople();msg("");goHome()});
+document.getElementById("wipeYes").addEventListener("click",()=>{["mc-me","mc-people","mc-tab","mc-journal"].forEach(k=>{try{localStorage.removeItem(k)}catch(e){}});
+  OWN=null;PEOPLE=[];JR=[];SEL=-1;ME=null;document.getElementById("wipeAsk").hidden=true;wName.value="";wDate.value="";meName.value="";meDate.value="";renderPeople();msg("");goHome()});
 let PREV=null;
 function beforePrint(){
-  if(!ME)return;PREV=["pt","zn","km","ar","fc","pp"].filter(k=>!document.getElementById("v-"+k).hidden);
+  if(!ME)return;PREV=VIEWS.filter(k=>!document.getElementById("v-"+k).hidden);
   ["pt","zn","km","fc"].forEach(k=>document.getElementById("v-"+k).hidden=false);
   document.querySelectorAll("details").forEach(d=>{d.dataset.was=d.open?"1":"";d.open=true});
   document.getElementById("repHead").innerHTML=`<h1>Mind Compass · ${esc(ME.name)}</h1><p>${tr("Дата на раждане","Date of birth")} ${bgDate(ME.iso)} · ${tr("изчислено на","calculated on")} ${new Date().toLocaleDateString(tr("bg-BG","en-GB"))} · ${tr("класическа схема на матрицата (22 аркана)","classic matrix method (22 arcana)")}</p>`;
 }
-function afterPrint(){if(!PREV)return;["pt","zn","km","ar","fc","pp"].forEach(k=>document.getElementById("v-"+k).hidden=!PREV.includes(k));document.querySelectorAll("details").forEach(d=>d.open=!!d.dataset.was);PREV=null}
+function afterPrint(){if(!PREV)return;VIEWS.forEach(k=>document.getElementById("v-"+k).hidden=!PREV.includes(k));document.querySelectorAll("details").forEach(d=>d.open=!!d.dataset.was);PREV=null}
 addEventListener("beforeprint",beforePrint);addEventListener("afterprint",afterPrint);
 document.getElementById("prn").addEventListener("click",()=>{beforePrint();setTimeout(()=>window.print(),50)});
 [meName,meDate].forEach(i=>i.addEventListener("input",()=>document.getElementById("meErr").hidden=true));
