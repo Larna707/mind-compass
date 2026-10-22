@@ -133,7 +133,9 @@ summary{cursor:pointer;color:var(--accent);font-weight:600;font-size:.92rem}
 .dbody{padding:22px 24px;display:flex;flex-direction:column;gap:22px}
 .dbody .core{font-family:var(--display);font-size:1.15rem;line-height:1.55;max-width:68ch}
 .mine-list{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
-.mine-list span.c{background:var(--soft);border-radius:999px;padding:3px 10px;font-size:.85rem}
+.mine-list .c{background:var(--soft);color:var(--navy);border:1px solid var(--line);border-radius:999px;padding:4px 12px;font-size:.85rem;font-weight:600}
+.mine-list .c:hover{border-color:var(--accent)}
+.card b.pl{color:var(--plus)}.card b.mn{color:var(--minus)}
 .pm2{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:24px}
 @media (max-width:760px){.pm2{grid-template-columns:1fr}}
 .plus{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-direction:column;gap:8px}
@@ -197,6 +199,10 @@ header.top{justify-content:space-between}
 .startcard h2{color:var(--band-fg)}
 .startcard .note{color:var(--band-fg);opacity:.8}
 .startcard .link{color:var(--accent)}
+@media (prefers-reduced-motion:no-preference){.flash{animation:flash 1.6s ease}@keyframes flash{0%,40%{background:var(--soft);box-shadow:0 0 0 8px var(--soft)}100%{background:transparent;box-shadow:none}}}
+h2[id]{scroll-margin-top:16px}
+.rod2{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:640px){.rod2{grid-template-columns:1fr}}
 .whint{flex-basis:100%;color:var(--accent);font-weight:600;font-size:.95rem}
 .wform label{display:flex;flex-direction:column;gap:4px;font-size:.82rem;flex:1 1 180px;min-width:0;color:var(--band-fg);opacity:.95}
 .wform input{background:#FDF6E3;color:#1F2D3A;border-color:transparent}
@@ -346,7 +352,7 @@ button.link.light{color:var(--accent);font-size:.95rem}
 
   <div class="print-only" id="repHead"></div>
 
-  <footer>Тълкуванията са символни и служат за самонаблюдение. Не са прогноза и не заменят съвет за здраве, пари или важни решения. Изчисленията следват класическата схема на матрицата (22 енергии). <span class="ver">Версия 1.5 · 22.10.2026</span></footer>
+  <footer>Тълкуванията са символни и служат за самонаблюдение. Не са прогноза и не заменят съвет за здраве, пари или важни решения. Изчисленията следват класическата схема на матрицата (22 енергии). <span class="ver">Версия 1.6 · 22.10.2026</span></footer>
 </div>
 
 <script>
@@ -824,10 +830,14 @@ function svg(M,curIdx){
   .main2{fill:var(--accent)}.main2-t{fill:#1F2D3A;font-weight:700}</style>${o.join("")}</svg>`;
 }
 const fullBtn=v=>`<button class="link" data-arc="${v}">Целият аркан: плюсове, минуси и как да ги обърнете →</button>`;
+function rodCard(zone,v,kind){const x=E[v];
+  const main=kind==="gift"?`<p><b class="pl">Какво дава родът:</b> ${cap(x.tal)}</p><p><b class="mn">Сянката на този дар:</b> ${x.sh}</p>`
+    :`<p><b class="mn">Какво се предава като урок:</b> ${x.karma}</p><p><b class="pl">Когато урокът е усвоен:</b> ${x.bal}</p>`;
+  return card(zone,v,"",{html:main})}
 function card(zone,v,field,opts={}){
   const x=E[v];
   return `<article class="card"><div class="head">${tile(v)}<div><div class="zone">${zone}</div><div class="ename">${x.n}</div></div></div>
-  <p>${opts.text||x[field]}</p>
+  ${opts.html||`<p>${opts.text||x[field]}</p>`}
   <details><summary>Прочети повече</summary><div class="more">
    <div><b>В баланс</b>${x.bal}</div><div><b>Когато се обърне срещу Вас</b>${x.sh}</div>
    <div><b>Вътрешният глас на капана</b><span class="v">„${x.voice}“</span></div>
@@ -836,13 +846,13 @@ function card(zone,v,field,opts={}){
 
 let ME=null,CUR=0,OPEN=0;
 function places(v){
-  if(!ME)return [];const M=ME.M,L=[];
-  const add=(c,t)=>{if(c===v)L.push(t)};
-  add(M.X,"център");add(M.A,"как Ви виждат");add(M.B,"таланти");add(M.C,"материална карма");add(M.D,"кармичен урок");
-  add(M.ch.D.one,"кармична опашка");add(M.ch.D.two,"ключ на кармата");add(M.money,"пари");add(M.love,"любов");
-  add(M.personal,"лично предназначение");add(M.social,"социално предназначение");add(M.spirit,"духовно предназначение");
-  add(M.F,"бащин род · дар");add(M.H,"бащин род · задача");add(M.G,"майчин род · дар");add(M.I,"майчин род · задача");
-  add(CUR,"текущ период");return [...new Set(L)];
+  if(!ME)return [];const M=ME.M,L=[],seen=new Set();
+  const add=(c,t,tab,id)=>{if(c===v&&!seen.has(t)){seen.add(t);L.push({t,tab,id})}};
+  add(M.X,"център","pt","");add(M.A,"как Ви виждат","zn","z-pers");add(M.B,"таланти","zn","z-pers");add(M.C,"материална карма","km","k-mat");add(M.D,"кармичен урок","km","k-tail");
+  add(M.ch.D.one,"кармична опашка","km","k-tail");add(M.ch.D.two,"ключ на кармата","km","k-tail");add(M.money,"пари","zn","z-ml");add(M.love,"любов","zn","z-ml");
+  add(M.personal,"лично предназначение","zn","z-purp");add(M.social,"социално предназначение","zn","z-purp");add(M.spirit,"духовно предназначение","zn","z-purp");
+  add(M.F,"бащин род · дар","km","k-rod");add(M.H,"бащин род · задача","km","k-rod");add(M.G,"майчин род · дар","km","k-rod");add(M.I,"майчин род · задача","km","k-rod");
+  add(CUR,"текущ период","fc","f-per");return L;
 }
 function render(name,iso){
   const M=calc(iso),age=ageNow(iso),idx=Math.floor(age/1.25),cur=M.ring[idx%64],yr=new Date().getFullYear(),ye=yearE(M,yr);
@@ -871,11 +881,11 @@ function render(name,iso){
   </div>`;
   document.getElementById("v-zn").innerHTML=`
   <p class="intro">Една енергия се проявява различно според сферата. Отворете „Прочети повече“ за баланса, капана, въпроса и стъпката, или целия аркан с всички плюсове и минуси.</p>
-  <h2>Личност</h2><div class="grid">
+  <h2 id="z-pers">Личност</h2><div class="grid">
    ${card("Сърцевина",M.X,"core")}${card("Как Ви виждат",M.A,"face")}${card("Таланти",M.B,"",{text:cap(E[M.B].tal)})}</div>
-  <h2>Пари и любов</h2><div class="grid">
+  <h2 id="z-ml">Пари и любов</h2><div class="grid">
    ${card("Пари и реализация",M.money,"money")}${card("Любов и отношения",M.love,"love")}</div>
-  <h2>Предназначение</h2><div class="grid">
+  <h2 id="z-purp">Предназначение</h2><div class="grid">
    ${card("Лично · до около 40 г.",M.personal,"",{text:"Да станете "+E[M.personal].s+": "+E[M.personal].tal})}
    ${card("Социално · 40–60 г.",M.social,"",{text:"Да се проявите като "+E[M.social].s+": "+E[M.social].tal})}
    ${card("Духовно · след 60 г.",M.spirit,"",{text:"Да бъдете "+E[M.spirit].s+". "+E[M.spirit].bal})}</div>`;
@@ -883,27 +893,27 @@ function render(name,iso){
   document.getElementById("v-km").innerHTML=`
   <blockquote class="epi"><p>„Когато попаднеш под силен дъжд, се опитваш да не се намокриш и бързо тичаш по пътя. Но тичайки под стрехите на покривите, пак се оказваш мокър. Ако обаче веднага осъзнаеш, че от дъжда не можеш да избягаш, тогава, макар да се намокриш, няма да се суетиш. Такъв подход трябва да се използва във всичко.“</p><cite>„Хагакуре“, самурайски трактат</cite></blockquote>
   <p class="intro">Кармата в матрицата не е наказание, а урок, който се повтаря, докато не бъде усвоен. Кармичната опашка се чете в три стъпки: урокът, как се проявява, докато не е усвоен, и ключът към него.</p>
-  <h2>Кармична опашка: ${M.D} · ${t1} · ${t2}</h2>
+  <h2 id="k-tail">Кармична опашка: ${M.D} · ${t1} · ${t2}</h2>
   <div class="steps">
    <div class="step"><span class="k">1 · Урокът</span><div class="head">${tile(M.D)}<div class="ename">${E[M.D].n}</div></div><p>${E[M.D].karma}</p>${fullBtn(M.D)}</div>
    <div class="step"><span class="k">2 · Как се проявява</span><div class="head">${tile(t1)}<div class="ename">${E[t1].n}</div></div><p>${E[t1].sh}</p><p class="quote" style="font-size:1rem">„${E[t1].voice}“</p>${fullBtn(t1)}</div>
    <div class="step"><span class="k">3 · Ключът</span><div class="head">${tile(t2)}<div class="ename">${E[t2].n}</div></div><p>${E[t2].bal}</p><p><strong>Стъпка:</strong> ${E[t2].st}</p>${fullBtn(t2)}</div>
   </div>
-  <h2>Материална карма</h2>
+  <h2 id="k-mat">Материална карма</h2>
   <p class="intro">Дясната точка показва отношението към парите и материалното, донесено като урок.</p>
   <div class="grid">${card("Материален урок",M.C,"karma")}${card("Откъде идват парите",M.money,"money")}</div>
-  <h2>Родова карма</h2>
-  <p class="intro">Горните ъгли на квадрата са даровете на рода, долните са задачите, които се предават, докато някой не ги преработи.</p>
-  <div class="grid">
-   ${card("Бащин род · дар",M.F,"",{text:cap(E[M.F].tal)})}${card("Бащин род · задача",M.H,"karma")}
-   ${card("Майчин род · дар",M.G,"",{text:cap(E[M.G].tal)})}${card("Майчин род · задача",M.I,"karma")}</div>`;
+  <h2 id="k-rod">Родова карма</h2>
+  <p class="intro">Всяка линия на рода, бащина и майчина, носи дар и задача. Горните ъгли на квадрата са даровете, долните са задачите, които се предават, докато някой не ги преработи. И даровете имат сянка, затова във всяка карта виждате и двете страни.</p>
+  <div class="grid rod2">
+   ${rodCard("Бащин род · дар",M.F,"gift")}${rodCard("Бащин род · задача",M.H,"task")}
+   ${rodCard("Майчин род · дар",M.G,"gift")}${rodCard("Майчин род · задача",M.I,"task")}</div>`;
   let yh="";for(let k=-1;k<3;k++){const Y=yr+k,v=yearE(M,Y);yh+=`<div class="year${k===0?" now":""}"><span class="y">${Y}</span><div class="head">${tile(v)}<h3>${E[v].n}</h3></div><p class="note">${E[v].per}</p></div>`}
   let th="";for(let k=-1;k<8;k++){const i=idx+k;if(i<0)continue;const v=M.ring[i%64],a0=i*1.25;
     th+=`<div class="period${k===0?" now":""}"><span class="when">${k===0?"Сега · ":""}${fmt(atAge(iso,a0))} – ${fmt(atAge(iso,a0+1.25))} · ${ag(a0)}–${ag(a0+1.25)} г.</span><h3>${RN[v]} · ${E[v].n}</h3><p>${E[v].per}</p><p class="st">Стъпка: ${E[v].st}</p></div>`}
   document.getElementById("v-fc").innerHTML=`
   <p class="intro">Прогнозата има два слоя. Енергията на годината е общият фон на календарната година. Възрастовият период идва от външния кръг на матрицата и сменя темата си на около година и три месеца.</p>
   <h2>Енергия на годината</h2><div class="years">${yh}</div>
-  <h2>Възрастови периоди</h2><div class="timeline">${th}</div>`;
+  <h2 id="f-per">Възрастови периоди</h2><div class="timeline">${th}</div>`;
   renderLib();renderPerson();
 }
 let Q="";
@@ -923,7 +933,7 @@ function renderDetail(){
    <div class="dhead g${grp(v)}"><div class="em">${sym(v)}</div><div><div class="rn">Аркан ${RN[v]} · ${v}</div><h2>${x.n}</h2><div class="kws">${a.k.map(k=>`<span>${k}</span>`).join("")}</div></div></div>
    <div class="dbody">
     <p class="core">${x.core}</p>
-    ${pl.length?`<div class="mine-list"><span class="lbl2">Във Вашата матрица:</span>${pl.map(p=>`<span class="c">${p}</span>`).join("")}</div>`:`<p class="note">Този аркан не е в основните точки на Вашата матрица, но може да е във възрастовите периоди или в матрицата на близък човек.</p>`}
+    ${pl.length?`<div class="mine-list"><span class="lbl2">Във Вашата матрица:</span>${pl.map(p=>`<button type="button" class="c" data-goto="${p.tab}|${p.id}">${p.t} →</button>`).join("")}</div><p class="note">Кликнете позиция, за да отидете до нея. Във всяка позиция арканът носи и двете си страни: светлата и сянката по-долу. Коя ще се проявява, зависи от това как живеете тази енергия.</p>`:`<p class="note">Този аркан не е в основните точки на Вашата матрица, но може да е във възрастовите периоди или в матрицата на близък човек. Всеки аркан има и светла страна, и сянка.</p>`}
     <div class="pm2">
      <div><h3>Светлата страна</h3><ul class="plus">${a.plus.map(p=>`<li>${p}</li>`).join("")}</ul></div>
      <div><h3>Сянката и как да я обърнете</h3><div class="shadow">${a.minus.map(([m,f])=>`<div class="sh-row"><span class="m">${m}</span><span class="ar" aria-label="как да го обърнете">→</span><span class="f">${f}</span></div>`).join("")}</div></div>
@@ -965,6 +975,7 @@ const VIEWS=["pt","zn","km","ar","fc","pp"];
 function show(v,push=true){if(!VIEWS.includes(v))v="pt";document.querySelectorAll(".tab").forEach(t=>t.setAttribute("aria-selected",t.dataset.v===v));VIEWS.forEach(k=>document.getElementById("v-"+k).hidden=k!==v);try{localStorage.setItem("mc-tab",v)}catch(e){}
   if(push&&location.hash!=="#"+v)history.pushState(null,"","#"+v);markNav()}
 document.querySelectorAll(".tab").forEach(t=>t.addEventListener("click",()=>show(t.dataset.v)));
+document.addEventListener("click",e=>{const g=e.target.closest("[data-goto]");if(g){const [tab,id]=g.dataset.goto.split("|");show(tab);const el=id&&document.getElementById(id);(el||document.querySelector(".tabs")).scrollIntoView({behavior:"smooth",block:"start"});if(el){el.classList.remove("flash");void el.offsetWidth;el.classList.add("flash")}}});
 document.addEventListener("click",e=>{const a=e.target.closest("[data-arc]");if(a){e.preventDefault();openArc(a.dataset.arc)}});
 document.addEventListener("keydown",e=>{if((e.key==="Enter"||e.key===" ")&&e.target.matches&&e.target.matches("g.pt")){e.preventDefault();openArc(e.target.dataset.arc)}});
 const valid=iso=>{if(!/^\d{4}-\d{2}-\d{2}$/.test(iso||""))return false;const [y,m,d]=iso.split("-").map(Number);const t=new Date(Date.UTC(y,m-1,d));
