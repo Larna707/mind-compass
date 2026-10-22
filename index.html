@@ -181,6 +181,22 @@ header.top{justify-content:space-between}
 .wform.pulse{border-color:var(--accent)}
 @media (prefers-reduced-motion:no-preference){.wform.pulse{animation:pulse 1.2s ease 2}@keyframes pulse{50%{box-shadow:0 0 0 6px rgba(232,144,12,.35)}}}
 .ver{display:inline-block;margin-left:6px;opacity:.8}
+.landing>h2{margin-top:8px}
+.w-actions{display:flex;gap:10px;flex-wrap:wrap}
+.welcome .cta{background:var(--accent);color:#1F2D3A}
+.ghost.light{color:var(--band-fg);border-color:currentColor;align-self:flex-start}
+.feat{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.feat .f{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;display:flex;flex-direction:column;gap:6px}
+.feat .em{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--on-g)}
+.feat .em svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.feat p,.how{color:var(--muted)}
+.how{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:8px;max-width:70ch}
+.how b{color:var(--fg)}
+.startpg{display:flex;justify-content:center}
+.startcard{background:var(--band);color:var(--band-fg);border-radius:18px;padding:28px;max-width:640px;width:100%;display:flex;flex-direction:column;gap:14px}
+.startcard h2{color:var(--band-fg)}
+.startcard .note{color:var(--band-fg);opacity:.8}
+.startcard .link{color:var(--accent)}
 .whint{flex-basis:100%;color:var(--accent);font-weight:600;font-size:.95rem}
 .wform label{display:flex;flex-direction:column;gap:4px;font-size:.82rem;flex:1 1 180px;min-width:0;color:var(--band-fg);opacity:.95}
 .wform input{background:#FDF6E3;color:#1F2D3A;border-color:transparent}
@@ -229,21 +245,44 @@ button.link.light{color:var(--accent);font-size:.95rem}
     </nav>
   </header>
 
-  <section class="welcome" id="welcome" hidden>
-    <div class="w-text">
-      <p class="w-eyebrow">Добре дошли</p>
-      <h2>Вашата матрица на съдбата, обяснена на разбираем език</h2>
-      <p>Въведете дата на раждане и Mind Compass ще изчисли матрицата по класическата схема с 22 аркана. Ще видите личен портрет, сферите на живота, кармичните уроци, прогноза по години и връзките с близките Ви хора.</p>
-      <button type="button" id="goOwn" class="cont" hidden></button>
+  <section id="welcome" class="landing stack" hidden>
+    <div class="welcome">
+      <div class="w-text">
+        <p class="w-eyebrow">Добре дошли</p>
+        <h2>Вашата матрица на съдбата, обяснена на разбираем език</h2>
+        <p>Mind Compass изчислява матрицата по датата на раждане, по класическата схема с 22 аркана, и я превежда на ежедневен език: какво Ви зарежда, къде са капаните и каква малка стъпка да направите тази седмица.</p>
+        <div class="w-actions"><button type="button" class="cta" data-nav="mine" id="ctaMine">Изчисли моята матрица</button><button type="button" class="ghost light" data-nav="sample">Разгледай пример</button></div>
+              </div>
+    </div>
+    <h2>Какво ще откриете</h2>
+    <div class="feat">
+      <div class="f"><span class="em g2" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 8v30M16 40h16M10 15h28"/><path d="M10 15l-5 10h10ZM38 15l-5 10h10Z"/></svg></span><h3>Личен портрет</h3><p>Коя сте най-дълбоко, как Ви виждат хората и в какво сте дарена.</p></div>
+      <div class="f"><span class="em g1" aria-hidden="true"><svg viewBox="0 0 48 48"><circle cx="19" cy="24" r="9"/><circle cx="29" cy="24" r="9"/></svg></span><h3>Сферите на живота</h3><p>Пари, любов и предназначение в трите етапа на живота.</p></div>
+      <div class="f"><span class="em g3" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 26V8M24 15l-7-6M24 15l7-6M24 20l-9-3M24 20l9-3"/><path d="M8 26h32M24 26v14M24 31l-8 8M24 31l8 8"/></svg></span><h3>Карма</h3><p>Кармичният урок, родовите дарове и задачите, които се предават.</p></div>
+      <div class="f"><span class="em g3" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 6l3 14 14 4-14 4-3 14-3-14-14-4 14-4Z"/></svg></span><h3>22 аркана</h3><p>Светлата страна и сянката на всеки аркан и как да обърнете минуса в плюс.</p></div>
+      <div class="f"><span class="em g2" aria-hidden="true"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="14"/><circle cx="24" cy="24" r="3"/><path d="M24 10v28M10 24h28M14 14l20 20M34 14 14 34"/></svg></span><h3>Прогноза</h3><p>Енергията на годината и темите на периодите през следващите години.</p></div>
+      <div class="f"><span class="em g1" aria-hidden="true"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="15"/><ellipse cx="24" cy="24" rx="6" ry="15"/><path d="M9 24h30"/></svg></span><h3>Хора около Вас</h3><p>Какво Ви свързва с близките, какво се повтаря и как да общувате по-лесно.</p></div>
+    </div>
+    <h2>Как работи</h2>
+    <ol class="how">
+      <li><b>Въведете име и дата на раждане.</b> Не са нужни час и място.</li>
+      <li><b>Mind Compass изчислява матрицата</b> по класическата схема и подрежда тълкуванията по теми.</li>
+      <li><b>Четете, размишлявате и се връщате.</b> Всяка седмица има нов въпрос и малка стъпка.</li>
+    </ol>
+    <p class="note">Данните остават само на Вашето устройство. Нищо не се изпраща никъде.</p>
+  </section>
+
+  <section id="start" class="startpg" hidden>
+    <div class="startcard">
+      <h2>Изчислете своята матрица</h2>
+      <p class="note">Нужни са само име и дата на раждане.</p>
       <form class="wform" id="wForm" novalidate>
         <label for="wName">Име<input id="wName" placeholder="Вашето име" autocomplete="off"></label>
         <label for="wDate">Дата на раждане<input id="wDate" type="text" inputmode="numeric" placeholder="дд.мм.гггг" maxlength="10" autocomplete="off"></label>
-        <button type="submit">Изчисли моята матрица</button>
+        <button type="submit">Изчисли</button>
         <p class="err" id="wErr" role="alert" hidden></p>
-        <p class="whint" id="wHint" role="status" hidden>За да видите своята матрица, въведете име и дата на раждане и натиснете „Изчисли моята матрица“.</p>
       </form>
-      <p class="w-alt">Искате първо да разгледате? <button type="button" class="link light" data-nav="sample">Отворете примерна матрица</button></p>
-      <p class="note">Данните остават само на това устройство. Нищо не се изпраща никъде.</p>
+      <p class="note">Искате първо да разгледате? <button type="button" class="link" data-nav="sample">Отворете примерна матрица</button></p>
     </div>
   </section>
 
@@ -307,7 +346,7 @@ button.link.light{color:var(--accent);font-size:.95rem}
 
   <div class="print-only" id="repHead"></div>
 
-  <footer>Тълкуванията са символни и служат за самонаблюдение. Не са прогноза и не заменят съвет за здраве, пари или важни решения. Изчисленията следват класическата схема на матрицата (22 енергии). <span class="ver">Версия 1.4 · 22.10.2026</span></footer>
+  <footer>Тълкуванията са символни и служат за самонаблюдение. Не са прогноза и не заменят съвет за здраве, пари или важни решения. Изчисленията следват класическата схема на матрицата (22 енергии). <span class="ver">Версия 1.5 · 22.10.2026</span></footer>
 </div>
 
 <script>
@@ -938,10 +977,10 @@ let OWN=null,MODE="own";
 try{const s=JSON.parse(localStorage.getItem("mc-me")||"null");if(s&&valid(s.d))OWN=s}catch(e){}
 const SAMPLE={n:"Пример",d:"1990-03-14"};
 const bgDate=iso=>iso.split("-").reverse().join(".");
-let HOME=false;
-function markNav(){navLabels();document.querySelectorAll(".topnav a").forEach(a=>{const k=a.dataset.nav;const on=HOME?k==="home":(k==="mine"&&MODE==="own")||(k==="sample"&&MODE==="sample");if(on)a.setAttribute("aria-current","page");else a.removeAttribute("aria-current")})}
+let PAGE="home";let HOME=false;
+function markNav(){navLabels();document.querySelectorAll(".topnav a").forEach(a=>{const k=a.dataset.nav;const on=PAGE==="home"?k==="home":PAGE==="start"?k==="mine":(k==="mine"&&MODE==="own")||(k==="sample"&&MODE==="sample");if(on)a.setAttribute("aria-current","page");else a.removeAttribute("aria-current")})}
 function showMain(n,d,mode){
-  MODE=mode;HOME=false;document.getElementById("welcome").hidden=true;document.getElementById("app").hidden=false;document.getElementById("meForm").hidden=true;
+  MODE=mode;HOME=false;PAGE="app";document.getElementById("welcome").hidden=true;document.getElementById("start").hidden=true;document.getElementById("app").hidden=false;document.getElementById("meForm").hidden=true;
   const V=document.getElementById("viewing");
   if(mode==="own")V.innerHTML=`<span class="who">Матрицата на ${esc(n)} · ${bgDate(d)}</span><button type="button" class="ghost" id="editMe">Смени данните</button>`;
   else if(mode==="sample")V.innerHTML=`<span>Това е <strong>примерна матрица</strong>.</span><button type="button" class="ghost" data-nav="mine">${OWN?"Върни се към моята":"Изчисли моята матрица"}</button>`;
@@ -949,17 +988,18 @@ function showMain(n,d,mode){
   render(n,d);markNav();
 }
 function goHome(push=true){
-  HOME=true;document.getElementById("welcome").hidden=false;document.getElementById("app").hidden=true;
-  const g=document.getElementById("goOwn");g.hidden=!OWN;if(OWN)g.textContent=`Продължи към моята матрица (${OWN.n})`;
+  HOME=true;PAGE="home";document.getElementById("welcome").hidden=false;document.getElementById("start").hidden=true;document.getElementById("app").hidden=true;
+  
   if(push&&location.hash!=="#home")history.pushState(null,"","#home");markNav();window.scrollTo(0,0);
 }
-function goMine(){if(OWN){showMain(OWN.n,OWN.d,"own");show("pt");window.scrollTo(0,0)}
-  else{goHome();const f=document.getElementById("wForm"),h=document.getElementById("wHint");h.hidden=false;f.classList.remove("pulse");void f.offsetWidth;f.classList.add("pulse");
-    f.scrollIntoView({block:"center"});document.getElementById("wName").focus({preventScroll:true})}}
-function navLabels(){const a=document.querySelector('.topnav a[data-nav=mine]');a.textContent=OWN?"Моята матрица":"Изчисли моята";if(OWN)document.getElementById("wHint").hidden=true}
+function goStart(push=true){HOME=true;PAGE="start";document.getElementById("welcome").hidden=true;document.getElementById("app").hidden=true;document.getElementById("start").hidden=false;
+  if(push&&location.hash!=="#start")history.pushState(null,"","#start");markNav();window.scrollTo(0,0);document.getElementById("wName").focus({preventScroll:true})}
+function goMine(){if(OWN){showMain(OWN.n,OWN.d,"own");show("pt");window.scrollTo(0,0)}else goStart()}
+function navLabels(){const a=document.querySelector('.topnav a[data-nav=mine]');a.textContent=OWN?"Моята матрица":"Изчисли моята";const c=document.getElementById("ctaMine");if(c)c.textContent=OWN?"Отвори моята матрица":"Изчисли моята матрица"}
 function goSample(){showMain(SAMPLE.n,SAMPLE.d,"sample");show("pt");window.scrollTo(0,0)}
 function route(){const h=location.hash.slice(1);
   if(h==="home"||!h&&!OWN){goHome(false);return}
+  if(h==="start"){goStart(false);return}
   if(!ME||HOME){if(OWN)showMain(OWN.n,OWN.d,"own");else{goHome(false);return}}
   let t=h;if(!VIEWS.includes(t)){try{t=localStorage.getItem("mc-tab")}catch(e){}}
   show(VIEWS.includes(t)?t:"pt",false)}
@@ -971,7 +1011,6 @@ document.getElementById("wForm").addEventListener("submit",e=>{e.preventDefault(
 document.getElementById("meForm").addEventListener("submit",e=>{e.preventDefault();const n=meName.value.trim()||"Вие",d=toISO(meDate.value),er=document.getElementById("meErr");
   if(!valid(d)){er.textContent=dateErr;er.hidden=false;return}er.hidden=true;saveOwn(n,d);showMain(n,d,"own")});
 document.getElementById("meCancel").addEventListener("click",()=>{document.getElementById("meForm").hidden=true});
-document.getElementById("goOwn").addEventListener("click",goMine);
 addEventListener("popstate",route);
 document.addEventListener("click",e=>{
   if(e.target.id==="editMe"){const f=document.getElementById("meForm");f.hidden=false;meName.value=OWN?OWN.n:"";meDate.value=OWN?bgDate(OWN.d):"";meName.focus();return}
