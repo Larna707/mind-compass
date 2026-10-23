@@ -311,13 +311,109 @@ button.link.light{color:var(--accent);font-size:.95rem}
   .print-only{display:block}
   #repHead{border-bottom:2px solid #1E5078;padding-bottom:8px;margin-bottom:6px}
   #repHead h1{font-family:var(--display);color:#1E5078;margin:0;font-size:20pt}
-  form,.tabs,.tools,.appsec,.welcome,.viewing,.hint,summary,button,.btnlike,#v-ar,#v-pp,#v-jr,header{display:none!important}
+  form,.tabs,.tools,.appsec,.welcome,.viewing,.hint,summary,button,.btnlike,#v-ar,#v-pp,#v-jr,.back-bar,header{display:none!important}
   .band{border:1px solid #ccc}
   .card,.step,.year,.period,.quote,.talent{break-inside:avoid}
   h2{break-after:avoid}
   .split{grid-template-columns:1fr 1fr}
   .needle{animation:none}
 }
+
+.band .triad-mini{display:inline-block;margin-top:6px;padding:3px 9px;border-radius:6px;background:rgba(255,255,255,.14);font-size:.82rem;font-weight:600}
+.chart{display:flex;flex-direction:column;gap:8px}
+.chart .pt.active circle{stroke:var(--accent);stroke-width:3.5}
+.node-inspector{background:var(--soft);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:8px;text-align:left}
+.node-inspector .ni-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.node-inspector .ni-pos{font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.node-inspector .ni-title{font-family:var(--display);font-size:1.15rem;color:var(--navy)}
+.power-code{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:8px}
+@media (max-width:520px){.power-code{grid-template-columns:1fr}}
+.pc-item{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:3px}
+.pc-item .pc-num{font-family:var(--display);font-size:1.18rem;color:var(--navy);font-weight:700}
+.pc-item .pc-lbl{font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:700}
+.pos-meaning{font-size:.9rem;background:var(--soft);padding:8px 11px;border-radius:8px;color:var(--fg)}
+.archetype-box{background:var(--surface);border:2px solid var(--accent);border-radius:16px;padding:20px 22px;display:flex;flex-direction:column;gap:12px}
+.archetype-box .ab-badge{display:inline-block;align-self:flex-start;background:var(--accent);color:#1F2D3A;font-weight:700;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border-radius:999px}
+.archetype-box h3{font-family:var(--display);font-size:1.38rem;color:var(--navy)}
+.archetype-box .ab-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;padding-top:8px;border-top:1px solid var(--line)}
+.purpose-block{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px 20px;display:flex;flex-direction:column;gap:12px}
+.purpose-triad{display:grid;grid-template-columns:1fr auto 1fr auto 1.2fr;gap:10px;align-items:center}
+@media (max-width:760px){.purpose-triad{grid-template-columns:1fr}.purpose-triad .op{display:none}}
+.purpose-triad .op{font-family:var(--display);font-size:1.5rem;color:var(--accent);font-weight:700;padding:0 4px;text-align:center}
+.pt-box{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:6px}
+.pt-box.res{background:var(--soft);border-color:var(--accent)}
+.chakra-wrap{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:16px}
+.chakra-tbl{width:100%;border-collapse:collapse;min-width:640px;font-size:.93rem}
+.chakra-tbl th,.chakra-tbl td{padding:11px 14px;border-bottom:1px solid var(--line);text-align:left;vertical-align:middle}
+.chakra-tbl th{font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);background:var(--soft)}
+.chakra-tbl tr:last-child td{border-bottom:0}
+.chakra-tbl tr.total-row td{background:var(--soft);font-weight:700}
+.ch-dot{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:8px;vertical-align:middle}
+.ch-pill{display:inline-flex;align-items:center;gap:6px;background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:3px 10px;font-weight:600;cursor:pointer;color:var(--fg)}
+.ch-pill:hover{border-color:var(--accent);color:var(--navy)}
+.ch-pill b{font-family:var(--display);color:var(--navy);font-size:1rem}
+.triad-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;margin-top:6px}
+.tcard{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:4px}
+.tcard .tlbl{font-size:.72rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:700}
+
+.power-code{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:8px;align-items:stretch}
+@media (max-width:620px){.power-code{grid-template-columns:1fr}}
+.pc-item{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 10px;display:flex;flex-direction:column;justify-content:space-between;align-items:center;text-align:center;gap:6px;min-width:0;overflow:hidden;box-shadow:0 1px 3px rgba(30,80,120,.04)}
+.pc-item .pc-lbl{font-size:.7rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:700;line-height:1.25;min-height:2.5em;display:flex;align-items:center;justify-content:center;width:100%}
+.pc-item .pc-badge{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:var(--soft);color:var(--navy);font-family:var(--display);font-weight:700;font-size:.92rem;border:1px solid var(--line)}
+.pc-item .pc-num{font-family:var(--display);font-size:1.02rem;color:var(--navy);font-weight:700;line-height:1.25;width:100%;overflow-wrap:anywhere;word-break:break-word}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;align-items:stretch}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:10px;min-width:0;height:100%;overflow-wrap:break-word;box-shadow:0 2px 6px rgba(30,80,120,.03)}
+.head>div{min-width:0}
+.ename{font-family:var(--display);font-size:1.15rem;color:var(--navy);line-height:1.25;overflow-wrap:anywhere}
+.pos-meaning{font-size:.88rem;background:var(--soft);padding:9px 12px;border-radius:8px;color:var(--fg);line-height:1.45}
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;align-items:stretch}
+@media (max-width:820px){.steps{grid-template-columns:1fr}}
+.step{padding:18px;display:flex;flex-direction:column;gap:10px;border-right:1px solid var(--line);min-width:0;height:100%}
+.step .link{margin-top:auto}
+.purpose-triad{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1.15fr);gap:10px;align-items:stretch}
+@media (max-width:820px){.purpose-triad{grid-template-columns:1fr}.purpose-triad .op{display:none}}
+.purpose-triad .op{display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:1.5rem;color:var(--accent);font-weight:700;padding:0 4px}
+.pt-box{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:14px;display:flex;flex-direction:column;justify-content:space-between;gap:8px;min-width:0}
+.pt-box.res{background:var(--soft);border-color:var(--accent)}
+/* Back button bar */
+.back-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:-8px}
+.btn-back{display:inline-flex;align-items:center;gap:8px;background:var(--surface);color:var(--navy);border:1px solid var(--line);border-radius:999px;padding:7px 15px;font-size:.88rem;font-weight:600;cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,.05);transition:border-color .15s,background .15s}
+.btn-back:hover{border-color:var(--accent);background:var(--soft)}
+.btn-back svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.3;stroke-linecap:round;stroke-linejoin:round}
+.btn-syn-quick{display:inline-flex;align-items:center;gap:7px;background:var(--accent);color:#1F2D3A;border-radius:999px;padding:7px 16px;font-size:.88rem;font-weight:700;cursor:pointer}
+.btn-syn-quick:hover{filter:brightness(1.05)}
+/* Executive Synthesis / Golden Summary styles */
+.syn-hero{background:var(--band);color:var(--band-fg);border-radius:18px;padding:26px 28px;display:flex;flex-direction:column;gap:14px;position:relative;overflow:hidden}
+.syn-hero h2{color:var(--band-fg);font-size:1.75rem}
+.syn-hero .syn-lead{font-size:1.04rem;line-height:1.75;opacity:.96;max-width:100%;width:100%;text-align:justify;text-justify:inter-word;-webkit-hyphens:auto;hyphens:auto}
+.syn-hero .syn-lead b{color:var(--accent)}
+.syn-pillars{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:6px}
+@media (max-width:780px){.syn-pillars{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:440px){.syn-pillars{grid-template-columns:1fr}}
+.syn-pil{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.syn-pil .sp-lbl{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);font-weight:700}
+.syn-pil .sp-val{font-family:var(--display);font-size:1.1rem;color:var(--band-fg);font-weight:600;overflow-wrap:anywhere}
+.syn-pil .sp-sub{font-size:.82rem;opacity:.85}
+.syn-2col{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;align-items:stretch}
+@media (max-width:760px){.syn-2col{grid-template-columns:1fr}}
+.syn-box{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px 22px;display:flex;flex-direction:column;gap:12px;height:100%}
+.syn-box.plus-box{border-top:4px solid var(--plus)}
+.syn-box.minus-box{border-top:4px solid var(--minus)}
+.syn-box h3{font-family:var(--display);font-size:1.28rem;color:var(--navy);display:flex;align-items:center;gap:8px}
+.syn-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.syn-list li{padding:10px 12px;border-radius:10px;background:var(--bg);font-size:.95rem;line-height:1.5;display:flex;flex-direction:column;gap:4px}
+.syn-list li b{color:var(--navy);font-size:.82rem;text-transform:uppercase;letter-spacing:.05em}
+.syn-list li .fix{color:var(--plus);font-weight:600;font-size:.9rem}
+.syn-fc-card{background:var(--soft);border:1px solid var(--accent);border-radius:16px;padding:20px 22px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;align-items:stretch}
+@media (max-width:760px){.syn-fc-card{grid-template-columns:1fr}}
+.syn-fc-item{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:6px}
+.tab.tab-syn{color:var(--accent);font-weight:700}
+
+
+.syn-list li span:not(.fix){text-align:justify;text-justify:inter-word;-webkit-hyphens:auto;hyphens:auto}
+.syn-fc-item p,.card>p,.step>p:not(.quote),.archetype-box p,.letter p:not(.drop){text-align:justify;text-justify:inter-word;-webkit-hyphens:auto;hyphens:auto}
+
 </style>
 </head>
 <body>
@@ -367,6 +463,7 @@ button.link.light{color:var(--accent);font-size:.95rem}
 
   <section id="start" class="startpg" hidden>
     <div class="startcard">
+      <div><button type="button" class="btn-back" data-back="1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg><span data-en="← Back">← Назад</span></button></div>
       <h2 data-en="Calculate your matrix">Изчислете своята матрица</h2>
       <p class="note" data-en="All you need is a name and a date of birth.">Нужни са само име и дата на раждане.</p>
       <form class="wform" id="wForm" novalidate>
@@ -380,6 +477,7 @@ button.link.light{color:var(--accent);font-size:.95rem}
   </section>
 
   <div id="app" class="stack" style="gap:24px">
+  <div class="back-bar" id="backBar"><button type="button" class="btn-back" id="backBtn" data-back="1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg><span id="backLbl" data-en="Back to previous page">Назад към предишната страница</span></button><button type="button" class="btn-syn-quick" data-v-jump="sy" id="quickSynBtn"><span data-en="✦ Full Personality Summary">✦ Обобщено резюме на личността</span></button></div>
   <div class="viewing" id="viewing"></div>
   <form class="form" id="meForm" novalidate hidden>
     <label for="meName"><span data-en="Name">Име</span><input id="meName" value="" placeholder="Вашето име" data-en-ph="Your name" autocomplete="off"></label>
@@ -393,8 +491,10 @@ button.link.light{color:var(--accent);font-size:.95rem}
 
   <div class="tabs" role="tablist">
     <button class="tab" role="tab" aria-selected="true" data-v="pt" data-en="Portrait">Портрет</button>
+    <button class="tab tab-syn" role="tab" aria-selected="false" data-v="sy" data-en="✦ Summary">✦ Резюме</button>
     <button class="tab" role="tab" aria-selected="false" data-v="zn" data-en="Areas">Сфери</button>
-    <button class="tab" role="tab" aria-selected="false" data-v="km" data-en="Karma">Карма</button>
+    <button class="tab" role="tab" aria-selected="false" data-v="km" data-en="Karma &amp; Lineage">Карма и Род</button>
+    <button class="tab" role="tab" aria-selected="false" data-v="ch" data-en="Health Map">Карта на здравето</button>
     <button class="tab" role="tab" aria-selected="false" data-v="ar" data-en="22 arcana">22 аркана</button>
     <button class="tab" role="tab" aria-selected="false" data-v="fc" data-en="Forecast">Прогноза</button>
     <button class="tab" role="tab" aria-selected="false" data-v="jr" data-en="Journal">Дневник</button>
@@ -402,8 +502,10 @@ button.link.light{color:var(--accent);font-size:.95rem}
   </div>
 
   <section id="v-pt" class="view stack"></section>
+  <section id="v-sy" class="view stack" hidden></section>
   <section id="v-zn" class="view stack" hidden></section>
   <section id="v-km" class="view stack" hidden></section>
+  <section id="v-ch" class="view stack" hidden></section>
   <section id="v-ar" class="view stack" hidden>
     <p class="intro" data-en="Every arcanum has a light side and a shadow. The shadow is not a verdict: it shows where the energy is blocked, and next to every minus you will find how to turn it into a plus. The orange dot marks the arcana in your matrix.">Всеки аркан има светла страна и сянка. Сянката не е присъда: тя показва къде енергията е блокирана, а до всеки минус е посочено как да я обърнете в плюс. Оранжевата точка отбелязва арканите от Вашата матрица.</p>
     <div id="arcDetail"></div>
@@ -465,7 +567,7 @@ button.link.light{color:var(--accent);font-size:.95rem}
     </div>
   </section>
 
-  <footer><span data-en="The readings are symbolic and meant for self-reflection. They are not predictions and do not replace advice on health, money or important decisions. Calculations follow the classic matrix method (22 energies).">Тълкуванията са символни и служат за самонаблюдение. Не са прогноза и не заменят съвет за здраве, пари или важни решения. Изчисленията следват класическата схема на матрицата (22 енергии).</span> <span class="ver" data-en="Version 2.1 · 22.10.2026">Версия 2.1 · 22.10.2026</span></footer>
+  <footer><span data-en="The readings are symbolic and meant for self-reflection. They are not predictions and do not replace advice on health, money or important decisions. Calculations follow the classic matrix method (22 energies).">Тълкуванията са символни и служат за самонаблюдение. Не са прогноза и не заменят съвет за здраве, пари или важни решения. Изчисленията следват класическата схема на матрицата (22 енергии).</span> <span class="ver" data-en="Version 2.2 (Ladini Edition) · 23.10.2026">Версия 2.2 (По Ладини) · 23.10.2026</span></footer>
 </div>
 
 <script>
@@ -1253,38 +1355,183 @@ st:"Do something spontaneous you haven't planned.",
 per:"A time for new beginnings, freedom and experiments. Don't plan everything."}
 ];
 
+const KTAILS_BG={
+  "18-9-9":{name:"Вълшебник / Отшелник (Знания в изолация)",past:"В минал живот душата е притежавала дълбоки сакрални или научни знания, но се е изолирала от хората, отказала е да ги предаде или се е страхувала от силата си.",now:"Склонност към затваряне, недоверие в собствената експертиза, страх от споделяне на знанията пред публика или бягство във въображаеми светове и страхове.",task:"Да излезете сред хората, да превърнете дълбоките си знания в практическа полза за другите и да преодолеете страховете чрез реални действия."},
+  "9-9-18":{name:"Магически знания / Страх от проявление",past:"Душата е натрупала опит и тайно познание, но го е задържала само за себе си поради страх от осъждане, гордост или емоционална студенина.",now:"Съмнения в собствената компетентност („още не знам достатъчно“), трудно допускане на партньор до вътрешния свят и тревожност пред неизвестното.",task:"Да се доверите на интуицията си, да споделяте опита си щедро и да изградите близки, топли и открити отношения."},
+  "9-18-9":{name:"Тайни знания и самота",past:"Уединен живот, посветен на изследвания или духовни практики, но съпроводен с отхвърляне на земния живот, семейството и материалната реалност.",now:"Страх от самота или обратното – бягство в пълна самодостатъчност, мнителност и страх от измама.",task:"Да съчетаете духовната дълбочина с пълноценен земен живот, партньорство и споделяне на мъдростта."},
+  "15-20-5":{name:"Бунтар / Отлъчен от рода",past:"Човекът е тръгнал срещу традициите и правилата на семейството си, прекъснал е връзката с рода си или е използвал влиянието си за разделение.",now:"Напрегнати отношения с роднини, усещане за „черната овца“ в семейството, крайности между сляпо подчинение на правила и рязък бунт.",task:"Да възстановите уважението и връзката с рода, да простите на близките си и да обединявате хората, без да ги контролирате."},
+  "15-5-8":{name:"Предателство и страсти в семейството",past:"Нарушаване на семейни обети, закони или морални принципи заради изкушения, власт, зависимости или лична изгода.",now:"Остри реакции към всяка несправедливост, проверки за вярност и честност в партньорството, борба с вътрешни изкушения.",task:"Да спазвате чисти договорености, да учите чрез личен пример вместо чрез поучаване и да приемете несъвършенствата на хората."},
+  "18-6-6":{name:"Любовна магия / Зависимост от любов",past:"Силна емоционална привързаност, опит да се задържи или спечели нечия любов на всяка цена, отказ от себе си в името на друг човек.",now:"Постоянна нужда от външно одобрение и доказателства за обич, идеализиране на партньора, следвано от дълбоко разочарование.",task:"Да обикнете и приемете себе си безусловно, да спрете да търсите спасение в друг човек и да правите избори от вътрешна пълнота."},
+  "6-17-11":{name:"Погубен талант",past:"Душата е имала ярка дарба и огромен потенциал, но ги е пропиляла заради неувереност, рутина, мързел или страх да излезе на сцената.",now:"Работа на сигурно, но нелюбимо място, съмнение в собствената уникалност, изразходване на огромна физическа сила за чужди цели.",task:"Да разкриете таланта си пред света, да преодолеете синдрома на самозванеца и да насочите силата си към творческа реализация."},
+  "12-19-7":{name:"Воин / Потиснато лидерство",past:"Участие в битки или агресивно налагане на цели, довело до жертви и чувство за вина, поради което душата се е отрекла от лидерството си.",now:"Спиране точно преди успеха, саможертва за сметка на личните цели или рязко преминаване от пасивност в агресивен натиск.",task:"Да водите хората мирно и вдъхновяващо, да си поставяте високи цели без страх и да помагате от изобилие, а не от позиция на жертва."},
+  "21-4-10":{name:"Угнетяване на душата / Несвобода",past:"Живот в строги ограничения, зависимост от властен човек или отказ от собствена воля и отговорност в замяна на сигурност.",now:"Страх от поемане на пълна финансова и лична отговорност, усещане за вътрешни граници или чакане някой друг да вземе решението.",task:"Да излезете от рамките, да поемете управлението на живота си в свои ръце и да се доверите на потока на промяната."},
+  "21-10-16":{name:"Духовен жрец / Загуба на духовен център",past:"Притежаване на голямо духовно знание, което не е било предадено навреме, или разрушаване на духовни ценности заради материални цели.",now:"Внезапни житейски обрати, които събарят стари опори, ако човек се вкопчи само в материалното и забрави за вътрешното си развитие.",task:"Да станете духовен ориентир за другите, да приемате промените с гъвкавост и да градите живота си върху здрави ценности."},
+  "21-7-13":{name:"Разрушение и смърт на много души",past:"Действия в миналото, свързани с глобални конфликти, войни или разрушителни процеси, оставили дълбок отпечатък върху душата.",now:"Страх от внезапни промени, екстремни ситуации или обратното – несъзнателно създаване на кризи и хаос, когато животът стане спокоен.",task:"Да използвате мощната си енергия за спасяване, лечение, реформи и съзидателна трансформация на остарели системи."},
+  "21-10-7":{name:"Воин на вярата",past:"Налагане на собствените убеждения, религия или светоглед със сила и нетърпимост към чуждия избор.",now:"Желание да накарате околните да живеят „правилно“, нетърпение към по-бавните хора и вътрешно напрежение при липса на движение.",task:"Да уважавате свободния избор на всеки човек и да вдъхновявате чрез собствения си път, без да притискате никого."},
+  "3-7-22":{name:"Затворник / Несвободна душа",past:"Загуба на лична свобода (физическа или чрез тежка зависимост) или отнемане на свободата и избора на други хора.",now:"Остър страх от ограничения, обвързване и контрол, редуващ се със ситуации, в които се чувствате в капан от задължения.",task:"Да обретете вътрешна свобода, да съчетаете лекотата с отговорността и да давате пълна свобода на близките си."},
+  "3-22-19":{name:"Неродено дете / Прекъснат живот",past:"Душата е напуснала земния план много рано или майката не е желала раждането, поради което е останала жажда за живот и реализация.",now:"Огромна енергия и желание да се опита всичко наведнъж, детска спонтанност, но и подсъзнателен страх дали имате право на щастие и изобилие.",task:"Да се радвате пълноценно на живота, да реализирате големи творчески проекти и да излекувате отношенията с майката и децата."},
+  "3-13-10":{name:"Самоубийство / Отказ от живота",past:"В труден момент душата се е предала, отказала се е от борбата и не е оценила дара на живота и подкрепата на съдбата.",now:"Периоди на апатия, усещане за безсмислие при трудности или несъзнателно търсене на риск и крайни състояния.",task:"Да цените всеки ден, да преминавате през промените с доверие и да помагате на други хора да намерят смисъл в трудни моменти."},
+  "6-5-17":{name:"Гордост и възвисяване",past:"Поставяне на себе си над обикновените хора заради красота, произход, знания или изключителен талант.",now:"Болезнена чувствителност към критика, очакване на специално отношение или криене на таланта от страх да не бъде оценен по достойнство.",task:"Да общувате с хората като с равни, да споделяте таланта си с топло сърце и да не зависите от чуждото възхищение."},
+  "6-8-20":{name:"Разочарование на рода",past:"Човекът не е оправдал очакванията на семейството си (в избор на партньор или професия) и е бил осъден или отхвърлен от рода.",now:"Силно желание да докажете на родителите и близките си, че сте достойни, страх да не ги разочаровате или повтаряне на родови сценарии.",task:"Да изберете собствения си път с любов и благодарност към предците, без вина и без нужда да се доказвате."},
+  "6-14-8":{name:"Диктатор на съвестта / Съдник",past:"Строго съдене на хората, поставяне на закона и правилата над човечността, милосърдието и любовта.",now:"Вътрешен конфликт между сърцето и дълга, склонност да обвинявате себе си и другите при всяко отклонение от идеала.",task:"Да развиете безусловно приемане, мекота и умереност, поставяйки любовта и разбирането пред сухото правосъдие."},
+  "6-20-14":{name:"Жертва на обстоятелствата / Неблагодарност",past:"Недоволство от съдбата и семейството, прехвърляне на вината за неуспехите върху близките и липса на благодарност за даденото.",now:"Очакване околните да решат проблемите Ви, обидчивост към роднини и люшкане между крайности в емоциите.",task:"Да култивирате искрена благодарност към рода и живота, да пазите вътрешен баланс и да творите с търпение."},
+  "9-3-21":{name:"Надзорник / Ограничаване на чуждата воля",past:"Контрол и манипулация над близки или подчинени хора, ограничаване на тяхната самостоятелност под формата на „грижа“.",now:"Страх да пуснете контрола в дома и работата, недоверие, че другите ще се справят без Вашата намеса.",task:"Да уважавате границите и свободата на другите, да делегирате спокойно и да разширите мирогледа си."},
+  "9-12-3":{name:"Самотна жена / Раздяла с любимия",past:"Дълго чакане на любим човек, живот в саможертва и самота или отказ от личен живот след загуба.",now:"Подсъзнателен страх от загуба на партньора, прекомерна жертвоготовност в семейството или избор на емоционално недостъпни партньори.",task:"Да изградите пълноценна връзка на равни начала, да се грижите за себе си и да не превръщате любовта в страдание."},
+  "9-15-6":{name:"Свят на страстите и приказките",past:"Избор на плътски удоволствия, изкушения и илюзии пред истинската духовна близост и вярност.",now:"Силни съблазни в отношенията, съмнения дали сте направили правилния избор на партньор, бягство във фантазии.",task:"Да обедините страстта с духовната близост, да направите осъзнат избор в любовта и да устоите на манипулациите."},
+  "12-16-4":{name:"Император / Злоупотреба с власт",past:"Деспотично управление, налагане на волята със сила и нежелание да се чуе болката на другите хора.",now:"Сблъсъци с авторитети, мъже или институции; склонност да носите цялата тежест сами, докато не настъпи изтощение или срив.",task:"Да управлявате мъдро и меко, да служите на хората чрез силата си и да се научите да отстъпвате и делегирате."},
+  "15-8-11":{name:"Физическа агресия / Неуправляема сила",past:"Злоупотреба с физическа сила, власт или натиск над по-слабите, довела до тежки кармични последици.",now:"Високо вътрешно напрежение, привличане на конфликтни ситуации или потискане на гнева, което удря по собственото тяло.",task:"Да овладеете огромния си енергиен потенциал чрез спорт, съзидателен труд и защита на справедливостта по мирен път."},
+  "18-3-12":{name:"Физическо страдание / Грижа за немощни",past:"Преминаване през тежко физическо изпитание, неприемане на собственото тяло или отказ да се помогне на болен близък.",now:"Повишена тревожност за здравето (своето или на близките), психосоматични реакции при стрес и склонност към саможертва.",task:"Да се грижите с любов за тялото и психиката си, да помагате на другите без да поемате болката им върху себе си."},
+  "18-6-15":{name:"Тъмен маг / Изкушение с власт и влияние",past:"Използване на харизма, тайни знания или психологическо влияние за манипулиране на хора и постигане на користни цели.",now:"Голяма притегателна сила, но и риск от зависимости, токсични връзки, ревност и желание за таен контрол над партньора.",task:"Да използвате силното си влияние и интуиция единствено за изцеление, развитие и честна подкрепа на хората."}
+};
+
+const KTAILS_EN={
+  "18-9-9":{name:"The Wizard / Hermit (Knowledge in Isolation)",past:"In a past life the soul possessed deep sacred or scientific knowledge, but isolated itself from people, refused to pass it on, or feared its own power.",now:"A tendency to withdraw, doubt your own expertise, fear sharing knowledge in public, or escape into imaginary worlds and anxieties.",task:"Step out among people, turn your deep knowledge into practical benefit for others, and overcome fears through real action."},
+  "9-9-18":{name:"Magical Knowledge / Fear of Expression",past:"The soul accumulated experience and secret knowledge, but kept it to itself out of fear of judgement, pride, or emotional coldness.",now:"Doubts about your competence ('I still don't know enough'), difficulty letting a partner into your inner world, and anxiety before the unknown.",task:"Trust your intuition, share your experience generously, and build close, warm, and open relationships."},
+  "9-18-9":{name:"Secret Knowledge & Solitude",past:"A secluded life devoted to research or spiritual practices, accompanied by rejection of earthly life, family, and material reality.",now:"Fear of loneliness or the opposite—escaping into total self-sufficiency, suspicion, and fear of deception.",task:"Combine spiritual depth with a full earthly life, partnership, and generous sharing of wisdom."},
+  "15-20-5":{name:"The Rebel / Estranged from the Lineage",past:"Going against family traditions and rules, cutting ties with the clan, or using influence in ways that divided the family.",now:"Tense relationships with relatives, feeling like the 'black sheep' of the family, swinging between blind obedience to rules and sharp rebellion.",task:"Restore respect and connection with your family line, forgive your relatives, and unite people without controlling them."},
+  "15-5-8":{name:"Betrayal & Passions in the Family",past:"Breaking family vows, laws, or moral principles for the sake of temptations, power, addictions, or personal gain.",now:"Sharp reactions to any injustice, testing loyalty and honesty in partnership, and struggling with inner temptations.",task:"Keep clean agreements, teach by personal example rather than lecturing, and accept human imperfection with compassion."},
+  "18-6-6":{name:"Love Magic / Emotional Dependency",past:"Intense emotional attachment, trying to hold on to or win someone's love at any cost, or giving up oneself for another person.",now:"Constant need for external approval and proof of love, idealising a partner followed by deep disappointment.",task:"Love and accept yourself unconditionally, stop looking for salvation in another person, and make choices from inner fullness."},
+  "6-17-11":{name:"Wasted Talent",past:"The soul had a bright gift and huge potential, but squandered them out of insecurity, routine, laziness, or fear of stepping onto the stage.",now:"Working in a safe but unloved job, doubting your uniqueness, and spending enormous physical strength on other people's goals.",task:"Reveal your talent to the world, overcome impostor syndrome, and direct your strength toward creative fulfilment."},
+  "12-19-7":{name:"The Warrior / Suppressed Leadership",past:"Participating in battles or aggressively forcing goals, which led to casualties and guilt, causing the soul to renounce its leadership.",now:"Stopping right before success, sacrificing yourself at the expense of personal goals, or swinging from passivity into aggressive pressure.",task:"Lead people peacefully and inspiringly, set high goals without fear, and help from abundance rather than sacrifice."},
+  "21-4-10":{name:"Oppressed Soul / Lack of Freedom",past:"Living under strict restrictions, depending on a dominant figure, or giving up personal will and responsibility in exchange for security.",now:"Fear of taking full financial and personal responsibility, feeling inner boundaries, or waiting for someone else to decide.",task:"Step outside old limits, take the helm of your life into your own hands, and trust the flow of change."},
+  "21-10-16":{name:"Spiritual Priest / Loss of Spiritual Centre",past:"Holding great spiritual knowledge that was not passed on in time, or destroying spiritual values for material goals.",now:"Sudden life turns that knock down old supports whenever you cling only to material things and forget inner growth.",task:"Become a spiritual guide for others, accept change with flexibility, and build your life on solid values."},
+  "21-7-13":{name:"Destruction & Global Upheaval",past:"Actions in the past connected with global conflicts, wars, or destructive processes that left a deep imprint on the soul.",now:"Fear of sudden change and extreme situations, or the opposite—unconsciously creating crises and chaos when life becomes calm.",task:"Use your powerful energy for saving, healing, reforming, and constructively transforming outdated systems."},
+  "21-10-7":{name:"Warrior of Faith",past:"Imposing your own beliefs, religion, or worldview by force and intolerance toward other people's choices.",now:"Wanting to make people around you live 'properly', impatience with slower people, and inner tension when things stall.",task:"Respect every person's free choice and inspire through your own path without pressuring anyone."},
+  "3-7-22":{name:"The Prisoner / Unfree Soul",past:"Loss of personal freedom (physically or through heavy dependency) or taking away the freedom and choice of others.",now:"Acute fear of restrictions, commitment, and control, alternating with situations where you feel trapped by obligations.",task:"Gain inner freedom, combine lightness with responsibility, and grant full freedom to your loved ones."},
+  "3-22-19":{name:"Unborn Child / Cut-Short Life",past:"The soul left the earthly plane very early, or the mother did not want the birth, leaving an unfulfilled thirst for life and realisation.",now:"Huge energy and desire to try everything at once, childlike spontaneity, but also a subconscious doubt whether you deserve happiness and abundance.",task:"Rejoice fully in life, realise large creative projects, and heal relationships with your mother and children."},
+  "3-13-10":{name:"Renunciation of Life",past:"In a hard moment the soul gave up, stopped fighting, and failed to value the gift of life and the support of destiny.",now:"Periods of apathy, feeling meaninglessness when facing difficulties, or unconsciously seeking risk and extreme states.",task:"Value every single day, move through change with trust, and help others find meaning in hard times."},
+  "6-5-17":{name:"Pride & Exaltation",past:"Placing yourself above ordinary people because of beauty, birth, knowledge, or exceptional talent.",now:"Painful sensitivity to criticism, expecting special treatment, or hiding your talent for fear it won't be properly appreciated.",task:"Treat everyone as an equal, share your talent with a warm heart, and free yourself from depending on admiration."},
+  "6-8-20":{name:"Disappointment of the Lineage",past:"Failing to meet the family's expectations (in choosing a partner or profession) and being judged or rejected by the clan.",now:"Strong urge to prove to parents and relatives that you are worthy, fear of disappointing them, or repeating family scripts.",task:"Choose your own path with love and gratitude toward your ancestors, without guilt and without needing to prove yourself."},
+  "6-14-8":{name:"Dictator of Conscience / The Judge",past:"Judging people harshly, putting law and rules above humanity, mercy, and love.",now:"Inner conflict between heart and duty, tendency to blame yourself and others at every deviation from the ideal.",task:"Develop unconditional acceptance, gentleness, and moderation, putting love and understanding ahead of dry judgement."},
+  "6-20-14":{name:"Victim of Circumstances / Ingratitude",past:"Dissatisfaction with fate and family, blaming relatives for failures, and lack of gratitude for what was given.",now:"Expecting others to solve your problems, touchiness toward relatives, and swinging between emotional extremes.",task:"Cultivate sincere gratitude toward your family line and life, keep inner balance, and create with patience."},
+  "9-3-21":{name:"The Overseer / Restricting Others' Will",past:"Controlling and manipulating close ones or subordinates, limiting their independence under the guise of 'care'.",now:"Fear of letting go of control at home and at work, distrust that others can manage without your intervention.",task:"Respect other people's boundaries and freedom, delegate calmly, and broaden your worldview."},
+  "9-12-3":{name:"Lonely Woman / Separation from the Beloved",past:"Long waiting for a loved one, living in self-sacrifice and solitude, or giving up personal life after a loss.",now:"Subconscious fear of losing your partner, excessive self-sacrifice in the family, or choosing emotionally unavailable partners.",task:"Build a fulfilling relationship as equals, look after yourself, and stop turning love into suffering."},
+  "9-15-6":{name:"World of Passions & Illusions",past:"Choosing physical pleasures, temptations, and illusions over true spiritual closeness and fidelity.",now:"Strong temptations in relationships, doubts about whether you made the right choice of partner, escaping into fantasies.",task:"Unite passion with spiritual intimacy, make a conscious choice in love, and resist manipulation."},
+  "12-16-4":{name:"The Emperor / Abuse of Power",past:"Despotic rule, imposing will by force, and refusing to hear the pain of other people.",now:"Clashes with authorities, men, or institutions; tendency to carry the whole burden alone until exhaustion or collapse.",task:"Rule wisely and gently, serve people through your strength, and learn to yield and delegate."},
+  "15-8-11":{name:"Physical Aggression / Unruly Strength",past:"Misusing physical strength, power, or pressure over the weaker, leading to heavy karmic consequences.",now:"High inner tension, attracting conflict situations, or suppressing anger in a way that strikes your own body.",task:"Master your huge energy potential through sport, constructive work, and peaceful defence of justice."},
+  "18-3-12":{name:"Physical Suffering / Care for the Helpless",past:"Going through a severe physical trial, rejecting your own body, or refusing to help a sick relative.",now:"Heightened anxiety about health (your own or loved ones'), psychosomatic reactions to stress, and self-sacrifice.",task:"Care for your body and psyche with love, and help others without taking their pain onto yourself."},
+  "18-6-15":{name:"Dark Magician / Temptation of Power",past:"Using charisma, secret knowledge, or psychological influence to manipulate people and achieve selfish ends.",now:"Great magnetic power, but also risk of dependencies, toxic ties, jealousy, and desire for covert control over a partner.",task:"Use your strong influence and intuition solely for healing, growth, and honest support of people."}
+};
+
+const POS_INFO_BG={
+  A:{title:"Визитна картичка · Портрет на личността (0 г.)",line:"Линия на Земята (вляво)",desc:"Енергията на деня на раждане. Показва как Ви възприемат околните при първа среща, какви са естествените Ви черти на характера и физическият Ви ресурс."},
+  B:{title:"Връзка с Ангела Хранител · Духовен потенциал (20 г.)",line:"Линия на Небето (горе)",desc:"Енергията на месеца на раждане. Показва Вашата интуиция, водещите таланти от Бога, творческия поток и начина, по който общувате с Висшите сили."},
+  C:{title:"Материална карма и здраве (40 г.)",line:"Линия на Земята (вдясно)",desc:"Енергията на годината на раждане. Отговаря за финансовите уроци, отношението към парите, земната реализация и физическото здраве в зряла възраст."},
+  D:{title:"Духовно-кармичен урок от минал живот (60 г.)",line:"Линия на Небето (долу)",desc:"Най-долната точка на матрицата. Показва основния неизпълнен дълг от миналото прераждане, който в началото на живота често действа в минус и изисква осъзнаване."},
+  X:{title:"Зона на душевния комфорт · Център на матрицата",line:"Сърцевина на матрицата",desc:"Централният код на Вашата сила. Показва от какво се зарежда душата Ви, каква е истинската Ви същност и как да постигнете вътрешна хармония във всяка сфера."},
+  J:{title:"Сила на рода · Център на родовия квадрат",line:"Родов квадрат",desc:"Сборът от четирите родови линии. Това е мощният енергиен ресурс и благословията на предците, на които можете да се опрете в трудни моменти."},
+  A1:{title:"Лична сила и мислене · Чакра Аджна (Физика)",line:"Линия на Земята",desc:"Междинна точка между Визитната картичка и Центъра. Показва начина, по който материализирате мислите си и възприемате реалността."},
+  A2:{title:"Себеизразяване в обществото · Чакра Вишудха (Физика)",line:"Линия на Земята",desc:"Вътрешна точка до Центъра. Показва как отстоявате границите си, как звучи гласът Ви в социума и как реализирате идеите си на практика."},
+  B1:{title:"Висши таланти и ясновидство · Чакра Аджна (Енергия)",line:"Линия на Небето",desc:"Междинна точка по духовната вертикала. Отговаря за дълбокото разбиране на законите на света и способността да виждате бъдещи тенденции."},
+  B2:{title:"Творчески глас на душата · Чакра Вишудха (Енергия)",line:"Линия на Небето",desc:"Вътрешна точка до Центъра по вертикалата. Показва какво вдъхновява душата Ви да пее и твори, когато сте честни със себе си."},
+  C1:{title:"Урок по управление на ресурсите",line:"Материална карма",desc:"Средна точка в опашката на материалната карма (Чакра Свадхистана – физика). Показва скритите страхове, свързани с парите, удоволствията и притежанието."},
+  C2:{title:"Вход във финансовия канал · Чакра Манипура (Физика)",line:"Канал на парите",desc:"Ключова точка, която отключва или блокира паричния поток. Показва как трябва да действате социално, за да привличате стабилни доходи."},
+  D1:{title:"Сърцевина на кармичния багаж · Чакра Свадхистана (Енергия)",line:"Кармична опашка",desc:"Средната точка от Кармичната опашка. Показва основния емоционален модел и изкушението, пренесено от миналото прераждане."},
+  D2:{title:"Вход в канала на отношенията · Точка на душевния дискомфорт",line:"Кармична опашка и Любов",desc:"Вътрешната точка на кармичната опашка (Чакра Манипура – енергия). От нейното преработване в плюс зависи дали ще допуснете здрава и щастлива връзка."},
+  cross:{title:"Точка на баланса между Любовта и Парите",line:"Линия на благополучието",desc:"Централният възел на диагонала между отношенията и финансите. Когато тази енергия е в плюс, любовта и парите се подкрепят взаимно."},
+  money:{title:"Професионална реализация и сфера на доходите",line:"Канал на парите",desc:"Централната точка на финансовия канал. Показва най-подходящите професии, източници на доходи и мащаба на Вашата реализация."},
+  love:{title:"Сърцевина на партньорството и идеалният партньор",line:"Канал на отношенията",desc:"Централната точка на канала на любовта. Показва какъв тип партньор Ви е нужен и как се разгръща атмосферата в семейството."},
+  F:{title:"Духовна карма на бащиния (мъжкия) род (10 г.)",line:"Диагонал на бащиния род (горе вляво)",desc:"Показва духовните ценности, мирогледа и уроците, предадени от предците по бащина линия, които трябва да осъзнаете и развиете."},
+  H:{title:"Материална карма на бащиния (мъжкия) род (50 г.)",line:"Диагонал на бащиния род (долу вдясно)",desc:"Показва земните, финансовите и поведенческите сценарии по бащина линия, които изискват преработване в материален план."},
+  G:{title:"Духовна карма на майчиния (женския) род (30 г.)",line:"Диагонал на майчиния род (горе вдясно)",desc:"Показва интуитивните дарби, емоционалната памет и духовните задачи, наследени по женска линия от рода на майката."},
+  I:{title:"Материална карма на майчиния (женския) род (70 г.)",line:"Диагонал на майчиния род (долу вляво)",desc:"Показва битовите, семейните и материалните програми от рода на майката, които трябва да хармонизирате в живота си."},
+  F1:{title:"Талант и ресурс от бащиния род (външен)",line:"Диагонал на бащиния род",desc:"Способности за действие и мислене, предадени генетично по бащина линия."},
+  F2:{title:"Вътрешна опора на бащиния род",line:"Диагонал на бащиния род",desc:"Енергията, която свързва духовния опит на бащиния род с Вашата лична сила."},
+  G1:{title:"Талант и ресурс от майчиния род (външен)",line:"Диагонал на майчиния род",desc:"Интуитивни и творчески заложби, предадени по майчина линия."},
+  G2:{title:"Вътрешна опора на майчиния род",line:"Диагонал на майчиния род",desc:"Енергията, която свързва духовния опит на майчиния род с Вашата лична сила."},
+  H1:{title:"Междинен материален урок на бащиния род",line:"Диагонал на бащиния род",desc:"Начинът, по който бащиният род се е справял с трудности, статус и пари."},
+  H2:{title:"Вътрешен ключ към материалната карма на бащиния род",line:"Диагонал на бащиния род",desc:"Точката, чрез която трансформирате родовите финансови програми по бащина линия в ресурс."},
+  I1:{title:"Междинен материален урок на майчиния род",line:"Диагонал на майчиния род",desc:"Отношението към дома, семейството и материалната сигурност по майчина линия."},
+  I2:{title:"Вътрешен ключ към материалната карма на майчиния род",line:"Диагонал на майчиния род",desc:"Точката, чрез която лекувате женските и семейните програми от рода на майката."}
+};
+
+const POS_INFO_EN={
+  A:{title:"Calling Card · Portrait of Personality (Age 0)",line:"Earth Line (Left)",desc:"The energy of your day of birth. Shows how others perceive you at first meeting, your natural character traits, and your physical resource."},
+  B:{title:"Guardian Angel Connection · Spiritual Potential (Age 20)",line:"Sky Line (Top)",desc:"The energy of your month of birth. Shows your intuition, leading God-given talents, creative flow, and how you commune with Higher forces."},
+  C:{title:"Material Karma & Health (Age 40)",line:"Earth Line (Right)",desc:"The energy of your year of birth. Governs financial lessons, your relationship with money, earthly realisation, and physical health in maturity."},
+  D:{title:"Spiritual-Karmic Lesson from Past Life (Age 60)",line:"Sky Line (Bottom)",desc:"The lowest point of the matrix. Shows the main unfulfilled debt from a past incarnation, which often starts in the minus and requires awareness."},
+  X:{title:"Soul Comfort Zone · Centre of the Matrix",line:"Core of the Matrix",desc:"The central code of your strength. Shows what recharges your soul, your true essence, and how to reach inner harmony in every area."},
+  J:{title:"Ancestral Power · Centre of the Family Square",line:"Ancestral Square",desc:"The sum of the four family lines. A powerful energy resource and ancestral blessing you can lean on in difficult times."},
+  A1:{title:"Personal Power & Thinking · Ajna Chakra (Physical)",line:"Earth Line",desc:"Intermediate point between the Calling Card and the Centre. Shows how you materialise your thoughts and perceive reality."},
+  A2:{title:"Self-Expression in Society · Vishuddha Chakra (Physical)",line:"Earth Line",desc:"Inner point next to the Centre. Shows how you uphold your boundaries, how your voice sounds in society, and how you put ideas into practice."},
+  B1:{title:"Higher Talents & Foresight · Ajna Chakra (Energy)",line:"Sky Line",desc:"Intermediate point on the spiritual vertical. Governs deep understanding of universal laws and the ability to see future trends."},
+  B2:{title:"Creative Voice of the Soul · Vishuddha Chakra (Energy)",line:"Sky Line",desc:"Inner point next to the Centre on the vertical line. Shows what inspires your soul to sing and create when you are honest with yourself."},
+  C1:{title:"Resource Management Lesson",line:"Material Karma",desc:"Middle point in the material karma tail (Svadhisthana Chakra – Physical). Shows hidden fears around money, pleasure, and possession."},
+  C2:{title:"Entry to the Money Channel · Manipura Chakra (Physical)",line:"Money Channel",desc:"Key point that unlocks or blocks cash flow. Shows how you need to act socially to attract steady income."},
+  D1:{title:"Core of Karmic Baggage · Svadhisthana Chakra (Energy)",line:"Karmic Tail",desc:"Middle point of the Karmic Tail. Shows the primary emotional pattern and temptation carried over from a past incarnation."},
+  D2:{title:"Entry to the Relationship Channel · Soul Discomfort Point",line:"Karmic Tail & Love",desc:"Inner point of the karmic tail (Manipura Chakra – Energy). Turning it into the plus determines whether you allow a healthy, happy partnership."},
+  cross:{title:"Balance Point Between Love & Money",line:"Well-Being Line",desc:"Central node on the diagonal between relationships and finances. When this energy is in the plus, love and money support each other."},
+  money:{title:"Professional Realisation & Sphere of Income",line:"Money Channel",desc:"Central point of the financial channel. Shows the most suitable professions, sources of income, and scale of your career."},
+  love:{title:"Heart of Partnership & Ideal Partner",line:"Relationship Channel",desc:"Central point of the love channel. Shows what kind of partner you need and how the atmosphere unfolds in your family."},
+  F:{title:"Spiritual Karma of Father's (Male) Line (Age 10)",line:"Father's Line Diagonal (Top Left)",desc:"Shows the spiritual values, worldview, and lessons passed down by paternal ancestors to be recognised and developed."},
+  H:{title:"Material Karma of Father's (Male) Line (Age 50)",line:"Father's Line Diagonal (Bottom Right)",desc:"Shows the earthly, financial, and behavioural scripts on your father's side that require working through on the material plane."},
+  G:{title:"Spiritual Karma of Mother's (Female) Line (Age 30)",line:"Mother's Line Diagonal (Top Right)",desc:"Shows the intuitive gifts, emotional memory, and spiritual tasks inherited along the female line from your mother's clan."},
+  I:{title:"Material Karma of Mother's (Female) Line (Age 70)",line:"Mother's Line Diagonal (Bottom Left)",desc:"Shows the domestic, family, and material programmes from your mother's clan to be harmonised in your life."},
+  F1:{title:"Talent & Resource from Father's Line (Outer)",line:"Father's Line Diagonal",desc:"Abilities for action and thinking passed down genetically on your father's side."},
+  F2:{title:"Inner Support of Father's Line",line:"Father's Line Diagonal",desc:"The energy connecting the spiritual experience of your father's line with your personal strength."},
+  G1:{title:"Talent & Resource from Mother's Line (Outer)",line:"Mother's Line Diagonal",desc:"Intuitive and creative endowments passed down on your mother's side."},
+  G2:{title:"Inner Support of Mother's Line",line:"Mother's Line Diagonal",desc:"The energy connecting the spiritual experience of your mother's line with your personal strength."},
+  H1:{title:"Intermediate Material Lesson of Father's Line",line:"Father's Line Diagonal",desc:"How your father's clan handled hardship, status, and money."},
+  H2:{title:"Inner Key to Father's Material Karma",line:"Father's Line Diagonal",desc:"The point through which you transform paternal financial scripts into a resource."},
+  I1:{title:"Intermediate Material Lesson of Mother's Line",line:"Mother's Line Diagonal",desc:"Attitudes toward home, family, and material security on your mother's side."},
+  I2:{title:"Inner Key to Mother's Material Karma",line:"Mother's Line Diagonal",desc:"The point through which you heal female and family scripts from your mother's clan."}
+};
+
 const RN=["","I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII","XIII","XIV","XV","XVI","XVII","XVIII","XIX","XX","XXI","XXII"];
 let LANG="bg";try{const s=localStorage.getItem("mc-lang");if(s==="en"||s==="bg")LANG=s}catch(e){}
-let E=E_BG,AX=AX_BG;
+let E=E_BG,AX=AX_BG,KTAILS=KTAILS_BG,POS_INFO=POS_INFO_BG;
 const tr=(bg,en)=>LANG==="en"?en:bg;
 const REL={"Партньор":"Partner","Родител":"Parent","Дете":"Child","Брат / сестра":"Sibling","Приятел":"Friend","Колега":"Colleague","Ръководител":"Manager","Друго":"Other"};
 const relT=r=>LANG==="en"?(REL[r]||r):r;
 const grp=v=>v<=7?1:v<=14?2:v<=21?3:4;
 const r=n=>{while(n>22)n=String(n).split("").reduce((s,c)=>s+ +c,0);return n};
 const ds=n=>String(n).split("").reduce((s,c)=>s+ +c,0);
+
 function calc(iso){
   const [y,m,d]=iso.split("-").map(Number);
   const A=r(d),B=r(m),C=r(ds(y));return calcPts(A,B,C,r(A+B+C),{y,m,d});
 }
+
 function calcPts(A,B,C,D,ext={}){
   const {y,m,d}=ext,X=r(A+B+C+D);
-  const F=r(A+B),G=r(B+C),H=r(C+D),I=r(D+A),J=r(F+G+H+I);
+  const F=r(A+B),G=r(B+C),H=r(C+D),I=r(D+A),J=r(F+G+H+I),powerCode=r(X+J);
   const chain=v=>{const two=r(v+X);return {one:r(v+two),two}};
   const ch={A:chain(A),B:chain(B),C:chain(C),D:chain(D)};
   const cr={};for(const [k,v] of Object.entries({F,G,H,I})){const two=r(v+J);cr[k]={two,one:r(v+two)}}
   const cross=r(ch.C.two+ch.D.two),money=r(ch.C.two+cross),love=r(ch.D.two+cross);
-  const personal=r(r(B+D)+r(A+C)),social=r(r(F+H)+r(G+I)),spirit=r(personal+social);
+  const sky=r(B+D),earth=r(A+C),personal=r(sky+earth);
+  const maleLine=r(F+H),femaleLine=r(G+I),social=r(maleLine+femaleLine);
+  const spirit=r(personal+social),planetary=r(social+spirit);
+  const tailKey=`${ch.D.two}-${ch.D.one}-${D}`;
+  const chakras=[
+    {num:7,skBg:"Сахасрара",skEn:"Sahasrara",bg:"Коронна чакра · Мисия и връзка с Космоса",en:"Crown Chakra · Mission & Cosmic Connection",color:"#7E57C2",bodyBg:"Главен мозък, епифиза, висша нервна система, коса",bodyEn:"Brain, pineal gland, higher nervous system, hair",p:A,e:B,em:r(A+B)},
+    {num:6,skBg:"Аджна",skEn:"Ajna",bg:"Трето око · Интуиция, зрение и мисловни програми",en:"Third Eye · Intuition, Vision & Mental Programmes",color:"#3949AB",bodyBg:"Очи, уши, синуси, лице, хипофиза, централна нервна система",bodyEn:"Eyes, ears, sinuses, face, pituitary gland, central nervous system",p:ch.A.one,e:ch.B.one,em:r(ch.A.one+ch.B.one)},
+    {num:5,skBg:"Вишудха",skEn:"Vishuddha",bg:"Гърлена чакра · Общуване, истина и творчество",en:"Throat Chakra · Communication, Truth & Creativity",color:"#039BE5",bodyBg:"Гърло, щитовидна жлеза, гласни струни, челюст, бели дробове, рамене",bodyEn:"Throat, thyroid, vocal cords, jaw, lungs, shoulders",p:ch.A.two,e:ch.B.two,em:r(ch.A.two+ch.B.two)},
+    {num:4,skBg:"Анахата",skEn:"Anahata",bg:"Сърдечна чакра · Безусловна любов и приемане",en:"Heart Chakra · Unconditional Love & Acceptance",color:"#2E7D32",bodyBg:"Сърце, кръвообращение, гръден кош, тимус, ръце",bodyEn:"Heart, circulation, chest, thymus, arms and hands",p:X,e:X,em:r(X+X)},
+    {num:3,skBg:"Манипура",skEn:"Manipura",bg:"Слънчев сплит · Воля, статус, контрол и финанси",en:"Solar Plexus · Will, Status, Control & Finances",color:"#F9A825",bodyBg:"Стомах, черен дроб, жлъчка, панкреас, тънки черва, диафрагма",bodyEn:"Stomach, liver, gallbladder, pancreas, small intestine, diaphragm",p:ch.C.two,e:ch.D.two,em:r(ch.C.two+ch.D.two)},
+    {num:2,skBg:"Свадхистана",skEn:"Svadhisthana",bg:"Сакрална чакра · Удоволствие, сексуалност и продължение на рода",en:"Sacral Chakra · Pleasure, Sexuality & Continuity of Lineage",color:"#EF6C00",bodyBg:"Полови органи, бъбреци, пикочен мехур, дебело черво, поясна област",bodyEn:"Reproductive organs, kidneys, bladder, large intestine, lower back",p:ch.C.one,e:ch.D.one,em:r(ch.C.one+ch.D.one)},
+    {num:1,skBg:"Муладхара",skEn:"Muladhara",bg:"Коренна чакра · Оцеляване, базова сигурност и физическа опора",en:"Root Chakra · Survival, Basic Security & Physical Grounding",color:"#C62828",bodyBg:"Костна система, гръбначен стълб, крака, стави, зъби, надбъбречни жлези",bodyEn:"Skeletal system, spine, legs, joints, teeth, adrenal glands",p:C,e:D,em:r(C+D)}
+  ];
+  const chTotP=r(chakras.reduce((s,c)=>s+c.p,0)),chTotE=r(chakras.reduce((s,c)=>s+c.e,0)),chTotEm=r(chakras.reduce((s,c)=>s+c.em,0));
   const main=[A,F,B,G,C,H,D,I,A],ring=[];
   for(let k=0;k<8;k++){const a=main[k],b=main[k+1],mid=r(a+b),q1=r(a+mid),q3=r(mid+b);ring.push(a,r(a+q1),q1,r(q1+mid),mid,r(mid+q3),q3,r(q3+b))}
-  return {y,m,d,A,B,C,D,X,F,G,H,I,ch,cr,cross,money,love,personal,social,spirit,ring};
+  return {y,m,d,A,B,C,D,X,F,G,H,I,J,powerCode,ch,cr,cross,money,love,sky,earth,personal,maleLine,femaleLine,social,spirit,planetary,tailKey,chakras,chTotP,chTotE,chTotEm,ring};
 }
+
 const yearE=(M,yr)=>r(r(M.d)+r(M.m)+ds(yr));
+function periodTriad(M,idx){
+  const i=((idx%64)+64)%64,opp=(i+32)%64;
+  const mainE=M.ring[i],oppE=M.ring[opp],sumE=r(mainE+oppE);
+  return {mainE,oppE,sumE,oppAge:opp*1.25};
+}
+
 const YR=365.2425*864e5;
 const bUTC=iso=>{const [y,m,d]=iso.split("-").map(Number);return Date.UTC(y,m-1,d)};
 const ageNow=iso=>(Date.now()-bUTC(iso))/YR;
 const atAge=(iso,a)=>new Date(bUTC(iso)+a*YR);
 const MON_BG=["яну","фев","мар","апр","май","юни","юли","авг","сеп","окт","ное","дек"],MON_EN=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-const fmt=dt=>(LANG==="en"?MON_EN:MON_BG)[dt.getMonth()]+" "+dt.getFullYear();
+// Коригиран UTC метод за точно форматиране на месец и година без изместване от часови зони
+const fmt=dt=>(LANG==="en"?MON_EN:MON_BG)[dt.getUTCMonth()]+" "+dt.getUTCFullYear();
 const ag=a=>LANG==="en"?String(+a.toFixed(2)):String(+a.toFixed(2)).replace(".",",");
 const YRS=()=>tr(" г."," yrs");
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -1302,13 +1549,18 @@ function compass(age){
   return `<div class="compass"><svg viewBox="0 0 140 140" role="img" aria-label="${tr("Компас на възрастта","Age compass")}: ${ag(age)}${YRS()}">${o.join("")}</svg></div>`;
 }
 
-function svg(M,curIdx){
+function svg(M,curIdx,selPos=""){
   const c=320,o=[];
-  const circ=(x,y,rad,v,cls)=>o.push(`<g class="pt" data-arc="${v}" tabindex="0" role="button" aria-label="${E[v].n}"><circle cx="${x}" cy="${y}" r="${rad}" class="${cls}"/><text x="${x}" y="${y}" text-anchor="middle" dominant-baseline="central" class="${cls}-t" font-size="${rad>20?17:13}">${v}</text></g>`);
+  const circ=(x,y,rad,v,cls,posKey="")=>{
+    const act=selPos&&selPos===posKey?" active":"";
+    const info=POS_INFO[posKey];
+    const lbl=info?`${info.title}: ${E[v].n} (${v})`:E[v].n;
+    o.push(`<g class="pt${act}" data-arc="${v}" data-pos="${posKey}" tabindex="0" role="button" aria-label="${esc(lbl)}"><circle cx="${x}" cy="${y}" r="${rad}" class="${cls}"/><text x="${x}" y="${y}" text-anchor="middle" dominant-baseline="central" class="${cls}-t" font-size="${rad>20?16:rad<12?10:12}">${v}</text></g>`);
+  };
   o.push(`<circle cx="${c}" cy="${c}" r="270" fill="none" stroke="var(--line)" stroke-width="1.5"/>`);
   o.push(`<path d="M95 320L320 95L545 320L320 545Z M160 160H480V480H160Z" fill="none" stroke="var(--navy)" stroke-opacity=".55" stroke-width="1.2"/>`);
   o.push(`<path d="M95 320H545M320 95V545M160 160L480 480M480 160L160 480" fill="none" stroke="var(--line)" stroke-width="1"/>`);
-  o.push(`<path d="M470 320L320 470" fill="none" stroke="var(--accent)" stroke-dasharray="4 4"/>`);
+  o.push(`<path d="M418 320L320 418" fill="none" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="4 4"/>`);
   M.ring.forEach((v,i)=>{
     const t=i*1.25,th=(180+t*4.5)*Math.PI/180,x=c+292*Math.cos(th),y=c+292*Math.sin(th),dx=c+270*Math.cos(th),dy=c+270*Math.sin(th);
     o.push(`<circle cx="${dx.toFixed(1)}" cy="${dy.toFixed(1)}" r="${i%4==0?3:1.5}" fill="var(--muted)"/>`);
@@ -1316,31 +1568,100 @@ function svg(M,curIdx){
     if(i===curIdx)o.push(`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="13" fill="var(--accent)"/><text x="${x.toFixed(1)}" y="${y.toFixed(1)}" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" fill="#1F2D3A">${v}</text>`);
     else o.push(`<text x="${x.toFixed(1)}" y="${y.toFixed(1)}" text-anchor="middle" dominant-baseline="central" font-size="11" fill="var(--muted)">${v}</text>`);
   });
-  [[160,160,1,1,"F"],[480,160,-1,1,"G"],[480,480,-1,-1,"H"],[160,480,1,-1,"I"]].forEach(([x,y,dx,dy,k])=>{circ(x+dx*54,y+dy*54,12,M.cr[k].two,"s");circ(x+dx*30,y+dy*30,14,M.cr[k].one,"s");circ(x,y,20,M[k],"s")});
-  circ(150,320,14,M.ch.A.one,"m");circ(222,320,14,M.ch.A.two,"m");circ(95,320,25,M.A,"main");
-  circ(320,150,14,M.ch.B.one,"m");circ(320,222,14,M.ch.B.two,"m");circ(320,95,25,M.B,"main");
-  circ(490,320,14,M.ch.C.one,"g");circ(418,320,14,M.ch.C.two,"g");circ(545,320,25,M.C,"main2");
-  circ(320,490,14,M.ch.D.one,"k");circ(320,418,14,M.ch.D.two,"k");circ(320,545,25,M.D,"main2");
-  circ(395,395,12,M.cross,"s");circ(432,358,13,M.money,"g");circ(358,432,13,M.love,"g");
-  o.push(`<text x="452" y="384" font-size="11" fill="var(--accent)">${tr("пари","money")}</text><text x="370" y="462" font-size="11" fill="var(--accent)">${tr("любов","love")}</text><text x="352" y="560" font-size="11" fill="var(--muted)">${tr("карма","karma")}</text>`);
-  circ(320,320,30,M.X,"main");
+  [[160,160,1,1,"F"],[480,160,-1,1,"G"],[480,480,-1,-1,"H"],[160,480,1,-1,"I"]].forEach(([x,y,dx,dy,k])=>{
+    circ(x+dx*54,y+dy*54,12,M.cr[k].two,"s",k+"2");
+    circ(x+dx*30,y+dy*30,14,M.cr[k].one,"s",k+"1");
+    circ(x,y,20,M[k],"s",k);
+  });
+  circ(150,320,14,M.ch.A.one,"m","A1");circ(222,320,14,M.ch.A.two,"m","A2");circ(95,320,25,M.A,"main","A");
+  circ(320,150,14,M.ch.B.one,"m","B1");circ(320,222,14,M.ch.B.two,"m","B2");circ(320,95,25,M.B,"main","B");
+  circ(490,320,14,M.ch.C.one,"g","C1");circ(418,320,14,M.ch.C.two,"g","C2");circ(545,320,25,M.C,"main2","C");
+  circ(320,490,14,M.ch.D.one,"k","D1");circ(320,418,14,M.ch.D.two,"k","D2");circ(320,545,25,M.D,"main2","D");
+  circ(369,369,11,M.cross,"s","cross");circ(394,344,12,M.money,"g","money");circ(344,394,12,M.love,"g","love");
+  o.push(`<text x="414" y="352" font-size="10.5" font-weight="600" fill="var(--accent)">${tr("$ пари","$ money")}</text><text x="358" y="408" font-size="10.5" font-weight="600" fill="var(--accent)">${tr("♥ любов","♥ love")}</text><text x="352" y="560" font-size="11" fill="var(--muted)">${tr("карма","karma")}</text>`);
+  circ(320,320,27,M.X,"main","X");
+  circ(348,292,12,M.J,"jnode","J");
   return `<svg viewBox="0 0 640 640" role="img" aria-label="${tr("Схема на матрицата","Matrix chart")}"><style>
   .s{fill:var(--surface);stroke:var(--muted)}.s-t{fill:var(--fg)}
   .m{fill:var(--soft);stroke:var(--navy)}.m-t{fill:var(--navy);font-weight:600}
   .g{fill:var(--soft);stroke:var(--accent)}.g-t{fill:var(--fg);font-weight:600}
   .k{fill:var(--surface);stroke:var(--accent);stroke-width:2}.k-t{fill:var(--fg);font-weight:700}
   .main{fill:var(--navy)}.main-t{fill:var(--bg);font-weight:700}
-  .main2{fill:var(--accent)}.main2-t{fill:#1F2D3A;font-weight:700}</style>${o.join("")}</svg>`;
+  .main2{fill:var(--accent)}.main2-t{fill:#1F2D3A;font-weight:700}
+  .jnode{fill:var(--soft);stroke:var(--navy);stroke-width:2}.jnode-t{fill:var(--navy);font-weight:700}
+.power-code{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:8px;align-items:stretch}
+@media (max-width:620px){.power-code{grid-template-columns:1fr}}
+.pc-item{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 10px;display:flex;flex-direction:column;justify-content:space-between;align-items:center;text-align:center;gap:6px;min-width:0;overflow:hidden;box-shadow:0 1px 3px rgba(30,80,120,.04)}
+.pc-item .pc-lbl{font-size:.7rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:700;line-height:1.25;min-height:2.5em;display:flex;align-items:center;justify-content:center;width:100%}
+.pc-item .pc-badge{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:var(--soft);color:var(--navy);font-family:var(--display);font-weight:700;font-size:.92rem;border:1px solid var(--line)}
+.pc-item .pc-num{font-family:var(--display);font-size:1.02rem;color:var(--navy);font-weight:700;line-height:1.25;width:100%;overflow-wrap:anywhere;word-break:break-word}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;align-items:stretch}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:10px;min-width:0;height:100%;overflow-wrap:break-word;box-shadow:0 2px 6px rgba(30,80,120,.03)}
+.head>div{min-width:0}
+.ename{font-family:var(--display);font-size:1.15rem;color:var(--navy);line-height:1.25;overflow-wrap:anywhere}
+.pos-meaning{font-size:.88rem;background:var(--soft);padding:9px 12px;border-radius:8px;color:var(--fg);line-height:1.45}
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;align-items:stretch}
+@media (max-width:820px){.steps{grid-template-columns:1fr}}
+.step{padding:18px;display:flex;flex-direction:column;gap:10px;border-right:1px solid var(--line);min-width:0;height:100%}
+.step .link{margin-top:auto}
+.purpose-triad{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1.15fr);gap:10px;align-items:stretch}
+@media (max-width:820px){.purpose-triad{grid-template-columns:1fr}.purpose-triad .op{display:none}}
+.purpose-triad .op{display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:1.5rem;color:var(--accent);font-weight:700;padding:0 4px}
+.pt-box{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:14px;display:flex;flex-direction:column;justify-content:space-between;gap:8px;min-width:0}
+.pt-box.res{background:var(--soft);border-color:var(--accent)}
+/* Back button bar */
+.back-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:-8px}
+.btn-back{display:inline-flex;align-items:center;gap:8px;background:var(--surface);color:var(--navy);border:1px solid var(--line);border-radius:999px;padding:7px 15px;font-size:.88rem;font-weight:600;cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,.05);transition:border-color .15s,background .15s}
+.btn-back:hover{border-color:var(--accent);background:var(--soft)}
+.btn-back svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.3;stroke-linecap:round;stroke-linejoin:round}
+.btn-syn-quick{display:inline-flex;align-items:center;gap:7px;background:var(--accent);color:#1F2D3A;border-radius:999px;padding:7px 16px;font-size:.88rem;font-weight:700;cursor:pointer}
+.btn-syn-quick:hover{filter:brightness(1.05)}
+/* Executive Synthesis / Golden Summary styles */
+.syn-hero{background:var(--band);color:var(--band-fg);border-radius:18px;padding:26px 28px;display:flex;flex-direction:column;gap:14px;position:relative;overflow:hidden}
+.syn-hero h2{color:var(--band-fg);font-size:1.75rem}
+.syn-hero .syn-lead{font-size:1.04rem;line-height:1.75;opacity:.96;max-width:100%;width:100%;text-align:justify;text-justify:inter-word;-webkit-hyphens:auto;hyphens:auto}
+.syn-hero .syn-lead b{color:var(--accent)}
+.syn-pillars{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:6px}
+@media (max-width:780px){.syn-pillars{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:440px){.syn-pillars{grid-template-columns:1fr}}
+.syn-pil{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.syn-pil .sp-lbl{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);font-weight:700}
+.syn-pil .sp-val{font-family:var(--display);font-size:1.1rem;color:var(--band-fg);font-weight:600;overflow-wrap:anywhere}
+.syn-pil .sp-sub{font-size:.82rem;opacity:.85}
+.syn-2col{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;align-items:stretch}
+@media (max-width:760px){.syn-2col{grid-template-columns:1fr}}
+.syn-box{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px 22px;display:flex;flex-direction:column;gap:12px;height:100%}
+.syn-box.plus-box{border-top:4px solid var(--plus)}
+.syn-box.minus-box{border-top:4px solid var(--minus)}
+.syn-box h3{font-family:var(--display);font-size:1.28rem;color:var(--navy);display:flex;align-items:center;gap:8px}
+.syn-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.syn-list li{padding:10px 12px;border-radius:10px;background:var(--bg);font-size:.95rem;line-height:1.5;display:flex;flex-direction:column;gap:4px}
+.syn-list li b{color:var(--navy);font-size:.82rem;text-transform:uppercase;letter-spacing:.05em}
+.syn-list li .fix{color:var(--plus);font-weight:600;font-size:.9rem}
+.syn-fc-card{background:var(--soft);border:1px solid var(--accent);border-radius:16px;padding:20px 22px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;align-items:stretch}
+@media (max-width:760px){.syn-fc-card{grid-template-columns:1fr}}
+.syn-fc-item{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:6px}
+.tab.tab-syn{color:var(--accent);font-weight:700}
+
+</style>${o.join("")}</svg>`;
 }
+
 const jrBtn=v=>`<button class="link" data-jr="${v}">${tr("Запиши в дневника →","Add to journal →")}</button>`;
 const fullBtn=v=>`<button class="link" data-arc="${v}">${tr("Целият аркан: плюсове, минуси и как да ги обърнете →","The full arcanum: pluses, minuses and how to turn them around →")}</button>`;
-function rodCard(zone,v,kind){const x=E[v];
-  const main=kind==="gift"?`<p><b class="pl">${tr("Какво дава родът:","What the family line gives:")}</b> ${cap(x.tal)}</p><p><b class="mn">${tr("Сянката на този дар:","The shadow of this gift:")}</b> ${x.sh}</p>`
-    :`<p><b class="mn">${tr("Какво се предава като урок:","What is passed down as a lesson:")}</b> ${x.karma}</p><p><b class="pl">${tr("Когато урокът е усвоен:","When the lesson is learned:")}</b> ${x.bal}</p>`;
-  return card(zone,v,"",{html:main})}
+
+function rodCard(zone,v,kind,posNote=""){
+  const x=E[v];
+  const main=kind==="gift"
+    ?`<p><b class="pl">${tr("Духовен дар от рода (в плюс):","Spiritual gift from the line (in plus):")}</b> ${cap(x.tal)}</p><p><b class="mn">${tr("Духовна карма / сянка на рода:","Spiritual karma / shadow of the line:")}</b> ${x.sh}</p>`
+    :`<p><b class="mn">${tr("Материална родова карма (урок):","Material family karma (lesson):")}</b> ${x.karma}</p><p><b class="pl">${tr("Когато урокът е преработен в плюс:","When the lesson is worked through:")}</b> ${x.bal}</p>`;
+  return card(zone,v,"",{html:main,posNote});
+}
+
 function card(zone,v,field,opts={}){
   const x=E[v];
-  return `<article class="card"><div class="head">${tile(v)}<div><div class="zone">${zone}</div><div class="ename">${x.n}</div></div></div>
+  const posNote=opts.posNote?`<div class="pos-meaning">${opts.posNote}</div>`:"";
+  return `<article class="card"><div class="head">${tile(v)}<div><div class="zone">${zone}</div><div class="ename">${RN[v]} · ${x.n}</div></div></div>
+  ${posNote}
   ${opts.html||`<p>${opts.text||x[field]}</p>`}
   <details><summary>${tr("Прочети повече","Read more")}</summary><div class="more">
    <div><b>${tr("В баланс","In balance")}</b>${x.bal}</div><div><b>${tr("Когато се обърне срещу Вас","When it turns against you")}</b>${x.sh}</div>
@@ -1348,84 +1669,442 @@ function card(zone,v,field,opts={}){
    <div><b>${tr("Въпрос за размисъл","Question to reflect on")}</b>${x.q}</div><div><b>${tr("Стъпка за седмицата","Step for the week")}</b>${x.st}</div>${fullBtn(v)}${jrBtn(v)}</div></details></article>`;
 }
 
-let ME=null,CUR=0,OPEN=0;
+let ME=null,CUR=0,OPEN=0,SEL_POS="X";
+
+// Пълно картографиране на всички позиции в матрицата (вкл. чакри, канали и родов квадрат)
 function places(v){
   if(!ME)return [];const M=ME.M,L=[],seen=new Set();
   const add=(c,t,tab,id)=>{if(c===v&&!seen.has(t)){seen.add(t);L.push({t,tab,id})}};
-  add(M.X,tr("център","centre"),"pt","");add(M.A,tr("как Ви виждат","how others see you"),"zn","z-pers");add(M.B,tr("таланти","talents"),"zn","z-pers");add(M.C,tr("материална карма","material karma"),"km","k-mat");add(M.D,tr("кармичен урок","karmic lesson"),"km","k-tail");
-  add(M.ch.D.one,tr("кармична опашка","karmic tail"),"km","k-tail");add(M.ch.D.two,tr("ключ на кармата","key to the karma"),"km","k-tail");add(M.money,tr("пари","money"),"zn","z-ml");add(M.love,tr("любов","love"),"zn","z-ml");
-  add(M.personal,tr("лично предназначение","personal purpose"),"zn","z-purp");add(M.social,tr("социално предназначение","social purpose"),"zn","z-purp");add(M.spirit,tr("духовно предназначение","spiritual purpose"),"zn","z-purp");
-  add(M.F,tr("бащин род · дар","father's line · gift"),"km","k-rod");add(M.H,tr("бащин род · задача","father's line · task"),"km","k-rod");add(M.G,tr("майчин род · дар","mother's line · gift"),"km","k-rod");add(M.I,tr("майчин род · задача","mother's line · task"),"km","k-rod");
-  add(CUR,tr("текущ период","current period"),"fc","f-per");return L;
+  add(M.X,tr("център (X)","centre (X)"),"pt","");
+  add(M.J,tr("сила на рода (J)","ancestral power (J)"),"km","k-rod");
+  add(M.powerCode,tr("код на вътрешната сила (X+J)","inner power code (X+J)"),"pt","");
+  add(M.A,tr("визитна картичка (0 г.)","calling card (age 0)"),"zn","z-pers");
+  add(M.B,tr("духовен талант (20 г.)","spiritual talent (age 20)"),"zn","z-pers");
+  add(M.ch.B.one,tr("чакра Аджна · енергия","Ajna chakra · energy"),"ch","c-tbl");
+  add(M.ch.B.two,tr("чакра Вишудха · енергия","Vishuddha chakra · energy"),"ch","c-tbl");
+  add(M.ch.A.one,tr("чакра Аджна · физика","Ajna chakra · physical"),"ch","c-tbl");
+  add(M.ch.A.two,tr("чакра Вишудха · физика","Vishuddha chakra · physical"),"ch","c-tbl");
+  add(M.C,tr("материална карма (40 г.)","material karma (age 40)"),"km","k-mat");
+  add(M.ch.C.one,tr("материален урок · Свадхистана","material lesson · Svadhisthana"),"km","k-mat");
+  add(M.ch.C.two,tr("вход в парите · Манипура","money entry · Manipura"),"zn","z-ml");
+  add(M.D,tr("кармичен възел (60 г.)","karmic node (age 60)"),"km","k-tail");
+  add(M.ch.D.one,tr("ядро на кармичната опашка","core of karmic tail"),"km","k-tail");
+  add(M.ch.D.two,tr("вход в отношенията / кармична опашка","relationship entry / karmic tail"),"km","k-tail");
+  add(M.cross,tr("баланс любов–пари","love–money balance"),"zn","z-ml");
+  add(M.money,tr("професия и пари","career & money"),"zn","z-ml");
+  add(M.love,tr("сърцевина на любовта","heart of love"),"zn","z-rel");
+  add(M.personal,tr("лично предназначение","personal purpose"),"zn","z-purp");
+  add(M.social,tr("социално предназначение","social purpose"),"zn","z-purp");
+  add(M.spirit,tr("духовно предназначение","spiritual purpose"),"zn","z-purp");
+  add(M.planetary,tr("планетарно предназначение","planetary purpose"),"zn","z-purp");
+  add(M.F,tr("бащин род · духовна карма","father's line · spiritual karma"),"km","k-rod");
+  add(M.H,tr("бащин род · материална карма","father's line · material karma"),"km","k-rod");
+  add(M.G,tr("майчин род · духовна карма","mother's line · spiritual karma"),"km","k-rod");
+  add(M.I,tr("майчин род · материална карма","mother's line · material karma"),"km","k-rod");
+  add(M.cr.F.one,tr("ресурс на бащиния род","father's line resource"),"km","k-rod");
+  add(M.cr.F.two,tr("опора на бащиния род","father's line support"),"km","k-rod");
+  add(M.cr.G.one,tr("ресурс на майчиния род","mother's line resource"),"km","k-rod");
+  add(M.cr.G.two,tr("опора на майчиния род","mother's line support"),"km","k-rod");
+  add(M.cr.H.one,tr("урок на бащиния род","father's line lesson"),"km","k-rod");
+  add(M.cr.H.two,tr("ключ на бащиния род","father's line key"),"km","k-rod");
+  add(M.cr.I.one,tr("урок на майчиния род","mother's line lesson"),"km","k-rod");
+  add(M.cr.I.two,tr("ключ на майчиния род","mother's line key"),"km","k-rod");
+  add(CUR,tr("текущ период","current period"),"fc","f-per");
+  return L;
 }
+
+function renderInspector(){
+  const box=document.getElementById("nodeInspector");
+  if(!box||!ME)return;
+  const M=ME.M;
+  const valMap={A:M.A,B:M.B,C:M.C,D:M.D,X:M.X,J:M.J,A1:M.ch.A.one,A2:M.ch.A.two,B1:M.ch.B.one,B2:M.ch.B.two,C1:M.ch.C.one,C2:M.ch.C.two,D1:M.ch.D.one,D2:M.ch.D.two,cross:M.cross,money:M.money,love:M.love,F:M.F,G:M.G,H:M.H,I:M.I,F1:M.cr.F.one,F2:M.cr.F.two,G1:M.cr.G.one,G2:M.cr.G.two,H1:M.cr.H.one,H2:M.cr.H.two,I1:M.cr.I.one,I2:M.cr.I.two};
+  const v=valMap[SEL_POS]||M.X;
+  const info=POS_INFO[SEL_POS]||POS_INFO.X;
+  const x=E[v];
+  box.innerHTML=`
+    <div class="ni-head">
+      <div><div class="ni-pos">${info.line}</div><div class="ni-title">${info.title}</div></div>
+      <div class="head">${tile(v)}<div><div class="zone">${tr("Аркан","Arcanum")} ${v}</div><div class="ename">${x.n}</div></div></div>
+    </div>
+    <p class="note">${info.desc}</p>
+    <p><strong>${tr(`Проявление на ${RN[v]} (${x.n}) тук:`,`How ${RN[v]} (${x.n}) works here:`)}</strong> ${x.core} ${tr("В баланс:","In balance:")} ${x.bal}</p>
+    <div style="display:flex;gap:14px;flex-wrap:wrap">${fullBtn(v)}${jrBtn(v)}</div>
+  `;
+}
+
 function render(name,iso){
   const M=calc(iso),age=ageNow(iso),idx=Math.floor(age/1.25),cur=M.ring[idx%64],yr=new Date().getFullYear(),ye=yearE(M,yr);
-  ME={name,iso,M};CUR=cur;if(!OPEN)OPEN=M.X;
+  const trNow=periodTriad(M,idx);
+  ME={name,iso,M,idx};CUR=cur;if(!OPEN)OPEN=M.X;
   const X=E[M.X],A=E[M.A],B=E[M.B],Pp=E[M.personal],So=E[M.social],Sp=E[M.spirit],D=E[M.D];
+
   document.getElementById("now").innerHTML=`${compass(age)}
-   <div><div class="lbl">${tr("Периодът сега","Current period")} · ${ag(idx*1.25)}–${ag(idx*1.25+1.25)}${YRS()}</div><div class="big"><b>${RN[cur]}</b> ${E[cur].n}</div><p>${E[cur].per}</p></div>
+   <div><div class="lbl">${tr("Периодът сега","Current period")} · ${ag(idx*1.25)}–${ag(idx*1.25+1.25)}${YRS()}</div><div class="big"><b>${RN[cur]}</b> ${E[cur].n}</div><p>${E[cur].per}</p><span class="triad-mini">${tr("Триада по Ладини:","Ladini Triad:")} ${trNow.mainE} – ${trNow.oppE} – ${trNow.sumE}</span></div>
    <div><div class="lbl">${tr(`Енергията на ${yr} г.`,`Energy of ${yr}`)}</div><div class="big"><b>${RN[ye]}</b> ${E[ye].n}</div><p>${E[ye].per}</p></div>
-   <div><div class="lbl">${tr("Въпрос и стъпка за седмицата","Question and step for the week")}</div><div class="big">${E[cur].q}</div><p>${E[cur].st}</p></div>`;
-  const talentB=M.A===M.B?"":tr(` А дарбата Ви е ${B.tal}`,` And your gift is ${B.tal}`);
+   <div><div class="lbl">${tr("Въпрос и стъпка за периода","Question and step for the period")}</div><div class="big">${E[trNow.sumE].q}</div><p>${E[trNow.sumE].st}</p></div>`;
+
+  const talentB=M.A===M.B?"":tr(` А дарбата Ви по рождение е ${B.tal}`,` And your birth gift is ${B.tal}`);
   document.getElementById("v-pt").innerHTML=`
   <div class="split">
    <div class="letter">
-    <p class="drop">${tr(`${esc(name)}, в основата Ви е ${X.s}.`,`${esc(name)}, at your core you are ${X.s}.`)}</p>
+    <p class="drop">${tr(`${esc(name)}, в основата Ви (Център X) е ${X.s}.`,`${esc(name)}, at your core (Centre X) you are ${X.s}.`)}</p>
     <p>${X.core}</p>
-    <p>${tr(`Хората Ви виждат като ${A.s}.`,`People see you as ${A.s}.`)} ${A.face}${talentB}</p>
-    <p>${tr(`Личната Ви задача е да станете ${Pp.s}. В зрелостта, между 40 и 60 години, се проявявате най-силно като ${So.s}. След 60 години смисълът идва от това да бъдете ${Sp.s}.`,`Your personal task is to become ${Pp.s}. In maturity, between 40 and 60, you show up most strongly as ${So.s}. After 60, meaning comes from being ${Sp.s}.`)}</p>
-    <div class="talent"><div class="lbl">${tr("Най-силната Ви комбинация","Your strongest combination")}</div><p>${LANG==="en"?"To "+X.v+(M.B!==M.X?" and "+B.v:""):cap(X.v)+(M.B!==M.X?" и "+B.v:"")}.</p></div>
+    <p>${tr(`Навън (Визитна картичка) хората Ви виждат като ${A.s}.`,`Outwardly (Calling Card) people see you as ${A.s}.`)} ${A.face}${talentB}</p>
+    <p>${tr(`Личната Ви задача (до 40 г.) е да станете ${Pp.s}. В зрелостта, между 40 и 60 години, се проявявате социално като ${So.s}. След 60 години духовният синтез идва от това да бъдете ${Sp.s}.`,`Your personal task (until 40) is to become ${Pp.s}. In maturity, between 40 and 60, you show up socially as ${So.s}. After 60, spiritual meaning comes from being ${Sp.s}.`)}</p>
+    <div class="talent">
+      <div class="lbl">${tr("Код на вътрешната сила по Ладини (X + J)","Inner Power Code by Ladini (X + J)")}</div>
+      <p>${LANG==="en"?"To "+X.v+" supported by your lineage ("+E[M.J].n+") gives you the power to "+E[M.powerCode].v:cap(X.v)+" чрез опората на рода ("+E[M.J].n+") Ви дава резултатна сила "+E[M.powerCode].v}.</p>
+      <div class="power-code">
+        <div class="pc-item"><span class="pc-lbl">${tr("Личен център (X)","Personal Centre (X)")}</span><span class="pc-badge">${M.X}</span><span class="pc-num">${E[M.X].n}</span></div>
+        <div class="pc-item"><span class="pc-lbl">${tr("Сила на рода (J)","Ancestral Power (J)")}</span><span class="pc-badge">${M.J}</span><span class="pc-num">${E[M.J].n}</span></div>
+        <div class="pc-item"><span class="pc-lbl">${tr("Вътрешна сила (X+J)","Inner Power (X+J)")}</span><span class="pc-badge">${M.powerCode}</span><span class="pc-num">${E[M.powerCode].n}</span></div>
+      </div>
+    </div>
    </div>
-   <div class="chart">${svg(M,idx%64)}<div class="hint">${tr("Кликнете число, за да отворите аркана му.","Click a number to open its arcanum.")}</div></div>
+   <div class="chart">
+     <div id="svgWrap">${svg(M,idx%64,SEL_POS)}</div>
+     <div class="hint">${tr("Кликнете число в схемата за описание на позицията му по Ладини (двоен клик отваря целия аркан).","Click any number in the chart to inspect its Ladini position (double-click opens the full arcanum).")}</div>
+     <div id="nodeInspector" class="node-inspector"></div>
+   </div>
   </div>
   <h2>${tr("Капаните, които да разпознавате","Traps to recognise")}</h2>
   <div class="grid">
    <div class="quote">${q(X.voice)}<small>${tr(`Гласът на центъра Ви (${X.n}), когато е извън баланс.`,`The voice of your centre (${X.n}) when it is out of balance.`)} ${X.sh}<br>${fullBtn(M.X)}</small></div>
-   ${M.D!==M.X?`<div class="quote">${q(D.voice)}<small>${tr(`Гласът на кармичния Ви урок (${D.n}).`,`The voice of your karmic lesson (${D.n}).`)} ${D.sh}<br>${fullBtn(M.D)}</small></div>`:""}
+   ${M.D!==M.X?`<div class="quote">${q(D.voice)}<small>${tr(`Гласът на главния кармичен урок (${D.n}).`,`The voice of your main karmic lesson (${D.n}).`)} ${D.sh}<br>${fullBtn(M.D)}</small></div>`:""}
   </div>`;
+  renderInspector();
+
+
+  // ТАБ РЕЗЮМЕ (v-sy): Изпълнителен синтез на личността на 1 страница
+  const kArchSy=KTAILS[M.tailKey]||{name:M.tailKey,now:E[M.D].sh,task:E[M.D].bal};
+  const topPlus=[
+    [tr(`Център (${M.X} · ${X.n})`,`Centre (${M.X} · ${X.n})`), X.bal, AX[M.X].plus[0]],
+    [tr(`Визитна картичка (${M.A} · ${A.n})`,`Calling Card (${M.A} · ${A.n})`), A.face, AX[M.A].plus[0]],
+    [tr(`Водещ талант (${M.B} · ${B.n})`,`Leading Talent (${M.B} · ${B.n})`), cap(B.tal), AX[M.B].plus[0]],
+    [tr(`Код на силата (${M.powerCode} · ${E[M.powerCode].n})`,`Power Code (${M.powerCode} · ${E[M.powerCode].n})`), E[M.powerCode].bal, AX[M.powerCode].plus[1]]
+  ];
+  const topMinus=[
+    [tr(`Главен капан на Центъра (${M.X} · ${X.n})`,`Main Centre Trap (${M.X} · ${X.n})`), X.sh, AX[M.X].minus[0][1], X.voice],
+    [tr(`Кармична опашка (${M.tailKey} · ${kArchSy.name})`,`Karmic Tail (${M.tailKey} · ${kArchSy.name})`), kArchSy.now, kArchSy.task, E[M.D].voice],
+    [tr(`Финансов блокаж (${M.ch.C.two} · ${E[M.ch.C.two].n})`,`Financial Block (${M.ch.C.two} · ${E[M.ch.C.two].n})`), E[M.ch.C.two].sh, AX[M.ch.C.two].minus[0][1], E[M.ch.C.two].voice],
+    [tr(`Партньорска сянка (${M.ch.D.two} · ${E[M.ch.D.two].n})`,`Relationship Shadow (${M.ch.D.two} · ${E[M.ch.D.two].n})`), E[M.ch.D.two].sh, AX[M.ch.D.two].minus[0][1], E[M.ch.D.two].voice]
+  ];
+  document.getElementById("v-sy").innerHTML=`
+  <div class="syn-hero">
+    <span class="lbl" style="color:var(--accent);font-weight:700;letter-spacing:.1em;text-transform:uppercase">${tr("Обобщен портрет и житейски компас","Executive Portrait & Life Compass")}</span>
+    <h2>${tr(`Цялата матрица на ${esc(name)} в 3 минути`,`${esc(name)}'s Entire Matrix in 3 Minutes`)}</h2>
+    <p class="syn-lead">${tr(
+      `<strong>1. Кой сте Вие в сърцевината си:</strong> В центъра на матрицата Ви стои <b>Аркан ${RN[M.X]} (${X.n})</b>, а хората Ви разпознават от пръв поглед чрез <b>Аркан ${RN[M.A]} (${A.n})</b>. Това означава, че сте ${X.s}, който навън действа като ${A.s}. Вашата най-силна дарба от рождението е <b>${B.tal.replace(/\.$/,'')}</b>. Когато съчетаете личния си център със Силата на Вашия род (<b>${E[M.J].n}</b>), получавате вътрешната мощ на <b>${E[M.powerCode].n}</b> – способността ${E[M.powerCode].v}.`,
+      `<strong>1. Who you are at your core:</strong> At the centre of your matrix stands <b>Arcanum ${RN[M.X]} (${X.n})</b>, while people recognise you at first sight through <b>Arcanum ${RN[M.A]} (${A.n})</b>. This means you are ${X.s} who outwardly acts as ${A.s}. Your strongest birth gift is <b>${B.tal.replace(/\.$/,'')}</b>. When you combine your personal centre with your Ancestral Power (<b>${E[M.J].n}</b>), you unlock the inner strength of <b>${E[M.powerCode].n}</b>—the ability to ${E[M.powerCode].v}.`
+    )}</p>
+    <p class="syn-lead">${tr(
+      `<strong>2. Пари, Любов и Мисия:</strong> Парите и професионалният успех идват най-лесно чрез <b>${E[M.money].n}</b> (${AX[M.money].sph}), стига да държите отворен входа на финансовия си канал (<b>${E[M.ch.C.two].n}</b>). В любовта водеща е енергията на <b>${E[M.love].n}</b>. ${E[M.love].love} Личното Ви предназначение до 40 г. е да усвоите урока на <b>${Pp.n}</b> (${Pp.v}), между 40 и 60 г. обществото очаква от Вас резултатите на <b>${So.n}</b> (${So.v}), а висшият Ви духовен покровител е <b>${Sp.n}</b>.`,
+      `<strong>2. Money, Love & Mission:</strong> Money and career success flow most naturally through <b>${E[M.money].n}</b> (${AX[M.money].sph}), provided you keep the entry of your financial channel (<b>${E[M.ch.C.two].n}</b>) in the plus. In love the leading energy is <b>${E[M.love].n}</b>. ${E[M.love].love} Your personal purpose until age 40 is to master <b>${Pp.n}</b> (${Pp.v}), between 40 and 60 society looks to you for the results of <b>${So.n}</b> (${So.v}), and your higher spiritual patron is <b>${Sp.n}</b>.`
+    )}</p>
+    <p class="syn-lead">${tr(
+      `<strong>3. Главният кармичен урок:</strong> Носите кармична опашка <b>${M.tailKey} („${kArchSy.name}“)</b>. Най-важната Ви задача е да не се поддавате на вътрешния глас <em>„${X.voice}“</em> или <em>„${D.voice}“</em>, а съзнателно да избирате действието в плюс.`,
+      `<strong>3. Main Karmic Lesson:</strong> You carry the karmic tail <b>${M.tailKey} (“${kArchSy.name}”)</b>. Your most important task is not to give in to the inner voice saying <em>“${X.voice}”</em> or <em>“${D.voice}”</em>, but to consciously choose the action in the plus.`
+    )}</p>
+    <div class="syn-pillars">
+      <div class="syn-pil"><span class="sp-lbl">${tr("Сърцевина и Талант","Core & Talent")}</span><span class="sp-val">${M.X} · ${X.n}</span><span class="sp-sub">${tr("Талант:","Talent:")} ${M.B} · ${B.n}</span></div>
+      <div class="syn-pil"><span class="sp-lbl">${tr("Канал на Парите","Money Channel")}</span><span class="sp-val">${M.ch.C.two}–${M.money}–${M.cross}</span><span class="sp-sub">${E[M.money].n}</span></div>
+      <div class="syn-pil"><span class="sp-lbl">${tr("Канал на Любовта","Love Channel")}</span><span class="sp-val">${M.ch.D.two}–${M.love}–${M.cross}</span><span class="sp-sub">${E[M.love].n}</span></div>
+      <div class="syn-pil"><span class="sp-lbl">${tr("Предназначения","Life Purposes")}</span><span class="sp-val">${M.personal} → ${M.social} → ${M.spirit}</span><span class="sp-sub">${tr("Лично · Социално · Духовно","Personal · Social · Spiritual")}</span></div>
+    </div>
+  </div>
+
+  <div class="syn-2col">
+    <div class="syn-box plus-box">
+      <h3><span style="color:var(--plus)">✚</span> ${tr("Силни страни и Заложби (Когато сте в Плюс)","Core Strengths & Gifts (When in the Plus)")}</h3>
+      <ul class="syn-list">
+        ${topPlus.map(([lbl,p1,p2])=>`<li><b>${lbl}</b><span>${p1} ${p2}</span></li>`).join("")}
+      </ul>
+    </div>
+    <div class="syn-box minus-box">
+      <h3><span style="color:var(--minus)">−</span> ${tr("Слаби места и Капани (И как да ги обърнете)","Blind Spots & Traps (And How to Turn Them Around)")}</h3>
+      <ul class="syn-list">
+        ${topMinus.map(([lbl,m1,fix,vc])=>`<li><b>${lbl}</b><span>${m1} <em>(${q(vc)})</em></span><span class="fix">→ ${tr("Решение:","Fix:")} ${fix}</span></li>`).join("")}
+      </ul>
+    </div>
+  </div>
+
+  <h2>${tr("Кратка прогноза и Фокус за момента","Short Forecast & Current Focus")}</h2>
+  <div class="syn-fc-card">
+    <div class="syn-fc-item">
+      <span class="zone">${tr(`Възрастов период (${ag(idx*1.25)}–${ag(idx*1.25+1.25)} г.)`,`Current Age Period (${ag(idx*1.25)}–${ag(idx*1.25+1.25)} yrs)`)}</span>
+      <div class="head">${tile(cur)}<div><div class="ename">${RN[cur]} · ${E[cur].n}</div><span class="note">${tr("Триада:","Triad:")} ${trNow.mainE}–${trNow.oppE}–${trNow.sumE}</span></div></div>
+      <p>${E[cur].per}</p>
+    </div>
+    <div class="syn-fc-item">
+      <span class="zone">${tr(`Календарна енергия за ${yr} г.`,`Calendar Energy for ${yr}`)}</span>
+      <div class="head">${tile(ye)}<div><div class="ename">${RN[ye]} · ${E[ye].n}</div><span class="note">${tr("Общ фон на годината","Background of the year")}</span></div></div>
+      <p>${E[ye].per}</p>
+    </div>
+    <div class="syn-fc-item">
+      <span class="zone">${tr("Вашата конкретна задача сега","Your Concrete Step Right Now")}</span>
+      <div class="head">${tile(trNow.sumE)}<div><div class="ename">${RN[trNow.sumE]} · ${E[trNow.sumE].n}</div><span class="note">${tr("Синтез на периода","Period synthesis")}</span></div></div>
+      <p><strong>${tr("Въпрос:","Question:")}</strong> ${E[trNow.sumE].q}</p>
+      <p><strong>${tr("Стъпка:","Step:")}</strong> ${E[trNow.sumE].st}</p>
+    </div>
+  </div>`;
+
+  // ТАБ 2: СФЕРИ И КАНАЛИ
+  const cIn=M.ch.C.two,lIn=M.ch.D.two;
   document.getElementById("v-zn").innerHTML=`
-  <p class="intro">${tr("Една енергия се проявява различно според сферата. Отворете „Прочети повече“ за баланса, капана, въпроса и стъпката, или целия аркан с всички плюсове и минуси.","The same energy shows up differently depending on the area of life. Open \"Read more\" for balance, trap, question and step, or the full arcanum with all its pluses and minuses.")}</p>
-  <h2 id="z-pers">${tr("Личност","Personality")}</h2><div class="grid">
-   ${card(tr("Сърцевина","Core"),M.X,"core")}${card(tr("Как Ви виждат","How others see you"),M.A,"face")}${card(tr("Таланти","Talents"),M.B,"",{text:cap(E[M.B].tal)})}</div>
-  <h2 id="z-ml">${tr("Пари и любов","Money and love")}</h2><div class="grid">
-   ${card(tr("Пари и реализация","Money and career"),M.money,"money")}${card(tr("Любов и отношения","Love and relationships"),M.love,"love")}</div>
-  <h2 id="z-purp">${tr("Предназначение","Purpose")}</h2><div class="grid">
-   ${card(tr("Лично · до около 40 г.","Personal · until about 40"),M.personal,"",{text:tr("Да станете ","To become ")+E[M.personal].s+": "+E[M.personal].tal})}
-   ${card(tr("Социално · 40–60 г.","Social · 40–60"),M.social,"",{text:tr("Да се проявите като ","To show up as ")+E[M.social].s+": "+E[M.social].tal})}
-   ${card(tr("Духовно · след 60 г.","Spiritual · after 60"),M.spirit,"",{text:tr("Да бъдете ","To be ")+E[M.spirit].s+". "+E[M.spirit].bal})}</div>`;
-  const t1=M.ch.D.one,t2=M.ch.D.two;
+  <p class="intro">${tr("В класическата методология на Ладини парите, любовта и предназначенията се разглеждат като триточкови канали (триади), а не като единични числа.","In Ladini's classic methodology, money, love and life purposes are read as three-point channels (triads) rather than isolated numbers.")}</p>
+  <h2 id="z-pers">${tr("Личност и Духовни Таланти","Personality & Spiritual Talents")}</h2><div class="grid">
+   ${card(tr("Зона на комфорт · Център (X)","Comfort Zone · Centre (X)"),M.X,"core",{posNote:tr("Базовата енергия на душата Ви, от която черпите ресурс.","Your soul's core energy and primary source of renewal.")})}
+   ${card(tr("Визитна картичка · Ден (A)","Calling Card · Day (A)"),M.A,"face",{posNote:tr("Как Ви възприемат околните и как се заявявате социално.","How others perceive you and how you step into society.")})}
+   ${card(tr("Водещ талант отгоре · Месец (B)","Leading Spiritual Talent · Month (B)"),M.B,"",{posNote:tr("Връзка с Ангела Хранител (Сахасрара – енергия).","Guardian Angel connection (Sahasrara – energy)."),text:cap(E[M.B].tal)+" "+E[M.B].bal})}
+   ${card(tr("Дарба на виждането · Аджна (B1)","Gift of Vision · Ajna (B1)"),M.ch.B.one,"",{posNote:tr("Интуитивно мислене и разбиране на дълбоките закономерности.","Intuitive thinking and grasp of deeper laws."),text:E[M.ch.B.one].core})}
+   ${card(tr("Творчески глас · Вишудха (B2)","Creative Voice · Vishuddha (B2)"),M.ch.B.two,"",{posNote:tr("Как се изразява душата Ви, когато сте автентични.","How your soul expresses itself when you are authentic."),text:cap(E[M.ch.B.two].tal)})}
+   ${card(tr("Социално себеизразяване · Вишудха физика (A2)","Social Expression · Vishuddha Physical (A2)"),M.ch.A.two,"",{posNote:tr("Как реализирате идеите си в материалния свят.","How you bring your ideas into the material world."),text:E[M.ch.A.two].bal})}
+  </div>
+
+  <h2 id="z-ml">${tr(`Канал на Парите и Реализацията: ${cIn} – ${M.money} – ${M.cross}`,`Money & Career Channel: ${cIn} – ${M.money} – ${M.cross}`)}</h2>
+  <p class="intro">${tr("Финансовият канал по Ладини започва от Входа в парите (Манипура физика), преминава през централната точка на професията и достига до Точката на баланса с любовта.","Ladini's financial channel starts at the Money Entry (physical Manipura), flows through the central career point, and meets Love at the Balance Point.")}</p>
+  <div class="steps">
+    <div class="step">
+      <span class="k">1 · ${tr("Вход в парите","Money Entry")} (${cIn})</span>
+      <div class="head">${tile(cIn)}<div><div class="zone">${tr("Финансов ключ","Financial Key")}</div><div class="ename">${RN[cIn]} · ${E[cIn].n}</div></div></div>
+      <p class="pos-meaning">${tr("Отключва или блокира паричния поток според това дали живеете енергията в плюс или минус.","Unlocks or blocks cash flow depending on whether you live this energy in the plus or minus.")}</p>
+      <p>${E[cIn].money}</p>
+      <p class="note"><strong>${tr("Блокаж (в минус):","Block (in minus):")}</strong> ${E[cIn].sh}</p>
+      ${fullBtn(cIn)}${jrBtn(cIn)}
+    </div>
+    <div class="step">
+      <span class="k">2 · ${tr("Професия и Поток","Career & Flow")} (${M.money})</span>
+      <div class="head">${tile(M.money)}<div><div class="zone">${tr("Сърцевина на парите","Core of Money")}</div><div class="ename">${RN[M.money]} · ${E[M.money].n}</div></div></div>
+      <p class="pos-meaning">${tr("Конкретните сфери на дейност и професионални роли, които носят най-голям успех.","Specific fields of work and professional roles that bring the greatest prosperity.")}</p>
+      <p>${E[M.money].money}</p>
+      <p class="note"><strong>${tr("Подходящи сфери:","Suitable fields:")}</strong> ${AX[M.money].sph}.</p>
+      ${fullBtn(M.money)}${jrBtn(M.money)}
+    </div>
+    <div class="step">
+      <span class="k">3 · ${tr("Точка на баланса","Balance Point")} (${M.cross})</span>
+      <div class="head">${tile(M.cross)}<div><div class="zone">${tr("Мост Пари–Любов","Money–Love Bridge")}</div><div class="ename">${RN[M.cross]} · ${E[M.cross].n}</div></div></div>
+      <p class="pos-meaning">${tr("Общият възел между парите и отношенията. Пази баланса между кариерата и дома.","Shared node between finances and relationships. Keeps career and home in harmony.")}</p>
+      <p>${E[M.cross].bal}</p>
+      <p class="note"><strong>${tr("Стъпка:","Step:")}</strong> ${E[M.cross].st}</p>
+      ${fullBtn(M.cross)}${jrBtn(M.cross)}
+    </div>
+  </div>
+
+  <h2 id="z-rel">${tr(`Канал на Любовта и Отношенията: ${lIn} – ${M.love} – ${M.cross}`,`Love & Relationship Channel: ${lIn} – ${M.love} – ${M.cross}`)}</h2>
+  <p class="intro">${tr("Каналът на отношенията започва от вътрешната точка на кармичната опашка, минава през сърцевината на партньорството и завършва в точката на баланса.","The relationship channel begins at the inner point of the karmic tail, moves through the heart of partnership, and ends at the balance point.")}</p>
+  <div class="steps">
+    <div class="step">
+      <span class="k">1 · ${tr("Вход в отношенията","Relationship Entry")} (${lIn})</span>
+      <div class="head">${tile(lIn)}<div><div class="zone">${tr("Готовност за близост","Readiness for Intimacy")}</div><div class="ename">${RN[lIn]} · ${E[lIn].n}</div></div></div>
+      <p class="pos-meaning">${tr("Вътрешната точка на кармичната опашка. Показва как влизате във връзка и какво може да Ви спира.","Inner point of the karmic tail. Shows how you enter relationships and what may hold you back.")}</p>
+      <p>${E[lIn].love}</p>
+      <p class="note"><strong>${tr("Сянка във връзките:","Shadow in relationships:")}</strong> ${E[lIn].sh}</p>
+      ${fullBtn(lIn)}${jrBtn(lIn)}
+    </div>
+    <div class="step">
+      <span class="k">2 · ${tr("Сърцевина на любовта","Heart of Love")} (${M.love})</span>
+      <div class="head">${tile(M.love)}<div><div class="zone">${tr("Идеален партньор","Ideal Partner")}</div><div class="ename">${RN[M.love]} · ${E[M.love].n}</div></div></div>
+      <p class="pos-meaning">${tr("Описва характера на подходящия партньор и атмосферата в щастливата връзка.","Describes the nature of a compatible partner and the atmosphere of a happy bond.")}</p>
+      <p>${E[M.love].love}</p>
+      <p class="note"><strong>${tr("В хармония:","In harmony:")}</strong> ${E[M.love].bal}</p>
+      ${fullBtn(M.love)}${jrBtn(M.love)}
+    </div>
+    <div class="step">
+      <span class="k">3 · ${tr("Общо благополучие","Shared Well-Being")} (${M.cross})</span>
+      <div class="head">${tile(M.cross)}<div><div class="zone">${tr("Баланс в двойката","Couple's Balance")}</div><div class="ename">${RN[M.cross]} · ${E[M.cross].n}</div></div></div>
+      <p class="pos-meaning">${tr("Енергията, която превръща любовта във взаимна подкрепа и изобилие.","The energy that turns love into mutual support and abundance.")}</p>
+      <p>${E[M.cross].love}</p>
+      <p class="note"><strong>${tr("Въпрос:","Question:")}</strong> ${E[M.cross].q}</p>
+      ${fullBtn(M.cross)}${jrBtn(M.cross)}
+    </div>
+  </div>
+
+  <h2 id="z-purp">${tr("Четирите нива на Предназначението по Ладини","The Four Levels of Purpose by Ladini")}</h2>
+  <div class="purpose-block">
+    <h3>${tr("1. Лично предназначение (20–40 г.) · Съюз между Небето и Земята","1. Personal Purpose (Ages 20–40) · Union of Sky and Earth")}</h3>
+    <p class="note">${tr("Сформира се от сбора на Линията на Небето (B+D) и Линията на Земята (A+C). Отговаря на въпроса: „Кой съм аз и какви качества трябва да изградя?“","Formed by adding the Sky Line (B+D) and the Earth Line (A+C). Answers the question: 'Who am I and what qualities must I build?'")}</p>
+    <div class="purpose-triad">
+      <div class="pt-box">
+        <span class="zone">${tr("Небе (B+D)","Sky (B+D)")}</span>
+        <div class="head">${tile(M.sky)}<div><div class="ename">${RN[M.sky]} · ${E[M.sky].n}</div><span class="note">${tr("Душа: ","Soul: ")}${E[M.sky].v}</span></div></div>
+      </div>
+      <div class="op">+</div>
+      <div class="pt-box">
+        <span class="zone">${tr("Земя (A+C)","Earth (A+C)")}</span>
+        <div class="head">${tile(M.earth)}<div><div class="ename">${RN[M.earth]} · ${E[M.earth].n}</div><span class="note">${tr("Материя: ","Matter: ")}${E[M.earth].v}</span></div></div>
+      </div>
+      <div class="op">=</div>
+      <div class="pt-box res">
+        <span class="zone">${tr("Лично предназначение","Personal Purpose")}</span>
+        <div class="head">${tile(M.personal)}<div><div class="ename">${RN[M.personal]} · ${E[M.personal].n}</div><span class="note">${E[M.personal].bal}</span></div></div>
+        ${fullBtn(M.personal)}
+      </div>
+    </div>
+  </div>
+
+  <div class="purpose-block">
+    <h3>${tr("2. Социално предназначение (40–60 г.) · Задачи пред хората и рода","2. Social Purpose (Ages 40–60) · Tasks for Society & Lineage")}</h3>
+    <p class="note">${tr("Сформира се от сбора на Мъжката родова линия (F+H) и Женската родова линия (G+I). Показва с какво сте полезни на света.","Formed by adding the Male Family Line (F+H) and Female Family Line (G+I). Shows how you bring value to others.")}</p>
+    <div class="purpose-triad">
+      <div class="pt-box">
+        <span class="zone">${tr("Мъжки род (F+H)","Male Line (F+H)")}</span>
+        <div class="head">${tile(M.maleLine)}<div><div class="ename">${RN[M.maleLine]} · ${E[M.maleLine].n}</div><span class="note">${tr("Външна цел: ","Outer goal: ")}${E[M.maleLine].v}</span></div></div>
+      </div>
+      <div class="op">+</div>
+      <div class="pt-box">
+        <span class="zone">${tr("Женски род (G+I)","Female Line (G+I)")}</span>
+        <div class="head">${tile(M.femaleLine)}<div><div class="ename">${RN[M.femaleLine]} · ${E[M.femaleLine].n}</div><span class="note">${tr("Вътрешен свят: ","Inner world: ")}${E[M.femaleLine].v}</span></div></div>
+      </div>
+      <div class="op">=</div>
+      <div class="pt-box res">
+        <span class="zone">${tr("Социално предназначение","Social Purpose")}</span>
+        <div class="head">${tile(M.social)}<div><div class="ename">${RN[M.social]} · ${E[M.social].n}</div><span class="note">${E[M.social].bal}</span></div></div>
+        ${fullBtn(M.social)}
+      </div>
+    </div>
+  </div>
+
+  <div class="grid">
+   ${card(tr("3. Духовно предназначение · след 60 г. (Лично + Социално)","3. Spiritual Purpose · after 60 (Personal + Social)"),M.spirit,"",{posNote:tr("Висшият духовен покровител на матрицата Ви. Отключва се като дар, когато работите по първите две предназначения.","Higher spiritual patron of your matrix. Unlocks as a gift as you fulfil the first two purposes."),text:tr("Да бъдете ","To be ")+E[M.spirit].s+". "+E[M.spirit].bal})}
+   ${card(tr("4. Планетарно предназначение (Социално + Духовно)","4. Planetary Purpose (Social + Spiritual)"),M.planetary,"",{posNote:tr("Четвъртото ниво по Ладини – как влияете на големи групи хора и света.","Fourth level in Ladini's system—how you contribute to larger communities and the world."),text:E[M.planetary].core+" "+E[M.planetary].bal})}
+  </div>`;
+
+  // ТАБ 3: КАРМА И РОД
+  const kIn=M.ch.D.two,kMid=M.ch.D.one,kOut=M.D;
+  const kArch=KTAILS[M.tailKey]||{
+    name:tr(`Кармична програма ${M.tailKey}`,`Karmic Programme ${M.tailKey}`),
+    past:tr(`Неусвоени уроци по енергиите ${kIn}, ${kMid} и ${kOut}.`,`Unlearned lessons across energies ${kIn}, ${kMid} and ${kOut}.`),
+    now:tr(`Проявява се чрез сенките на ${E[kIn].n} и ${E[kMid].n}.`,`Shows up through the shadows of ${E[kIn].n} and ${E[kMid].n}.`),
+    task:tr(`Да обърнете и трите енергии в плюс.`,`Turn all three energies into their light side.`)
+  };
+
   document.getElementById("v-km").innerHTML=`
   <blockquote class="epi"><p>${tr("„Когато попаднеш под силен дъжд, се опитваш да не се намокриш и бързо тичаш по пътя. Но тичайки под стрехите на покривите, пак се оказваш мокър. Ако обаче веднага осъзнаеш, че от дъжда не можеш да избягаш, тогава, макар да се намокриш, няма да се суетиш. Такъв подход трябва да се използва във всичко.“","“When you are caught in heavy rain, you try not to get wet and hurry along the road. But even running under the eaves of the roofs, you still end up wet. If, however, you realise at once that you cannot escape the rain, you will get wet, but you will not fuss. This approach should be used in everything.”")}</p><cite>${tr("„Хагакуре“, самурайски трактат","Hagakure, the samurai treatise")}</cite></blockquote>
-  <p class="intro">${tr("Кармата в матрицата не е наказание, а урок, който се повтаря, докато не бъде усвоен. Кармичната опашка се чете в три стъпки: урокът, как се проявява, докато не е усвоен, и ключът към него.","Karma in the matrix is not a punishment but a lesson that repeats until it is learned. The karmic tail is read in three steps: the lesson, how it shows up until it is learned, and the key to it.")}</p>
-  <h2 id="k-tail">${tr("Кармична опашка","Karmic tail")}: ${M.D} · ${t1} · ${t2}</h2>
-  <div class="steps">
-   <div class="step"><span class="k">1 · ${tr("Урокът","The lesson")}</span><div class="head">${tile(M.D)}<div class="ename">${E[M.D].n}</div></div><p>${E[M.D].karma}</p>${fullBtn(M.D)}</div>
-   <div class="step"><span class="k">2 · ${tr("Как се проявява","How it shows up")}</span><div class="head">${tile(t1)}<div class="ename">${E[t1].n}</div></div><p>${E[t1].sh}</p><p class="quote" style="font-size:1rem">${q(E[t1].voice)}</p>${fullBtn(t1)}</div>
-   <div class="step"><span class="k">3 · ${tr("Ключът","The key")}</span><div class="head">${tile(t2)}<div class="ename">${E[t2].n}</div></div><p>${E[t2].bal}</p><p><strong>${tr("Стъпка:","Step:")}</strong> ${E[t2].st}</p>${fullBtn(t2)}</div>
+  <p class="intro">${tr(`В класическата система на Наталия Ладини Кармичната опашка винаги се записва и чете от центъра навън (от горе надолу): <strong>${M.tailKey}</strong>. Трите числа образуват единна архетипна програма от миналото прераждане.`,`In Natalia Ladini's classic system, the Karmic Tail is always written and read from the centre outward (top to bottom): <strong>${M.tailKey}</strong>. Together the three numbers form a single archetypal programme from a past incarnation.`)}</p>
+
+  <div class="archetype-box">
+    <span class="ab-badge">${tr(`Класически архетип по Ладини · Опашка ${M.tailKey}`,`Classic Ladini Archetype · Tail ${M.tailKey}`)}</span>
+    <h3>„${kArch.name}“</h3>
+    <div class="ab-cols">
+      <div><span class="lbl2">${tr("Корен от миналото прераждане","Past-Life Root")}</span><p>${kArch.past}</p></div>
+      <div><span class="lbl2">${tr("Как се проявява днес (в минус)","How It Shows Up Today (Minus)")}</span><p>${kArch.now}</p></div>
+      <div><span class="lbl2">${tr("Кармична задача и изход в плюс","Karmic Task & Way into the Plus")}</span><p>${kArch.task}</p></div>
+    </div>
   </div>
-  <h2 id="k-mat">${tr("Материална карма","Material karma")}</h2>
-  <p class="intro">${tr("Дясната точка показва отношението към парите и материалното, донесено като урок.","The right-hand point shows your relationship with money and the material world, brought in as a lesson.")}</p>
-  <div class="grid">${card(tr("Материален урок","Material lesson"),M.C,"karma")}${card(tr("Откъде идват парите","Where money comes from"),M.money,"money")}</div>
-  <h2 id="k-rod">${tr("Родова карма","Family karma")}</h2>
-  <p class="intro">${tr("Всяка линия на рода, бащина и майчина, носи дар и задача. Горните ъгли на квадрата са даровете, долните са задачите, които се предават, докато някой не ги преработи. И даровете имат сянка, затова във всяка карта виждате и двете страни.","Each family line, your father's and your mother's, carries a gift and a task. The top corners of the square are the gifts; the bottom ones are the tasks passed down until someone works them through. Gifts have a shadow too, so each card shows both sides.")}</p>
+
+  <h2 id="k-tail">${tr("Трите точки на Кармичната опашка","The Three Points of the Karmic Tail")}: ${kIn} – ${kMid} – ${kOut}</h2>
+  <div class="steps">
+   <div class="step"><span class="k">1 · ${tr(`Вътрешна точка · Вход (${kIn})`,`Inner Point · Entry (${kIn})`)}</span><div class="head">${tile(kIn)}<div class="ename">${RN[kIn]} · ${E[kIn].n}</div></div><p class="pos-meaning">${tr("Точка на душевния дискомфорт и вход в канала на отношенията.","Point of soul discomfort and entry into the relationship channel.")}</p><p>${E[kIn].sh}</p><p><strong>${tr("Стъпка:","Step:")}</strong> ${E[kIn].st}</p>${fullBtn(kIn)}</div>
+   <div class="step"><span class="k">2 · ${tr(`Средна точка · Ядро (${kMid})`,`Middle Point · Core (${kMid})`)}</span><div class="head">${tile(kMid)}<div class="ename">${RN[kMid]} · ${E[kMid].n}</div></div><p class="pos-meaning">${tr("Сърцевината на стария емоционален навик от миналото прераждане.","The core of the old emotional habit carried from the past life.")}</p><p>${E[kMid].karma}</p><p class="quote" style="font-size:1rem">${q(E[kMid].voice)}</p>${fullBtn(kMid)}</div>
+   <div class="step"><span class="k">3 · ${tr(`Долна точка · Възел (${kOut})`,`Bottom Point · Node (${kOut})`)}</span><div class="head">${tile(kOut)}<div class="ename">${RN[kOut]} · ${E[kOut].n}</div></div><p class="pos-meaning">${tr("Главният кармичен урок (на 60 г.), който се превръща във фундаментална мъдрост.","Main karmic lesson (age 60) that turns into fundamental wisdom.")}</p><p>${E[kOut].karma}</p><p><strong>${tr("В баланс:","In balance:")}</strong> ${E[kOut].bal}</p>${fullBtn(kOut)}</div>
+  </div>
+
+  <h2 id="k-mat">${tr("Материална карма от минал живот","Material Karma from Past Life")}: ${M.ch.C.two} – ${M.ch.C.one} – ${M.C}</h2>
+  <p class="intro">${tr("Дясната хоризонтална ос показва кармичния опит с парите, ресурсите и физическото здраве.","The right-hand horizontal axis shows karmic experience with money, resources and physical health.")}</p>
+  <div class="grid">
+    ${card(tr("Вход в парите (C2)","Money Entry (C2)"),M.ch.C.two,"money",{posNote:tr("Финансовият ключ на чакра Манипура.","Financial key of Manipura chakra.")})}
+    ${card(tr("Скрит материален урок (C1)","Hidden Material Lesson (C1)"),M.ch.C.one,"sh",{posNote:tr("Междинна точка (Свадхистана физика) – страхове около парите и удоволствията.","Intermediate point (physical Svadhisthana)—fears around money and pleasure.")})}
+    ${card(tr("Главен материален урок · 40 г. (C)","Main Material Lesson · Age 40 (C)"),M.C,"karma",{posNote:tr("Основният изпит за финансова зрялост и физическо здраве.","Primary test of financial maturity and physical health.")})}
+  </div>
+
+  <h2 id="k-rod">${tr("Родов квадрат и Сила на рода","Ancestral Square & Power of the Lineage")}</h2>
+  <p class="intro">${tr("По Ладини диагоналът от горе вляво до долу вдясно е <strong>Бащиният (мъжкият) род</strong>, а от горе вдясно до долу вляво – <strong>Майчиният (женският) род</strong>. Горните ъгли са <em>Духовната родова карма (и дар)</em>, а долните – <em>Материалната родова карма</em>. В центъра им се събира <strong>Силата на рода (J)</strong>.","In Ladini's method, the diagonal from top-left to bottom-right is the <strong>Father's (male) line</strong>, and from top-right to bottom-left is the <strong>Mother's (female) line</strong>. Top corners represent <em>Spiritual family karma (and gift)</em>; bottom corners represent <em>Material family karma</em>. Their sum forms the <strong>Ancestral Power (J)</strong>.")}</p>
   <div class="grid rod2">
-   ${rodCard(tr("Бащин род · дар","Father's line · gift"),M.F,"gift")}${rodCard(tr("Бащин род · задача","Father's line · task"),M.H,"task")}
-   ${rodCard(tr("Майчин род · дар","Mother's line · gift"),M.G,"gift")}${rodCard(tr("Майчин род · задача","Mother's line · task"),M.I,"task")}</div>`;
-  let yh="";for(let k=-1;k<3;k++){const Y=yr+k,v=yearE(M,Y);yh+=`<div class="year${k===0?" now":""}"><span class="y">${Y}</span><div class="head">${tile(v)}<h3>${E[v].n}</h3></div><p class="note">${E[v].per}</p></div>`}
-  let th="";for(let k=-1;k<8;k++){const i=idx+k;if(i<0)continue;const v=M.ring[i%64],a0=i*1.25;
-    th+=`<div class="period${k===0?" now":""}"><span class="when">${k===0?tr("Сега · ","Now · "):""}${fmt(atAge(iso,a0))} – ${fmt(atAge(iso,a0+1.25))} · ${ag(a0)}–${ag(a0+1.25)}${YRS()}</span><h3>${RN[v]} · ${E[v].n}</h3><p>${E[v].per}</p><p class="st">${tr("Стъпка:","Step:")} ${E[v].st}</p></div>`}
+   ${card(tr("Сила на рода · Точка J (F+G+H+I)","Ancestral Power · Point J (F+G+H+I)"),M.J,"",{posNote:tr("Енергийният резерв и благословията на четирите родови линии.","The energy reserve and blessing of all four family lines."),text:E[M.J].core+" "+E[M.J].bal})}
+   ${card(tr("Код на вътрешната сила (X + J)","Inner Power Code (X + J)"),M.powerCode,"",{posNote:tr("Синтезът на личния Ви център и Силата на рода – Вашият мощен акумулатор.","Synthesis of your personal centre and Ancestral Power—your main battery."),text:cap(E[M.powerCode].tal)+" "+E[M.powerCode].bal})}
+  </div>
+  <div class="grid rod2">
+   ${rodCard(tr("Бащин род · Духовна карма и дар (F · 10 г.)","Father's Line · Spiritual Karma & Gift (F · Age 10)"),M.F,"gift",tr("Горен ляв ъгъл · Входни точки към центъра: ","Top-left corner · Inner points to centre: ")+M.cr.F.one+" → "+M.cr.F.two)}
+   ${rodCard(tr("Бащин род · Материална карма (H · 50 г.)","Father's Line · Material Karma (H · Age 50)"),M.H,"task",tr("Долен десен ъгъл · Входни точки към центъра: ","Bottom-right corner · Inner points to centre: ")+M.cr.H.one+" → "+M.cr.H.two)}
+   ${rodCard(tr("Майчин род · Духовна карма и дар (G · 30 г.)","Mother's Line · Spiritual Karma & Gift (G · Age 30)"),M.G,"gift",tr("Горен десен ъгъл · Входни точки към центъра: ","Top-right corner · Inner points to centre: ")+M.cr.G.one+" → "+M.cr.G.two)}
+   ${rodCard(tr("Майчин род · Материална карма (I · 70 г.)","Mother's Line · Material Karma (I · Age 70)"),M.I,"task",tr("Долен ляв ъгъл · Входни точки към центъра: ","Bottom-left corner · Inner points to centre: ")+M.cr.I.one+" → "+M.cr.I.two)}
+  </div>`;
+
+  // ТАБ 4: КАРТА НА ЗДРАВЕТО (7 ЧАКРИ)
+  const chRows=M.chakras.map(c=>`
+    <tr>
+      <td><span class="ch-dot" style="background:${c.color}"></span><strong>${c.num}. ${LANG==="en"?c.skEn:c.skBg}</strong><div class="note">${LANG==="en"?c.en:c.bg}</div></td>
+      <td class="note">${LANG==="en"?c.bodyEn:c.bodyBg}</td>
+      <td><button type="button" class="ch-pill" data-arc="${c.p}"><b>${c.p}</b> ${E[c.p].n}</button></td>
+      <td><button type="button" class="ch-pill" data-arc="${c.e}"><b>${c.e}</b> ${E[c.e].n}</button></td>
+      <td><button type="button" class="ch-pill" data-arc="${c.em}"><b>${c.em}</b> ${E[c.em].n}</button></td>
+    </tr>`).join("");
+
+  document.getElementById("v-ch").innerHTML=`
+  <p class="intro">${tr("Картата на здравето по Наталия Ладини свързва 7-те чакри с Линията на Земята (Физика – тяло), Линията на Небето (Енергия – дух) и техния сбор (Емоции – психосоматичен ключ). Кликнете върху който и да е аркан, за да видите как да превърнете минуса му в плюс.","Natalia Ladini's Health Map links the 7 chakras with the Earth Line (Physical – body), Sky Line (Energy – spirit) and their sum (Emotions – psychosomatic key). Click any arcanum to see how to turn its shadow into the light side.")}</p>
+  <div class="chakra-wrap" id="c-tbl">
+    <table class="chakra-tbl">
+      <thead>
+        <tr>
+          <th>${tr("Чакра и център","Chakra & Centre")}</th>
+          <th>${tr("Органи и системи","Organs & Systems")}</th>
+          <th>${tr("Физика (Земя)","Physical (Earth)")}</th>
+          <th>${tr("Енергия (Небе)","Energy (Sky)")}</th>
+          <th>${tr("Емоции (Ключ)","Emotions (Key)")}</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${chRows}
+        <tr class="total-row">
+          <td colspan="2">${tr("Общ енергиен баланс на тялото (Сума)","Total Body Energy Balance (Sum)")}</td>
+          <td><button type="button" class="ch-pill" data-arc="${M.chTotP}"><b>${M.chTotP}</b> ${E[M.chTotP].n}</button></td>
+          <td><button type="button" class="ch-pill" data-arc="${M.chTotE}"><b>${M.chTotE}</b> ${E[M.chTotE].n}</button></td>
+          <td><button type="button" class="ch-pill" data-arc="${M.chTotEm}"><b>${M.chTotEm}</b> ${E[M.chTotEm].n}</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <h2>${tr("Общ психосоматичен синтез","Overall Psychosomatic Synthesis")}</h2>
+  <div class="grid">
+    ${card(tr("Физически тонус (Обща Физика)","Physical Tone (Total Physical)"),M.chTotP,"",{posNote:tr("От какво се нуждае тялото Ви за издръжливост и здраве.","What your physical body needs for stamina and recovery."),text:E[M.chTotP].bal})}
+    ${card(tr("Енергиен заряд (Обща Енергия)","Energy Charge (Total Energy)"),M.chTotE,"",{posNote:tr("Как се зареждате духовно и интуитивно.","How you recharge spiritually and intuitively."),text:E[M.chTotE].bal})}
+    ${card(tr("Главен емоционален ключ (Обща Сума)","Master Emotional Key (Total Sum)"),M.chTotEm,"",{posNote:tr("Когато тази енергия е в баланс, цялата чакрова система работи хармонично.","When this energy is in balance, the entire chakra system works harmoniously."),text:E[M.chTotEm].core+" "+tr("Стъпка: ","Step: ")+E[M.chTotEm].st})}
+  </div>`;
+
+  // ТАБ 6: ПРОГНОЗА (С ТРИАДИ НА ПЕРИОДА ПО ЛАДИНИ)
+  let yh="";for(let k=-1;k<3;k++){const Y=yr+k,v=yearE(M,Y);yh+=`<div class="year${k===0?" now":""}"><span class="y">${Y}</span><div class="head">${tile(v)}<h3>${RN[v]} · ${E[v].n}</h3></div><p class="note">${E[v].per}</p>${fullBtn(v)}</div>`}
+  let th="";for(let k=-1;k<8;k++){
+    const i=idx+k;if(i<0)continue;
+    const trP=periodTriad(M,i),a0=i*1.25;
+    th+=`<div class="period${k===0?" now":""}">
+      <span class="when">${k===0?tr("Сега · ","Now · "):""}${fmt(atAge(iso,a0))} – ${fmt(atAge(iso,a0+1.25))} · ${ag(a0)}–${ag(a0+1.25)}${YRS()}</span>
+      <h3>${tr("Прогностична триада по Ладини:","Ladini Forecast Triad:")} ${trP.mainE} – ${trP.oppE} – ${trP.sumE}</h3>
+      <div class="triad-cards">
+        <div class="tcard">
+          <span class="tlbl">1 · ${tr("Точка на възрастта","Age Point")} (${trP.mainE})</span>
+          <strong>${RN[trP.mainE]} · ${E[trP.mainE].n}</strong>
+          <p class="note">${E[trP.mainE].per}</p>
+          ${fullBtn(trP.mainE)}
+        </div>
+        <div class="tcard">
+          <span class="tlbl">2 · ${tr("Противоположна точка / Проверка","Opposite Point / Check")} (${trP.oppE})</span>
+          <strong>${RN[trP.oppE]} · ${E[trP.oppE].n}</strong>
+          <p class="note">${tr("Внимавайте за сянката: ","Watch for the shadow: ")}${E[trP.oppE].sh}</p>
+          ${fullBtn(trP.oppE)}
+        </div>
+        <div class="tcard">
+          <span class="tlbl">3 · ${tr("Резултатна енергия","Resulting Energy")} (${trP.sumE})</span>
+          <strong>${RN[trP.sumE]} · ${E[trP.sumE].n}</strong>
+          <p class="note">${tr("Стъпка: ","Step: ")}${E[trP.sumE].st}</p>
+          ${fullBtn(trP.sumE)}
+        </div>
+      </div>
+    </div>`;
+  }
   document.getElementById("v-fc").innerHTML=`
-  <p class="intro">${tr("Прогнозата има два слоя. Енергията на годината е общият фон на календарната година. Възрастовият период идва от външния кръг на матрицата и сменя темата си на около година и три месеца.","The forecast has two layers. The energy of the year is the general background of the calendar year. The age period comes from the outer circle of the matrix and changes its theme about every year and three months.")}</p>
-  <h2>${tr("Енергия на годината","Energy of the year")}</h2><div class="years">${yh}</div>
-  <h2 id="f-per">${tr("Възрастови периоди","Age periods")}</h2><div class="timeline">${th}</div>`;
+  <p class="intro">${tr("Прогнозата по Ладини обединява Календарната енергия на годината и Възрастовата триада по кръга на матрицата (1. Точка на текущата възраст + 2. Диаметрално противоположна точка = 3. Общ вектор на периода).","Ladini's forecast combines the Calendar Energy of the Year and the Age Triad around the matrix circle (1. Current age point + 2. Diametrically opposite point = 3. Resulting vector of the period).")}</p>
+  <h2>${tr("Календарна енергия на годината","Calendar Energy of the Year")}</h2><div class="years">${yh}</div>
+  <h2 id="f-per">${tr("Възрастови периоди и Триади (през 1,25 г.)","Age Periods & Triads (every 1.25 yrs)")}</h2><div class="timeline">${th}</div>`;
+
   renderLib();renderPerson();renderJournal();
 }
+
 let Q="";
 const hay=v=>[E[v].n,AX[v].k.join(" "),AX[v].plus.join(" "),AX[v].minus.flat().join(" "),AX[v].sph,E[v].core,E[v].money,E[v].love,E[v].karma].join(" ").toLowerCase();
 function renderLib(){
   let h="",shown=0;for(let v=1;v<=22;v++){const mine=places(v).length>0;
     if(Q&&!hay(v).includes(Q))continue;shown++;
-    h+=`<button class="arc" data-arc="${v}" aria-current="${v===OPEN}">${mine?'<span class="mine" title="${tr("Във Вашата матрица","In your matrix")}"></span>':""}<span class="em g${grp(v)}">${sym(v)}</span><span class="rn">${RN[v]}</span><span class="nm">${E[v].n}</span><span class="kw">${AX[v].k.join(" · ")}</span></button>`}
+    h+=`<button class="arc" data-arc="${v}" aria-current="${v===OPEN}">${mine?`<span class="mine" title="${tr("Във Вашата матрица","In your matrix")}"></span>`:""}<span class="em g${grp(v)}">${sym(v)}</span><span class="rn">${RN[v]}</span><span class="nm">${E[v].n}</span><span class="kw">${AX[v].k.join(" · ")}</span></button>`}
   document.getElementById("lib").innerHTML=h;
   document.getElementById("arcNone").hidden=shown>0;
   renderDetail();
@@ -1437,7 +2116,7 @@ function renderDetail(){
    <div class="dhead g${grp(v)}"><div class="em">${sym(v)}</div><div><div class="rn">${tr("Аркан","Arcanum")} ${RN[v]} · ${v}</div><h2>${x.n}</h2><div class="kws">${a.k.map(k=>`<span>${k}</span>`).join("")}</div></div></div>
    <div class="dbody">
     <p class="core">${x.core}</p>
-    ${pl.length?`<div class="mine-list"><span class="lbl2">${tr("Във Вашата матрица:","In your matrix:")}</span>${pl.map(p=>`<button type="button" class="c" data-goto="${p.tab}|${p.id}">${p.t} →</button>`).join("")}</div><p class="note">${tr("Кликнете позиция, за да отидете до нея. Във всяка позиция арканът носи и двете си страни: светлата и сянката по-долу. Коя ще се проявява, зависи от това как живеете тази енергия.","Click a position to go to it. In every position the arcanum carries both sides: the light and the shadow below. Which one shows up depends on how you live this energy.")}</p>`:`<p class="note">${tr("Този аркан не е в основните точки на Вашата матрица, но може да е във възрастовите периоди или в матрицата на близък човек. Всеки аркан има и светла страна, и сянка.","This arcanum is not in the main points of your matrix, but it may appear in the age periods or in the matrix of someone close to you. Every arcanum has both a light side and a shadow.")}</p>`}
+    ${pl.length?`<div class="mine-list"><span class="lbl2">${tr("Във Вашата матрица:","In your matrix:")}</span>${pl.map(p=>`<button type="button" class="c" data-goto="${p.tab}|${p.id}">${p.t} →</button>`).join("")}</div><p class="note">${tr("Кликнете позиция, за да отидете до нея. Във всяка позиция арканът носи и двете си страни: светлата и сянката по-долу.","Click a position to go to it. In every position the arcanum carries both sides: the light and the shadow below.")}</p>`:`<p class="note">${tr("Този аркан не е сред 27-те основни точки на Вашата матрица, но се активира във възрастовите периоди или в матрицата на близък човек.","This arcanum is not among the 27 main points of your matrix, but it activates in age periods or in the matrix of someone close to you.")}</p>`}
     <div class="pm2">
      <div><h3>${tr("Светлата страна","The light side")}</h3><ul class="plus">${a.plus.map(p=>`<li>${p}</li>`).join("")}</ul></div>
      <div><h3>${tr("Сянката и как да я обърнете","The shadow and how to turn it around")}</h3><div class="shadow">${a.minus.map(([m,f])=>`<div class="sh-row"><span class="m">${m}</span><span class="ar" aria-label="${tr("как да го обърнете","how to turn it around")}">→</span><span class="f">${f}</span></div>`).join("")}</div></div>
@@ -1456,6 +2135,7 @@ function renderDetail(){
    </div></article>`;
 }
 function openArc(v){OPEN=+v;show("ar");renderLib();const d=document.getElementById("det");if(d)d.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"})}
+
 let PEOPLE=[],SEL=-1;
 try{PEOPLE=JSON.parse(localStorage.getItem("mc-people")||"[]")}catch(e){PEOPLE=[]}
 const save=()=>{try{localStorage.setItem("mc-people",JSON.stringify(PEOPLE))}catch(e){}};
@@ -1469,8 +2149,8 @@ const pairOf=(M,P)=>calcPts(r(M.A+P.A),r(M.B+P.B),r(M.C+P.C),r(M.D+P.D));
 function relMap(){
   if(!PEOPLE.length||!ME)return "";const M=ownM();
   return `<div class="relmap"><h2>${tr("Карта на отношенията","Relationship map")}</h2><p class="note">${tr("Всички хора на едно място. Кликнете ред, за да отворите подробния анализ.","Everyone in one place. Click a row to open the detailed analysis.")}</p>
-  <div class="tblwrap"><table class="rt"><thead><tr><th>${tr("Човек","Person")}</th><th>${tr("Център","Centre")}</th><th>${tr("Какво ви свързва","What connects you")}</th><th>${tr("Какво се повтаря","What repeats")}</th></tr></thead><tbody>
-  ${PEOPLE.map((p,i)=>{const P=calc(p.date),Q=pairOf(M,P);return `<tr class="${i===SEL?"sel":""}" data-i="${i}" tabindex="0"><td><b>${esc(p.name)}</b><span class="note"> · ${esc(relT(p.rel))}</span></td><td>${tile(P.X)}<span>${E[P.X].n}</span></td><td>${tile(Q.X)}<span>${E[Q.X].n}</span></td><td>${tile(Q.D)}<span>${E[Q.D].n}</span></td></tr>`}).join("")}
+  <div class="tblwrap"><table class="rt"><thead><tr><th>${tr("Човек","Person")}</th><th>${tr("Център","Centre")}</th><th>${tr("Какво ви свързва","What connects you")}</th><th>${tr("Кармична опашка на двойката","Couple's karmic tail")}</th></tr></thead><tbody>
+  ${PEOPLE.map((p,i)=>{const P=calc(p.date),Q=pairOf(M,P);return `<tr class="${i===SEL?"sel":""}" data-i="${i}" tabindex="0"><td><b>${esc(p.name)}</b><span class="note"> · ${esc(relT(p.rel))}</span></td><td>${tile(P.X)}<span>${E[P.X].n}</span></td><td>${tile(Q.X)}<span>${E[Q.X].n}</span></td><td>${tile(Q.D)}<span>${Q.tailKey} (${E[Q.D].n})</span></td></tr>`}).join("")}
   </tbody></table></div></div>`;
 }
 function renderPerson(){
@@ -1481,25 +2161,26 @@ function renderPerson(){
   const sm=setOf(M),sp=setOf(P),common=Object.keys(sm).filter(v=>sp[v]).map(Number);
   const qs=[...new Set([Q.X,Q.D,Q.B])].map(v=>E[v].q);
   V.innerHTML=`
-  <div class="pair-head"><div class="ph-names"><span class="lbl2">${esc(relT(p.rel))}</span><h2>${me} <span class="amp">&amp;</span> ${nm}</h2><p class="note">${tr("Общата матрица се получава, като се съберат точките на двете матрици. Тя описва динамиката между вас, а не какъв е всеки поотделно.","The shared matrix is made by adding the points of both matrices. It describes the dynamic between you, not what each of you is like.")}</p></div>
+  <div class="pair-head"><div class="ph-names"><span class="lbl2">${esc(relT(p.rel))}</span><h2>${me} <span class="amp">&amp;</span> ${nm}</h2><p class="note">${tr("Общата матрица по Ладини се получава, като се съберат едноименните точки на двете матрици. Тя описва общото енергийно поле между вас.","Ladini's compatibility matrix is calculated by summing the corresponding points of both birth matrices. It describes the shared energy field between you.")}</p></div>
    <div class="pv-actions"><button type="button" data-view="${SEL}">${tr("Прегледай като основна матрица","View as main matrix")}</button><button type="button" class="ghost" data-jrp="${SEL}">${tr("Запиши наблюдение в дневника","Add an observation to the journal")}</button></div></div>
 
   <div class="split">
    <div class="stack">
-    <div class="talent"><div class="lbl">${tr("Енергията на връзката","The energy of the relationship")}</div><p>${tile(Q.X)} ${E[Q.X].n}</p></div>
+    <div class="talent"><div class="lbl">${tr("Център на връзката (X) и Сила на рода (J)","Relationship Centre (X) & Lineage Power (J)")}</div><p>${tile(Q.X)} ${E[Q.X].n} <span class="note">· ${tr("Родова опора J:","Lineage support J:")} ${Q.J} (${E[Q.J].n})</span></p></div>
     <p>${E[Q.X].love}</p>
-    <p><b>${tr("Как ви виждат отстрани като двойка:","How others see you as a pair:")}</b> ${E[Q.A].face}</p>
+    <p><b>${tr("Как ви виждат отстрани като двойка (A):","How others see you as a pair (A):")}</b> ${E[Q.A].face}</p>
+    <p><b>${tr("Лично и Духовно предназначение на съюза:","Personal & Spiritual Purpose of the union:")}</b> ${Q.personal} (${E[Q.personal].n}) / ${Q.spirit} (${E[Q.spirit].n})</p>
     ${fullBtn(Q.X)}
    </div>
-   <div class="chart">${svg(Q,-1)}<div class="hint">${tr("Общата матрица. Кликнете число, за да отворите аркана му.","The shared matrix. Click a number to open its arcanum.")}</div></div>
+   <div class="chart">${svg(Q,-1)}<div class="hint">${tr("Общата матрица на съвместимостта. Кликнете число, за да отворите аркана му.","Compatibility matrix. Click a number to open its arcanum.")}</div></div>
   </div>
 
-  <h2>${tr("Динамиката между вас","The dynamic between you")}</h2>
+  <h2>${tr("Динамиката между вас по канали","The Dynamic Between You Across Channels")}</h2>
   <div class="grid rod2">
-   ${card(tr("Какво създавате заедно","What you create together"),Q.B,"",{text:cap(E[Q.B].tal)})}
-   ${card(tr("Пари и общи проекти","Money and shared projects"),Q.money,"money")}
-   ${card(tr("Зона на триене","Friction zone"),Q.D,"",{html:`<p>${E[Q.D].karma}</p><p class="quote" style="font-size:1rem">${q(E[Q.D].voice)}<small>${tr("Така често звучи конфликтът между вас.","This is how conflict between you often sounds.")}</small></p>`})}
-   ${card(tr("Ключът към връзката","The key to the relationship"),Q.ch.D.two,"",{html:`<p>${E[Q.ch.D.two].bal}</p><p><strong>${tr("Стъпка:","Step:")}</strong> ${E[Q.ch.D.two].st}</p>`})}
+   ${card(tr("Висше вдъхновение на двойката (B)","Higher Inspiration of the Pair (B)"),Q.B,"",{posNote:tr("Какво сътворявате заедно и с какво се обогатявате духовно.","What you create together and how you enrich each other."),text:cap(E[Q.B].tal)})}
+   ${card(tr(`Канал на парите на двойката (${Q.ch.C.two}–${Q.money}–${Q.cross})`,`Couple's Money Channel (${Q.ch.C.two}–${Q.money}–${Q.cross})`),Q.money,"money",{posNote:tr("Общи финанси, семеен бюджет и съвместни проекти.","Shared finances, household budget and joint projects.")})}
+   ${card(tr(`Канал на любовта на двойката (${Q.ch.D.two}–${Q.love}–${Q.cross})`,`Couple's Love Channel (${Q.ch.D.two}–${Q.love}–${Q.cross})`),Q.love,"love",{posNote:tr("Как се поддържа близостта, романтиката и взаимното доверие.","How intimacy, warmth and mutual trust are maintained.")})}
+   ${card(tr(`Кармична опашка на връзката (${Q.tailKey})`,`Karmic Tail of the Relationship (${Q.tailKey})`),Q.D,"",{posNote:tr("Зона на триене и кармичен урок от миналото между душите ви.","Friction zone and past-life karmic lesson between your souls."),html:`<p>${E[Q.D].karma}</p><p class="quote" style="font-size:1rem">${q(E[Q.D].voice)}<small>${tr("Така често звучи конфликтът между вас.","This is how conflict between you often sounds.")}</small></p>`})}
   </div>
 
   <h2>${tr("Вашите центрове един до друг","Your centres side by side")}</h2>
@@ -1605,8 +2286,17 @@ document.addEventListener("submit",e=>{if(e.target.id!=="jForm")return;e.prevent
   const x={id:Date.now(),date:iso,kind:JF.kind,arc:JF.arc>0?JF.arc:0,text:txt};
   if(x.kind==="event"){x.per=periodAt(iso);x.arc=x.per;x.match=document.getElementById("jMatch").value}
   if(x.kind==="goal")x.done=false;
-  JR.push(x);jSave();JF={kind:JF.kind,arc:JF.arc};renderJournal();renderDetail();renderLib();
-  const m=document.getElementById("toolMsg");});
+  JR.push(x);jSave();JF={kind:JF.kind,arc:JF.arc};renderJournal();renderDetail();renderLib();});
+
+document.addEventListener("click",e=>{
+  if(e.target.id==="clearMe"){
+    if(confirm(tr("Сигурни ли сте, че искате да изчистите текущата рождена дата и да въведете нова?","Are you sure you want to clear the current date of birth and enter a new one?"))){
+      ["mc-me"].forEach(k=>{try{localStorage.removeItem(k)}catch(e){}});
+      OWN=null;ME=null;goStart();
+    }
+  }
+});
+
 document.addEventListener("click",e=>{const tr_=e.target.closest(".rt tr[data-i]");if(tr_){SEL=+tr_.dataset.i;renderPeople();document.getElementById("pView").scrollIntoView({block:"start"})}
   const jp=e.target.closest("[data-jrp]");if(jp){const p=PEOPLE[+jp.dataset.jrp];JF={kind:"note",arc:-1,text:p.name+": "};show("jr");renderJournal();const ta=document.getElementById("jText");ta.focus();ta.setSelectionRange(ta.value.length,ta.value.length)}});
 document.addEventListener("keydown",e=>{if(e.key==="Enter"&&e.target.matches&&e.target.matches(".rt tr[data-i]")){SEL=+e.target.dataset.i;renderPeople()}});
@@ -1615,13 +2305,84 @@ document.addEventListener("click",e=>{
   const j=e.target.closest("[data-jr]");if(j){e.preventDefault();JF={kind:"note",arc:+j.dataset.jr};show("jr");renderJournal();document.getElementById("v-jr").scrollIntoView({block:"start"});document.getElementById("jText").focus({preventScroll:true});return}
   const jf=e.target.closest("[data-jrf]");if(jf){JFILT={kind:"all",arc:+jf.dataset.jrf};show("jr");renderJournal();return}
 });
-const VIEWS=["pt","zn","km","ar","fc","jr","pp"];
+const VIEWS=["pt","sy","zn","km","ch","ar","fc","jr","pp"];
+let NAV_STACK=[];
+function pushNavState(){
+  const curState={page:PAGE,mode:MODE,tab:VIEWS.find(k=>!document.getElementById("v-"+k).hidden)||"pt",open:OPEN,sel:SEL,meName:ME?ME.name:"",meIso:ME?ME.iso:""};
+  const top=NAV_STACK[NAV_STACK.length-1];
+  if(!top||top.page!==curState.page||top.tab!==curState.tab||top.mode!==curState.mode||top.open!==curState.open||top.meIso!==curState.meIso){
+    NAV_STACK.push(curState);
+    if(NAV_STACK.length>30)NAV_STACK.shift();
+  }
+  updBackBtn();
+}
+function updBackBtn(){
+  const b=document.getElementById("backBtn"),lbl=document.getElementById("backLbl"),qBtn=document.getElementById("quickSynBtn");
+  const curTab=VIEWS.find(k=>!document.getElementById("v-"+k).hidden)||"pt";
+  if(qBtn)qBtn.hidden=(curTab==="sy");
+  if(!b||!lbl)return;
+  const TAB_NAMES={pt:tr("Портрет","Portrait"),sy:tr("Резюме","Summary"),zn:tr("Сфери","Areas"),km:tr("Карма и Род","Karma & Lineage"),ch:tr("Карта на здравето","Health Map"),ar:tr("22 аркана","22 Arcana"),fc:tr("Прогноза","Forecast"),jr:tr("Дневник","Journal"),pp:tr("Хора","People")};
+  if(NAV_STACK.length>1){
+    const prev=NAV_STACK[NAV_STACK.length-2];
+    if(prev.page==="home")lbl.textContent=tr("Назад към Начало","Back to Home");
+    else if(prev.page==="start")lbl.textContent=tr("Назад към Въвеждане на дата","Back to Date Entry");
+    else lbl.textContent=tr("Назад към ","Back to ")+(TAB_NAMES[prev.tab]||"");
+  }else{
+    lbl.textContent=curTab!=="pt"?tr("Назад към Портрет","Back to Portrait"):tr("Към Начална страница","Back to Home");
+  }
+}
+function goBackNav(){
+  if(NAV_STACK.length>1){
+    NAV_STACK.pop(); // remove current
+    const prev=NAV_STACK.pop(); // pop target so show/goHome re-pushes cleanly
+    if(prev.page==="home"){goHome();return}
+    if(prev.page==="start"){goStart();return}
+    if(prev.meIso&&(!ME||ME.iso!==prev.meIso||MODE!==prev.mode)){
+      showMain(prev.meName,prev.meIso,prev.mode);
+    }
+    OPEN=prev.open||OPEN;
+    SEL=prev.sel!==undefined?prev.sel:SEL;
+    show(prev.tab||"pt");
+    renderLib();renderPeople();
+    window.scrollTo({top:0,behavior:"smooth"});
+  }else{
+    const curTab=VIEWS.find(k=>!document.getElementById("v-"+k).hidden)||"pt";
+    if(PAGE==="app"&&curTab!=="pt"){show("pt");window.scrollTo({top:0,behavior:"smooth"})}
+    else goHome();
+  }
+}
 function show(v,push=true){if(!VIEWS.includes(v))v="pt";document.querySelectorAll(".tab").forEach(t=>t.setAttribute("aria-selected",t.dataset.v===v));VIEWS.forEach(k=>document.getElementById("v-"+k).hidden=k!==v);try{localStorage.setItem("mc-tab",v)}catch(e){}
-  if(push&&location.hash!=="#"+v)history.pushState(null,"","#"+v);markNav()}
+  if(push&&location.hash!=="#"+v)history.pushState(null,"","#"+v);markNav();pushNavState()}
 document.querySelectorAll(".tab").forEach(t=>t.addEventListener("click",()=>show(t.dataset.v)));
 document.addEventListener("click",e=>{const g=e.target.closest("[data-goto]");if(g){const [tab,id]=g.dataset.goto.split("|");show(tab);const el=id&&document.getElementById(id);(el||document.querySelector(".tabs")).scrollIntoView({behavior:"smooth",block:"start"});if(el){el.classList.remove("flash");void el.offsetWidth;el.classList.add("flash")}}});
-document.addEventListener("click",e=>{const a=e.target.closest("[data-arc]");if(a){e.preventDefault();openArc(a.dataset.arc)}});
-document.addEventListener("keydown",e=>{if((e.key==="Enter"||e.key===" ")&&e.target.matches&&e.target.matches("g.pt")){e.preventDefault();openArc(e.target.dataset.arc)}});
+document.addEventListener("click",e=>{
+  const pt=e.target.closest("g.pt");
+  if(pt&&pt.dataset.pos&&pt.closest("#svgWrap")){
+    e.preventDefault();
+    SEL_POS=pt.dataset.pos;
+    if(ME){
+      document.getElementById("svgWrap").innerHTML=svg(ME.M,ME.idx%64,SEL_POS);
+      renderInspector();
+    }
+    return;
+  }
+  const a=e.target.closest("[data-arc]");if(a){e.preventDefault();openArc(a.dataset.arc)}
+});
+document.addEventListener("dblclick",e=>{
+  const pt=e.target.closest("g.pt");
+  if(pt&&pt.dataset.arc){e.preventDefault();openArc(pt.dataset.arc)}
+});
+document.addEventListener("keydown",e=>{if((e.key==="Enter"||e.key===" ")&&e.target.matches&&e.target.matches("g.pt")){
+  e.preventDefault();
+  const pt=e.target;
+  if(pt.dataset.pos&&pt.closest("#svgWrap")&&ME){
+    SEL_POS=pt.dataset.pos;
+    document.getElementById("svgWrap").innerHTML=svg(ME.M,ME.idx%64,SEL_POS);
+    renderInspector();
+  }else{
+    openArc(pt.dataset.arc);
+  }
+}});
 const valid=iso=>{if(!/^\d{4}-\d{2}-\d{2}$/.test(iso||""))return false;const [y,m,d]=iso.split("-").map(Number);const t=new Date(Date.UTC(y,m-1,d));
   return y>=1900&&t.getUTCFullYear()===y&&t.getUTCMonth()===m-1&&t.getUTCDate()===d&&t.getTime()<Date.now()};
 const dateErr=()=>tr("Въведете съществуваща дата на раждане във формат дд.мм.гггг, например 05.06.1973.","Enter a valid date of birth in the format dd.mm.yyyy, for example 05.06.1973.");
@@ -1637,18 +2398,17 @@ function markNav(){navLabels();document.querySelectorAll(".topnav a").forEach(a=
 function showMain(n,d,mode){
   MODE=mode;HOME=false;PAGE="app";document.getElementById("welcome").hidden=true;document.getElementById("start").hidden=true;document.getElementById("app").hidden=false;document.getElementById("meForm").hidden=true;
   const V=document.getElementById("viewing");
-  if(mode==="own")V.innerHTML=`<span class="who">${tr("Матрицата на","Matrix of")} ${esc(n)} · ${bgDate(d)}</span><button type="button" class="ghost" id="editMe">${tr("Смени данните","Change details")}</button>`;
+  if(mode==="own")V.innerHTML=`<span class="who">${tr("Матрицата на","Matrix of")} ${esc(n)} · ${bgDate(d)}</span><div style="display:flex;gap:8px;flex-wrap:wrap"><button type="button" class="ghost" id="editMe">${tr("Смени данните","Change details")}</button><button type="button" class="ghost" id="clearMe" style="color:var(--minus);border-color:currentColor">${tr("Изчисти данните","Clear data")}</button></div>`;
   else if(mode==="sample")V.innerHTML=`<span>${tr("Това е <strong>примерна матрица</strong>.","This is an <strong>example matrix</strong>.")}</span><button type="button" class="ghost" data-nav="mine">${OWN?tr("Върни се към моята","Back to mine"):tr("Изчисли моята матрица","Calculate my matrix")}</button>`;
   else V.innerHTML=`<span>${tr("Гледате матрицата на","You are viewing the matrix of")} <strong>${esc(n)}</strong> (${bgDate(d)}).</span>${OWN?`<button type="button" class="ghost" data-nav="mine">${tr("Върни се към моята","Back to mine")}</button>`:""}`;
   render(n,d);markNav();
 }
 function goHome(push=true){
   HOME=true;PAGE="home";document.getElementById("welcome").hidden=false;document.getElementById("start").hidden=true;document.getElementById("app").hidden=true;
-  
-  if(push&&location.hash!=="#home")history.pushState(null,"","#home");markNav();window.scrollTo(0,0);
+  if(push&&location.hash!=="#home")history.pushState(null,"","#home");markNav();pushNavState();window.scrollTo(0,0);
 }
 function goStart(push=true){HOME=true;PAGE="start";document.getElementById("welcome").hidden=true;document.getElementById("app").hidden=true;document.getElementById("start").hidden=false;
-  if(push&&location.hash!=="#start")history.pushState(null,"","#start");markNav();window.scrollTo(0,0);document.getElementById("wName").focus({preventScroll:true})}
+  if(push&&location.hash!=="#start")history.pushState(null,"","#start");markNav();pushNavState();window.scrollTo(0,0);document.getElementById("wName").focus({preventScroll:true})}
 function goMine(){if(OWN){showMain(OWN.n,OWN.d,"own");show("pt");window.scrollTo(0,0)}else goStart()}
 function navLabels(){const a=document.querySelector('.topnav a[data-nav=mine]');a.textContent=OWN?tr("Моята матрица","My matrix"):tr("Изчисли моята","Calculate mine");const c=document.getElementById("ctaMine");if(c)c.textContent=OWN?tr("Отвори моята матрица","Open my matrix"):tr("Изчисли моята матрица","Calculate my matrix")}
 function goSample(){showMain(SAMPLE.n,SAMPLE.d,"sample");show("pt");window.scrollTo(0,0)}
@@ -1667,6 +2427,14 @@ document.getElementById("meForm").addEventListener("submit",e=>{e.preventDefault
   if(!valid(d)){er.textContent=dateErr();er.hidden=false;return}er.hidden=true;saveOwn(n,d);showMain(n,d,"own")});
 document.getElementById("meCancel").addEventListener("click",()=>{document.getElementById("meForm").hidden=true});
 addEventListener("popstate",route);
+
+document.addEventListener("click",e=>{
+  const bk=e.target.closest("[data-back]");
+  if(bk){e.preventDefault();goBackNav();return}
+  const vj=e.target.closest("[data-v-jump]");
+  if(vj){e.preventDefault();show(vj.dataset.vJump);window.scrollTo({top:0,behavior:"smooth"});return}
+});
+
 document.addEventListener("click",e=>{
   if(e.target.id==="editMe"){const f=document.getElementById("meForm");f.hidden=false;meName.value=OWN?OWN.n:"";meDate.value=OWN?bgDate(OWN.d):"";meName.focus();return}
   const nv=e.target.closest("[data-nav]");if(nv){e.preventDefault();const k=nv.dataset.nav;if(k==="home")goHome();else if(k==="mine")goMine();else goSample();return}
@@ -1675,7 +2443,7 @@ document.addEventListener("click",e=>{
 document.getElementById("arcQ").addEventListener("input",e=>{Q=e.target.value.trim().toLowerCase();renderLib()});
 const msg=t=>{const m=document.getElementById("toolMsg");m.textContent=t};
 document.getElementById("exp").addEventListener("click",()=>{
-  const data={app:"Mind Compass",version:1,saved:new Date().toISOString(),me:OWN,people:PEOPLE,journal:JR};
+  const data={app:"Mind Compass",version:2,saved:new Date().toISOString(),me:OWN,people:PEOPLE,journal:JR};
   const url=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:"application/json"}));
   const a=document.createElement("a");a.href=url;a.download="mind-compass-arhiv-"+new Date().toISOString().slice(0,10)+".json";document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),2000);
   msg(tr("Архивът е изтеглен. Пазете файла, за да възстановите данните на друго устройство.","The archive has been downloaded. Keep the file to restore your data on another device."))});
@@ -1693,9 +2461,9 @@ document.getElementById("wipeYes").addEventListener("click",()=>{["mc-me","mc-pe
 let PREV=null;
 function beforePrint(){
   if(!ME)return;PREV=VIEWS.filter(k=>!document.getElementById("v-"+k).hidden);
-  ["pt","zn","km","fc"].forEach(k=>document.getElementById("v-"+k).hidden=false);
+  ["sy","pt","zn","km","ch","fc"].forEach(k=>document.getElementById("v-"+k).hidden=false);
   document.querySelectorAll("details").forEach(d=>{d.dataset.was=d.open?"1":"";d.open=true});
-  document.getElementById("repHead").innerHTML=`<h1>Mind Compass · ${esc(ME.name)}</h1><p>${tr("Дата на раждане","Date of birth")} ${bgDate(ME.iso)} · ${tr("изчислено на","calculated on")} ${new Date().toLocaleDateString(tr("bg-BG","en-GB"))} · ${tr("класическа схема на матрицата (22 аркана)","classic matrix method (22 arcana)")}</p>`;
+  document.getElementById("repHead").innerHTML=`<h1>Mind Compass · ${esc(ME.name)}</h1><p>${tr("Дата на раждане","Date of birth")} ${bgDate(ME.iso)} · ${tr("изчислено на","calculated on")} ${new Date().toLocaleDateString(tr("bg-BG","en-GB"))} · ${tr("класическа методология на Наталия Ладини (22 аркана)","classic Natalia Ladini methodology (22 arcana)")}</p>`;
 }
 function afterPrint(){if(!PREV)return;VIEWS.forEach(k=>document.getElementById("v-"+k).hidden=!PREV.includes(k));document.querySelectorAll("details").forEach(d=>d.open=!!d.dataset.was);PREV=null}
 addEventListener("beforeprint",beforePrint);addEventListener("afterprint",afterPrint);
@@ -1731,17 +2499,18 @@ function applyStatic(){
   document.querySelectorAll(".lang button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.lang===LANG));
 }
 function setLang(l){
-  LANG=l;E=l==="en"?E_EN:E_BG;AX=l==="en"?AX_EN:AX_BG;try{localStorage.setItem("mc-lang",l)}catch(e){}
+  LANG=l;E=l==="en"?E_EN:E_BG;AX=l==="en"?AX_EN:AX_BG;KTAILS=l==="en"?KTAILS_EN:KTAILS_BG;POS_INFO=l==="en"?POS_INFO_EN:POS_INFO_BG;
+  try{localStorage.setItem("mc-lang",l)}catch(e){}
   applyStatic();
   if(ME&&PAGE==="app"){if(MODE==="sample")showMain(SAMPLE.n,SAMPLE.d,"sample");else showMain(ME.name,ME.iso,MODE)}else if(ME)render(ME.name,ME.iso);
   renderPeople();markNav();const m=document.getElementById("toolMsg");if(m)m.textContent="";
 }
 document.querySelectorAll(".lang button").forEach(b=>b.addEventListener("click",()=>setLang(b.dataset.lang)));
-if(LANG==="en"){E=E_EN;AX=AX_EN}
+if(LANG==="en"){E=E_EN;AX=AX_EN;KTAILS=KTAILS_EN;POS_INFO=POS_INFO_EN}
 applyStatic();
 boot();
-if("serviceWorker" in navigator&&location.protocol==="https:"&&/github\.io$/.test(location.hostname))navigator.serviceWorker.register("sw.js").catch(()=>{});
+// Коригиран Service Worker регистратор, за да работи на всеки HTTPS домейн (не само на github.io)
+if("serviceWorker" in navigator&&location.protocol==="https:")navigator.serviceWorker.register("sw.js").catch(()=>{});
 </script>
-
 </body>
 </html>
