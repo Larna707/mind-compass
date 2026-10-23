@@ -414,6 +414,8 @@ button.link.light{color:var(--accent);font-size:.95rem}
 .syn-list li span:not(.fix){text-align:justify;text-justify:inter-word;-webkit-hyphens:auto;hyphens:auto}
 .syn-fc-item p,.card>p,.step>p:not(.quote),.archetype-box p,.letter p:not(.drop){text-align:justify;text-justify:inter-word;-webkit-hyphens:auto;hyphens:auto}
 
+.disclaim{background:var(--surface);border:1px solid var(--minus);border-left:4px solid var(--minus);border-radius:0 12px 12px 0;padding:12px 16px;font-size:.95rem}
+.disclaim b{color:var(--minus);margin-right:4px}
 </style>
 </head>
 <body>
@@ -2031,6 +2033,7 @@ function render(name,iso){
     </tr>`).join("");
 
   document.getElementById("v-ch").innerHTML=`
+  <div class="disclaim" role="note"><b>${tr("Важно","Important")}</b> ${tr("Картата на здравето е символна и служи за самонаблюдение. Тя не е медицинска информация, не поставя диагнози и не замества преглед или съвет от лекар. При здравословни оплаквания се обърнете към медицински специалист.","The health map is symbolic and meant for self-reflection. It is not medical information, does not diagnose anything and does not replace an examination or advice from a doctor. If you have health concerns, please see a medical professional.")}</div>
   <p class="intro">${tr("Картата на здравето по Наталия Ладини свързва 7-те чакри с Линията на Земята (Физика – тяло), Линията на Небето (Енергия – дух) и техния сбор (Емоции – психосоматичен ключ). Кликнете върху който и да е аркан, за да видите как да превърнете минуса му в плюс.","Natalia Ladini's Health Map links the 7 chakras with the Earth Line (Physical – body), Sky Line (Energy – spirit) and their sum (Emotions – psychosomatic key). Click any arcanum to see how to turn its shadow into the light side.")}</p>
   <div class="chakra-wrap" id="c-tbl">
     <table class="chakra-tbl">
