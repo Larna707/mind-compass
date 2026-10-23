@@ -1741,7 +1741,7 @@ function render(name,iso){
   const X=E[M.X],A=E[M.A],B=E[M.B],Pp=E[M.personal],So=E[M.social],Sp=E[M.spirit],D=E[M.D];
 
   document.getElementById("now").innerHTML=`${compass(age)}
-   <div><div class="lbl">${tr("Периодът сега","Current period")} · ${ag(idx*1.25)}–${ag(idx*1.25+1.25)}${YRS()}</div><div class="big"><b>${RN[cur]}</b> ${E[cur].n}</div><p>${E[cur].per}</p><span class="triad-mini">${tr("Триада по Ладини:","Ladini Triad:")} ${trNow.mainE} – ${trNow.oppE} – ${trNow.sumE}</span></div>
+   <div><div class="lbl">${tr("Периодът сега","Current period")} · ${ag(idx*1.25)}–${ag(idx*1.25+1.25)}${YRS()}</div><div class="big"><b>${RN[cur]}</b> ${E[cur].n}</div><p>${E[cur].per}</p><span class="triad-mini">${tr("Триада:","Triad:")} ${trNow.mainE} – ${trNow.oppE} – ${trNow.sumE}</span></div>
    <div><div class="lbl">${tr(`Енергията на ${yr} г.`,`Energy of ${yr}`)}</div><div class="big"><b>${RN[ye]}</b> ${E[ye].n}</div><p>${E[ye].per}</p></div>
    <div><div class="lbl">${tr("Въпрос и стъпка за периода","Question and step for the period")}</div><div class="big">${E[trNow.sumE].q}</div><p>${E[trNow.sumE].st}</p></div>`;
 
@@ -1754,7 +1754,7 @@ function render(name,iso){
     <p>${tr(`Навън (Визитна картичка) хората Ви виждат като ${A.s}.`,`Outwardly (Calling Card) people see you as ${A.s}.`)} ${A.face}${talentB}</p>
     <p>${tr(`Личната Ви задача (до 40 г.) е да станете ${Pp.s}. В зрелостта, между 40 и 60 години, се проявявате социално като ${So.s}. След 60 години духовният синтез идва от това да бъдете ${Sp.s}.`,`Your personal task (until 40) is to become ${Pp.s}. In maturity, between 40 and 60, you show up socially as ${So.s}. After 60, spiritual meaning comes from being ${Sp.s}.`)}</p>
     <div class="talent">
-      <div class="lbl">${tr("Код на вътрешната сила по Ладини (X + J)","Inner Power Code by Ladini (X + J)")}</div>
+      <div class="lbl">${tr("Код на вътрешната сила (X + J)","Inner Power Code (X + J)")}</div>
       <p>${LANG==="en"?"To "+X.v+" supported by your lineage ("+E[M.J].n+") gives you the power to "+E[M.powerCode].v:cap(X.v)+" чрез опората на рода ("+E[M.J].n+") Ви дава резултатна сила "+E[M.powerCode].v}.</p>
       <div class="power-code">
         <div class="pc-item"><span class="pc-lbl">${tr("Личен център (X)","Personal Centre (X)")}</span><span class="pc-badge">${M.X}</span><span class="pc-num">${E[M.X].n}</span></div>
@@ -1765,7 +1765,7 @@ function render(name,iso){
    </div>
    <div class="chart">
      <div id="svgWrap">${svg(M,idx%64,SEL_POS)}</div>
-     <div class="hint">${tr("Кликнете число в схемата за описание на позицията му по Ладини (двоен клик отваря целия аркан).","Click any number in the chart to inspect its Ladini position (double-click opens the full arcanum).")}</div>
+     <div class="hint">${tr("Кликнете число в схемата за описание на позицията му (двоен клик отваря целия аркан).","Click any number in the chart to inspect its position (double-click opens the full arcanum).")}</div>
      <div id="nodeInspector" class="node-inspector"></div>
    </div>
   </div>
@@ -1853,7 +1853,7 @@ function render(name,iso){
   // ТАБ 2: СФЕРИ И КАНАЛИ
   const cIn=M.ch.C.two,lIn=M.ch.D.two;
   document.getElementById("v-zn").innerHTML=`
-  <p class="intro">${tr("В класическата методология на Ладини парите, любовта и предназначенията се разглеждат като триточкови канали (триади), а не като единични числа.","In Ladini's classic methodology, money, love and life purposes are read as three-point channels (triads) rather than isolated numbers.")}</p>
+  <p class="intro">${tr("В класическата методология парите, любовта и предназначенията се разглеждат като триточкови канали (триади), а не като единични числа.","In the classic methodology, money, love and life purposes are read as three-point channels (triads) rather than isolated numbers.")}</p>
   <h2 id="z-pers">${tr("Личност и Духовни Таланти","Personality & Spiritual Talents")}</h2><div class="grid">
    ${card(tr("Зона на комфорт · Център (X)","Comfort Zone · Centre (X)"),M.X,"core",{posNote:tr("Базовата енергия на душата Ви, от която черпите ресурс.","Your soul's core energy and primary source of renewal.")})}
    ${card(tr("Визитна картичка · Ден (A)","Calling Card · Day (A)"),M.A,"face",{posNote:tr("Как Ви възприемат околните и как се заявявате социално.","How others perceive you and how you step into society.")})}
@@ -1864,7 +1864,7 @@ function render(name,iso){
   </div>
 
   <h2 id="z-ml">${tr(`Канал на Парите и Реализацията: ${cIn} – ${M.money} – ${M.cross}`,`Money & Career Channel: ${cIn} – ${M.money} – ${M.cross}`)}</h2>
-  <p class="intro">${tr("Финансовият канал по Ладини започва от Входа в парите (Манипура физика), преминава през централната точка на професията и достига до Точката на баланса с любовта.","Ladini's financial channel starts at the Money Entry (physical Manipura), flows through the central career point, and meets Love at the Balance Point.")}</p>
+  <p class="intro">${tr("Финансовият канал започва от Входа в парите (Манипура физика), преминава през централната точка на професията и достига до Точката на баланса с любовта.","The financial channel starts at the Money Entry (physical Manipura), flows through the central career point, and meets Love at the Balance Point.")}</p>
   <div class="steps">
     <div class="step">
       <span class="k">1 · ${tr("Вход в парите","Money Entry")} (${cIn})</span>
@@ -1921,7 +1921,7 @@ function render(name,iso){
     </div>
   </div>
 
-  <h2 id="z-purp">${tr("Четирите нива на Предназначението по Ладини","The Four Levels of Purpose by Ladini")}</h2>
+  <h2 id="z-purp">${tr("Четирите нива на Предназначението","The Four Levels of Purpose")}</h2>
   <div class="purpose-block">
     <h3>${tr("1. Лично предназначение (20–40 г.) · Съюз между Небето и Земята","1. Personal Purpose (Ages 20–40) · Union of Sky and Earth")}</h3>
     <p class="note">${tr("Сформира се от сбора на Линията на Небето (B+D) и Линията на Земята (A+C). Отговаря на въпроса: „Кой съм аз и какви качества трябва да изградя?“","Formed by adding the Sky Line (B+D) and the Earth Line (A+C). Answers the question: 'Who am I and what qualities must I build?'")}</p>
@@ -1968,7 +1968,7 @@ function render(name,iso){
 
   <div class="grid">
    ${card(tr("3. Духовно предназначение · след 60 г. (Лично + Социално)","3. Spiritual Purpose · after 60 (Personal + Social)"),M.spirit,"",{posNote:tr("Висшият духовен покровител на матрицата Ви. Отключва се като дар, когато работите по първите две предназначения.","Higher spiritual patron of your matrix. Unlocks as a gift as you fulfil the first two purposes."),text:tr("Да бъдете ","To be ")+E[M.spirit].s+". "+E[M.spirit].bal})}
-   ${card(tr("4. Планетарно предназначение (Социално + Духовно)","4. Planetary Purpose (Social + Spiritual)"),M.planetary,"",{posNote:tr("Четвъртото ниво по Ладини – как влияете на големи групи хора и света.","Fourth level in Ladini's system—how you contribute to larger communities and the world."),text:E[M.planetary].core+" "+E[M.planetary].bal})}
+   ${card(tr("4. Планетарно предназначение (Социално + Духовно)","4. Planetary Purpose (Social + Spiritual)"),M.planetary,"",{posNote:tr("Четвъртото ниво – как влияете на големи групи хора и света.","Fourth level—how you contribute to larger communities and the world."),text:E[M.planetary].core+" "+E[M.planetary].bal})}
   </div>`;
 
   // ТАБ 3: КАРМА И РОД
@@ -1982,10 +1982,10 @@ function render(name,iso){
 
   document.getElementById("v-km").innerHTML=`
   <blockquote class="epi"><p>${tr("„Когато попаднеш под силен дъжд, се опитваш да не се намокриш и бързо тичаш по пътя. Но тичайки под стрехите на покривите, пак се оказваш мокър. Ако обаче веднага осъзнаеш, че от дъжда не можеш да избягаш, тогава, макар да се намокриш, няма да се суетиш. Такъв подход трябва да се използва във всичко.“","“When you are caught in heavy rain, you try not to get wet and hurry along the road. But even running under the eaves of the roofs, you still end up wet. If, however, you realise at once that you cannot escape the rain, you will get wet, but you will not fuss. This approach should be used in everything.”")}</p><cite>${tr("„Хагакуре“, самурайски трактат","Hagakure, the samurai treatise")}</cite></blockquote>
-  <p class="intro">${tr(`В класическата система на Наталия Ладини Кармичната опашка винаги се записва и чете от центъра навън (от горе надолу): <strong>${M.tailKey}</strong>. Трите числа образуват единна архетипна програма от миналото прераждане.`,`In Natalia Ladini's classic system, the Karmic Tail is always written and read from the centre outward (top to bottom): <strong>${M.tailKey}</strong>. Together the three numbers form a single archetypal programme from a past incarnation.`)}</p>
+  <p class="intro">${tr(`В класическата система Кармичната опашка винаги се записва и чете от центъра навън (от горе надолу): <strong>${M.tailKey}</strong>. Трите числа образуват единна архетипна програма от миналото прераждане.`,`In the classic system, the Karmic Tail is always written and read from the centre outward (top to bottom): <strong>${M.tailKey}</strong>. Together the three numbers form a single archetypal programme from a past incarnation.`)}</p>
 
   <div class="archetype-box">
-    <span class="ab-badge">${tr(`Класически архетип по Ладини · Опашка ${M.tailKey}`,`Classic Ladini Archetype · Tail ${M.tailKey}`)}</span>
+    <span class="ab-badge">${tr(`Класически архетип · Опашка ${M.tailKey}`,`Classic Archetype · Tail ${M.tailKey}`)}</span>
     <h3>„${kArch.name}“</h3>
     <div class="ab-cols">
       <div><span class="lbl2">${tr("Корен от миналото прераждане","Past-Life Root")}</span><p>${kArch.past}</p></div>
@@ -2010,7 +2010,7 @@ function render(name,iso){
   </div>
 
   <h2 id="k-rod">${tr("Родов квадрат и Сила на рода","Ancestral Square & Power of the Lineage")}</h2>
-  <p class="intro">${tr("По Ладини диагоналът от горе вляво до долу вдясно е <strong>Бащиният (мъжкият) род</strong>, а от горе вдясно до долу вляво – <strong>Майчиният (женският) род</strong>. Горните ъгли са <em>Духовната родова карма (и дар)</em>, а долните – <em>Материалната родова карма</em>. В центъра им се събира <strong>Силата на рода (J)</strong>.","In Ladini's method, the diagonal from top-left to bottom-right is the <strong>Father's (male) line</strong>, and from top-right to bottom-left is the <strong>Mother's (female) line</strong>. Top corners represent <em>Spiritual family karma (and gift)</em>; bottom corners represent <em>Material family karma</em>. Their sum forms the <strong>Ancestral Power (J)</strong>.")}</p>
+  <p class="intro">${tr("В класическата схема диагоналът от горе вляво до долу вдясно е <strong>Бащиният (мъжкият) род</strong>, а от горе вдясно до долу вляво – <strong>Майчиният (женският) род</strong>. Горните ъгли са <em>Духовната родова карма (и дар)</em>, а долните – <em>Материалната родова карма</em>. В центъра им се събира <strong>Силата на рода (J)</strong>.","In the classic method, the diagonal from top-left to bottom-right is the <strong>Father's (male) line</strong>, and from top-right to bottom-left is the <strong>Mother's (female) line</strong>. Top corners represent <em>Spiritual family karma (and gift)</em>; bottom corners represent <em>Material family karma</em>. Their sum forms the <strong>Ancestral Power (J)</strong>.")}</p>
   <div class="grid rod2">
    ${card(tr("Сила на рода · Точка J (F+G+H+I)","Ancestral Power · Point J (F+G+H+I)"),M.J,"",{posNote:tr("Енергийният резерв и благословията на четирите родови линии.","The energy reserve and blessing of all four family lines."),text:E[M.J].core+" "+E[M.J].bal})}
    ${card(tr("Код на вътрешната сила (X + J)","Inner Power Code (X + J)"),M.powerCode,"",{posNote:tr("Синтезът на личния Ви център и Силата на рода – Вашият мощен акумулатор.","Synthesis of your personal centre and Ancestral Power—your main battery."),text:cap(E[M.powerCode].tal)+" "+E[M.powerCode].bal})}
@@ -2034,7 +2034,7 @@ function render(name,iso){
 
   document.getElementById("v-ch").innerHTML=`
   <div class="disclaim" role="note"><b>${tr("Важно","Important")}</b> ${tr("Картата на здравето е символна и служи за самонаблюдение. Тя не е медицинска информация, не поставя диагнози и не замества преглед или съвет от лекар. При здравословни оплаквания се обърнете към медицински специалист.","The health map is symbolic and meant for self-reflection. It is not medical information, does not diagnose anything and does not replace an examination or advice from a doctor. If you have health concerns, please see a medical professional.")}</div>
-  <p class="intro">${tr("Картата на здравето по Наталия Ладини свързва 7-те чакри с Линията на Земята (Физика – тяло), Линията на Небето (Енергия – дух) и техния сбор (Емоции – психосоматичен ключ). Кликнете върху който и да е аркан, за да видите как да превърнете минуса му в плюс.","Natalia Ladini's Health Map links the 7 chakras with the Earth Line (Physical – body), Sky Line (Energy – spirit) and their sum (Emotions – psychosomatic key). Click any arcanum to see how to turn its shadow into the light side.")}</p>
+  <p class="intro">${tr("Картата на здравето свързва 7-те чакри с Линията на Земята (Физика – тяло), Линията на Небето (Енергия – дух) и техния сбор (Емоции – психосоматичен ключ). Кликнете върху който и да е аркан, за да видите как да превърнете минуса му в плюс.","The Health Map links the 7 chakras with the Earth Line (Physical – body), Sky Line (Energy – spirit) and their sum (Emotions – psychosomatic key). Click any arcanum to see how to turn its shadow into the light side.")}</p>
   <div class="chakra-wrap" id="c-tbl">
     <table class="chakra-tbl">
       <thead>
@@ -2071,7 +2071,7 @@ function render(name,iso){
     const trP=periodTriad(M,i),a0=i*1.25;
     th+=`<div class="period${k===0?" now":""}">
       <span class="when">${k===0?tr("Сега · ","Now · "):""}${fmt(atAge(iso,a0))} – ${fmt(atAge(iso,a0+1.25))} · ${ag(a0)}–${ag(a0+1.25)}${YRS()}</span>
-      <h3>${tr("Прогностична триада по Ладини:","Ladini Forecast Triad:")} ${trP.mainE} – ${trP.oppE} – ${trP.sumE}</h3>
+      <h3>${tr("Прогностична триада:","Forecast Triad:")} ${trP.mainE} – ${trP.oppE} – ${trP.sumE}</h3>
       <div class="triad-cards">
         <div class="tcard">
           <span class="tlbl">1 · ${tr("Точка на възрастта","Age Point")} (${trP.mainE})</span>
@@ -2095,7 +2095,7 @@ function render(name,iso){
     </div>`;
   }
   document.getElementById("v-fc").innerHTML=`
-  <p class="intro">${tr("Прогнозата по Ладини обединява Календарната енергия на годината и Възрастовата триада по кръга на матрицата (1. Точка на текущата възраст + 2. Диаметрално противоположна точка = 3. Общ вектор на периода).","Ladini's forecast combines the Calendar Energy of the Year and the Age Triad around the matrix circle (1. Current age point + 2. Diametrically opposite point = 3. Resulting vector of the period).")}</p>
+  <p class="intro">${tr("Прогнозата обединява Календарната енергия на годината и Възрастовата триада по кръга на матрицата (1. Точка на текущата възраст + 2. Диаметрално противоположна точка = 3. Общ вектор на периода).","The forecast combines the Calendar Energy of the Year and the Age Triad around the matrix circle (1. Current age point + 2. Diametrically opposite point = 3. Resulting vector of the period).")}</p>
   <h2>${tr("Календарна енергия на годината","Calendar Energy of the Year")}</h2><div class="years">${yh}</div>
   <h2 id="f-per">${tr("Възрастови периоди и Триади (през 1,25 г.)","Age Periods & Triads (every 1.25 yrs)")}</h2><div class="timeline">${th}</div>`;
 
@@ -2164,7 +2164,7 @@ function renderPerson(){
   const sm=setOf(M),sp=setOf(P),common=Object.keys(sm).filter(v=>sp[v]).map(Number);
   const qs=[...new Set([Q.X,Q.D,Q.B])].map(v=>E[v].q);
   V.innerHTML=`
-  <div class="pair-head"><div class="ph-names"><span class="lbl2">${esc(relT(p.rel))}</span><h2>${me} <span class="amp">&amp;</span> ${nm}</h2><p class="note">${tr("Общата матрица по Ладини се получава, като се съберат едноименните точки на двете матрици. Тя описва общото енергийно поле между вас.","Ladini's compatibility matrix is calculated by summing the corresponding points of both birth matrices. It describes the shared energy field between you.")}</p></div>
+  <div class="pair-head"><div class="ph-names"><span class="lbl2">${esc(relT(p.rel))}</span><h2>${me} <span class="amp">&amp;</span> ${nm}</h2><p class="note">${tr("Общата матрица се получава, като се съберат едноименните точки на двете матрици. Тя описва общото енергийно поле между вас.","The compatibility matrix is calculated by summing the corresponding points of both birth matrices. It describes the shared energy field between you.")}</p></div>
    <div class="pv-actions"><button type="button" data-view="${SEL}">${tr("Прегледай като основна матрица","View as main matrix")}</button><button type="button" class="ghost" data-jrp="${SEL}">${tr("Запиши наблюдение в дневника","Add an observation to the journal")}</button></div></div>
 
   <div class="split">
@@ -2466,7 +2466,7 @@ function beforePrint(){
   if(!ME)return;PREV=VIEWS.filter(k=>!document.getElementById("v-"+k).hidden);
   ["sy","pt","zn","km","ch","fc"].forEach(k=>document.getElementById("v-"+k).hidden=false);
   document.querySelectorAll("details").forEach(d=>{d.dataset.was=d.open?"1":"";d.open=true});
-  document.getElementById("repHead").innerHTML=`<h1>Mind Compass · ${esc(ME.name)}</h1><p>${tr("Дата на раждане","Date of birth")} ${bgDate(ME.iso)} · ${tr("изчислено на","calculated on")} ${new Date().toLocaleDateString(tr("bg-BG","en-GB"))} · ${tr("класическа методология на Наталия Ладини (22 аркана)","classic Natalia Ladini methodology (22 arcana)")}</p>`;
+  document.getElementById("repHead").innerHTML=`<h1>Mind Compass · ${esc(ME.name)}</h1><p>${tr("Дата на раждане","Date of birth")} ${bgDate(ME.iso)} · ${tr("изчислено на","calculated on")} ${new Date().toLocaleDateString(tr("bg-BG","en-GB"))} · ${tr("класическа методология (22 аркана)","classic methodology (22 arcana)")}</p>`;
 }
 function afterPrint(){if(!PREV)return;VIEWS.forEach(k=>document.getElementById("v-"+k).hidden=!PREV.includes(k));document.querySelectorAll("details").forEach(d=>d.open=!!d.dataset.was);PREV=null}
 addEventListener("beforeprint",beforePrint);addEventListener("afterprint",afterPrint);
