@@ -416,6 +416,21 @@ button.link.light{color:var(--accent);font-size:.95rem}
 
 .disclaim{background:var(--surface);border:1px solid var(--minus);border-left:4px solid var(--minus);border-radius:0 12px 12px 0;padding:12px 16px;font-size:.95rem}
 .disclaim b{color:var(--minus);margin-right:4px}
+.appsec.mini{display:flex;flex-direction:column;align-items:stretch;text-align:left;gap:6px;padding:14px 18px;grid-template-columns:none}
+.appsec.mini .am-row{justify-content:flex-start}.appsec.mini details{border-top:1px solid var(--line);padding-top:8px;text-align:left}
+.today .card p,.today .card span{text-align:left}
+.am-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.am-ic{width:44px;height:44px;border-radius:11px;object-fit:cover;box-shadow:0 0 0 2px var(--accent)}
+.am-txt{flex:1 1 220px;min-width:0}.am-txt h3{margin:0}.am-txt .note{margin:0}
+.appsec.mini .cta-inst{padding:9px 16px}
+.am-how summary{font-size:.9rem}
+.am-body{display:flex;flex-direction:column;gap:12px;padding-top:10px}
+.am-body>p{color:var(--muted);font-size:.92rem}
+.today{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+@media (max-width:700px){.today{grid-template-columns:1fr}}
+.today .card .pm-mini{display:flex;flex-direction:column;gap:6px;font-size:.92rem}
+.today .card .pm-mini b{font-weight:700}
+.today .pl{color:var(--plus)}.today .mn{color:var(--minus)}
 </style>
 </head>
 <body>
@@ -445,6 +460,7 @@ button.link.light{color:var(--accent);font-size:.95rem}
         <div class="w-actions"><button type="button" class="cta" data-nav="mine" id="ctaMine">Изчисли моята матрица</button><button type="button" class="ghost light" data-nav="sample" data-en="See an example">Разгледай пример</button></div>
               </div>
     </div>
+    <div id="todayBox" class="stack" style="gap:12px"></div>
     <h2 data-en="What you will discover">Какво ще откриете</h2>
     <div class="feat">
       <div class="f"><span class="em g2" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 8v30M16 40h16M10 15h28"/><path d="M10 15l-5 10h10ZM38 15l-5 10h10Z"/></svg></span><h3 data-en="Personal portrait">Личен портрет</h3><p data-en="Who you are at your core, how people see you and what you are gifted at.">Коя сте най-дълбоко, как Ви виждат хората и в какво сте дарена.</p></div>
@@ -545,31 +561,23 @@ button.link.light{color:var(--accent);font-size:.95rem}
 
   <div class="print-only" id="repHead"></div>
 
-  <section class="appsec" id="appSec" aria-labelledby="appTitle">
-    <div class="phone" aria-hidden="true"><div class="scr"><div class="sbar"><span>9:41</span></div><div class="icons">
-      <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="me"><img id="phoneIcon" alt=""><em>Mind Compass</em></i><i></i><i></i><i></i><i></i></div><div class="dock"><i></i><i></i><i></i><i></i></div></div></div>
-    <div class="appbody">
-      <p class="w-eyebrow" data-en="App">Приложение</p>
-      <h2 id="appTitle" data-en="Mind Compass on your phone">Mind Compass на Вашия телефон</h2>
-      <p data-en="&quot;Installing&quot; here does not mean downloading from Google Play or the App Store. Your browser adds a Mind Compass icon to your home screen or app menu. It opens the site as a separate app, full screen and without an address bar.">„Инсталиране“ тук не означава сваляне от Google Play или App Store. Браузърът добавя иконка на Mind Compass на началния екран или в менюто с програми. Тя отваря сайта като отделно приложение, на цял екран и без адресна лента.</p>
-      <ul class="benefits">
-        <li data-en="&lt;b&gt;One tap away&lt;/b&gt;The icon sits next to your other apps."><b>С едно докосване</b>Иконката е до другите Ви приложения.</li>
-        <li data-en="&lt;b&gt;Works offline&lt;/b&gt;Your matrix and readings are always at hand."><b>Работи без интернет</b>Матрицата и тълкуванията са винаги под ръка.</li>
-        <li data-en="&lt;b&gt;Takes almost no space&lt;/b&gt;No app store and no sign-up."><b>Почти не заема място</b>Без магазин за приложения и без регистрация.</li>
-        <li data-en="&lt;b&gt;Your data stays with you&lt;/b&gt;Nothing is sent to a server."><b>Данните остават при Вас</b>Нищо не се изпраща към сървър.</li>
-      </ul>
-      <button type="button" class="cta-inst" id="instBtn" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg><span data-en="Install now">Инсталирай сега</span></button>
-      <p class="installed" id="instDone" hidden data-en="Mind Compass is already installed on this device.">Mind Compass вече е инсталиран на това устройство.</p>
+  <section class="appsec mini" id="appSec" aria-labelledby="appTitle">
+    <div class="am-row">
+      <img id="phoneIcon" class="am-ic" alt="">
+      <div class="am-txt"><h3 id="appTitle" data-en="Use Mind Compass as an app">Mind Compass като приложение</h3><p class="note" data-en="An icon on your home screen. Works offline, no app store, no sign-up.">Иконка на началния екран. Работи без интернет, без магазин и без регистрация.</p></div>
+      <button type="button" class="cta-inst" id="instBtn" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg><span data-en="Install">Инсталирай</span></button>
+      <p class="installed" id="instDone" hidden data-en="Already installed on this device.">Вече е инсталирано на това устройство.</p>
+    </div>
+    <details class="am-how"><summary data-en="How do I install it?">Как да инсталирам?</summary>
+      <div class="am-body"><p data-en="&quot;Installing&quot; here does not mean downloading from Google Play or the App Store. Your browser adds a Mind Compass icon to your home screen or app menu. It opens the site as a separate app, full screen and without an address bar.">„Инсталиране“ тук не означава сваляне от Google Play или App Store. Браузърът добавя иконка на Mind Compass на началния екран или в менюто с програми. Тя отваря сайта като отделно приложение, на цял екран и без адресна лента.</p>
       <div class="plat" role="tablist" aria-label="Устройство" data-en-al="Device">
         <button type="button" role="tab" data-p="android">Android</button><button type="button" role="tab" data-p="ios" data-en="iPhone and iPad">iPhone и iPad</button><button type="button" role="tab" data-p="desk" data-en="Computer">Компютър</button>
       </div>
-      <ol class="psteps" data-p="android" data-en="&lt;li&gt;Open the site in &lt;b&gt;Chrome&lt;/b&gt;.&lt;/li&gt;&lt;li&gt;Tap the &lt;b&gt;three dots&lt;/b&gt; at the top right.&lt;/li&gt;&lt;li&gt;Choose &lt;b&gt;&quot;Install app&quot;&lt;/b&gt; or &quot;Add to Home screen&quot;.&lt;/li&gt;&lt;li&gt;Confirm with &lt;b&gt;&quot;Install&quot;&lt;/b&gt;. The icon appears on your home screen.&lt;/li&gt;"><li>Отворете сайта в <b>Chrome</b>.</li><li>Натиснете <b>трите точки</b> горе вдясно.</li><li>Изберете <b>„Инсталиране на приложението“</b> или „Добавяне към началния екран“.</li><li>Потвърдете с <b>„Инсталиране“</b>. Иконката се появява на началния екран.</li></ol>
-      <ol class="psteps" data-p="ios" hidden data-en="&lt;li&gt;Open the site in &lt;b&gt;Safari&lt;/b&gt;.&lt;/li&gt;&lt;li&gt;Tap the &lt;b&gt;&quot;Share&quot;&lt;/b&gt; button (a square with an arrow pointing up).&lt;/li&gt;&lt;li&gt;Scroll and choose &lt;b&gt;&quot;Add to Home Screen&quot;&lt;/b&gt;.&lt;/li&gt;&lt;li&gt;Tap &lt;b&gt;&quot;Add&quot;&lt;/b&gt; at the top right.&lt;/li&gt;"><li>Отворете сайта в <b>Safari</b>.</li><li>Натиснете бутона <b>„Споделяне“</b> (квадрат със стрелка нагоре).</li><li>Превъртете и изберете <b>„Добави към началния екран“</b>.</li><li>Натиснете <b>„Добави“</b> горе вдясно.</li></ol>
-      <ol class="psteps" data-p="desk" hidden data-en="&lt;li&gt;Open the site in &lt;b&gt;Chrome&lt;/b&gt; or &lt;b&gt;Edge&lt;/b&gt;.&lt;/li&gt;&lt;li&gt;On the right of the address bar, click the &lt;b&gt;install icon&lt;/b&gt; (a monitor with an arrow).&lt;/li&gt;&lt;li&gt;Or from the &lt;b&gt;three dots&lt;/b&gt; menu choose &quot;Install Mind Compass&quot;.&lt;/li&gt;&lt;li&gt;The app appears in the Start menu and on the desktop.&lt;/li&gt;"><li>Отворете сайта в <b>Chrome</b> или <b>Edge</b>.</li><li>Вдясно в адресната лента натиснете <b>иконката за инсталиране</b> (монитор със стрелка).</li><li>Или от менюто с <b>трите точки</b> изберете „Инсталиране на Mind Compass“.</li><li>Приложението се появява в менюто „Старт“ и на работния плот.</li></ol>
-    </div>
+      <ol class="psteps" data-p="android" data-en="&lt;li&gt;Open the site in &lt;b&gt;Chrome&lt;/b&gt;.&lt;/li&gt;&lt;li&gt;Tap the &lt;b&gt;three dots&lt;/b&gt; at the top right.&lt;/li&gt;&lt;li&gt;Choose &lt;b&gt;&quot;Install app&quot;&lt;/b&gt; or &quot;Add to Home screen&quot;.&lt;/li&gt;&lt;li&gt;Confirm with &lt;b&gt;&quot;Install&quot;&lt;/b&gt;. The icon appears on your home screen.&lt;/li&gt;"><li>Отворете сайта в <b>Chrome</b>.</li><li>Натиснете <b>трите точки</b> горе вдясно.</li><li>Изберете <b>„Инсталиране на приложението“</b> или „Добавяне към началния екран“.</li><li>Потвърдете с <b>„Инсталиране“</b>. Иконката се появява на началния екран.</li></ol><ol class="psteps" data-p="ios" hidden data-en="&lt;li&gt;Open the site in &lt;b&gt;Safari&lt;/b&gt;.&lt;/li&gt;&lt;li&gt;Tap the &lt;b&gt;&quot;Share&quot;&lt;/b&gt; button (a square with an arrow pointing up).&lt;/li&gt;&lt;li&gt;Scroll and choose &lt;b&gt;&quot;Add to Home Screen&quot;&lt;/b&gt;.&lt;/li&gt;&lt;li&gt;Tap &lt;b&gt;&quot;Add&quot;&lt;/b&gt; at the top right.&lt;/li&gt;"><li>Отворете сайта в <b>Safari</b>.</li><li>Натиснете бутона <b>„Споделяне“</b> (квадрат със стрелка нагоре).</li><li>Превъртете и изберете <b>„Добави към началния екран“</b>.</li><li>Натиснете <b>„Добави“</b> горе вдясно.</li></ol><ol class="psteps" data-p="desk" hidden data-en="&lt;li&gt;Open the site in &lt;b&gt;Chrome&lt;/b&gt; or &lt;b&gt;Edge&lt;/b&gt;.&lt;/li&gt;&lt;li&gt;On the right of the address bar, click the &lt;b&gt;install icon&lt;/b&gt; (a monitor with an arrow).&lt;/li&gt;&lt;li&gt;Or from the &lt;b&gt;three dots&lt;/b&gt; menu choose &quot;Install Mind Compass&quot;.&lt;/li&gt;&lt;li&gt;The app appears in the Start menu and on the desktop.&lt;/li&gt;"><li>Отворете сайта в <b>Chrome</b> или <b>Edge</b>.</li><li>Вдясно в адресната лента натиснете <b>иконката за инсталиране</b> (монитор със стрелка).</li><li>Или от менюто с <b>трите точки</b> изберете „Инсталиране на Mind Compass“.</li><li>Приложението се появява в менюто „Старт“ и на работния плот.</li></ol></div>
+    </details>
   </section>
 
-  <footer><span data-en="The readings are symbolic and meant for self-reflection. They are not predictions and do not replace advice on health, money or important decisions. Calculations follow the classic matrix method (22 energies).">Тълкуванията са символни и служат за самонаблюдение. Не са прогноза и не заменят съвет за здраве, пари или важни решения. Изчисленията следват класическата схема на матрицата (22 енергии).</span> <span class="ver" data-en="Version 2.3 · classic method · 23.10.2026">Версия 2.3 · класическа схема · 23.10.2026</span></footer>
+  <footer><span data-en="The readings are symbolic and meant for self-reflection. They are not predictions and do not replace advice on health, money or important decisions. Calculations follow the classic matrix method (22 energies).">Тълкуванията са символни и служат за самонаблюдение. Не са прогноза и не заменят съвет за здраве, пари или важни решения. Изчисленията следват класическата схема на матрицата (22 енергии).</span> <span class="ver" data-en="Version 2.4 · classic method · 24.10.2026">Версия 2.4 · класическа схема · 24.10.2026</span></footer>
 </div>
 
 <script>
@@ -2494,12 +2502,21 @@ const setPlat=p=>{document.querySelectorAll(".plat button").forEach(b=>b.setAttr
 document.querySelectorAll(".plat button").forEach(b=>b.addEventListener("click",()=>setPlat(b.dataset.p)));
 const ua=navigator.userAgent;setPlat(/iPhone|iPad|iPod/.test(ua)||(/Macintosh/.test(ua)&&navigator.maxTouchPoints>1)?"ios":/Android/.test(ua)?"android":"desk");
 document.getElementById("phoneIcon").src=document.querySelector(".brand img").src;
+function renderToday(){const el=document.getElementById("todayBox");if(!el||typeof E==="undefined")return;
+  const d=new Date(),dd=d.getDate(),mm=d.getMonth()+1,yy=d.getFullYear(),day=r(r(dd)+r(mm)+r(ds(yy))),year=r(ds(yy));
+  const dstr=`${String(dd).padStart(2,"0")}.${String(mm).padStart(2,"0")}.${yy}`;
+  const box=(lbl,v)=>{const x=E[v],a=AX[v],k=(dd+v)%5;return `<article class="card"><div class="head">${tile(v)}<div><div class="zone">${lbl}</div><div class="ename">${x.n}</div></div></div><p>${x.per}</p>
+   <div class="pm-mini"><span><b class="pl">${tr("В плюс:","On the plus side:")}</b> ${a.plus[k]}</span><span><b class="mn">${tr("Внимавайте:","Watch out:")}</b> ${a.minus[k][0]} ${a.minus[k][1]}</span></div>
+   <p class="note"><b>${tr("Въпрос:","Question:")}</b> ${x.q}</p></article>`};
+  el.innerHTML=`<h2>${tr("Днес","Today")}</h2><p class="note">${tr("Общата енергия на деня и на годината, еднаква за всички. Вашата лична енергия зависи от датата Ви на раждане.","The general energy of the day and of the year, the same for everyone. Your personal energy depends on your date of birth.")}</p>
+   <div class="today">${box(tr("Енергия на деня","Energy of the day")+" · "+dstr,day)}${box(tr("Енергия на годината","Energy of the year")+" · "+yy,year)}</div>`}
 function applyStatic(){
   document.documentElement.lang=LANG;
   document.querySelectorAll("[data-en]").forEach(el=>{if(el.dataset.bg===undefined)el.dataset.bg=el.innerHTML;el.innerHTML=LANG==="en"?el.dataset.en:el.dataset.bg});
   document.querySelectorAll("[data-en-ph]").forEach(el=>{if(el.dataset.bgPh===undefined)el.dataset.bgPh=el.placeholder;el.placeholder=LANG==="en"?el.dataset.enPh:el.dataset.bgPh});
   document.querySelectorAll("[data-en-al]").forEach(el=>{if(el.dataset.bgAl===undefined)el.dataset.bgAl=el.getAttribute("aria-label");el.setAttribute("aria-label",LANG==="en"?el.dataset.enAl:el.dataset.bgAl)});
   document.querySelectorAll(".lang button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.lang===LANG));
+  renderToday();
 }
 function setLang(l){
   LANG=l;E=l==="en"?E_EN:E_BG;AX=l==="en"?AX_EN:AX_BG;KTAILS=l==="en"?KTAILS_EN:KTAILS_BG;POS_INFO=l==="en"?POS_INFO_EN:POS_INFO_BG;
