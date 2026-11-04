@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="bg"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Общи условия · Mind Compass</title><link rel="icon" type="image/png" href="icon-192.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Raleway:wght@400;600;700&display=swap">
+<style>
+:root{--bg:#FDF6E3;--surface:#FFFFFF;--fg:#1F2D3A;--muted:#5B6773;--navy:#1E5078;--line:#E2D5B5;--accent:#E8900C}
+@media (prefers-color-scheme:dark){:root{--bg:#0F1D2A;--surface:#172938;--fg:#F2EAD6;--muted:#A9B4BE;--navy:#8CC0E8;--line:#2F4659;--accent:#F4A73A;color-scheme:dark}}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:Raleway,"Segoe UI",system-ui,sans-serif;line-height:1.7;font-feature-settings:"locl" 0;padding:24px 16px}
+main{max-width:760px;margin:0 auto;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:28px}
+h1,h2{font-family:"Playfair Display",Georgia,serif;color:var(--navy);line-height:1.25}h1{margin-top:0}h2{font-size:1.25rem;margin-top:28px}
+a{color:var(--navy)}.top{display:flex;justify-content:space-between;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+.lang button{background:none;border:1px solid var(--line);color:var(--fg);border-radius:8px;padding:6px 10px;cursor:pointer;font:inherit}
+.lang button[aria-pressed=true]{border-color:var(--accent)}.muted{color:var(--muted);font-size:.9rem}[hidden]{display:none!important}
+</style></head><body><main>
+<div class="top"><a href="./#home" id="back">← Mind Compass</a><span class="lang"><button data-l="bg">БГ</button> <button data-l="en">EN</button></span></div>
+<article data-lang="bg">
+<h1>Общи условия</h1><p class="muted">В сила от 04.11.2026</p>
+<h2>Какво представлява услугата</h2><p>Mind Compass изчислява матрицата на съдбата по датата на раждане, по класическата схема с 22 аркана, и показва символни тълкувания за самонаблюдение. В момента ползването е безплатно и без регистрация.</p>
+<h2>Какво не е</h2><p>Тълкуванията не са прогноза, научен факт или професионален съвет. Те не заменят медицински, психологически, правен или финансов съвет. Решенията, които вземате, са Ваша отговорност. При здравословен проблем или криза потърсете специалист.</p>
+<h2>Точност</h2><p>Изчисленията следват класическата схема. Други школи на матрицата могат да дадат различни резултати и тълкувания. Не гарантираме, че съдържанието е пълно или подходящо за конкретна ситуация.</p>
+<h2>Вашите данни</h2><p>Данните остават на Вашето устройство. Подробности в <a href="privacy.html">Политиката за поверителност</a>.</p>
+<h2>Интелектуална собственост</h2><p>Текстовете, дизайнът и логото на Mind Compass са защитени. Можете да ползвате тълкуванията за лични цели и да споделяте доклада си, но не и да копирате съдържанието за търговски цели.</p>
+<h2>Платени услуги</h2><p>Ако бъдат въведени платени услуги, цените и условията ще бъдат обявени предварително и нищо няма да се таксува без Ваше изрично съгласие.</p>
+<h2>Промени</h2><p>Условията могат да се променят. Актуалната версия е винаги на тази страница.</p>
+</article>
+<article data-lang="en" hidden>
+<h1>Terms of use</h1><p class="muted">Effective 4 November 2026</p>
+<h2>What the service is</h2><p>Mind Compass calculates the Destiny Matrix from a date of birth, using the classic 22-arcana method, and shows symbolic readings for self-reflection. It is currently free to use and requires no sign-up.</p>
+<h2>What it is not</h2><p>The readings are not predictions, scientific facts or professional advice. They do not replace medical, psychological, legal or financial advice. The decisions you make are your own responsibility. If you have a health problem or are in crisis, please see a specialist.</p>
+<h2>Accuracy</h2><p>The calculations follow the classic method. Other schools of the matrix may give different results and readings. We do not guarantee that the content is complete or suitable for a particular situation.</p>
+<h2>Your data</h2><p>Your data stays on your device. See the <a href="privacy.html">Privacy policy</a> for details.</p>
+<h2>Intellectual property</h2><p>The texts, design and logo of Mind Compass are protected. You may use the readings for personal purposes and share your report, but not copy the content for commercial purposes.</p>
+<h2>Paid services</h2><p>If paid services are introduced, prices and terms will be announced in advance and nothing will be charged without your explicit consent.</p>
+<h2>Changes</h2><p>These terms may change. The current version is always on this page.</p>
+</article>
+</main><script>
+let L="bg";try{L=localStorage.getItem("mc-lang")||"bg"}catch(e){}
+function set(l){L=l;document.documentElement.lang=l;document.querySelectorAll("[data-lang]").forEach(x=>x.hidden=x.dataset.lang!==l);document.querySelectorAll(".lang button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.l===l));document.getElementById("back").textContent=l==="en"?"← Back to Mind Compass":"← Към Mind Compass";try{localStorage.setItem("mc-lang",l)}catch(e){}}
+document.querySelectorAll(".lang button").forEach(b=>b.onclick=()=>set(b.dataset.l));set(L);
+</script></body></html>

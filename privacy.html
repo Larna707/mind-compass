@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="bg"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Поверителност · Mind Compass</title><link rel="icon" type="image/png" href="icon-192.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Raleway:wght@400;600;700&display=swap">
+<style>
+:root{--bg:#FDF6E3;--surface:#FFFFFF;--fg:#1F2D3A;--muted:#5B6773;--navy:#1E5078;--line:#E2D5B5;--accent:#E8900C}
+@media (prefers-color-scheme:dark){:root{--bg:#0F1D2A;--surface:#172938;--fg:#F2EAD6;--muted:#A9B4BE;--navy:#8CC0E8;--line:#2F4659;--accent:#F4A73A;color-scheme:dark}}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:Raleway,"Segoe UI",system-ui,sans-serif;line-height:1.7;font-feature-settings:"locl" 0;padding:24px 16px}
+main{max-width:760px;margin:0 auto;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:28px}
+h1,h2{font-family:"Playfair Display",Georgia,serif;color:var(--navy);line-height:1.25}h1{margin-top:0}h2{font-size:1.25rem;margin-top:28px}
+a{color:var(--navy)}.top{display:flex;justify-content:space-between;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+.lang button{background:none;border:1px solid var(--line);color:var(--fg);border-radius:8px;padding:6px 10px;cursor:pointer;font:inherit}
+.lang button[aria-pressed=true]{border-color:var(--accent)}.muted{color:var(--muted);font-size:.9rem}[hidden]{display:none!important}
+</style></head><body><main>
+<div class="top"><a href="./#home" id="back">← Mind Compass</a><span class="lang"><button data-l="bg">БГ</button> <button data-l="en">EN</button></span></div>
+<article data-lang="bg">
+<h1>Политика за поверителност</h1><p class="muted">В сила от 04.11.2026</p>
+<p>Mind Compass е уебсайт за тълкуване на матрицата на съдбата. Той е направен така, че да не събира лични данни.</p>
+<h2>Какви данни въвеждате</h2><p>Име и дата на раждане (Ваши и на хора, които добавите), както и записи в дневника. Името може да е измислено, за изчислението е нужна само датата.</p>
+<h2>Къде се пазят</h2><p>Само в браузъра на устройството Ви (localStorage). Не се изпращат към сървър, не се пазят в база данни и не се споделят с никого. Mind Compass няма акаунти, регистрация, AI услуги, реклами и проследяване.</p>
+<h2>Външни услуги</h2><ul><li><b>GitHub Pages</b> хоства сайта. Като всеки хостинг той получава IP адреса и данни за браузъра при зареждане на страницата.</li><li><b>Google Fonts</b> доставя шрифтовете. Google също вижда IP адреса Ви при зареждане.</li></ul><p>Тези услуги не получават имената и датите, които въвеждате.</p>
+<h2>Бисквитки</h2><p>Сайтът не използва бисквитки. Локалното хранилище на браузъра пази само Вашите въведени данни и избрания език.</p>
+<h2>Как да изтриете данните</h2><p>С бутона „Изтрий моите данни от това устройство“ в долната част на матрицата или като изчистите данните на сайта от настройките на браузъра. Архивът, който сте изтеглили, е файл на Вашето устройство и го управлявате Вие.</p>
+<h2>Данни на други хора</h2><p>Когато добавяте дата на раждане на друг човек, моля, правете го с негово знание. Тези данни също остават само на Вашето устройство.</p>
+<h2>Промени</h2><p>Ако в бъдеще се появи платена версия с акаунт, тази политика ще бъде обновена преди това, с ясно описание какво се събира и защо.</p>
+</article>
+<article data-lang="en" hidden>
+<h1>Privacy policy</h1><p class="muted">Effective 4 November 2026</p>
+<p>Mind Compass is a website for Destiny Matrix readings. It is built so that it does not collect personal data.</p>
+<h2>What you enter</h2><p>A name and a date of birth (yours and those of people you add), plus journal entries. The name can be made up; only the date is needed for the calculation.</p>
+<h2>Where it is stored</h2><p>Only in the browser on your device (localStorage). Nothing is sent to a server, stored in a database or shared with anyone. Mind Compass has no accounts, sign-up, AI services, ads or tracking.</p>
+<h2>Third-party services</h2><ul><li><b>GitHub Pages</b> hosts the site. Like any host, it receives your IP address and browser details when the page loads.</li><li><b>Google Fonts</b> serves the fonts. Google also sees your IP address on load.</li></ul><p>These services do not receive the names and dates you enter.</p>
+<h2>Cookies</h2><p>The site uses no cookies. Browser local storage keeps only the data you entered and your language choice.</p>
+<h2>Deleting your data</h2><p>Use the "Delete my data from this device" button at the bottom of your matrix, or clear the site data in your browser settings. An archive you downloaded is a file on your device and is under your control.</p>
+<h2>Other people's data</h2><p>When you add another person's date of birth, please do so with their knowledge. That data also stays only on your device.</p>
+<h2>Changes</h2><p>If a paid version with accounts is introduced, this policy will be updated beforehand, with a clear description of what is collected and why.</p>
+</article>
+</main><script>
+let L="bg";try{L=localStorage.getItem("mc-lang")||"bg"}catch(e){}
+function set(l){L=l;document.documentElement.lang=l;document.querySelectorAll("[data-lang]").forEach(x=>x.hidden=x.dataset.lang!==l);document.querySelectorAll(".lang button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.l===l));document.getElementById("back").textContent=l==="en"?"← Back to Mind Compass":"← Към Mind Compass";try{localStorage.setItem("mc-lang",l)}catch(e){}}
+document.querySelectorAll(".lang button").forEach(b=>b.onclick=()=>set(b.dataset.l));set(L);
+</script></body></html>

@@ -431,6 +431,52 @@ button.link.light{color:var(--accent);font-size:.95rem}
 .today .card .pm-mini{display:flex;flex-direction:column;gap:6px;font-size:.92rem}
 .today .card .pm-mini b{font-weight:700}
 .today .pl{color:var(--plus)}.today .mn{color:var(--minus)}
+
+/* v2.5 landing */
+.lp-head{display:flex;flex-direction:column;gap:4px;margin-top:8px}
+.svc{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+@media (max-width:900px){.svc{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.svc{grid-template-columns:1fr}}
+.sv{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:8px;min-width:0;height:100%;overflow-wrap:break-word}
+.sv.prem{border-color:color-mix(in srgb,var(--accent) 55%,var(--line))}
+.sv p{color:var(--muted);margin:0;font-size:.93rem}
+.sv-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:4px}
+.ic{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;flex:none}
+.ic svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.ic.t1{background:color-mix(in srgb,var(--g1) 16%,transparent);color:var(--g1)}
+.ic.t2{background:color-mix(in srgb,var(--g2) 16%,transparent);color:var(--g2)}
+.ic.t3{background:color-mix(in srgb,var(--g3) 16%,transparent);color:var(--g3)}
+.ic.t4{background:color-mix(in srgb,var(--g4) 18%,transparent);color:var(--g4)}
+.bdg{font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 9px;border-radius:999px;white-space:nowrap}
+.bdg.free{background:color-mix(in srgb,var(--plus) 14%,transparent);color:var(--plus)}
+.bdg.pro{background:var(--accent);color:#1F2D3A}
+.steps3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+@media (max-width:760px){.steps3{grid-template-columns:1fr}}
+.st{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:8px;height:100%}
+.st p{color:var(--muted);margin:0;font-size:.93rem}
+.num{width:38px;height:38px;border-radius:50%;background:var(--navy);color:var(--bg);display:flex;align-items:center;justify-content:center;font-weight:700;font-family:var(--display);font-size:1.1rem}
+.price{background:var(--band);color:var(--band-fg);border-radius:18px;padding:30px 24px;text-align:center;display:flex;flex-direction:column;gap:10px;align-items:center;margin-top:8px}
+.price h2{color:var(--band-fg);font-size:2rem}
+.price p{margin:0;max-width:56ch;opacity:.9}
+.honest{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+@media (max-width:760px){.honest{grid-template-columns:1fr}}
+.hc{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:10px}
+.hc ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px;color:var(--muted)}
+.hc b{color:var(--fg)}
+.hc a,.ft a{color:var(--navy)}
+#lp-honest,#lp-price{scroll-margin-top:16px}
+footer.ft{display:flex;flex-direction:column;gap:16px;padding-top:22px}
+.ft-cols{display:grid;grid-template-columns:2fr 1fr 1fr;gap:24px}
+@media (max-width:700px){.ft-cols{grid-template-columns:1fr}}
+.ft-brand b{font-family:var(--display);font-size:1.25rem;color:var(--navy)}
+.ft-brand p{margin:6px 0 0;max-width:44ch}
+.ft h4{margin:0 0 8px;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--fg)}
+.ft ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.ft .link{background:none;border:0;padding:0;color:var(--navy);font:inherit;cursor:pointer;text-align:left}
+.ft-legal{margin:0;border-top:1px solid var(--line);padding-top:12px}
+.contact-fab{position:fixed;right:16px;bottom:16px;z-index:50;display:inline-flex;align-items:center;gap:8px;background:var(--navy);color:var(--bg);text-decoration:none;font-weight:600;padding:11px 18px;border-radius:999px;box-shadow:0 6px 18px rgba(0,0,0,.2)}
+.contact-fab svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+@media print{.contact-fab,.ft-cols{display:none!important}}
 </style>
 </head>
 <body>
@@ -461,22 +507,49 @@ button.link.light{color:var(--accent);font-size:.95rem}
               </div>
     </div>
     <div id="todayBox" class="stack" style="gap:12px"></div>
-    <h2 data-en="What you will discover">Какво ще откриете</h2>
-    <div class="feat">
-      <div class="f"><span class="em g2" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 8v30M16 40h16M10 15h28"/><path d="M10 15l-5 10h10ZM38 15l-5 10h10Z"/></svg></span><h3 data-en="Personal portrait">Личен портрет</h3><p data-en="Who you are at your core, how people see you and what you are gifted at.">Коя сте най-дълбоко, как Ви виждат хората и в какво сте дарена.</p></div>
-      <div class="f"><span class="em g1" aria-hidden="true"><svg viewBox="0 0 48 48"><circle cx="19" cy="24" r="9"/><circle cx="29" cy="24" r="9"/></svg></span><h3 data-en="Areas of life">Сферите на живота</h3><p data-en="Money, love and purpose across the three stages of life.">Пари, любов и предназначение в трите етапа на живота.</p></div>
-      <div class="f"><span class="em g3" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 26V8M24 15l-7-6M24 15l7-6M24 20l-9-3M24 20l9-3"/><path d="M8 26h32M24 26v14M24 31l-8 8M24 31l8 8"/></svg></span><h3 data-en="Karma">Карма</h3><p data-en="The karmic lesson, the gifts of your family line and the tasks passed down.">Кармичният урок, родовите дарове и задачите, които се предават.</p></div>
-      <div class="f"><span class="em g3" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 6l3 14 14 4-14 4-3 14-3-14-14-4 14-4Z"/></svg></span><h3 data-en="22 arcana">22 аркана</h3><p data-en="The light side and the shadow of each arcanum, and how to turn a minus into a plus.">Светлата страна и сянката на всеки аркан и как да обърнете минуса в плюс.</p></div>
-      <div class="f"><span class="em g2" aria-hidden="true"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="14"/><circle cx="24" cy="24" r="3"/><path d="M24 10v28M10 24h28M14 14l20 20M34 14 14 34"/></svg></span><h3 data-en="Forecast">Прогноза</h3><p data-en="The energy of the year and the themes of the periods in the years ahead.">Енергията на годината и темите на периодите през следващите години.</p></div>
-      <div class="f"><span class="em g1" aria-hidden="true"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="15"/><ellipse cx="24" cy="24" rx="6" ry="15"/><path d="M9 24h30"/></svg></span><h3 data-en="People around you">Хора около Вас</h3><p data-en="What connects you with those close to you, what repeats and how to communicate more easily.">Какво Ви свързва с близките, какво се повтаря и как да общувате по-лесно.</p></div>
+    <div class="lp-head"><h2 data-en="What you will discover">Какво ще откриете</h2><p class="note" data-en="Right now every section is open and free.">Засега всички раздели са отворени и безплатни.</p></div>
+    <div class="svc">
+      <div class="sv"><div class="sv-top"><span class="ic t1" aria-hidden="true"><svg viewBox="0 0 48 48"><circle cx="24" cy="17" r="7"/><path d="M11 40c1-8 6-12 13-12s12 4 13 12"/></svg></span><span class="bdg free" data-en="Free">Безплатно</span></div><h3 data-en="Personal portrait">Личен портрет</h3><p data-en="Who you are at your core, how people see you and what you are gifted at.">Коя сте най-дълбоко, как Ви виждат хората и в какво сте дарена.</p></div>
+      <div class="sv"><div class="sv-top"><span class="ic t2" aria-hidden="true"><svg viewBox="0 0 48 48"><circle cx="19" cy="24" r="9"/><circle cx="29" cy="24" r="9"/></svg></span><span class="bdg free" data-en="Free">Безплатно</span></div><h3 data-en="Areas of life">Сферите на живота</h3><p data-en="Money, love and purpose across the three stages of life.">Пари, любов и предназначение в трите етапа на живота.</p></div>
+      <div class="sv"><div class="sv-top"><span class="ic t3" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 26V8M24 15l-7-6M24 15l7-6M24 20l-9-3M24 20l9-3"/><path d="M8 26h32M24 26v14M24 31l-8 8M24 31l8 8"/></svg></span><span class="bdg free" data-en="Free">Безплатно</span></div><h3 data-en="Karma and lineage">Карма и Род</h3><p data-en="The karmic lesson, the gifts of your family line and the tasks passed down.">Кармичният урок, родовите дарове и задачите, които се предават.</p></div>
+      <div class="sv"><div class="sv-top"><span class="ic t4" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 40S8 30 8 19a8 8 0 0 1 16-3 8 8 0 0 1 16 3c0 11-16 21-16 21Z"/></svg></span><span class="bdg free" data-en="Free">Безплатно</span></div><h3 data-en="Health map">Карта на здравето</h3><p data-en="Where the energy flows and where it gets stuck, chakra by chakra. Not a diagnosis.">Къде енергията тече и къде засяда, чакра по чакра. Не е диагноза.</p></div>
+      <div class="sv"><div class="sv-top"><span class="ic t2" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 6l3 14 14 4-14 4-3 14-3-14-14-4 14-4Z"/></svg></span><span class="bdg free" data-en="Free">Безплатно</span></div><h3 data-en="22 arcana">22 аркана</h3><p data-en="The light side and the shadow of each arcanum, and how to turn a minus into a plus.">Светлата страна и сянката на всеки аркан и как да обърнете минуса в плюс.</p></div>
+      <div class="sv"><div class="sv-top"><span class="ic t1" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M12 8h20l6 6v26H12Z"/><path d="M18 20h14M18 27h14M18 34h8"/></svg></span><span class="bdg free" data-en="Free">Безплатно</span></div><h3 data-en="Journal">Дневник</h3><p data-en="Write down what happens and check how it matches the period you are in.">Записвайте какво се случва и проверявайте как съвпада с периода, в който сте.</p></div>
+      <div class="sv prem"><div class="sv-top"><span class="ic t4" aria-hidden="true"><svg viewBox="0 0 48 48"><rect x="8" y="11" width="32" height="29" rx="4"/><path d="M8 19h32M16 7v8M32 7v8M16 27h4M24 27h4M32 27h0M16 33h4M24 33h4"/></svg></span><span class="bdg pro" data-en="Premium later">Премиум по-късно</span></div><h3 data-en="Forecast">Прогноза</h3><p data-en="The energy of the year and the themes of the periods in the years ahead.">Енергията на годината и темите на периодите през следващите години.</p></div>
+      <div class="sv prem"><div class="sv-top"><span class="ic t3" aria-hidden="true"><svg viewBox="0 0 48 48"><circle cx="17" cy="17" r="6"/><circle cx="33" cy="17" r="6"/><path d="M6 38c1-7 5-10 11-10s10 3 11 10M22 38c1-7 5-10 11-10s10 3 11 10"/></svg></span><span class="bdg pro" data-en="Premium later">Премиум по-късно</span></div><h3 data-en="People around you">Хора около Вас</h3><p data-en="What connects you with those close to you, what repeats and how to communicate more easily.">Какво Ви свързва с близките, какво се повтаря и как да общувате по-лесно.</p></div>
     </div>
+
     <h2 data-en="How it works">Как работи</h2>
-    <ol class="how">
-      <li data-en="&lt;b&gt;Enter your name and date of birth.&lt;/b&gt; No time or place of birth needed."><b>Въведете име и дата на раждане.</b> Не са нужни час и място.</li>
-      <li data-en="&lt;b&gt;Mind Compass calculates the matrix&lt;/b&gt; using the classic method and arranges the readings by theme."><b>Mind Compass изчислява матрицата</b> по класическата схема и подрежда тълкуванията по теми.</li>
-      <li data-en="&lt;b&gt;Read, reflect and come back.&lt;/b&gt; Every week brings a new question and a small step."><b>Четете, размишлявате и се връщате.</b> Всяка седмица има нов въпрос и малка стъпка.</li>
-    </ol>
-    <p class="note" data-en="Your data stays only on your device. Nothing is sent anywhere.">Данните остават само на Вашето устройство. Нищо не се изпраща никъде.</p>
+    <div class="steps3">
+      <div class="st"><span class="num">1</span><h3 data-en="Enter a name and a date">Въведете име и дата</h3><p data-en="Only the date of birth is needed. No time or place of birth, no sign-up.">Нужна е само датата на раждане. Без час и място, без регистрация.</p></div>
+      <div class="st"><span class="num">2</span><h3 data-en="The matrix is calculated">Матрицата се изчислява</h3><p data-en="By the classic 22-arcana method. The numbers are calculated, not guessed.">По класическата схема с 22 аркана. Числата са изчислени, а не гадани.</p></div>
+      <div class="st"><span class="num">3</span><h3 data-en="Read and come back">Четете и се връщайте</h3><p data-en="Every day has its energy and every week a new question and a small step.">Всеки ден има своя енергия, а всяка седмица нов въпрос и малка стъпка.</p></div>
+    </div>
+
+    <div class="price" id="lp-price">
+      <h2 data-en="Free for now.">Засега е безплатно.</h2>
+      <p data-en="When the paid version launches, you pay only for what you use. No subscription, no hidden fees.">Когато пуснем платената версия, ще плащате само за това, което ползвате. Без абонамент и без скрити такси.</p>
+    </div>
+    <div class="steps3">
+      <div class="st"><span class="num">1</span><h3 data-en="Now: everything is free">Сега: всичко е безплатно</h3><p data-en="All sections are open. No sign-up and no card.">Всички раздели са отворени. Без регистрация и без карта.</p></div>
+      <div class="st"><span class="num">2</span><h3 data-en="The core stays free">Основното остава безплатно</h3><p data-en="The portrait, areas, karma, health map, the 22 arcana and the journal stay free.">Портретът, сферите, кармата, картата на здравето, 22-та аркана и дневникът остават безплатни.</p></div>
+      <div class="st"><span class="num">3</span><h3 data-en="Later: premium">По-късно: премиум</h3><p data-en="The extended forecast, relationships and a personal report become premium. Prices will be announced in advance and nothing is charged without your consent.">Разширената прогноза, връзките с хора и персоналният доклад ще станат премиум. Цените ще бъдат обявени предварително и нищо не се таксува без Ваше съгласие.</p></div>
+    </div>
+
+    <h2 id="lp-honest" data-en="Honest about limits and data">Честно за ограниченията и данните</h2>
+    <div class="honest">
+      <div class="hc"><h3 data-en="What Mind Compass is not">Какво не е Mind Compass</h3><ul>
+        <li data-en="It is not therapy, a diagnosis or medical, legal or financial advice. In a crisis or with a health problem, please see a specialist.">Не е терапия, диагноза, медицински, правен или финансов съвет. При криза или здравословен проблем потърсете специалист.</li>
+        <li data-en="It does not predict the future. The matrix is a framework for reflection, not a proven science.">Не предсказва бъдещето. Матрицата е рамка за размисъл, а не доказана наука.</li>
+        <li data-en="The readings describe an energy, not you personally. Everyone born on the same date gets the same matrix.">Тълкуванията описват енергия, а не лично Вас. Всички, родени на една и съща дата, имат една и съща матрица.</li>
+        <li data-en="The calculation follows the classic method. Other schools may give different readings.">Изчислението следва класическата схема. Други школи може да дадат различни тълкувания.</li></ul></div>
+      <div class="hc"><h3 data-en="Who gets your data">Кой получава Вашите данни</h3><ul>
+        <li data-en="&lt;b&gt;Nobody.&lt;/b&gt; Names and dates are stored only in the browser on this device."><b>Никой.</b> Имената и датите се пазят само в браузъра на това устройство.</li>
+        <li data-en="No account, no server, no database, no AI and no advertising trackers.">Няма акаунт, сървър, база данни, AI и рекламно проследяване.</li>
+        <li data-en="&lt;b&gt;Hosting&lt;/b&gt; (GitHub Pages) and &lt;b&gt;Google Fonts&lt;/b&gt; see your IP address when the page loads, as with any website."><b>Хостингът</b> (GitHub Pages) и <b>Google Fonts</b> виждат IP адреса Ви при зареждане, както при всеки сайт.</li>
+        <li data-en="You delete everything with one button at the bottom of your matrix.">Изтривате всичко с един бутон в долната част на матрицата.</li></ul>
+        <p class="note"><a href="privacy.html" data-en="Privacy policy">Политика за поверителност</a></p></div>
+    </div>
   </section>
 
   <section id="start" class="startpg" hidden>
@@ -577,7 +650,22 @@ button.link.light{color:var(--accent);font-size:.95rem}
     </details>
   </section>
 
-  <footer><span data-en="The readings are symbolic and meant for self-reflection. They are not predictions and do not replace advice on health, money or important decisions. Calculations follow the classic matrix method (22 energies).">Тълкуванията са символни и служат за самонаблюдение. Не са прогноза и не заменят съвет за здраве, пари или важни решения. Изчисленията следват класическата схема на матрицата (22 енергии).</span> <span class="ver" data-en="Version 2.4 · classic method · 24.10.2026">Версия 2.4 · класическа схема · 24.10.2026</span></footer>
+  <footer class="ft">
+    <div class="ft-cols">
+      <div class="ft-brand"><b>Mind Compass</b><p data-en="Destiny Matrix readings in plain language, for self-knowledge. The numbers are calculated by the classic method and stay on your device.">Матрица на съдбата на разбираем език, за себепознание. Числата са изчислени по класическата схема и остават на Вашето устройство.</p></div>
+      <div><h4 data-en="Product">Продукт</h4><ul>
+        <li><button type="button" class="link" data-goto="welcome" data-en="What you will discover">Какво ще откриете</button></li>
+        <li><button type="button" class="link" data-nav="sample" data-en="Example matrix">Примерна матрица</button></li>
+        <li><button type="button" class="link" data-goto="lp-price" data-en="Prices">Цени</button></li>
+        <li><button type="button" class="link" data-goto="lp-honest" data-en="Limits and data">Ограничения и данни</button></li></ul></div>
+      <div><h4 data-en="Legal">Правни</h4><ul>
+        <li><a href="privacy.html" data-en="Privacy policy">Политика за поверителност</a></li>
+        <li><a href="terms.html" data-en="Terms of use">Общи условия</a></li>
+        <li id="ftMail" hidden><a href="#" data-en="Contact">Контакт</a></li></ul></div>
+    </div>
+    <p class="ft-legal"><span data-en="The readings are symbolic and meant for self-reflection. They are not predictions and do not replace advice on health, money or important decisions.">Тълкуванията са символни и служат за самонаблюдение. Не са прогноза и не заменят съвет за здраве, пари или важни решения.</span> <span class="ver" data-en="© 2026 Mind Compass · Version 2.5 · 04.11.2026">© 2026 Mind Compass · Версия 2.5 · 04.11.2026</span></p>
+  </footer>
+  <a class="contact-fab" id="contactFab" href="#" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><span data-en="Contact us">Контакт с нас</span></a>
 </div>
 
 <script>
@@ -2527,6 +2615,10 @@ function setLang(l){
 }
 document.querySelectorAll(".lang button").forEach(b=>b.addEventListener("click",()=>setLang(b.dataset.lang)));
 if(LANG==="en"){E=E_EN;AX=AX_EN;KTAILS=KTAILS_EN;POS_INFO=POS_INFO_EN}
+
+const CONTACT="";/* имейл за контакт; празно = бутонът е скрит */
+if(CONTACT){const h="mailto:"+CONTACT+"?subject=Mind%20Compass";const f=document.getElementById("contactFab");f.href=h;f.hidden=false;const m=document.getElementById("ftMail");m.hidden=false;m.querySelector("a").href=h}
+document.addEventListener("click",e=>{const g=e.target.closest("[data-goto]");if(!g)return;e.preventDefault();goHome();const t=document.getElementById(g.dataset.goto);if(t)setTimeout(()=>t.scrollIntoView({behavior:"smooth",block:"start"}),60)});
 applyStatic();
 boot();
 // Коригиран Service Worker регистратор, за да работи на всеки HTTPS домейн (не само на github.io)
