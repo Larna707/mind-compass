@@ -805,7 +805,7 @@ button{border-radius:12px}
         <li><a href="terms.html" data-en="Terms of use">Общи условия</a></li>
         <li id="ftMail" hidden><a href="#" data-en="Contact">Контакт</a></li></ul></div>
     </div>
-    <p class="ft-legal"><span data-en="The readings are symbolic and meant for self-reflection. They are not predictions and do not replace advice on health, money or important decisions.">Тълкуванията са символни и служат за самонаблюдение. Не са прогноза и не заменят съвет за здраве, пари или важни решения.</span> <span class="ver" data-en="© 2026 Mind Compass · Version 3.0 · 04.11.2026">© 2026 Mind Compass · Версия 3.0 · 04.11.2026</span></p>
+    <p class="ft-legal"><span data-en="The readings are symbolic and meant for self-reflection. They are not predictions and do not replace advice on health, money or important decisions.">Тълкуванията са символни и служат за самонаблюдение. Не са прогноза и не заменят съвет за здраве, пари или важни решения.</span> <span class="ver" data-en="© 2026 Mind Compass · Version 3.1 · 04.11.2026">© 2026 Mind Compass · Версия 3.1 · 04.11.2026</span></p>
   </footer>
   <a class="contact-fab" id="contactFab" href="#" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><span data-en="Contact us">Контакт с нас</span></a>
 </div>
@@ -1744,13 +1744,13 @@ function calcPts(A,B,C,D,ext={}){
   const spirit=r(personal+social),planetary=r(social+spirit);
   const tailKey=`${ch.D.two}-${ch.D.one}-${D}`;
   const chakras=[
-    {num:7,skBg:"Сахасрара",skEn:"Sahasrara",bg:"Коронна чакра · Мисия и връзка с Космоса",en:"Crown Chakra · Mission & Cosmic Connection",color:"#7E57C2",bodyBg:"Главен мозък, епифиза, висша нервна система, коса",bodyEn:"Brain, pineal gland, higher nervous system, hair",p:A,e:B,em:r(A+B)},
-    {num:6,skBg:"Аджна",skEn:"Ajna",bg:"Трето око · Интуиция, зрение и мисловни програми",en:"Third Eye · Intuition, Vision & Mental Programmes",color:"#3949AB",bodyBg:"Очи, уши, синуси, лице, хипофиза, централна нервна система",bodyEn:"Eyes, ears, sinuses, face, pituitary gland, central nervous system",p:ch.A.one,e:ch.B.one,em:r(ch.A.one+ch.B.one)},
-    {num:5,skBg:"Вишудха",skEn:"Vishuddha",bg:"Гърлена чакра · Общуване, истина и творчество",en:"Throat Chakra · Communication, Truth & Creativity",color:"#039BE5",bodyBg:"Гърло, щитовидна жлеза, гласни струни, челюст, бели дробове, рамене",bodyEn:"Throat, thyroid, vocal cords, jaw, lungs, shoulders",p:ch.A.two,e:ch.B.two,em:r(ch.A.two+ch.B.two)},
-    {num:4,skBg:"Анахата",skEn:"Anahata",bg:"Сърдечна чакра · Безусловна любов и приемане",en:"Heart Chakra · Unconditional Love & Acceptance",color:"#2E7D32",bodyBg:"Сърце, кръвообращение, гръден кош, тимус, ръце",bodyEn:"Heart, circulation, chest, thymus, arms and hands",p:r(ch.A.two+X),e:r(ch.B.two+X),em:r(r(ch.A.two+X)+r(ch.B.two+X))},
-    {num:3,skBg:"Манипура",skEn:"Manipura",bg:"Слънчев сплит · Воля, статус, контрол и финанси",en:"Solar Plexus · Will, Status, Control & Finances",color:"#F9A825",bodyBg:"Стомах, черен дроб, жлъчка, панкреас, тънки черва, диафрагма",bodyEn:"Stomach, liver, gallbladder, pancreas, small intestine, diaphragm",p:X,e:X,em:r(X+X)},
-    {num:2,skBg:"Свадхистана",skEn:"Svadhisthana",bg:"Сакрална чакра · Удоволствие, сексуалност и продължение на рода",en:"Sacral Chakra · Pleasure, Sexuality & Continuity of Lineage",color:"#EF6C00",bodyBg:"Полови органи, бъбреци, пикочен мехур, дебело черво, поясна област",bodyEn:"Reproductive organs, kidneys, bladder, large intestine, lower back",p:ch.C.two,e:ch.D.two,em:r(ch.C.two+ch.D.two)},
-    {num:1,skBg:"Муладхара",skEn:"Muladhara",bg:"Коренна чакра · Оцеляване, базова сигурност и физическа опора",en:"Root Chakra · Survival, Basic Security & Physical Grounding",color:"#C62828",bodyBg:"Костна система, гръбначен стълб, крака, стави, зъби, надбъбречни жлези",bodyEn:"Skeletal system, spine, legs, joints, teeth, adrenal glands",p:C,e:D,em:r(C+D)}
+    {num:7,skBg:"Сахасрара",skEn:"Sahasrara",bg:"Коронна чакра · Мисия и връзка с Космоса",en:"Crown Chakra · Mission & Cosmic Connection",color:"#7E57C2",p:A,e:B,em:r(A+B)},
+    {num:6,skBg:"Аджна",skEn:"Ajna",bg:"Трето око · Интуиция, прозрение и мисловни модели",en:"Third Eye · Intuition, Insight & Thought Patterns",color:"#3949AB",p:ch.A.one,e:ch.B.one,em:r(ch.A.one+ch.B.one)},
+    {num:5,skBg:"Вишудха",skEn:"Vishuddha",bg:"Гърлена чакра · Общуване, истина и творчество",en:"Throat Chakra · Communication, Truth & Creativity",color:"#039BE5",p:ch.A.two,e:ch.B.two,em:r(ch.A.two+ch.B.two)},
+    {num:4,skBg:"Анахата",skEn:"Anahata",bg:"Сърдечна чакра · Любов, отношения и приемане",en:"Heart Chakra · Love, Relationships & Acceptance",color:"#2E7D32",p:r(ch.A.two+X),e:r(ch.B.two+X),em:r(r(ch.A.two+X)+r(ch.B.two+X))},
+    {num:3,skBg:"Манипура",skEn:"Manipura",bg:"Слънчев сплит · Воля, статус, контрол и финанси",en:"Solar Plexus · Will, Status, Control & Finances",color:"#F9A825",p:X,e:X,em:r(X+X)},
+    {num:2,skBg:"Свадхистана",skEn:"Svadhisthana",bg:"Сакрална чакра · Творчество, удоволствие и чувственост",en:"Sacral Chakra · Creativity, Pleasure & Sensuality",color:"#EF6C00",p:ch.C.two,e:ch.D.two,em:r(ch.C.two+ch.D.two)},
+    {num:1,skBg:"Муладхара",skEn:"Muladhara",bg:"Коренна чакра · Сигурност, стабилност и опора",en:"Root Chakra · Security, Stability & Grounding",color:"#C62828",p:C,e:D,em:r(C+D)}
   ];
   const chTotP=r(chakras.reduce((s,c)=>s+c.p,0)),chTotE=r(chakras.reduce((s,c)=>s+c.e,0)),chTotEm=r(chakras.reduce((s,c)=>s+c.em,0));
   const main=[A,F,B,G,C,H,D,I,A],ring=[];
@@ -2264,30 +2264,28 @@ function render(name,iso){
   const chRows=M.chakras.map(c=>`
     <tr>
       <td><span class="ch-dot" style="background:${c.color}"></span><strong>${c.num}. ${LANG==="en"?c.skEn:c.skBg}</strong><div class="note">${LANG==="en"?c.en:c.bg}</div></td>
-      <td class="note">${LANG==="en"?c.bodyEn:c.bodyBg}</td>
       <td><button type="button" class="ch-pill" data-arc="${c.p}"><b>${c.p}</b> ${E[c.p].n}</button></td>
       <td><button type="button" class="ch-pill" data-arc="${c.e}"><b>${c.e}</b> ${E[c.e].n}</button></td>
       <td><button type="button" class="ch-pill" data-arc="${c.em}"><b>${c.em}</b> ${E[c.em].n}</button></td>
     </tr>`).join("");
 
   document.getElementById("v-ch").innerHTML=`
-  <div class="disclaim" role="note"><b>${tr("Важно","Important")}</b> ${tr("Картата на вътрешния баланс е символна и служи за самонаблюдение. Тя не е медицинска информация, не поставя диагнози и не замества преглед или съвет от лекар. При здравословни оплаквания се обърнете към медицински специалист.","The inner balance map is symbolic and meant for self-reflection. It is not medical information, does not diagnose anything and does not replace an examination or advice from a doctor. If you have health concerns, please see a medical professional.")}</div>
-  <p class="intro">${tr("Картата на енергията и вътрешния баланс свързва 7-те чакри с Линията на Земята (Физика – тяло), Линията на Небето (Енергия – дух) и техния сбор (Емоции – психосоматичен ключ). Кликнете върху който и да е аркан, за да видите как да превърнете минуса му в плюс.","The Inner Balance map links the 7 chakras with the Earth Line (Physical – body), Sky Line (Energy – spirit) and their sum (Emotions – psychosomatic key). Click any arcanum to see how to turn its shadow into the light side.")}</p>
+  <div class="disclaim" role="note"><b>${tr("Важно","Important")}</b> ${tr("Вътрешният баланс е символна система за себепознание. Той не е оценка на физическото или психическото здраве, не поставя диагнози и не замества съвет от лекар или психолог. При здравословни оплаквания се обърнете към специалист.","Inner balance is a symbolic system for self-discovery. It is not an assessment of physical or mental health, does not diagnose anything and does not replace advice from a doctor or psychologist. If you have health concerns, please see a professional.")}</div>
+  <p class="intro">${tr("Вътрешният баланс свързва 7-те чакри като символи на сигурност, творчество, воля, отношения, общуване, интуиция и духовност с Линията на Земята (материален план), Линията на Небето (духовен план) и техния сбор (емоционален ключ). Кликнете върху който и да е аркан, за да видите как да превърнете минуса му в плюс.","Inner balance links the 7 chakras, as symbols of security, creativity, will, relationships, communication, intuition and spirituality, with the Earth Line (material plane), the Sky Line (spiritual plane) and their sum (emotional key). Click any arcanum to see how to turn its shadow into the light side.")}</p>
   <div class="chakra-wrap" id="c-tbl">
     <table class="chakra-tbl">
       <thead>
         <tr>
           <th>${tr("Чакра и център","Chakra & Centre")}</th>
-          <th>${tr("Свързани зони (символно)","Related areas (symbolic)")}</th>
-          <th>${tr("Физика (Земя)","Physical (Earth)")}</th>
-          <th>${tr("Енергия (Небе)","Energy (Sky)")}</th>
-          <th>${tr("Емоции (Ключ)","Emotions (Key)")}</th>
+          <th>${tr("Земя (материално)","Earth (material)")}</th>
+          <th>${tr("Небе (духовно)","Sky (spiritual)")}</th>
+          <th>${tr("Емоции (ключ)","Emotions (key)")}</th>
         </tr>
       </thead>
       <tbody>
         ${chRows}
         <tr class="total-row">
-          <td colspan="2">${tr("Общ енергиен баланс на тялото (Сума)","Total Body Energy Balance (Sum)")}</td>
+          <td>${tr("Общ баланс (сума)","Overall balance (sum)")}</td>
           <td><button type="button" class="ch-pill" data-arc="${M.chTotP}"><b>${M.chTotP}</b> ${E[M.chTotP].n}</button></td>
           <td><button type="button" class="ch-pill" data-arc="${M.chTotE}"><b>${M.chTotE}</b> ${E[M.chTotE].n}</button></td>
           <td><button type="button" class="ch-pill" data-arc="${M.chTotEm}"><b>${M.chTotEm}</b> ${E[M.chTotEm].n}</button></td>
@@ -2295,10 +2293,10 @@ function render(name,iso){
       </tbody>
     </table>
   </div>
-  <h2>${tr("Общ психосоматичен синтез","Overall Psychosomatic Synthesis")}</h2>
+  <h2>${tr("Обобщение на вътрешния баланс","Inner Balance Summary")}</h2>
   <div class="grid">
-    ${card(tr("Физически тонус (Обща Физика)","Physical Tone (Total Physical)"),M.chTotP,"",{posNote:tr("От какво се нуждае тялото Ви за издръжливост и здраве.","What your physical body needs for stamina and recovery."),text:E[M.chTotP].bal})}
-    ${card(tr("Енергиен заряд (Обща Енергия)","Energy Charge (Total Energy)"),M.chTotE,"",{posNote:tr("Как се зареждате духовно и интуитивно.","How you recharge spiritually and intuitively."),text:E[M.chTotE].bal})}
+    ${card(tr("Опора и стабилност (обща Земя)","Grounding (total Earth)"),M.chTotP,"",{posNote:tr("От какво се нуждаете, за да се чувствате стабилни и устойчиви в ежедневието.","What you need to feel stable and grounded in everyday life."),text:E[M.chTotP].bal})}
+    ${card(tr("Вътрешен заряд (общо Небе)","Inner Charge (total Sky)"),M.chTotE,"",{posNote:tr("Как се зареждате духовно и интуитивно.","How you recharge spiritually and intuitively."),text:E[M.chTotE].bal})}
     ${card(tr("Главен емоционален ключ (Обща Сума)","Master Emotional Key (Total Sum)"),M.chTotEm,"",{posNote:tr("Когато тази енергия е в баланс, цялата чакрова система работи хармонично.","When this energy is in balance, the entire chakra system works harmoniously."),text:E[M.chTotEm].core+" "+tr("Стъпка: ","Step: ")+E[M.chTotEm].st})}
   </div>`;
 
