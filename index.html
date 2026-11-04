@@ -11,24 +11,24 @@
 <title>Mind Compass</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,500&family=Raleway:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600;700&display=swap">
 <style>
 /* Layout: brand header, navy "compass now" band with a live needle, tabbed views; arcana carry their own emblem and a colour by row (I–VII navy, VIII–XIV teal, XV–XXI terracotta, XXII gold) */
 :root{
-  --bg:#FDF6E3; --surface:#FFFFFF; --soft:#F7E8C4; --fg:#1F2D3A; --muted:#5B6773;
-  --navy:#1E5078; --band:#1E5078; --band-fg:#FDF6E3; --accent:#E8900C; --line:#E2D5B5; --plus:#2E7D5B; --minus:#B4462E;
-  --g1:#1E5078; --g2:#1D7366; --g3:#A84C27; --g4:#B57E0A; --on-g:#FFF8E8;
-  --display:"Playfair Display",Georgia,"Times New Roman",serif;
-  --body:"Raleway","Segoe UI",system-ui,sans-serif;
+  --bg:#F7F4E8; --surface:#FFFFFF; --soft:#F0E9D8; --fg:#1D2B36; --muted:#55636E;
+  --navy:#173F5F; --band:#173F5F; --band-fg:#F7F4E8; --accent:#E99A27; --accent-ink:#9A5A06; --line:#E8DFCE; --plus:#1F7A5A; --minus:#B8402B;
+  --g1:#173F5F; --g2:#287B91; --g3:#C0412B; --g4:#A86A0C; --on-g:#FFF8E8;
+  --display:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+  --body:"Inter","Segoe UI",system-ui,sans-serif;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#0F1D2A; --surface:#172938; --soft:#22394B; --fg:#F2EAD6; --muted:#A9B4BE;
-  --navy:#8CC0E8; --band:#173A57; --band-fg:#F2EAD6; --accent:#F4A73A; --line:#2F4659; --plus:#6CC79C; --minus:#EE8B72;
-  --g1:#3F7FB3; --g2:#2E9583; --g3:#C4683F; --g4:#C9951F; --on-g:#FFF8E8; color-scheme:dark}}
+  --bg:#0F1E2C; --surface:#162A3B; --soft:#1F3549; --fg:#F2EEE2; --muted:#A9B6C0;
+  --navy:#A9CBE6; --band:#173F5F; --band-fg:#F7F4E8; --accent:#F0A63A; --accent-ink:#F0A63A; --line:#2B4357; --plus:#6CC79C; --minus:#F08A72;
+  --g1:#3B79A8; --g2:#2E93A8; --g3:#D45A42; --g4:#C48A1E; --on-g:#FFF8E8; color-scheme:dark}}
 :root[data-theme="dark"]{
-  --bg:#0F1D2A; --surface:#172938; --soft:#22394B; --fg:#F2EAD6; --muted:#A9B4BE;
-  --navy:#8CC0E8; --band:#173A57; --band-fg:#F2EAD6; --accent:#F4A73A; --line:#2F4659; --plus:#6CC79C; --minus:#EE8B72;
-  --g1:#3F7FB3; --g2:#2E9583; --g3:#C4683F; --g4:#C9951F; --on-g:#FFF8E8; color-scheme:dark}
+  --bg:#0F1E2C; --surface:#162A3B; --soft:#1F3549; --fg:#F2EEE2; --muted:#A9B6C0;
+  --navy:#A9CBE6; --band:#173F5F; --band-fg:#F7F4E8; --accent:#F0A63A; --accent-ink:#F0A63A; --line:#2B4357; --plus:#6CC79C; --minus:#F08A72;
+  --g1:#3B79A8; --g2:#2E93A8; --g3:#D45A42; --g4:#C48A1E; --on-g:#FFF8E8; color-scheme:dark}
 *{box-sizing:border-box}
 [hidden]{display:none!important}
 body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.65;
@@ -477,6 +477,110 @@ footer.ft{display:flex;flex-direction:column;gap:16px;padding-top:22px}
 .contact-fab{position:fixed;right:16px;bottom:16px;z-index:50;display:inline-flex;align-items:center;gap:8px;background:var(--navy);color:var(--bg);text-decoration:none;font-weight:600;padding:11px 18px;border-radius:999px;box-shadow:0 6px 18px rgba(0,0,0,.2)}
 .contact-fab svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 @media print{.contact-fab,.ft-cols{display:none!important}}
+
+/* v3.0 · logo palette */
+h2{font-size:1.9rem;font-weight:600}
+.brand h1{font-size:2.1rem;font-weight:700}
+.brand .tag{font-family:var(--body);font-style:normal;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600}
+button.link,summary,.step .k,.whint,.tab.tab-syn,.amp,.purpose-triad .op,.sh-row .ar,.period.now .when{color:var(--accent-ink)}
+.card,.year,.tools,.jform,.syn-box,.purpose-block,.archetype-box,.detail,.chart{border-radius:18px}
+button{border-radius:12px}
+.tab{font-weight:600}.tab[aria-selected="true"]{color:var(--navy)}
+.ename,.letter .drop,.talent p,.arc .nm{font-weight:600}
+.band .big,.syn-pil .sp-val{font-weight:600}
+.landing{display:flex;flex-direction:column;gap:84px}
+.eyebrow{margin:0;font-size:.75rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--minus)}
+.eyebrow.teal{color:var(--g2)}.eyebrow.coral{color:var(--minus)}
+.hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:48px;align-items:center;padding-top:12px}
+@media (max-width:860px){.hero{grid-template-columns:1fr;gap:32px}}
+.hero-txt{display:flex;flex-direction:column;gap:20px;min-width:0}
+.hero-h{font-size:clamp(2.6rem,6vw,4.1rem);line-height:1.03;font-weight:600;color:var(--navy)}
+.hero-h em{color:var(--accent);font-style:italic}
+.hero-sub{color:var(--muted);font-size:1.08rem;line-height:1.65;max-width:56ch}
+.hform{display:flex;flex-wrap:wrap;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:8px;box-shadow:0 16px 40px rgba(23,63,95,.08);max-width:580px}
+.hform label{display:flex;flex-direction:column;gap:2px;padding:6px 12px;min-width:0;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.hf-date{flex:1 1 170px}.hf-name{flex:1 1 140px;border-left:1px solid var(--line)}
+@media (max-width:520px){.hf-name{border-left:0;border-top:1px solid var(--line)}}
+.hform input{border:0;background:transparent;padding:4px 0;font-size:1.15rem;color:var(--fg);text-transform:none;letter-spacing:0;font-weight:500}
+.hform input:focus-visible{outline:none}.hform:focus-within{border-color:var(--accent)}
+.hf-go{flex:1 1 100%;background:var(--accent);color:#1D2B36;min-height:54px;font-size:1.02rem;font-weight:700}
+@media (max-width:520px){.hf-date,.hf-name{flex-basis:100%}}
+.hform .err{flex-basis:100%;margin:0 8px 6px}
+.hform.pulse{border-color:var(--accent)}
+@media (prefers-reduced-motion:no-preference){.hform.pulse{animation:pulse 1.2s ease 2}}
+.trust{display:flex;flex-wrap:wrap;gap:8px 20px;font-size:.9rem;color:var(--muted)}
+.trust>span{display:inline-flex;align-items:center;gap:6px}
+.trust svg{width:16px;height:16px;fill:none;stroke:var(--g2);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.hero-alt{margin:0}
+.hcard{background:#173F5F;border-radius:30px;padding:28px;display:flex;flex-direction:column;gap:16px;box-shadow:0 30px 60px rgba(23,63,95,.25);color:#F7F4E8;min-width:0}
+.hc-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.hc-t{font-family:var(--display);font-size:1.5rem;font-weight:600}
+.hc-d{font-size:.78rem;font-weight:600;background:rgba(247,244,232,.12);padding:6px 12px;border-radius:99px}
+.hcard svg{width:100%;height:auto;display:block}
+.hcard svg text{font-family:var(--body);font-weight:700;font-size:18px;text-anchor:middle}
+.hm-ring{fill:none;stroke:rgba(247,244,232,.12)}.hm-sq{fill:none;stroke:rgba(247,244,232,.45);stroke-width:1.5}.hm-sq2{fill:none;stroke:#E99A27;stroke-width:1.5}.hm-ax{stroke:rgba(247,244,232,.15)}
+.hm-o{fill:#F7F4E8}.hm-ot{fill:#173F5F}.hm-c{fill:#D84A32}.hm-ct{fill:#fff}.hm-t{fill:#287B91}.hm-tt{fill:#fff}.hm-x{fill:#E99A27}
+.hcard svg .hm-xt{fill:#1D2B36;font-size:26px}
+.hc-core{background:rgba(247,244,232,.08);border-radius:16px;padding:14px 16px;display:flex;flex-direction:column;gap:4px;font-size:.93rem;line-height:1.55}
+.hc-k{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#E99A27}
+.lp-sec{display:flex;flex-direction:column;gap:10px;max-width:680px;margin-bottom:-56px}
+.lp-sec.center{align-items:center;text-align:center;margin-inline:auto}
+.lp-h{font-size:clamp(2rem,4vw,2.9rem);line-height:1.1;font-weight:600;color:var(--navy)}
+.svc2{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+@media (max-width:960px){.svc2{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.svc2{grid-template-columns:1fr}}
+.sv2{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:22px;display:flex;flex-direction:column;gap:8px;min-width:0;height:100%}
+.sv2 h3{font-size:1.02rem;color:var(--navy)}.sv2 p{color:var(--muted);font-size:.92rem;line-height:1.55}
+.ic2{width:46px;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;flex:none}
+.ic2 svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.ic2.c1{background:#E5EDF3;color:#173F5F}.ic2.c2{background:#DDEFF2;color:#1F6577}.ic2.c3{background:#FCEBD0;color:#8A5208}.ic2.c4{background:#E8E2F2;color:#4B3F7A}.ic2.c5{background:#F8DFD9;color:#A8341F}
+.bdg.free{background:#E2F1EB;color:#1F6B57}.bdg.pro{background:var(--accent);color:#1D2B36}
+.steps4{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+@media (max-width:760px){.steps4{grid-template-columns:1fr}}
+.st2{display:flex;flex-direction:column;gap:10px;border-top:2px solid var(--navy);padding-top:18px}
+.st2 h3{font-size:1.08rem;color:var(--navy)}.st2 p{color:var(--muted);line-height:1.6}
+.n2{font-family:var(--display);font-size:1.4rem;font-weight:700}.n2.a1{color:var(--accent-ink)}.n2.a2{color:var(--minus)}.n2.a3{color:var(--g2)}
+.sample2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;align-items:center}
+@media (max-width:860px){.sample2{grid-template-columns:1fr}}
+.s2-txt{display:flex;flex-direction:column;gap:16px}
+.s2-quote{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px;display:flex;flex-direction:column;gap:10px}
+.s2-quote .q{font-family:var(--display);font-style:italic;font-size:1.4rem;line-height:1.45;color:var(--navy)}
+.books{display:flex;justify-content:center;align-items:center;min-height:400px;padding:20px 0}
+.bk{width:240px;height:330px;border-radius:10px;padding:24px;box-sizing:border-box;display:flex;flex-direction:column;flex:none}
+.bk-in{background:#fff;border:1px solid var(--line);box-shadow:0 20px 40px rgba(23,63,95,.12);transform:rotate(-5deg);gap:9px;font-size:.85rem;color:#44525D}
+.bk-cov{background:#173F5F;color:#F7F4E8;box-shadow:0 24px 50px rgba(23,63,95,.3);transform:rotate(4deg);margin-left:-100px;justify-content:space-between}
+.bk-cov img{width:54px;height:54px;border-radius:50%;object-fit:cover}
+.bk-cov div{display:flex;flex-direction:column;gap:8px}
+.bk-k{font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#287B91}
+.bk-cov .bk-k{color:#E99A27}
+.bk-t{font-family:var(--display);font-size:2rem;line-height:1.05;font-weight:600}
+.bk-s{font-size:.78rem;opacity:.8}
+@media (max-width:420px){.bk{width:190px;height:270px;padding:18px}.bk-cov{margin-left:-90px}.bk-t{font-size:1.6rem}}
+.prices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;align-items:stretch}
+@media (max-width:860px){.prices{grid-template-columns:1fr}}
+.pc{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:14px}
+.pc h3{font-size:1.05rem;color:var(--navy)}
+.pc-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.pp{margin:0;font-family:var(--display);font-size:3rem;font-weight:600;line-height:1;color:var(--navy)}
+.pp small{font-family:var(--body);font-size:.85rem;font-weight:500;opacity:.75}
+.pc ul{margin:0;padding-left:18px;color:var(--muted);line-height:1.9;font-size:.95rem}
+.pc-main{background:#173F5F;border-color:#173F5F;color:#F7F4E8;box-shadow:0 24px 50px rgba(23,63,95,.22)}
+.pc-main h3,.pc-main .pp{color:#F7F4E8}.pc-main ul{color:rgba(247,244,232,.9)}
+.pbtn{margin-top:auto;min-height:50px;font-weight:700}
+.pbtn.ghost2{background:transparent;color:var(--navy);border:1.5px solid var(--navy)}
+.pbtn.amber{background:var(--accent);color:#1D2B36}
+.pbtn:disabled{cursor:default;opacity:.85}
+.honest2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+@media (max-width:760px){.honest2{grid-template-columns:1fr}}
+.hc2{border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:12px}
+.hc2.sand{background:#E8DFCE}.hc2.teal{background:#DDEFF2}
+.hc2 h3{font-family:var(--display);font-size:1.8rem;font-weight:600;color:#173F5F}
+.hc2 ul{margin:0;padding-left:18px;color:#3F4D58;line-height:1.75}.hc2 b{color:#1D2B36}.hc2 a{color:#173F5F}
+.faq{display:flex;flex-direction:column;gap:6px;max-width:820px}
+.faq details{border-top:0;border-bottom:1px solid var(--line);padding:16px 0}
+.faq summary{color:var(--navy);font-size:1.05rem;font-weight:600}
+.faq p{margin-top:10px;color:var(--muted);line-height:1.65}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .ic2.c1{background:#20364A;color:#A9CBE6}:root:not([data-theme="light"]) .bdg.free{background:#1D3B33;color:#8FD9B6}}
 </style>
 </head>
 <body>
@@ -486,7 +590,7 @@ footer.ft{display:flex;flex-direction:column;gap:16px;padding-top:22px}
   <header class="top">
     <a href="#home" class="brand" data-nav="home" aria-label="Mind Compass, към началната страница" data-en-al="Mind Compass, go to the home page">
       <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCADAAMADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD7DpTSUV5pYtJRRQAUUUUAFFFFABRRWT4l8S+H/DVp9q1/WLLTYsZUzyhS3+6vVvwBpqLk7IG0tWa1FeLeIP2j/BNiXTSbTVNXdejJEIYz+L8/+O1xt/8AtP6mzn7B4Rs4l7efeu5/8dUV2QwGIntE5p4ujDdn03RXyuv7THist/yLuh49N82f/Qq1dM/aY1DcP7R8JWrr3+z3rKf/AB5TVvLcQlt+JCx9B9T6TorxzQ/2ifBN4yx6na6ppTnqzwiaMfihJ/SvS/DXinw54lh83QdasdQGMlYZQXX6r94fiK5amHq0/ijY3hXp1PhZsUUUViahRRRQAUUUUAFFFFAC0lFFABRRRQAUUjMFUsxAAGSSeBTYJUniEsZ3I33WxwR6j2pgPqrquoWOladPqOpXcNpZ26F5ZpWCoi+pNJrOpWOjaVdarqdzHa2drEZZpXPCKOp/+t3r4j+NfxS1X4g60VVpbTQ7dz9jss4z/wBNJPVz+S9B3J68JhJYiXZIwr4hUV5novxV/aL1C6ebTfAsf2K2GVOpTIDNJ7xoeEHu2T7CvAdS1C/1O/kv9Svbi9u5Dl5riQyO34nmqu4ngmtzwb4U1zxbqf2DRbMzMuDLKx2xQj1du306nsK+ipUaWGjoreZ49SpOtLXUzY8lc1Y03T9Q1KYQ6dY3V7J/dt4mkP8A46DX0d4I+CnhzR4o5tbJ1u9HJDgpbqfZOrfVj+Fep6bpqW8C29jaR28KjCxwxhFH4DArjq5nCL9xXOmGXykvedj5K074ZePrnDr4YvI1PeZkj/RmBrTPwo8eouf7C3ey3URP/oVfWKaXcHqoFP8A7Km9q45ZrUb0SNlllLq2fGWr+BvGOnIZLvw1qaIOrrCZF/Nc1h2s1xZXQliklt7mI5DIxSRD9Rgivuc6fcJyo/KsPxF4U0bXIjFrejWt4P70kQ3j6OPmH51rDNuk4/cZTypbwkeF+Afj14r0KSO21sjXrAHB85ttwo/2ZP4vowP1FfR/gHx74a8bWXn6LfAzquZbSXCTxfVe49xke9eFeMPgVbNuufCt+0Ljn7JeNuQ+yydR/wACB+teT3dp4h8H69GJ47zSdStzvikVijD/AGkYcMPpkVU6GGxavSdn/XQiNXEYV2qq6/rqfetFeKfBj42W2vyQ6D4rkitdVbCQXfCxXR/ut2Rz+R7YPFe115FajOjLlmj06VaFWPNFhRRRWJqFFFFABRRRQAU2aSOGJ5ppEjjRSzu5wqgckknoKdXlepai3xL8ZT+GLCQnwnpDhtYnRuL6YH5bZSOqZGW9cemM606fPd9FuZ1KnJZdXsdZo91J4tZdSAaPw+Dm0Rhhr/H/AC1YHpF/dX+L7x4wK6ioYwoUJGqqigAADAA9AKr61qVtpOlXt/cOuyztpLqRc87EUkn9MVDlzuy2KS5VqfMv7Xfj2S/1yPwNp8xFnYFZr8q3+tnIyqH2QEHH95v9mvntmy1WtX1S51bVrzVrxy9zezvcSsT/ABOxY/zqmNztgKWYnAA6k+lfXYeiqNNQR4Vao6kmzq/hj4Lv/G3iNdPtiYbWICS8uduRDHn9WPQD8egNfX/g/wAMafoWlQ6Totmtvax8nuzt3Zj/ABMfWsf4L+CE8LeELTTCg+2ygT38gHLSsOV+ij5R9D616naWyQoFUAYrwcdjHVnaOyPVw2HVKN3uUrLS44wCw3N71ZvpYNO065vpgBFbQvM59lUsf5VdAxXB/tCasdF+Cfi6/Vtr/wBmSwIf9qX92P1euCEXOaj3OmTsmy/8INWk8QfDLw9rE7FprmyRpSTklxwc/iK6zaPSvKP2Vb4XHwshs92TZTbAPRWRXH8zXql1PFbW8lxO4jijUu7HoAOpq8VBUqsl0TMsLN1aUZd0EgRELuyqqjJJOABWBf8Airw3bsY3v0lYdRChf9RxXn/inxLd65csAzRWSn93BnqPVvU/yrC4zXxWN4mcZuOHiml1f+R9fhOHk4qVeVn2X+Z6YfEXhi6bat28LHoZIWUVS8S+HtE8T6O1nqEEGo2bcq6N80bf3lYcqa4Doc1YtLye0lEttK8Ug7qcf/rrHDcVV4STqRXy0ZtX4dpSjanJ/PU8h+KPw11PwbIbyFnv9GdsJchfmiJ6LKB0Pow4PseK9a/Z0+LEmoeR4Q8T3Re7+5p95IeZsdInP97+6e/Q84z1el65aatC+m6tDCfPUxkOoMUwPBVgeBn8j7V4J8X/AABP4K1ZNQ00THR55f3L7jutpOvlk9fdW749RX6Jl+aYfN6PK3r0fX/h/wAz4TH5ZWyurzpadV/XT8j7N7UleafAD4hDxr4ZNpqEoOtacqpc88zp0WUfXofce4r0uuSrTlSm4S3R006kakVKOzCiigVmWFFFV9SvLbTtPuL+8lEVtbRNLK5/hVRkn8hTSuDdjzT9oPxvcaBosPhzRGZtd1n91EIz88UZO0sPRmJ2r+J7V0vw08LQeD/B1loUIUzIvmXci/8ALSZvvn6DoPYCvGvhMLn4g/GW/wDGupITBYfvoY25EbHKwIP91dzfUZr6HkmgsrKW7upBHDChkkduiqBkmunGNUYqgvWXr/wDkwidabrd9I/15md4q12PQbKERw/atQu5PJsrVTgzSH+SjqT2Fcl8YYLjSfgd4qlnuPtGoT6e32qcDG9mIUhR2UAkAdh7k074ftN4n8SXvjW/UiGMm10yE9I1/iP1wcE+pPpW18WNNfWfhr4h0yNd0lxp8qoPVgu4fqBXm4Gt7Woqv2b6enf5/l8z2MwoLDx+rr4re969vl1879kfn8xGSPeus+DemR6z8T/D9jKA0ZvFldT3EYL4/wDHa5Atu+bGM81337Ot1HbfGzwz5pwk1xJDn3eJwP1xX3WIbVKTXZnyVFJ1Ip9z7l0u2EUIJHzNyTV+uY8M+K7W+1a/8P34Sz1iwm8uSEn5ZUI3RyIT1DLg46g5HOK6evi4TjO9mfSVaU6btNW/yCvB/wBuLVfsPwbj05Xw+panDFj1VA0h/VVr3ivkv9vzVt2o+FdCVv8AVw3F64/3isa/+gvXdgIc+IijlxDtTZ237I92I4NR04n/AFlnbXCj3UbT/wChLXpvxYvWt/D8VqhIN1MFb3VRuI/PFeF/s0agLXxnpUO7C3dg0H1Plhh+q16v8ZbwG+0+0ByY4nkYf7xAH/oJrz+LZOjSqPrJL8dDfhKKr1YR/lb/AA1OIDc9acWAGSarCTnNc9461WeGwj0uwSSS+vz5UaRgl9vQ4A7noPxr8toYeVeoqcep+qOPVmXr/wAQHjuXg0eCJ0Q48+UEhj6gDt7ms+1+IOsI4Nxb2k69wEKH8wa6vwZ8GpNQiabXdWFoyEB7S0CySRkjOHY/KrYxwM4rp7r4HeG3h222q6rDJjh2KOPy2j+dfZ08owyhy8if5nm1M1wtOXK3+Bzvh3xZpmskQqTbXR/5Yyn73+6eh/nXo+lyWXinRLnwxriees0RQEnmRR6H++vUH29q8V8bfC3xH4aie+gK6nYR/M01spDxgd2TqB7jI+lW/h/4vuJLiC0vJyLuNg1tcZ5cjoD7+/euL6rUyuqsRh/hW68h4mhQzKg4pp9vIwdMudY+EXxWQybpBZy4kxwLu1fqR9V59mX2r7RsLu3v7GC+tJVmt7iNZYpF6MjDIP5GvAPj3oUXiv4e23jKwiAvdNB+0Ko58rOJF/4CcMPYmt/9lHxQ2q+C5/D1zIWuNIkHlZPJgfJX/vlgw+mK/QalaGOwsMVDfqfltOjLBYmWGlt0PZqKKK847grxz9qnxKdM8G22gW8m2fVpf3uDyII8FvzbaPzr2OvkH9pLWpNY+KN9BG2+LTkSyiH+0Buf/wAeYj8K78tpe0rq+y1ODMqvs6Dtu9D2P9mnRRp/w7hvWXEupTvcsT1KA7E/RSfxqz8eNde30+18O2rHzbv97OB12A/Kv4t/6DXb+DNNXSfDWm6aoAFraxQ/iqgH9c143d3I8T/F1JM74WvgienlxdPz2k/jXzud4lyi1F61Hb5f1ofV8M4SKq+0kvdpRv8ANf8AB1+R7B4P0xdK0Cx01QP9HhUOfVzyx/Mmta8TdAwxzinWqYQE9TzUzjcuK7aNNQgkjyK1WVSo5y3bPgn46+DZPB3ju6ihiK6ZfM1zZNjgKT80f1Vjj6Fa4ay1C70jUrLVrBtt3Y3EdzAf9tGDD8Mivuv4reCNL8X6JLpepxsqsfMt50GXt5ccOv8AIjuOK+NPiJ4F17wZfta6vanyGYiC7jBMM4/2W7H/AGTyK+rwOMjXp8kt/wAzxMThnSnzx2Po34q6hBr3g/w98ZvCnzoIUiv4geTCzfdfHRo5MrntnPau0+HXxHg1HTbeS8mae1lGEuDy8Z7q4749ev1r5H+EPxTm8APf+H9btJNV8HawGjv7JT88JYbTLFnjdjqvAbA5BGa3fAviq28PazKLO/8A7R0KeUjzkUjeoOFlCnkNjqvXqOwr43PcuxGEqfWMNv8AhJdn59j77IZ0c2wbw1X4oarvby9H+Z9zxSxzRLLFIskbDKspyCPUGvhL9szVf7S+OF/bBtyabY29qOeh2mRv1kr3iy8d3fhqGK7s5EvdPkw7QlvldT/Eh7HHf86+Qfijrw8T/EPxFr6h1jvr+WWNW6qmcKD9FAr0eF8dHH3qWs0tUeBneW1MClzaxls/Q9l+FmoDS/EPhvUGYIkM1uXJOAFICtn8Ca9S8Y6wur+I7u8jbMO7y4f9xeB+fX8a8R0ckabZ/wDXGP8A9BFem+FpvtQMkpDv29q4/EBSVOlJba3+Vrfmw8OuVzxF91a3zvf8kaVvBLKM42j1NY82YvFK2Wgl7nxDfYt1nY5W1jPUD0wMk9+ufSovGXikWQfT9OcNdEYklHSL2H+1/Ku3+A/hY2Fn/wAJDqEZN7er+4DD5o4jzn6t1+mPWviMqwNStPnlov0P0vG1Y4TDOvVW/wAK7v8Ay6npHhLw3BpGjW+nxMzJGMs7felc8s7e5PNbf9nRY6VYtQdo4xVmvt6VKPKj8zrYipOblJ6sxLnT2XlMmvCPjV8OktI5vFHh+DyRGfMvbaMYC9/NQDpjqQPqO9fSJUEVm6nZLIjEIpyCCCMhh6Gpq0bo6sDj54eopL/hzxv4E6/Br2n3WjX4WRbqFkmjPRmC4b/vpCfyrgvhBJP4A/aBbw5cOwglnk01yejK3zQt+JCf99GtC2sm+HXxqhtosx6ddyLNbA9BGSfl/wCA/Ov0xTf2obFtC+Jei+KLUbTPCku4d5beQf8AspT8q34e/dyqYR7O9vz/AMyeLKUeenjKezs/0f6H1MOlFQ2Vwl1aRXMRykyLIp9mGR/Opqs88bLIsUbSucKgLMfYcmvha2uX8QeP4J5TuOo6srtnv5k4P8jX2l46uDaeC9bugcGLT7hwfcRtivin4fYTxz4eDdBqNtn/AL+LXtZVG0Kkjxc1ledOP9dD7a8QXf8AZ3h3Ur4HaYLaWQH3CnH614V8HEMvj+y3clYpW/HYf8a9d+K0ph+HuskcEwhPzdR/WvI/g5IsfxDsQT/rI5kH1KE/0r4HMpf7ZRj6fmfpmR07ZXiqi3aa+5f8E+h4xhQKdSZCpuY4UDJJ6CsTVPF/hfTMi+1/TomHVPPDN+S5NfTRhKWiR8XKcY6ydjVu4FmjKsM5rmNb0WC5tpbS8tYbu0lGJIpow6MPcHg1l6n8YPB9ruFu99fMOnk25UH8XxXI6r8cZXymm+G0Ho11cE/+OqP61008BiZaxj+hyzzLDUvil+pz3jD9nnwJrXmPYG/0SVucW0gkiz/uPnH4EV5p4s+DN18P/Db6hba5Jq9mLgLIrWvltCG4DZDHIJwO2Miu71j4neLL1zsltbJT2t7cZ/NsmuY1PWNa1IEX+pXtwrdVeUlfy6V6Ty3FVqfJUmrff/X3mWD4mw+X4lV6MG2vldf15HJaXq2pwaJPYGGea3VGeHCn5DgnA9ie3rXjLkkEt1PX619BENx1rhviJ4PMkcus6XCS4UtcwKOvq6j19R+NdGX5VTy/mcXdy36FZnxXLOqsVOCgo3trfe2+3bsdTpOBpNmf+mEf/oIrdW91ey0oG0s7pEmXi4ERwF/2Tjr71a+GPheTVdOsr++jYWCQx7EI/wBcdo/8d9T36V6oqbAFVdoAwABgAV8Jxrn+Gco4OC53F3b6Ly9e/bb0+h4EwNbCVJY2ovdkrJd9U7/hp3/Py74VeFW8T+IgblCdOtCJbon+Pn5Y/qx6+wNfUWjWgAD7QAOAAMACvMrV5rYs1u7QljltnGT7+ta9l4o1y0O0TJKo7SRA/qMGvn8FxDhoLlqRa79T6jPKWJzGpzxaSWy/M9RRdop1cLa+O514u9NRveKQj9DmtW08a6PNgSrdW5/249w/MZr6CjnmAq7VEvXT8z5WpleLp7wv6a/kdLSOu4Yqha63pF1jydRtyT2L7T+RxWgpDKGUhge45FelTq06qvCSfpqcU4Sg7SVjw/8Aag0fboOm+IoFxNp14AWH9x//ALJV/Osv9p+FdS+Ffh7W1GWjuY+f9maE/wBVWvTPjnZLefCrxEjDJSzaZfqhDD+VedfFhPtH7M1i7/ejg06QfXKj+tVgV7PHQfmdWYT9tlNnvFv8kz1P4SXp1D4aeG7tiS0mmQbj7hAv9K6quC+ARP8AwqPw0D2sgP8Ax5q72tqqtUkvNnn0neEX5I5n4q5/4Vv4jC9Tpk//AKAa+J9HuxZa7p13nHkXUMp+iup/pX3H45tzd+EdYtQMmaxnQD3MbV8Egs6DsSoH6V7eTpShNHiZw2pwZ9wfF8eZ8OtZK8gQiQY9A6t/IV4Z4Pvxpni3TL9jhIbpC5/2ScH9Ca9p0e5Xxd8IbKbO5tR0kRv/ANdDGUb/AMeBr56tHM1pE7ZDMg3DuG6EfnmvzjPYSpV4z7fofrfCMoYjBVaT2f5NWPp/xX4L8M+KUC67pi3eBgMJpIyB9UYGvM9e/Zt8F3u9tL1zxVornkC31NpUH/AZAx/WvR/hvrX9u+DrK7Zw08aeRcevmJwT+Iwfxrfff2r6mhjZ+zU6cnZnweJwap1ZU6kdU7Hyx4h/Zb8XJltA+J8k47R38csZ/wC+kZv5V53r/wABfjppW5oQ+rIv8VhqwYn/AIC5Vv0r7lbzKgk8zFdMM5xEfP1MHl1GXQ/N3xDonxN8Psf7b03xVYKOrTxTBf8Avrp+tYA13WTx/bN8fb7S3+Nfp2zSbSNzAdxnivmP9q250u/1O28O6boumtcW5E99dpaxiXcR8sW8DPAO48919K66eef8/I/iXh8glianJSevofLp1zWs/wDIXv8A/wACH/xrT0e6126/fTaxqKwD0uXBY+g56VYu9DtYZB51uYzkcBiKvbAke1QFVRgAdhXRWzNTh+76nq4HhZ0q3NibNLouvrodtq0/iCxtLeW01jUltzCh2JcuAo2joM9PasX/AISPxCT/AMh3U/8AwLf/ABr0CG2W40a1VuvkJg/8BFeLeM9QubTxTeabY7I1hYLhVBO7AJx+Jr47JUsfUlRcVda3t5n3ud18PluHjiJbOysu9v8AgHVDxLr4+9r2pD63b/41qaU/j3WJAukt4lvien2czOPzHFdR+x1r1o3ie98NeINPs7i4vE8/Trqe3RnWRB88QYjOCvzAeqn1r6h8RaRqOoWeNH1290W9jX9zLDh4s+jxMCrL9MH0NeniMFToVOScUvO3/APmFxLCrDmowv6v+vzPmvRPhj8a9UCsRqNgjfxX2qeVj/gIYt+ldzoXwE8dSsra18RWtlI5W1eaZvzZlFTW3xo8QeD/ABNJ4a+JWjRrJER/p2nqQGQ/dkCHh1PqpB6jGRivbfD2sWGu6VBqmkXsN7ZTjMc0TZB9R6gjuDyKzr4L2KTnTVns0tDz1xHXrtqnJRa6W1/G5wmjfA/RbYK2p+KfFWpuOobUDCh/BOf1rufD/hDw9oLK+mWLo4/jkuZZW/N2NayeZUqZ71NOnTTvGKXyOKvjMRW0nNteun3HMfF5xH8LvE7t/wBAucfiUIFed/HKEaZ+z79hfgxRafD+IKZ/ka9I+Jlt/aPhf+xhnOp3dvaHH9xpVL/+OK9ea/tbSlvAFnpsI/e6jq0MUajvhXP8ytdWFjzYun6o5sVU5cDKPr+SR3fwWtza/DLw5AwwV06En/gS7v6121ZHhuzWw0y2sU+7bxJCP+AKF/pWvUuXNJy7slR5Ul2K9+oaBgwyCOfcV8G+KtPOkeI9T05hg2t3JFj2DHH6Yr71uBlD9K+Q/wBpfRX0z4gHUEQiDU4RJnHHmJ8rj8tp/GvWyedqrh3PKzaF6Sn2PTf2V/EA1HwPqGgSP+/0y48yME/8speRj6OG/MVxHjPT/wCxPHuq6YV2wzyfbrX0KSHLAfR91cd8D/Fi+EviFZXdxJssLv8A0S8JPAjcjDH/AHWCn6A17j+0B4bnvdHj17To91/pBaTCjPmQH76++PvfTNeJxPl/NNr+bVev9fmfV8C5ooTUJvfR/o/0Mb4S+KV8N64YL2Xbp16QkpJ4if8Ahf6dj7H2r6DGCARjB9K+O9NvIr+0WeFgQeGXup9K9g+FXxFWzhi0PX5T9nQBba6Y58sdkf8A2fQ9uh4r5rKMw9g/q9bTt5eR9VxNkcqz+tUFeX2l380eyFQaY0antTo3SSNZI3V0YZVlOQR6g06vqLJnwGxzfjvWbfw14cuNTkCtKBst4z/y0kP3R9O59ga+P/GurJazzTTuLnUrljIxbnBJyXb+g/pXpfxt8Z3niTxamheG7abU7iLMVlbwIX3H+KUgduMDPGBnpXz34yttU0vxHe6VevFLqEEm26dJBIFkwCy7hwSpODjgEEDpXlQpSxlfm2prbz8/Q/Qcooxy7De//Enrbql0X9foZ2q3C7HkuJMu5zzyWNOjcSQLIOjLn9KpSaZLLG0jsWfrk1NZK6WMQYEfKcE9wCR/SvcSio2QSnOVT3lZHtOl86ZaZGf3KcD/AHRXi/xZ8GeJ/CfjC5l8QWTwfbJ3ntbmM7opgTkbW9QMZU4I9K968E2Yv7vRLTH+taBT9Plz+ma+gvE3h7SPEmjz6RrmnQX9hcD54ZVyM9mB6qw7EYIrwOGsT9VrVajV09Dj40j7enRop7Xf5L/M+FfAOpyG7ttQsJvs2qWMizKV4wynIYe2eo/xr778D61a+KPCthrtsoUXMYMkYP8Aq5Bw6fgwP4Yr41+MHwP8Q/D28fxL4UafVNDiJdiF3XFovcSKPvp/tj/gQHWvUf2RfiBbXF1LoMkoSG/O+ONm/wBTcheVHs6jg9yo719vj4Usdh1Vp6uJ+YUPaYLEckvhl+Z3H7UnhC3174ey67DEP7R0QGdXA5eAkeYn0HDD3U+tfPnwZ+I2o/D/AMRpNvkn0e4cC/tAchl6eYo7Ovb1HB9vs3xlapc+F9Wt5ADHNYzowPoY2FfnnGcqnP8ACP5UZO1WoTo1FdL9SM0TpVo1YOzf6H6Qadd2uoWFvf2UyT21xGssMqHKujDII+oNWK8K/Y+8UvqPhO98L3Mu6XSZBJbZPPkSE/L9FcN+DCvda8fEUXRqOD6Hr0Kqq01NdSneWvn6haTN9y23yL/vldg/IF/zryH4qxf8JD8bvAvhoDfDYLLrF2OoCqRtz9SmPxr2lwSMDvXk/wAL4f8AhIPGvi74guN0F3c/2TpbdjbW52s49mkH/jtKk+Tmqdl+L0Cr77jT7v8ABanp1gpCZPUnNW6itl2oBUtYx2NnqxHGVrxz9o7wudc8Gzz28Re705vtcIA5ZQMSL+K8/wDARXsh6Vla3biSEnaDjsRwa3oVXSqKa6GNakqsHB9T8/TgjsQf1r6r+AfjNfFngxdLvZQ+r6Qgik3cmaDoknvx8p9wPWvCPjH4QPhHxbNFBGV067Jnsj2Ck/NH9VJx9MVg+C/Euo+FPElprmmPia3b5kJ+WVD96NvYj8uD2r6TG4aOYYb3d90fOYLEzy/E+9tsz0f4peFLvwL4gOq6TGW0W9f5V/hic8mI+g6lT6cdqqaRqdrfqHhfDj70bfeX/PrXvml3/h/x/wCDRewRpd6ZfIY57eT70Tj70bY6Mp7/AEIrwD4m/DnVPCF0+o6eZrrR92UuF+/B/syY6f73Q+xr8zx2XKpJqWkl/Wp+75HndPF0406kve6Pv/wfzOy8NeNNf8O7Y9PvN1tnJt5hvj/AdV/Aiuk1r4s6jqWg3GnDT0sprhPLe5gmJKKfvbVYcMRkAknGc814LY+Ir6ABZglwv+1w35irs/ilXg2JZMG95OP5VwU45hQ/dwl7vy/U9OvkuDr1PaTprm77ffbf5nVXfjRvD2h3Vn4YsLfRophtmuI2Ml3dMf78zc/goAHbFeQLal5Wlk+Z3YsxPcnkmte7upbuTdMRgfdUcBar8V7FCdSEfed2dEMvowd4x/zfq3qys9uvllQK1/H3hx9G8D+Cb5oyhvrG5Zsjv55df/HZBWt4A8LXHizxFb6XCrLCfnupQOIogfmP1PQe5r1T9qzRIx8NNLuraERxaZeJEigfdjeMoB+arXbhajctTws6r06delSjv1/Qo/A23+1+JdJyMiC184/hGAP1YV9FrbBoxxXiH7NVp5ks96RxHZQxD6tyf0WvfI1+UVw5VS/dNvq3/kfM8UV+bGKK+ykv1/UyXiaJs44rxP4k/AwprI8bfC4xaXrkUgmm0zIjt7sg7sp2ikyM/wB0n+7yT7/NEGFV0UxPjtXsUa1TDT5os+aqwhXhyzRw+teNobv4H6v4nuIJLO8h0+aG6tJkKSW93t8sxMp5B3sMeoII4NfDn3QFHYYr6W/bC8ZwJb2vgnT3TzpnS81Ir12gfukY+p+9z2VfWvmlsAj3r6vKqXJSc7W5vyPmMzqc1RQvfl/M9h/ZE1GS1+Li2qsdl7p08bD127XH/oJr7IFfF37KVu0nxetp1Bxb2Vw7H0yoUf8AoVfZ6sAm4kAAZJNeXm9vrGnY9PKr+w17nMfE7Ub608NnTtGYDWtYkGn6f/sSODulPtGgeQ/7vvV3w3olj4e8P6doGmIVtLCBYIs9SFH3j7k5J9yag0q1Opa4/ia6U7Eja30xGH3ISQXlx2aQgfRFX1NbkS7m3GvLqv3VTXqz0IL3nImQYWloopFBUU6B0I9ampDyKAPL/iv4LtvFfh+fSpSsU4Pm2c5GfKlA4P8AunoR6fSvj7V9PvNK1O403ULd7e6tpDHLG3VWH8x3B7gg1+gOp2oljPHI6V4z8aPhvH4stDf6eqQ65bJhCeFuUH/LNj6/3W7dDx09nLsb7P3JbfkeTmGC9r78d1+J4P8ADDx7qXgTW/tVqv2ixnwt7Zs2FmUdx/dcdm/A8V9X+G9b0bxXoaatolyl3ZyjbIjAb4mxzHIvY+x4PbIr4k1G3uLO6ltbqGSCeFikkci7WRh1BHY1qeC/Fuu+D9XXU9CvWt5eBLGRujmX+669GH6jsRXZmOVQxi54aS/P1/zOTLs1qYKXJLWP5eh9F+Mvg3oWrSPdaLKdHuWOTGq77dj/ALvVf+A8e1eY638KPGmnMRFpQ1CMdJLOUPn/AICcMPyr1z4cfGDwt4uEVnqTx6FrDceTNJ+4mb/pnIeP+Atg/WvSZLKZeNua+MxGEqUJ8tSNmfpeXcU1uRck1Jef9XPkBfA3jJpPLXwvq5b/AK9mH69K6rwx8GfFGoTK+r+To9tn5t7CSYj2RTgfiRX0mLWUnGw1YgsHYjdwKxVO531+KsQ42ilHz3Oe8CeEtK8N6cun6TblEyGmlc5kmb1Y9/p0HaqX7Qulfb/g34jhVMvDafaU+sTK/wDIGvQ7a3WJcAVT8TWCanod/p0gyt1aywEf76Ff611Qp8iufKyxk6ldVJO7vc82/ZptPL8EC7I5uJVwfULGo/mTXrq9K4P4Gae+n/DDQIZV2ym0WSQH+83P+Fd4M0YOnyUkis2re2xlSfn+WgtcH8ZfiHpXw+8ONeXBjuNTnBWxs93Mr/3m9EXufwHJrA+L3xx8PeDY5tO0h4dZ11cr5Mb5ht29ZXHcf3Bz64618h+KvEOseKNcuNZ1y9kvL2c/M7cBVHRVXoqjsBXv4HLJVnz1FaP5nzeMzCNJcsNZfkV9c1S+1rV7rVdRuGuLy6laWaRurMf5DsB2AAqkOTzRg1oeGtF1DxBrtpo2mxeZdXT7F9FHdm9FAyT9K+n92MfJHzusn5s9+/ZA0J1XVPEciECZltICR1C/M5H4lR+Br6XlgjuLcwygmNvvr2Yeh9vWuO+G3h+08PaDZaRYj/R7OIRqxHLnqzn3JJP4126DC18fjqvtazkj6vB0vZ0lEZJydop6jAxQBS1x2OoKKKKACilpKAEZQwrJ1Sx8wF0HzVr011DCmnYGrniHxZ+GOneMYGuotljrUa7Y7nb8soHRJAOo9G6j3HFfL/ibQNY8N6q+ma1ZSWlyvIDcq6/3kYcMvuK+/NQsVkBZRhq5Hxb4Z0rX9PbTdc0+O7g6ruGGQ/3kYcqfcV7GCzF0lyy1R5WMwEar5o6M+IAPlOcHNdt4G+LfjjwgqW1jqpu7FOlnfDzogPRcncv4ED2rqvHfwQ1jTjJd+GZTqtqMn7M5C3CD0HZ/wwfavHr62ubO7e2vLeW2uIzh4pUKOv1B5r24yo4qNnZo8aUauGldaM+nPDX7TOiSqqeIvDl5Zv8AxS2UizJ9drbWH613ml/HH4XXqA/8JMlox/huraWIj8SuP1r4hNADdq455Nhnqro6YZrXW9mfeyfFT4cMm5fGuh4/6+gKzNW+NHwwtEJfxbaTMP4baOSYn/vla+G9xHGTSMxPU1n/AGJRe8maf2xUW0UfVGtftJ+FdLtvs/hrQdQ1BkG1DNttol9OPmbH4CvHvHnxq8d+L0e1m1EaXp78G00/MYYejPne30yB7V5tRmuzD5dh6Hwx189TlrY+vW+J/cSHpgdhUYpS2Af512HgL4beJ/F8iSWlobPTyfmvblSseP8AZHVz9OPcV1ynGCvJ2OaMXN2SOY0qyvNT1CHT9PtpLm7uH2RRRrlnP+e/avqv4LfDiDwhp3nXIjuNbulAuJV5WJevlIfT1Pc+wFaPw2+HeieDbXZp0TXN/KNs97Mo81x/dH9xf9kfiTXpmkaf5YDuPmrw8dj+ZcsdvzPYwWCs+aW5d0u2EMKrir1Ii7RilrwW7u57aVlYKKKKQwooooAKUUlLQAlFL3pKAEYA1Uu7RJQQVq5RTTsFjm7vTXXJTkelc14m8L6Lr9v9m13SbW+QD5TMmWX/AHWHzD8DXo7IGqtPZxv1UVvCu4u5jOipKx84eIfgD4fumaTRdVvtNc8iOUCeP9cMPzNcPqnwI8Y2pb7Fc6VqCdtsxiY/gwx+tfW8+koclMiqculSj7pBr0aeZVF9q/qefUy+D1SPjK7+E3xCgbB8NTyj1hmicfo1V1+F/wAQWbA8J6gPrsA/9Cr7OfTZx/Bmm/YJv+eddKzSfkcry5X6nyLp/wAGviBcH59IgtQe9xeRrj8ASa6nRf2f9SlZX1rxBa26947SIyt/302B+hr6TXTbgn7mKsQ6O5PzHFZyzOb6pGkcvj2PLfCfwm8GeH2SePTDqF2vInvm80g+oXG0flXodnYyykBUwvAHHQVvW+lRJyRk+9aEVuqDgAVwVcY5+Z20sGo+RR0/T1hAJGWrTRQopQAKWuKUnJ3Z3RioqyCiiipGFFFFABRRQKAP/9k=" alt="">
-      <span><h1>Mind Compass</h1><span class="tag" data-en="Destiny Matrix · Find Your True North Within">Матрица на съдбата · Find Your True North Within</span></span>
+      <span><h1>Mind Compass</h1><span class="tag">Find your true north within</span></span>
     </a>
     <nav class="topnav" aria-label="Основно меню" data-en-al="Main menu">
       <a href="#home" data-nav="home" data-en="Home">Начало</a>
@@ -497,75 +601,113 @@ footer.ft{display:flex;flex-direction:column;gap:16px;padding-top:22px}
   </header>
 
 
-  <section id="welcome" class="landing stack" hidden>
-    <div class="welcome">
-      <div class="w-text">
-        <p class="w-eyebrow" data-en="Welcome">Добре дошли</p>
-        <h2 data-en="Your Destiny Matrix, explained in plain language">Вашата матрица на съдбата, обяснена на разбираем език</h2>
-        <p data-en="Mind Compass calculates the matrix from your date of birth, using the classic 22-arcana method, and translates it into everyday language: what energises you, where the traps are, and what small step to take this week.">Mind Compass изчислява матрицата по датата на раждане, по класическата схема с 22 аркана, и я превежда на ежедневен език: какво Ви зарежда, къде са капаните и каква малка стъпка да направите тази седмица.</p>
-        <div class="w-actions"><button type="button" class="cta" data-nav="mine" id="ctaMine">Изчисли моята матрица</button><button type="button" class="ghost light" data-nav="sample" data-en="See an example">Разгледай пример</button></div>
-              </div>
+  <section id="welcome" class="landing" hidden>
+    <div class="hero">
+      <div class="hero-txt">
+        <p class="eyebrow" data-en="Destiny Matrix · 22 archetypes">Матрица на съдбата · 22 архетипа</p>
+        <h2 class="hero-h" data-en="Your birth date holds a map. &lt;em&gt;Learn to read it.&lt;/em&gt;">Датата Ви на раждане е карта. <em>Научете се да я четете.</em></h2>
+        <p class="hero-sub" data-en="What drives you, where your patterns repeat in money and love, and one small step to take this week. In plain words, without fear or fatalism.">Какво Ви движи, къде се повтарят моделите Ви в парите и любовта и каква малка стъпка да направите тази седмица. На разбираем език, без страх и без фатализъм.</p>
+        <form class="hform" id="wForm" novalidate>
+          <label for="wDate" class="hf-date"><span data-en="Date of birth">Дата на раждане</span><input id="wDate" type="text" inputmode="numeric" placeholder="дд.мм.гггг" data-en-ph="dd.mm.yyyy" maxlength="10" autocomplete="off"></label>
+          <label for="wName" class="hf-name"><span data-en="Name (optional)">Име (по желание)</span><input id="wName" placeholder="Вашето име" data-en-ph="Your name" autocomplete="off"></label>
+          <button type="submit" class="hf-go" data-en="Show my matrix">Покажи матрицата</button>
+          <p class="err" id="wErr" role="alert" hidden></p>
+        </form>
+        <div class="trust">
+          <span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg><span data-en="No sign-up">Без регистрация</span></span>
+          <span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg><span data-en="No birth time needed">Без час на раждане</span></span>
+          <span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg><span data-en="Your data stays on your device">Данните остават на устройството Ви</span></span>
+        </div>
+        <p class="hero-alt"><button type="button" class="link" data-nav="sample" data-en="See a sample matrix">Разгледайте примерна матрица</button></p>
+      </div>
+      <div class="hcard" id="heroMx"></div>
     </div>
+
     <div id="todayBox" class="stack" style="gap:12px"></div>
-    <div class="lp-head"><h2 data-en="What you will discover">Какво ще откриете</h2><p class="note" data-en="Right now every section is open and free.">Засега всички раздели са отворени и безплатни.</p></div>
-    <div class="svc">
-      <div class="sv"><div class="sv-top"><span class="ic t1" aria-hidden="true"><svg viewBox="0 0 48 48"><circle cx="24" cy="17" r="7"/><path d="M11 40c1-8 6-12 13-12s12 4 13 12"/></svg></span><span class="bdg free" data-en="Free">Безплатно</span></div><h3 data-en="Personal portrait">Личен портрет</h3><p data-en="Who you are at your core, how people see you and what you are gifted at.">Коя сте най-дълбоко, как Ви виждат хората и в какво сте дарена.</p></div>
-      <div class="sv"><div class="sv-top"><span class="ic t2" aria-hidden="true"><svg viewBox="0 0 48 48"><circle cx="19" cy="24" r="9"/><circle cx="29" cy="24" r="9"/></svg></span><span class="bdg free" data-en="Free">Безплатно</span></div><h3 data-en="Areas of life">Сферите на живота</h3><p data-en="Money, love and purpose across the three stages of life.">Пари, любов и предназначение в трите етапа на живота.</p></div>
-      <div class="sv"><div class="sv-top"><span class="ic t3" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 26V8M24 15l-7-6M24 15l7-6M24 20l-9-3M24 20l9-3"/><path d="M8 26h32M24 26v14M24 31l-8 8M24 31l8 8"/></svg></span><span class="bdg free" data-en="Free">Безплатно</span></div><h3 data-en="Karma and lineage">Карма и Род</h3><p data-en="The karmic lesson, the gifts of your family line and the tasks passed down.">Кармичният урок, родовите дарове и задачите, които се предават.</p></div>
-      <div class="sv"><div class="sv-top"><span class="ic t4" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 40S8 30 8 19a8 8 0 0 1 16-3 8 8 0 0 1 16 3c0 11-16 21-16 21Z"/></svg></span><span class="bdg free" data-en="Free">Безплатно</span></div><h3 data-en="Health map">Карта на здравето</h3><p data-en="Where the energy flows and where it gets stuck, chakra by chakra. Not a diagnosis.">Къде енергията тече и къде засяда, чакра по чакра. Не е диагноза.</p></div>
-      <div class="sv"><div class="sv-top"><span class="ic t2" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 6l3 14 14 4-14 4-3 14-3-14-14-4 14-4Z"/></svg></span><span class="bdg free" data-en="Free">Безплатно</span></div><h3 data-en="22 arcana">22 аркана</h3><p data-en="The light side and the shadow of each arcanum, and how to turn a minus into a plus.">Светлата страна и сянката на всеки аркан и как да обърнете минуса в плюс.</p></div>
-      <div class="sv"><div class="sv-top"><span class="ic t1" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M12 8h20l6 6v26H12Z"/><path d="M18 20h14M18 27h14M18 34h8"/></svg></span><span class="bdg free" data-en="Free">Безплатно</span></div><h3 data-en="Journal">Дневник</h3><p data-en="Write down what happens and check how it matches the period you are in.">Записвайте какво се случва и проверявайте как съвпада с периода, в който сте.</p></div>
-      <div class="sv prem"><div class="sv-top"><span class="ic t4" aria-hidden="true"><svg viewBox="0 0 48 48"><rect x="8" y="11" width="32" height="29" rx="4"/><path d="M8 19h32M16 7v8M32 7v8M16 27h4M24 27h4M32 27h0M16 33h4M24 33h4"/></svg></span><span class="bdg pro" data-en="Premium later">Премиум по-късно</span></div><h3 data-en="Forecast">Прогноза</h3><p data-en="The energy of the year and the themes of the periods in the years ahead.">Енергията на годината и темите на периодите през следващите години.</p></div>
-      <div class="sv prem"><div class="sv-top"><span class="ic t3" aria-hidden="true"><svg viewBox="0 0 48 48"><circle cx="17" cy="17" r="6"/><circle cx="33" cy="17" r="6"/><path d="M6 38c1-7 5-10 11-10s10 3 11 10M22 38c1-7 5-10 11-10s10 3 11 10"/></svg></span><span class="bdg pro" data-en="Premium later">Премиум по-късно</span></div><h3 data-en="People around you">Хора около Вас</h3><p data-en="What connects you with those close to you, what repeats and how to communicate more easily.">Какво Ви свързва с близките, какво се повтаря и как да общувате по-лесно.</p></div>
+
+    <div class="lp-sec">
+      <p class="eyebrow teal" data-en="What you will discover">Какво ще откриете</p>
+      <h2 class="lp-h" data-en="One date. A clearer picture of your life.">Една дата. По-ясна картина на живота Ви.</h2>
+      <p class="note" data-en="Right now every section is open and free.">Засега всички раздели са отворени и безплатни.</p>
+    </div>
+    <div class="svc2" id="svc"><div class="sv2"><div class="sv-top"><span class="ic2 c1" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-5 4-7 8-7s7 2 8 7"/></svg></span><span class="bdg free" data-en="Free">Безплатно</span></div><h3 data-en="Your personal blueprint">Личен портрет</h3><p data-en="Core character, natural talents and how others see you.">Характер, таланти и как Ви виждат хората.</p></div><div class="sv2"><div class="sv-top"><span class="ic2 c2" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h10M4 18h16"/></svg></span><span class="bdg free" data-en="Free">Безплатно</span></div><h3 data-en="Personality summary">Резюме на личността</h3><p data-en="Your whole matrix gathered on one page.">Цялата матрица, събрана на една страница.</p></div><div class="sv2"><div class="sv-top"><span class="ic2 c3" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l2 7 7 2-7 2-2 7-2-7-7-2 7-2Z"/></svg></span><span class="bdg free" data-en="Free">Безплатно</span></div><h3 data-en="22 archetypes">22 архетипа</h3><p data-en="The light side and the shadow of every energy.">Светлата страна и сянката на всяка енергия.</p></div><div class="sv2"><div class="sv-top"><span class="ic2 c4" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6Z"/><path d="M9 11h7M9 15h7M9 19h4"/></svg></span><span class="bdg free" data-en="Free">Безплатно</span></div><h3 data-en="Journal">Дневник</h3><p data-en="Connect the events of your life to the periods of your matrix.">Свържете събитията от живота си с периодите на матрицата.</p></div><div class="sv2"><div class="sv-top"><span class="ic2 c3" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"/></svg></span><span class="bdg pro" data-en="Full reading">Пълен прочит</span></div><h3 data-en="Money and career">Пари и кариера</h3><p data-en="Where your income flows from and what tends to block it.">Откъде идват парите Ви и какво ги спира.</p></div><div class="sv2"><div class="sv-top"><span class="ic2 c5" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></span><span class="bdg pro" data-en="Full reading">Пълен прочит</span></div><h3 data-en="Love and relationships">Любов и отношения</h3><p data-en="What you seek in others and how you connect with the people close to you.">Какво търсите в другите и как се свързвате с близките си.</p></div><div class="sv2"><div class="sv-top"><span class="ic2 c4" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 3-6.2M4 4v4h4"/></svg></span><span class="bdg pro" data-en="Full reading">Пълен прочит</span></div><h3 data-en="Repeating patterns">Карма и Род</h3><p data-en="The life lessons that keep coming back, and the gifts of your family line.">Уроците, които се повтарят, и даровете на рода.</p></div><div class="sv2"><div class="sv-top"><span class="ic2 c1" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 7v5l3 2"/></svg></span><span class="bdg pro" data-en="Full reading">Пълен прочит</span></div><h3 data-en="Personal cycles">Лични цикли</h3><p data-en="The themes of the years and periods ahead of you.">Темите на годините и периодите пред Вас.</p></div></div>
+
+    <div class="lp-sec"><h2 class="lp-h" data-en="How it works">Как работи</h2></div>
+    <div class="steps4">
+      <div class="st2"><span class="n2 a1">01</span><h3 data-en="Enter your date of birth">Въведете датата на раждане</h3><p data-en="That is all. No time or place of birth, no account.">Само това. Без час и място на раждане, без акаунт.</p></div>
+      <div class="st2"><span class="n2 a2">02</span><h3 data-en="Read your free blueprint">Прочетете безплатния портрет</h3><p data-en="Your matrix is calculated by the classic 22-archetype method and explained in plain words.">Матрицата се изчислява по класическата схема с 22 архетипа и се обяснява на разбираем език.</p></div>
+      <div class="st2"><span class="n2 a3">03</span><h3 data-en="Come back every day">Връщайте се всеки ден</h3><p data-en="The energy of the day, a weekly question and a journal that connects events to your cycles.">Енергия на деня, въпрос за седмицата и дневник, който свързва събитията с Вашите цикли.</p></div>
     </div>
 
-    <h2 data-en="How it works">Как работи</h2>
-    <div class="steps3">
-      <div class="st"><span class="num">1</span><h3 data-en="Enter a name and a date">Въведете име и дата</h3><p data-en="Only the date of birth is needed. No time or place of birth, no sign-up.">Нужна е само датата на раждане. Без час и място, без регистрация.</p></div>
-      <div class="st"><span class="num">2</span><h3 data-en="The matrix is calculated">Матрицата се изчислява</h3><p data-en="By the classic 22-arcana method. The numbers are calculated, not guessed.">По класическата схема с 22 аркана. Числата са изчислени, а не гадани.</p></div>
-      <div class="st"><span class="num">3</span><h3 data-en="Read and come back">Четете и се връщайте</h3><p data-en="Every day has its energy and every week a new question and a small step.">Всеки ден има своя енергия, а всяка седмица нов въпрос и малка стъпка.</p></div>
+    <div class="sample2">
+      <div class="s2-txt">
+        <p class="eyebrow coral" data-en="Sample reading">Примерен прочит</p>
+        <h2 class="lp-h" data-en="A report worth keeping">Доклад, който си струва да пазите</h2>
+        <p class="hero-sub" data-en="The full reading will come as a beautifully designed personal guide: your matrix, a chapter for each area of life and a practical plan at the end.">Пълният прочит ще идва като красиво оформен личен наръчник: Вашата матрица, глава за всяка сфера от живота и практичен план накрая.</p>
+        <blockquote class="s2-quote">
+          <p class="q" data-en="“You think best on your own. People come to you for advice because you see the heart of things. The trap is to withdraw when you are tired.”">„Мислите най-добре сами. Хората идват при Вас за съвет, защото виждате същината. Капанът е да се затворите, когато сте уморени.“</p>
+          <p class="note" data-en="&lt;b&gt;This week:&lt;/b&gt; spend one hour without your phone and write down what you want, not what you should do."><b>Тази седмица:</b> един час без телефон. Запишете какво искате, а не какво трябва.</p>
+        </blockquote>
+      </div>
+      <div class="books" aria-hidden="true">
+        <div class="bk bk-in">
+          <span class="bk-k" data-en="Contents">Съдържание</span>
+          <span data-en="1 · Your core">1 · Вашата същност</span><span data-en="2 · Talents">2 · Таланти</span><span data-en="3 · Money and career">3 · Пари и кариера</span><span data-en="4 · Love and family">4 · Любов и семейство</span><span data-en="5 · Repeating patterns">5 · Повтарящи се модели</span><span data-en="6 · Personal cycles">6 · Лични цикли</span><span data-en="7 · Personal plan">7 · Личен план</span>
+        </div>
+        <div class="bk bk-cov">
+          <img id="bkLogo" alt="">
+          <div><span class="bk-k" data-en="Personal guide">Личен наръчник</span><span class="bk-t" data-en="The map of Anna">Картата на Анна</span><span class="bk-s" data-en="Destiny Matrix · 14 March 1990">Матрица на съдбата · 14.03.1990</span></div>
+        </div>
+      </div>
     </div>
 
-    <div class="price" id="lp-price">
-      <h2 data-en="Free for now.">Засега е безплатно.</h2>
-      <p data-en="When the paid version launches, you pay only for what you use. No subscription, no hidden fees.">Когато пуснем платената версия, ще плащате само за това, което ползвате. Без абонамент и без скрити такси.</p>
+    <div class="lp-sec center" id="lp-price">
+      <h2 class="lp-h" data-en="Simple pricing. No subscription.">Ясни цени. Без абонамент.</h2>
+      <p class="hero-sub" data-en="Right now everything is free. The paid version is coming and prices will be announced in advance.">Засега всичко е безплатно. Платената версия предстои и цените ще бъдат обявени предварително.</p>
     </div>
-    <div class="steps3">
-      <div class="st"><span class="num">1</span><h3 data-en="Now: everything is free">Сега: всичко е безплатно</h3><p data-en="All sections are open. No sign-up and no card.">Всички раздели са отворени. Без регистрация и без карта.</p></div>
-      <div class="st"><span class="num">2</span><h3 data-en="The core stays free">Основното остава безплатно</h3><p data-en="The portrait, areas, karma, health map, the 22 arcana and the journal stay free.">Портретът, сферите, кармата, картата на здравето, 22-та аркана и дневникът остават безплатни.</p></div>
-      <div class="st"><span class="num">3</span><h3 data-en="Later: premium">По-късно: премиум</h3><p data-en="The extended forecast, relationships and a personal report become premium. Prices will be announced in advance and nothing is charged without your consent.">Разширената прогноза, връзките с хора и персоналният доклад ще станат премиум. Цените ще бъдат обявени предварително и нищо не се таксува без Ваше съгласие.</p></div>
+    <div class="prices">
+      <div class="pc">
+        <h3 data-en="Free">Безплатно</h3>
+        <p class="pp">0 €</p>
+        <ul><li data-en="Your matrix chart">Вашата матрица</li><li data-en="Personal blueprint">Личен портрет</li><li data-en="Energy of the day">Енергия на деня</li><li data-en="All 22 archetypes">22-та архетипа</li><li data-en="Journal">Дневник</li></ul>
+        <button type="button" class="pbtn ghost2" data-lp="hero" data-en="Start free">Започнете</button>
+      </div>
+      <div class="pc pc-main">
+        <div class="pc-top"><h3 data-en="Full reading">Пълен прочит</h3><span class="bdg pro" data-en="Soon">Скоро</span></div>
+        <p class="pp">9,90 € <small data-en="one-time">еднократно</small></p>
+        <ul><li data-en="Money, love and life lessons">Пари, любов и кармични уроци</li><li data-en="Personal cycles">Лични цикли</li><li data-en="Energy and inner balance">Енергия и вътрешен баланс</li><li data-en="Personal guide as PDF">Личен наръчник в PDF</li><li data-en="Compatibility with 1 person">Съвместимост с 1 човек</li></ul>
+        <button type="button" class="pbtn amber" disabled data-en="Unlock · coming soon">Отключи · скоро</button>
+      </div>
+      <div class="pc">
+        <h3 data-en="Family">Семеен пакет</h3>
+        <p class="pp">19,90 €</p>
+        <ul><li data-en="Everything in Full reading">Всичко от Пълен прочит</li><li data-en="Compatibility with up to 5 people">Съвместимост с до 5 души</li><li data-en="2 children’s matrices">2 детски матрици</li></ul>
+        <button type="button" class="pbtn ghost2" disabled data-en="Coming soon">Скоро</button>
+      </div>
     </div>
 
-    <h2 id="lp-honest" data-en="Honest about limits and data">Честно за ограниченията и данните</h2>
-    <div class="honest">
-      <div class="hc"><h3 data-en="What Mind Compass is not">Какво не е Mind Compass</h3><ul>
-        <li data-en="It is not therapy, a diagnosis or medical, legal or financial advice. In a crisis or with a health problem, please see a specialist.">Не е терапия, диагноза, медицински, правен или финансов съвет. При криза или здравословен проблем потърсете специалист.</li>
-        <li data-en="It does not predict the future. The matrix is a framework for reflection, not a proven science.">Не предсказва бъдещето. Матрицата е рамка за размисъл, а не доказана наука.</li>
-        <li data-en="The readings describe an energy, not you personally. Everyone born on the same date gets the same matrix.">Тълкуванията описват енергия, а не лично Вас. Всички, родени на една и съща дата, имат една и съща матрица.</li>
-        <li data-en="The calculation follows the classic method. Other schools may give different readings.">Изчислението следва класическата схема. Други школи може да дадат различни тълкувания.</li></ul></div>
-      <div class="hc"><h3 data-en="Who gets your data">Кой получава Вашите данни</h3><ul>
-        <li data-en="&lt;b&gt;Nobody.&lt;/b&gt; Names and dates are stored only in the browser on this device."><b>Никой.</b> Имената и датите се пазят само в браузъра на това устройство.</li>
-        <li data-en="No account, no server, no database, no AI and no advertising trackers.">Няма акаунт, сървър, база данни, AI и рекламно проследяване.</li>
-        <li data-en="&lt;b&gt;Hosting&lt;/b&gt; (GitHub Pages) and &lt;b&gt;Google Fonts&lt;/b&gt; see your IP address when the page loads, as with any website."><b>Хостингът</b> (GitHub Pages) и <b>Google Fonts</b> виждат IP адреса Ви при зареждане, както при всеки сайт.</li>
-        <li data-en="You delete everything with one button at the bottom of your matrix.">Изтривате всичко с един бутон в долната част на матрицата.</li></ul>
-        <p class="note"><a href="privacy.html" data-en="Privacy policy">Политика за поверителност</a></p></div>
+    <div class="honest2" id="lp-honest">
+      <div class="hc2 sand">
+        <h3 data-en="What Mind Compass is not">Какво не е Mind Compass</h3>
+        <ul><li data-en="Not therapy, medical, legal or financial advice.">Не е терапия, медицински, правен или финансов съвет.</li><li data-en="Not a prediction of the future. It is a framework for reflection.">Не предсказва бъдещето. Това е рамка за размисъл.</li><li data-en="Not proven science. It is a symbolic system, explained honestly.">Не е доказана наука. Това е символна система, обяснена честно.</li></ul>
+      </div>
+      <div class="hc2 teal">
+        <h3 data-en="Your data stays with you">Данните остават при Вас</h3>
+        <ul><li data-en="&lt;b&gt;We do not collect your data.&lt;/b&gt; Dates and names stay in your browser."><b>Не събираме Вашите данни.</b> Датите и имената остават в браузъра Ви.</li><li data-en="No account, no database, no ad trackers.">Без акаунт, без база данни, без рекламно проследяване.</li><li data-en="Like any website, our host and font provider see your IP address when the page loads.">Както при всеки сайт, хостингът и шрифтовете виждат IP адреса Ви при зареждане.</li><li data-en="Delete everything with one button.">Изтривате всичко с един бутон.</li></ul>
+        <p class="note"><a href="privacy.html" data-en="Privacy policy">Политика за поверителност</a></p>
+      </div>
+    </div>
+
+    <div class="faq">
+      <h2 class="lp-h" data-en="Questions">Въпроси</h2>
+      <details><summary data-en="What is the Destiny Matrix?">Какво е Матрицата на съдбата?</summary><p data-en="A numerological system that turns your date of birth into a chart of 22 archetypes drawn from the Major Arcana. We use it as a mirror for self-reflection.">Нумерологична система, която превръща датата на раждане в схема от 22 архетипа, взети от Големите аркани. Ние я използваме като огледало за самонаблюдение.</p></details>
+      <details><summary data-en="Do I need my birth time?">Трябва ли ми часът на раждане?</summary><p data-en="No. Only the day, month and year.">Не. Само ден, месец и година.</p></details>
+      <details><summary data-en="Is it a subscription?">Абонамент ли е?</summary><p data-en="No. When the paid version launches, you will pay once and keep your reading.">Не. Когато платената версия стартира, ще плащате веднъж и прочитът остава Ваш.</p></details>
+      <details><summary data-en="Where is my data stored?">Къде се пазят данните ми?</summary><p data-en="Only in the browser on your device. You can download them as an archive or delete them at any time.">Само в браузъра на Вашето устройство. Можете да ги изтеглите като архив или да ги изтриете по всяко време.</p></details>
     </div>
   </section>
 
-  <section id="start" class="startpg" hidden>
-    <div class="startcard">
-      <div><button type="button" class="btn-back" data-back="1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg><span data-en="← Back">← Назад</span></button></div>
-      <h2 data-en="Calculate your matrix">Изчислете своята матрица</h2>
-      <p class="note" data-en="All you need is a name and a date of birth.">Нужни са само име и дата на раждане.</p>
-      <form class="wform" id="wForm" novalidate>
-        <label for="wName"><span data-en="Name">Име</span><input id="wName" placeholder="Вашето име" data-en-ph="Your name" autocomplete="off"></label>
-        <label for="wDate"><span data-en="Date of birth">Дата на раждане</span><input id="wDate" type="text" inputmode="numeric" placeholder="дд.мм.гггг" data-en-ph="dd.mm.yyyy" maxlength="10" autocomplete="off"></label>
-        <button type="submit" data-en="Calculate">Изчисли</button>
-        <p class="err" id="wErr" role="alert" hidden></p>
-      </form>
-      <p class="note" data-en="Want to look around first? &lt;button type=&quot;button&quot; class=&quot;link&quot; data-nav=&quot;sample&quot;&gt;Open an example matrix&lt;/button&gt;">Искате първо да разгледате? <button type="button" class="link" data-nav="sample">Отворете примерна матрица</button></p>
-    </div>
-  </section>
+  <section id="start" hidden></section>
 
   <div id="app" class="stack" style="gap:24px">
   <div class="back-bar" id="backBar"><button type="button" class="btn-back" id="backBtn" data-back="1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg><span id="backLbl" data-en="Back to previous page">Назад към предишната страница</span></button><button type="button" class="btn-syn-quick" data-v-jump="sy" id="quickSynBtn"><span data-en="✦ Full Personality Summary">✦ Обобщено резюме на личността</span></button></div>
@@ -585,7 +727,7 @@ footer.ft{display:flex;flex-direction:column;gap:16px;padding-top:22px}
     <button class="tab tab-syn" role="tab" aria-selected="false" data-v="sy" data-en="✦ Summary">✦ Резюме</button>
     <button class="tab" role="tab" aria-selected="false" data-v="zn" data-en="Areas">Сфери</button>
     <button class="tab" role="tab" aria-selected="false" data-v="km" data-en="Karma &amp; Lineage">Карма и Род</button>
-    <button class="tab" role="tab" aria-selected="false" data-v="ch" data-en="Health Map">Карта на здравето</button>
+    <button class="tab" role="tab" aria-selected="false" data-v="ch" data-en="Inner Balance">Вътрешен баланс</button>
     <button class="tab" role="tab" aria-selected="false" data-v="ar" data-en="22 arcana">22 аркана</button>
     <button class="tab" role="tab" aria-selected="false" data-v="fc" data-en="Forecast">Прогноза</button>
     <button class="tab" role="tab" aria-selected="false" data-v="jr" data-en="Journal">Дневник</button>
@@ -654,16 +796,16 @@ footer.ft{display:flex;flex-direction:column;gap:16px;padding-top:22px}
     <div class="ft-cols">
       <div class="ft-brand"><b>Mind Compass</b><p data-en="Destiny Matrix readings in plain language, for self-knowledge. The numbers are calculated by the classic method and stay on your device.">Матрица на съдбата на разбираем език, за себепознание. Числата са изчислени по класическата схема и остават на Вашето устройство.</p></div>
       <div><h4 data-en="Product">Продукт</h4><ul>
-        <li><button type="button" class="link" data-goto="welcome" data-en="What you will discover">Какво ще откриете</button></li>
+        <li><button type="button" class="link" data-lp="svc" data-en="What you will discover">Какво ще откриете</button></li>
         <li><button type="button" class="link" data-nav="sample" data-en="Example matrix">Примерна матрица</button></li>
-        <li><button type="button" class="link" data-goto="lp-price" data-en="Prices">Цени</button></li>
-        <li><button type="button" class="link" data-goto="lp-honest" data-en="Limits and data">Ограничения и данни</button></li></ul></div>
+        <li><button type="button" class="link" data-lp="lp-price" data-en="Prices">Цени</button></li>
+        <li><button type="button" class="link" data-lp="lp-honest" data-en="Limits and data">Ограничения и данни</button></li></ul></div>
       <div><h4 data-en="Legal">Правни</h4><ul>
         <li><a href="privacy.html" data-en="Privacy policy">Политика за поверителност</a></li>
         <li><a href="terms.html" data-en="Terms of use">Общи условия</a></li>
         <li id="ftMail" hidden><a href="#" data-en="Contact">Контакт</a></li></ul></div>
     </div>
-    <p class="ft-legal"><span data-en="The readings are symbolic and meant for self-reflection. They are not predictions and do not replace advice on health, money or important decisions.">Тълкуванията са символни и служат за самонаблюдение. Не са прогноза и не заменят съвет за здраве, пари или важни решения.</span> <span class="ver" data-en="© 2026 Mind Compass · Version 2.5 · 04.11.2026">© 2026 Mind Compass · Версия 2.5 · 04.11.2026</span></p>
+    <p class="ft-legal"><span data-en="The readings are symbolic and meant for self-reflection. They are not predictions and do not replace advice on health, money or important decisions.">Тълкуванията са символни и служат за самонаблюдение. Не са прогноза и не заменят съвет за здраве, пари или важни решения.</span> <span class="ver" data-en="© 2026 Mind Compass · Version 3.0 · 04.11.2026">© 2026 Mind Compass · Версия 3.0 · 04.11.2026</span></p>
   </footer>
   <a class="contact-fab" id="contactFab" href="#" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><span data-en="Contact us">Контакт с нас</span></a>
 </div>
@@ -1576,7 +1718,7 @@ const POS_INFO_EN={
 };
 
 const RN=["","I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII","XIII","XIV","XV","XVI","XVII","XVIII","XIX","XX","XXI","XXII"];
-let LANG="bg";try{const s=localStorage.getItem("mc-lang");if(s==="en"||s==="bg")LANG=s}catch(e){}
+let LANG=/^bg\b/i.test(navigator.language||"")?"bg":"en";try{const s=localStorage.getItem("mc-lang");if(s==="en"||s==="bg")LANG=s}catch(e){}
 let E=E_BG,AX=AX_BG,KTAILS=KTAILS_BG,POS_INFO=POS_INFO_BG;
 const tr=(bg,en)=>LANG==="en"?en:bg;
 const REL={"Партньор":"Partner","Родител":"Parent","Дете":"Child","Брат / сестра":"Sibling","Приятел":"Friend","Колега":"Colleague","Ръководител":"Manager","Друго":"Other"};
@@ -2129,14 +2271,14 @@ function render(name,iso){
     </tr>`).join("");
 
   document.getElementById("v-ch").innerHTML=`
-  <div class="disclaim" role="note"><b>${tr("Важно","Important")}</b> ${tr("Картата на здравето е символна и служи за самонаблюдение. Тя не е медицинска информация, не поставя диагнози и не замества преглед или съвет от лекар. При здравословни оплаквания се обърнете към медицински специалист.","The health map is symbolic and meant for self-reflection. It is not medical information, does not diagnose anything and does not replace an examination or advice from a doctor. If you have health concerns, please see a medical professional.")}</div>
-  <p class="intro">${tr("Картата на здравето свързва 7-те чакри с Линията на Земята (Физика – тяло), Линията на Небето (Енергия – дух) и техния сбор (Емоции – психосоматичен ключ). Кликнете върху който и да е аркан, за да видите как да превърнете минуса му в плюс.","The Health Map links the 7 chakras with the Earth Line (Physical – body), Sky Line (Energy – spirit) and their sum (Emotions – psychosomatic key). Click any arcanum to see how to turn its shadow into the light side.")}</p>
+  <div class="disclaim" role="note"><b>${tr("Важно","Important")}</b> ${tr("Картата на вътрешния баланс е символна и служи за самонаблюдение. Тя не е медицинска информация, не поставя диагнози и не замества преглед или съвет от лекар. При здравословни оплаквания се обърнете към медицински специалист.","The inner balance map is symbolic and meant for self-reflection. It is not medical information, does not diagnose anything and does not replace an examination or advice from a doctor. If you have health concerns, please see a medical professional.")}</div>
+  <p class="intro">${tr("Картата на енергията и вътрешния баланс свързва 7-те чакри с Линията на Земята (Физика – тяло), Линията на Небето (Енергия – дух) и техния сбор (Емоции – психосоматичен ключ). Кликнете върху който и да е аркан, за да видите как да превърнете минуса му в плюс.","The Inner Balance map links the 7 chakras with the Earth Line (Physical – body), Sky Line (Energy – spirit) and their sum (Emotions – psychosomatic key). Click any arcanum to see how to turn its shadow into the light side.")}</p>
   <div class="chakra-wrap" id="c-tbl">
     <table class="chakra-tbl">
       <thead>
         <tr>
           <th>${tr("Чакра и център","Chakra & Centre")}</th>
-          <th>${tr("Органи и системи","Organs & Systems")}</th>
+          <th>${tr("Свързани зони (символно)","Related areas (symbolic)")}</th>
           <th>${tr("Физика (Земя)","Physical (Earth)")}</th>
           <th>${tr("Енергия (Небе)","Energy (Sky)")}</th>
           <th>${tr("Емоции (Ключ)","Emotions (Key)")}</th>
@@ -2420,7 +2562,7 @@ function updBackBtn(){
   const curTab=VIEWS.find(k=>!document.getElementById("v-"+k).hidden)||"pt";
   if(qBtn)qBtn.hidden=(curTab==="sy");
   if(!b||!lbl)return;
-  const TAB_NAMES={pt:tr("Портрет","Portrait"),sy:tr("Резюме","Summary"),zn:tr("Сфери","Areas"),km:tr("Карма и Род","Karma & Lineage"),ch:tr("Карта на здравето","Health Map"),ar:tr("22 аркана","22 Arcana"),fc:tr("Прогноза","Forecast"),jr:tr("Дневник","Journal"),pp:tr("Хора","People")};
+  const TAB_NAMES={pt:tr("Портрет","Portrait"),sy:tr("Резюме","Summary"),zn:tr("Сфери","Areas"),km:tr("Карма и Род","Karma & Lineage"),ch:tr("Вътрешен баланс","Inner Balance"),ar:tr("22 аркана","22 Arcana"),fc:tr("Прогноза","Forecast"),jr:tr("Дневник","Journal"),pp:tr("Хора","People")};
   if(NAV_STACK.length>1){
     const prev=NAV_STACK[NAV_STACK.length-2];
     if(prev.page==="home")lbl.textContent=tr("Назад към Начало","Back to Home");
@@ -2497,7 +2639,7 @@ function markNav(){navLabels();document.querySelectorAll(".topnav a").forEach(a=
 function showMain(n,d,mode){
   MODE=mode;HOME=false;PAGE="app";document.getElementById("welcome").hidden=true;document.getElementById("start").hidden=true;document.getElementById("app").hidden=false;document.getElementById("meForm").hidden=true;
   const V=document.getElementById("viewing");
-  if(mode==="own")V.innerHTML=`<span class="who">${tr("Матрицата на","Matrix of")} ${esc(n)} · ${bgDate(d)}</span><div style="display:flex;gap:8px;flex-wrap:wrap"><button type="button" class="ghost" id="editMe">${tr("Смени данните","Change details")}</button><button type="button" class="ghost" id="clearMe" style="color:var(--minus);border-color:currentColor">${tr("Изчисти данните","Clear data")}</button></div>`;
+  if(mode==="own")V.innerHTML=`<span class="who">${(!n||n==="Вие"||n==="You")?tr("Вашата матрица","Your matrix"):tr("Матрицата на","Matrix of")+" "+esc(n)} · ${bgDate(d)}</span><div style="display:flex;gap:8px;flex-wrap:wrap"><button type="button" class="ghost" id="editMe">${tr("Смени данните","Change details")}</button><button type="button" class="ghost" id="clearMe" style="color:var(--minus);border-color:currentColor">${tr("Изчисти данните","Clear data")}</button></div>`;
   else if(mode==="sample")V.innerHTML=`<span>${tr("Това е <strong>примерна матрица</strong>.","This is an <strong>example matrix</strong>.")}</span><button type="button" class="ghost" data-nav="mine">${OWN?tr("Върни се към моята","Back to mine"):tr("Изчисли моята матрица","Calculate my matrix")}</button>`;
   else V.innerHTML=`<span>${tr("Гледате матрицата на","You are viewing the matrix of")} <strong>${esc(n)}</strong> (${bgDate(d)}).</span>${OWN?`<button type="button" class="ghost" data-nav="mine">${tr("Върни се към моята","Back to mine")}</button>`:""}`;
   render(n,d);markNav();
@@ -2506,8 +2648,7 @@ function goHome(push=true){
   HOME=true;PAGE="home";document.getElementById("welcome").hidden=false;document.getElementById("start").hidden=true;document.getElementById("app").hidden=true;
   if(push&&location.hash!=="#home")history.pushState(null,"","#home");markNav();pushNavState();window.scrollTo(0,0);
 }
-function goStart(push=true){HOME=true;PAGE="start";document.getElementById("welcome").hidden=true;document.getElementById("app").hidden=true;document.getElementById("start").hidden=false;
-  if(push&&location.hash!=="#start")history.pushState(null,"","#start");markNav();pushNavState();window.scrollTo(0,0);document.getElementById("wName").focus({preventScroll:true})}
+function goStart(push=true){goHome(push);const f=document.getElementById("wForm");setTimeout(()=>{f.scrollIntoView({behavior:"smooth",block:"center"});document.getElementById("wDate").focus({preventScroll:true});f.classList.remove("pulse");void f.offsetWidth;f.classList.add("pulse")},60)}
 function goMine(){if(OWN){showMain(OWN.n,OWN.d,"own");show("pt");window.scrollTo(0,0)}else goStart()}
 function navLabels(){const a=document.querySelector('.topnav a[data-nav=mine]');a.textContent=OWN?tr("Моята матрица","My matrix"):tr("Изчисли моята","Calculate mine");const c=document.getElementById("ctaMine");if(c)c.textContent=OWN?tr("Отвори моята матрица","Open my matrix"):tr("Изчисли моята матрица","Calculate my matrix")}
 function goSample(){showMain(SAMPLE.n,SAMPLE.d,"sample");show("pt");window.scrollTo(0,0)}
@@ -2590,6 +2731,13 @@ const setPlat=p=>{document.querySelectorAll(".plat button").forEach(b=>b.setAttr
 document.querySelectorAll(".plat button").forEach(b=>b.addEventListener("click",()=>setPlat(b.dataset.p)));
 const ua=navigator.userAgent;setPlat(/iPhone|iPad|iPod/.test(ua)||(/Macintosh/.test(ua)&&navigator.maxTouchPoints>1)?"ios":/Android/.test(ua)?"android":"desk");
 document.getElementById("phoneIcon").src=document.querySelector(".brand img").src;
+function renderHero(){const el=document.getElementById("heroMx");if(!el||typeof E==="undefined")return;
+  const M=calc(SAMPLE.d),[y,m,d]=SAMPLE.d.split("-");const pts=[[24,200,M.A,"o"],[200,24,M.B,"o"],[376,200,M.C,"o"],[200,376,M.D,"c"],[76,76,M.F,"t"],[324,76,M.G,"t"],[324,324,M.H,"t"],[76,324,M.I,"t"]];
+  const dot=([x,yy,v,k])=>`<circle cx="${x}" cy="${yy}" r="${k==="t"?21:24}" class="hm-${k}"/><text x="${x}" y="${yy+6}" class="hm-${k}t">${v}</text>`;
+  el.innerHTML=`<div class="hc-top"><span class="hc-t">${tr("Примерна матрица","Sample matrix")}</span><span class="hc-d">${tr("Рождена дата","Born")} ${d}.${m}.${y}</span></div>
+  <svg role="img" aria-label="${tr("Примерна матрица на съдбата","Sample Destiny Matrix chart")}" viewBox="0 0 400 400"><circle cx="200" cy="200" r="186" class="hm-ring"/><rect x="76" y="76" width="248" height="248" class="hm-sq"/><rect x="76" y="76" width="248" height="248" class="hm-sq2" transform="rotate(45 200 200)"/><line x1="24" y1="200" x2="376" y2="200" class="hm-ax"/><line x1="200" y1="24" x2="200" y2="376" class="hm-ax"/>${pts.map(dot).join("")}<circle cx="200" cy="200" r="36" class="hm-x"/><text x="200" y="209" class="hm-xt">${M.X}</text></svg>
+  <div class="hc-core"><span class="hc-k">${tr("Център","Your core")} · ${M.X} · ${E[M.X].n}</span><span>${E[M.X].core}</span></div>`;
+  const lg=document.querySelector(".brand img"),bl=document.getElementById("bkLogo");if(lg&&bl)bl.src=lg.src}
 function renderToday(){const el=document.getElementById("todayBox");if(!el||typeof E==="undefined")return;
   const d=new Date(),dd=d.getDate(),mm=d.getMonth()+1,yy=d.getFullYear(),day=r(r(dd)+r(mm)+r(ds(yy))),year=r(ds(yy));
   const dstr=`${String(dd).padStart(2,"0")}.${String(mm).padStart(2,"0")}.${yy}`;
@@ -2604,7 +2752,7 @@ function applyStatic(){
   document.querySelectorAll("[data-en-ph]").forEach(el=>{if(el.dataset.bgPh===undefined)el.dataset.bgPh=el.placeholder;el.placeholder=LANG==="en"?el.dataset.enPh:el.dataset.bgPh});
   document.querySelectorAll("[data-en-al]").forEach(el=>{if(el.dataset.bgAl===undefined)el.dataset.bgAl=el.getAttribute("aria-label");el.setAttribute("aria-label",LANG==="en"?el.dataset.enAl:el.dataset.bgAl)});
   document.querySelectorAll(".lang button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.lang===LANG));
-  renderToday();
+  renderToday();renderHero();
 }
 function setLang(l){
   LANG=l;E=l==="en"?E_EN:E_BG;AX=l==="en"?AX_EN:AX_BG;KTAILS=l==="en"?KTAILS_EN:KTAILS_BG;POS_INFO=l==="en"?POS_INFO_EN:POS_INFO_BG;
@@ -2618,7 +2766,7 @@ if(LANG==="en"){E=E_EN;AX=AX_EN;KTAILS=KTAILS_EN;POS_INFO=POS_INFO_EN}
 
 const CONTACT="";/* имейл за контакт; празно = бутонът е скрит */
 if(CONTACT){const h="mailto:"+CONTACT+"?subject=Mind%20Compass";const f=document.getElementById("contactFab");f.href=h;f.hidden=false;const m=document.getElementById("ftMail");m.hidden=false;m.querySelector("a").href=h}
-document.addEventListener("click",e=>{const g=e.target.closest("[data-goto]");if(!g)return;e.preventDefault();goHome();const t=document.getElementById(g.dataset.goto);if(t)setTimeout(()=>t.scrollIntoView({behavior:"smooth",block:"start"}),60)});
+document.addEventListener("click",e=>{const g=e.target.closest("[data-lp]");if(!g)return;e.preventDefault();if(g.dataset.lp==="hero"){goStart();return}goHome();const t=document.getElementById(g.dataset.lp);if(t)setTimeout(()=>t.scrollIntoView({behavior:"smooth",block:"start"}),60)});
 applyStatic();
 boot();
 // Коригиран Service Worker регистратор, за да работи на всеки HTTPS домейн (не само на github.io)
