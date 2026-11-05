@@ -861,7 +861,7 @@ button{border-radius:12px}
         <li><a href="terms.html" data-en="Terms of use">Общи условия</a></li>
         <li id="ftMail" hidden><a href="#" data-en="Contact">Контакт</a></li></ul></div>
     </div>
-    <p class="ft-legal"><span data-en="The readings are symbolic and meant for self-reflection. They are not predictions and do not replace advice on health, money or important decisions.">Тълкуванията са символни и служат за самонаблюдение. Не са прогноза и не заменят съвет за здраве, пари или важни решения.</span> <span class="ver" data-en="© 2026 Mind Compass · Version 3.6 · 04.11.2026">© 2026 Mind Compass · Версия 3.6 · 04.11.2026</span></p>
+    <p class="ft-legal"><span data-en="The readings are symbolic and meant for self-reflection. They are not predictions and do not replace advice on health, money or important decisions.">Тълкуванията са символни и служат за самонаблюдение. Не са прогноза и не заменят съвет за здраве, пари или важни решения.</span> <span class="ver" data-en="© 2026 Mind Compass · Version 3.6.1 · 05.11.2026">© 2026 Mind Compass · Версия 3.6.1 · 05.11.2026</span></p>
   </footer>
   <a class="contact-fab" id="contactFab" href="#" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><span data-en="Contact us">Контакт с нас</span></a>
 </div>
@@ -2833,8 +2833,11 @@ function renderReport(){
   const name=ME.name,iso=ME.iso,M=ME.M,idx=ME.idx,cur=M.ring[idx%64],yr=new Date().getFullYear(),ye=yearE(M,yr),trNow=periodTriad(M,idx);
   const used=new Set();
   const T=(v,...fs)=>{for(const f of fs){const k=v+"."+f;if(!used.has(k)&&E[v][f]){used.add(k);return E[v][f]}}return ""};
-  const P=(t,v)=>t?`<p>${t}</p>`:(v!=null?`<p class="rpt-note">${tr(`Енергията „${E[v].n}“ вече е описана по-горе в доклада – тук тя действа със същите качества.`,`The “${E[v].n}” energy is already described earlier in the report – here it works with the same qualities.`)}</p>`:"");
+  const P=(t,v)=>t?`<p>${t}</p>`:(v!=null?`<p class="rpt-note">${tr(`Енергията на ${gen(E[v].n)} вече е описана по-горе в доклада – тук тя действа със същите качества.`,`The energy of ${theN(E[v].n)} is already described earlier in the report – here it carries the same qualities.`)}</p>`:"");
   const nm=(v)=>`${RN[v]} · ${E[v].n}`;
+  const gen=(n)=>LANG==="bg"?n.replace(/ът$/,"а").replace(/ят$/,"я"):n; // „Отшелникът“ → „на Отшелника“
+  const theN=(n)=>n==="Wheel of Fortune"?"the Wheel of Fortune":n;
+  const andJ=(a)=>a.length<2?a.join(""):a.slice(0,-1).join(", ")+tr(" и "," and ")+a[a.length-1];
   const anon=!name||["Вие","You","Пример","Example"].includes(name);
   const who=anon?tr("Вашата матрица","Your matrix"):esc(name);
   const X=E[M.X],A=E[M.A],B=E[M.B],D=E[M.D];
@@ -2850,7 +2853,7 @@ function renderReport(){
     tl(M.X,tr("Център","Centre"))+tl(M.A,tr("Визитна картичка","Calling Card"))+tl(M.B,tr("Талант","Talent")),
     `<p class="rpt-lead">${tr(`В основата Ви е ${X.s}.`,`At your core you are ${X.s}.`)}</p>${P(T(M.X,"core"),M.X)}
      ${P(tr(`Навън хората Ви виждат като ${A.s}.`,`Outwardly people see you as ${A.s}.`)+" "+T(M.A,"face"))}
-     ${M.B!==M.A?P(tr(`Дарбата Ви по рождение е ${T(M.B,"tal")}`,`Your birth gift is ${T(M.B,"tal")}`)):""}
+     ${(()=>{if(M.B===M.A)return "";const t=T(M.B,"tal");return t?P(tr(`Дарбата Ви по рождение е ${t}`,`Your birth gift is ${t}`)):""})()}
      <h3>${tr("Таланти","Talents")}</h3><ul class="rpt-list">${[[M.ch.B.one,tr("Дарба на виждането","Gift of vision")],[M.ch.B.two,tr("Творчески глас","Creative voice")],[M.ch.A.two,tr("Социално себеизразяване","Social expression")]].map(([v,l])=>{const t=T(v,"tal");return t?`<li><b>${l} · ${E[v].n}:</b> ${t}</li>`:""}).join("")}</ul>
      <figure class="rpt-fig">${svg(M,-1)}<figcaption>${tr("Вашата матрица на съдбата","Your Destiny Matrix")} · ${bgDate(iso)}</figcaption></figure>
      <h3>${tr("Трите етапа на предназначението","The three stages of purpose")}</h3>
@@ -2924,21 +2927,21 @@ function renderReport(){
   //  (в) пари и любов се свързват чрез общата точка на баланса;
   //  (г) текущият период и годината се свързват с ключовите позиции, ако съвпадат;
   //  (д) въпросите и стъпките идват от вече съществуващите полета q и st, без повторения.
-  const keys=[[M.X,tr("център","centre")],[M.A,tr("визитна картичка","calling card")],[M.B,tr("талант","talent")],[M.money,tr("пари","money")],[M.love,tr("любов","love")],[M.D,tr("кармичен урок","karmic lesson")],[M.personal,tr("лично предназначение","personal purpose")]];
+  const keys=[[M.X,tr("центъра","the centre")],[M.A,tr("визитната картичка","the calling card")],[M.B,tr("таланта","the talent")],[M.money,tr("парите","money")],[M.love,tr("любовта","love")],[M.D,tr("кармичния урок","the karmic lesson")],[M.personal,tr("личното предназначение","the personal purpose")]];
   const cnt={};keys.forEach(([v,l])=>(cnt[v]=cnt[v]||[]).push(l));
   const thread=Object.entries(cnt).filter(([v,l])=>l.length>1).sort((a,b)=>b[1].length-a[1].length)[0];
   const curHit=keys.filter(([v])=>v===cur).map(([,l])=>l),yeHit=keys.filter(([v])=>v===ye).map(([,l])=>l);
   const qList=[...new Set([M.X,M.D,cIn,lIn,cur])].map(v=>T(v,"q")).filter(Boolean).slice(0,5);
   const stList=[...new Set([M.X,cur,M.D])].map(v=>T(v,"st")).filter(Boolean).slice(0,3);
   ch("synthesis",tr("Личен синтез","Personal Synthesis"),tr("Как основните теми на матрицата Ви се свързват в една история.","How the main themes of your matrix connect into one story."),"",
-    `${thread?`<h3>${tr("Основната нишка","The main thread")}</h3><p>${tr(`Енергията ${E[thread[0]].n} се появява на няколко ключови места в матрицата Ви: ${thread[1].join(", ")}. Затова тя е основна нишка в живота Ви.`,`The energy of ${E[thread[0]].n} appears in several key places in your matrix: ${thread[1].join(", ")}. That makes it a main thread in your life.`)} ${T(+thread[0],"bal","s")}</p>`:""}
+    `${thread?`<h3>${tr("Основната нишка","The main thread")}</h3><p>${tr(`Енергията на ${gen(E[thread[0]].n)} се повтаря в няколко ключови позиции – ${andJ(thread[1])}. Затова тя очертава една от основните теми във Вашата матрица: да бъдете ${E[thread[0]].s}.`,`${cap(theN(E[thread[0]].n))} appears in several key positions in your matrix – ${andJ(thread[1])}. This makes it one of its central themes: being ${E[thread[0]].s}.`)}</p>`:""}
      <h3>${tr("Ресурс и предизвикателство","Resource and challenge")}</h3>
-     <p>${tr(`Най-силният Ви ресурс е ${X.n} в центъра${M.B!==M.X?` и талантът на ${B.n}`:""}. Основното предизвикателство идва от ${D.n}: ${AX[M.D].minus[0][0]}`,`Your strongest resource is ${X.n} at the centre${M.B!==M.X?` and the talent of ${B.n}`:""}. The main challenge comes from ${D.n}: ${AX[M.D].minus[0][0]}`)}</p>
+     <p>${tr(`Най-силният Ви ресурс е ${X.n} в центъра${M.B!==M.X?`, заедно с таланта на ${gen(B.n)}`:""}. Основното предизвикателство е свързано с кармичния Ви урок (${D.n}). ${AX[M.D].minus[0][0]}`,`Your strongest resource is ${theN(X.n)} at the centre${M.B!==M.X?`, together with the talent of ${theN(B.n)}`:""}. The main challenge is linked to your karmic lesson (${D.n}). ${AX[M.D].minus[0][0]}`)}</p>
      <p class="rpt-fix"><b>${tr("Начин да го обърнете:","A way to turn it around:")}</b> ${AX[M.D].minus[0][1]}</p>
      <h3>${tr("Пари и отношения","Money and relationships")}</h3>
-     <p>${tr(`Парите (${E[M.money].n}) и любовта (${E[M.love].n}) се срещат в точката на баланса ${E[M.cross].n}. Когато едната сфера е в напрежение, обърнете внимание и на другата.`,`Money (${E[M.money].n}) and love (${E[M.love].n}) meet at the balance point of ${E[M.cross].n}. When one area is under strain, pay attention to the other as well.`)}</p>
+     <p>${tr(`Парите (${E[M.money].n}) и любовта (${E[M.love].n}) се срещат в общата точка на баланса, която при Вас е ${E[M.cross].n}. Когато едната сфера е в напрежение, обърнете внимание и на другата.`,`Money (${E[M.money].n}) and love (${E[M.love].n}) meet at the shared balance point, represented by ${theN(E[M.cross].n)}. When one area is under strain, pay attention to the other as well.`)}</p>
      <h3>${tr("Сега","Now")}</h3>
-     <p>${tr(`В момента сте в период на ${E[cur].n}, а ${yr} година носи енергията на ${E[ye].n}.`,`You are now in a period of ${E[cur].n}, and ${yr} carries the energy of ${E[ye].n}.`)}${curHit.length?" "+tr(`Енергията на периода съвпада с позицията Ви „${curHit.join(", ")}“, затова темата ѝ е особено лична сега.`,`The energy of the period matches your position “${curHit.join(", ")}”, so its theme is especially personal now.`):""}${yeHit.length&&!curHit.length?" "+tr(`Енергията на годината съвпада с позицията Ви „${yeHit.join(", ")}“.`,`The energy of the year matches your position “${yeHit.join(", ")}”.`):""}</p>
+     <p>${tr(`В момента сте в период на ${gen(E[cur].n)}, а ${yr} година носи енергията на ${gen(E[ye].n)}.`,`Your current period carries the energy of ${theN(E[cur].n)}, and ${yr} carries the energy of ${theN(E[ye].n)}.`)}${curHit.length?" "+tr(`Енергията на периода съвпада с ${andJ(curHit)} във Вашата матрица, затова темата ѝ е особено лична сега.`,`The energy of the period matches ${andJ(curHit)} in your matrix, so its theme is especially personal now.`):""}${yeHit.length&&!curHit.length?" "+tr(`Енергията на годината съвпада с ${andJ(yeHit)} във Вашата матрица.`,`The energy of the year matches ${andJ(yeHit)} in your matrix.`):""}</p>
      ${qList.length?`<h3>${tr("Въпроси за размисъл","Questions for reflection")}</h3><ol class="rpt-list">${qList.map(x=>`<li>${x}</li>`).join("")}</ol>`:""}
      ${stList.length?`<h3>${tr("Малки стъпки","Small steps")}</h3><ul class="rpt-list rpt-check">${stList.map(x=>`<li>${x}</li>`).join("")}</ul>`:""}
      <p class="rpt-end">${tr("Тълкуванията са символни и служат за самонаблюдение. Не са прогноза и не заменят съвет за здраве, пари или важни решения.","The readings are symbolic and meant for self-reflection. They are not predictions and do not replace advice on health, money or important decisions.")}</p>`);
@@ -2951,7 +2954,7 @@ function renderReport(){
     <p class="note rpt-hint">${tr("В прозореца за печат изберете „Запази като PDF“. За най-добър резултат включете „Фонови графики“.","In the print window choose “Save as PDF”. For the best result, turn on “Background graphics”.")}</p></div>
   <div class="rpt-doc">
    <section class="rpt-cover"><img src="${logo}" alt=""><div class="rpt-cv"><span class="rpt-k">${tr("Личен доклад","Personal Report")}</span><h1>${who}</h1><p>${tr("Матрица на съдбата","Destiny Matrix")} · ${bgDate(iso)}</p></div>
-    <div class="rpt-cf"><b>Mind Compass</b><span>Find your true north within</span><span>${tr("Изготвен на","Prepared on")} ${new Date().toLocaleDateString(tr("bg-BG","en-GB"))}</span></div></section>
+    <div class="rpt-cf"><b>Mind Compass</b><span>Find your true north within</span><span>${tr("Изготвен на","Prepared on")} ${new Date().toLocaleDateString(tr("bg-BG","en-GB"),{day:"numeric",month:"long",year:"numeric"})}</span></div></section>
    <section class="rpt-toc"><h2>${tr("Съдържание","Contents")}</h2><ol>${chs.map(c=>`<li>${c.title}</li>`).join("")}</ol>
     <p class="note">${tr("Числата са изчислени по класическата схема с 22 аркана.","The numbers are calculated with the classic 22-arcana method.")}</p></section>
    ${chs.map(c=>c.html).join("")}
